@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Gambling Girls Goblins"
+run/main_scene="uid://co4dvh24whixt"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
 
 [physics]
 
