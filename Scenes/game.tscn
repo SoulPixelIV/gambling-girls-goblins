@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cssb57bcc1fue" path="res://Textures/playing_card_sheet.png" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://ch8fj6m0escj1" path="res://Scripts/deck_behaviour.gd" id="1_qxrlw"]
+[ext_resource type="Texture2D" uid="uid://cucmhi8eakaax" path="res://Textures/crazy_goblin_debug.png" id="3_wrm1d"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxrlw"]
 atlas = ExtResource("1_ebmjs")
@@ -412,6 +413,20 @@ offset_right = 75.0
 offset_bottom = 395.0
 theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
+
+[node name="Crazy_Goblin" type="Sprite2D" parent="." unique_id=282493080]
+texture_filter = 1
+position = Vector2(795, 165)
+scale = Vector2(2.0833333, 2.0833333)
+texture = ExtResource("3_wrm1d")
+
+[node name="Crazy_Goblin_Label" type="Label" parent="." unique_id=707675170]
+offset_left = 856.0
+offset_top = 103.0
+offset_right = 912.0
+offset_bottom = 126.0
+theme_override_font_sizes/font_size = 30
+text = "Crazy Goblin"
 
 [connection signal="input_event" from="Deck" to="Deck" method="_on_input_event"]
 [connection signal="mouse_exited" from="Deck" to="Deck" method="_on_mouse_exited"]

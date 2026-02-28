@@ -8,7 +8,11 @@ var value = 0
 var score = 0
 var frame_index = 0
 
+var card_anim_index = 0
+
 func _ready() -> void:
+	scale.x = 0
+	scale.y = 0
 	randomize() #MOVE LATER TO GLOBAL OBJECT
 	
 	#Set Card Frame
@@ -172,3 +176,22 @@ func _ready() -> void:
 	sprite.frame = frame_index
 	emit_signal("card_played", score) #Send card value out
 	print(str(value))
+	
+func _process(delta: float) -> void:
+	if card_anim_index == 0:
+		if scale.x < 1.1:
+			scale.x += delta * 2
+			scale.y += delta * 2
+		else:
+			card_anim_index = 1
+			
+	if card_anim_index == 1:
+		if scale.x > 1.02:
+			scale.x -= delta * 2.5
+			scale.y -= delta * 2.5
+		else:
+			card_anim_index = 2
+			
+	if card_anim_index == 2:
+		scale.x = 1
+		scale.y = 1
