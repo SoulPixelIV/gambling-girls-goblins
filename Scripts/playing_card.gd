@@ -7,13 +7,13 @@ signal card_played(value)
 var value = 0
 var score = 0
 var frame_index = 0
+var player_card = true
 
 var card_anim_index = 0
 
 func _ready() -> void:
 	scale.x = 0
 	scale.y = 0
-	randomize() #MOVE LATER TO GLOBAL OBJECT
 	
 	#Set Card Frame
 	match value:
@@ -174,8 +174,10 @@ func _ready() -> void:
 			frame_index = 52
 			score = 11
 	sprite.frame = frame_index
-	emit_signal("card_played", score) #Send card value out
-	print(str(value))
+	if player_card:
+		emit_signal("card_played", score) #Send card value out
+	else:
+		emit_signal("card_played_enemy", score) #Send card value out
 	
 func _process(delta: float) -> void:
 	if card_anim_index == 0:
