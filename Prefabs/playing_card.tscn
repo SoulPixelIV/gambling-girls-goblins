@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ddje75rwg8th"]
 
-[ext_resource type="Script" uid="uid://ctqfh3ors81jt" path="res://playing_card.gd" id="1_odrdg"]
+[ext_resource type="Script" uid="uid://ctqfh3ors81jt" path="res://Scripts/playing_card.gd" id="1_odrdg"]
 [ext_resource type="Texture2D" uid="uid://cssb57bcc1fue" path="res://Textures/playing_card_sheet.png" id="2_72ffb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qxrlw"]
