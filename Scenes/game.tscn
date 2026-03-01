@@ -18,11 +18,19 @@ offset_bottom = 40.0
 
 [node name="Hit_Button" type="Button" parent="User Interface" unique_id=1568430695]
 layout_mode = 0
-offset_left = 741.0
-offset_top = 435.0
-offset_right = 874.0
-offset_bottom = 478.0
+offset_left = 759.0
+offset_top = 511.0
+offset_right = 985.0
+offset_bottom = 554.0
 text = "HIT"
+
+[node name="Stand_Button" type="Button" parent="User Interface" unique_id=1244192539]
+layout_mode = 0
+offset_left = 759.0
+offset_top = 562.0
+offset_right = 985.0
+offset_bottom = 604.0
+text = "STAND"
 
 [node name="Enemy_Score" type="Label" parent="User Interface" unique_id=2012555226]
 layout_mode = 0
@@ -87,3 +95,4 @@ texture = ExtResource("3_wrm1d")
 script = ExtResource("4_3dryh")
 
 [connection signal="pressed" from="User Interface/Hit_Button" to="Game_Manager" method="_on_hit_button_pressed"]
+[connection signal="pressed" from="User Interface/Stand_Button" to="Game_Manager" method="_on_stand_button_pressed"]
