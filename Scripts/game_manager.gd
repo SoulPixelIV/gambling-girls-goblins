@@ -4,16 +4,20 @@ extends Node
 @onready var hand = $"../Hand"
 @onready var enemy_hand = $"../Enemy_Hand"
 @onready var game_manager = $"../Game_Manager"
-@onready var player_score_text: Label = $"../User Interface/Player_Score"
-@onready var enemy_score_text: Label = $"../User Interface/Enemy_Score"
-@onready var final_player_score_text: Label = $"../User Interface/Final_Score_Labels/Final_Player_Score"
-@onready var final_enemy_score_text: Label = $"../User Interface/Final_Score_Labels/Final_Enemy_Score"
-@onready var combat_messages_text: Label = $"../User Interface/Final_Score_Labels/Combat_Messages"
-@onready var combat_messages2_text: Label = $"../User Interface/Final_Score_Labels/Combat_Messages2"
+@onready var player_healthbar: ProgressBar = $"../User_Interface/Player_Healthbar"
+@onready var enemy_healthbar: ProgressBar = $"../User_Interface/Enemy_Healthbar"
+@onready var player_health: Label = $"../User_Interface/Player_Health"
+@onready var enemy_health: Label = $"../User_Interface/Enemy_Health"
+@onready var player_score_text: Label = $"../User_Interface/Player_Score"
+@onready var enemy_score_text: Label = $"../User_Interface/Enemy_Score"
+@onready var final_player_score_text: Label = $"../User_Interface/Final_Score_Labels/Final_Player_Score"
+@onready var final_enemy_score_text: Label = $"../User_Interface/Final_Score_Labels/Final_Enemy_Score"
+@onready var combat_messages_text: Label = $"../User_Interface/Final_Score_Labels/Combat_Messages"
+@onready var combat_messages2_text: Label = $"../User_Interface/Final_Score_Labels/Combat_Messages2"
 
 @export var enemy: Node
 
-var player_health = 100
+var health = 42
 var turn_state = -1 #Turnstate -1 -> First Enemy Draw | Turnstate 0 -> Normal Enemy Draw | Turnstate 1 -> Player Draw
 var delay_timer = 2
 var card_index = 0
@@ -33,6 +37,9 @@ var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4
 
 func _ready() -> void:
 	randomize()
+	
+	player_healthbar.max_value = health #Set Maximum Healthbar
+	player_health.text = str(health)
 	
 	#Remove Placeholder Texts
 	combat_messages_text.text = ""
@@ -229,15 +236,20 @@ func show_enemy_bust_protection():
 func show_final_damage():
 	combat_messages_text.text = "Total Self Damage: %d" % curr_damage
 	combat_messages2_text.text = ""
+	health -= curr_damage
+	player_healthbar.value = health
+	player_health.text = str(health)
 	await get_tree().create_timer(3).timeout
 	
 func show_enemy_final_damage():
 	combat_messages_text.text = "Total Damage: %d" % curr_enemy_damage
 	combat_messages2_text.text = ""
+	enemy.health -= curr_enemy_damage
+	enemy_healthbar.value = enemy.health
+	enemy_health.text = str(enemy.health)
 	await get_tree().create_timer(3).timeout
 
 func reset_game_round():
-	player_health = 100
 	turn_state = -1
 	delay_timer = 2
 	card_index = 0
