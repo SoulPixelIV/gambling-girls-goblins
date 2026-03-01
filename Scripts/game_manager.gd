@@ -6,7 +6,10 @@ extends Node
 @onready var game_manager = $"../Game_Manager"
 @onready var player_score_text: Label = $"../User Interface/Player_Score"
 @onready var enemy_score_text: Label = $"../User Interface/Enemy_Score"
-@onready var final_score_text: Label = $"../User Interface/Final_Score"
+@onready var final_player_score_text: Label = $"../User Interface/Final_Score_Labels/Final_Player_Score"
+@onready var final_enemy_score_text: Label = $"../User Interface/Final_Score_Labels/Final_Enemy_Score"
+@onready var combat_messages_text: Label = $"../User Interface/Final_Score_Labels/Combat_Messages"
+@onready var combat_messages2_text: Label = $"../User Interface/Final_Score_Labels/Combat_Messages2"
 
 @export var enemy: Node
 
@@ -19,6 +22,9 @@ var player_score = 0
 var enemy_score = 0
 var player_out = false
 var enemy_out = false
+var called_combat_resolve = false
+var curr_damage = 0
+var curr_enemy_damage = 0
 var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 
 "5H", "5D", "5C", "5S", "6H", "6D", "6C", "6S", "7H", "7D", "7C", "7S", 
 "8H", "8D", "8C", "8S", "9H", "9D", "9C", "9S", "10H", "10D", "10C", "10S", 
@@ -27,6 +33,12 @@ var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4
 
 func _ready() -> void:
 	randomize()
+	
+	#Remove Placeholder Texts
+	combat_messages_text.text = ""
+	combat_messages2_text.text = ""
+	final_player_score_text.text = ""
+	final_enemy_score_text.text = ""
 	
 func _process(delta: float) -> void:
 	#Enemys First Draw
@@ -37,12 +49,15 @@ func _process(delta: float) -> void:
 	
 	#Enemys Turn
 	if turn_state == 0 && !enemy_out:
-		delay_timer -= delta
-		if delay_timer < 0:
-			spawn_enemy_playing_card(260 + 100 * enemy_card_index, 160)
-			enemy_card_index += 1
-			turn_state = 1
-			delay_timer = 2
+		if enemy_score >= 16:
+			enemy_out = true
+		else:
+			delay_timer -= delta
+			if delay_timer < 0:
+				spawn_enemy_playing_card(260 + 100 * enemy_card_index, 160)
+				enemy_card_index += 1
+				turn_state = 1
+				delay_timer = 2
 			
 	#Enemy keeps going when Player is out
 	if player_out:
@@ -58,16 +73,36 @@ func _process(delta: float) -> void:
 	if player_out && enemy_out:
 		delay_timer -= delta
 		if delay_timer < 0:
-			player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
-			enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
-			player_score_text.text = ""
-			enemy_score_text.text = ""
-			#final_score_text.text = str("Player " + str(player_score) + " vs " + str(enemy_score) + " Enemy")
-			#Delete All Playing Cards
-			for hand_child in hand.get_children():
-				hand_child.queue_free()
-			for enemy_hand_child in enemy_hand.get_children():
-				enemy_hand_child.queue_free()
+			if !called_combat_resolve:
+				resolve_combat()
+				called_combat_resolve = true
+				
+func resolve_combat():
+	await setup_result_screen()
+	#PLAYER LOSES
+	if player_score > 21:
+		await show_self_damage()
+	#ENEMY LOSES
+	if enemy_score > 21:
+		await show_enemy_self_damage()
+	#PLAYER WINS
+	if (player_score > enemy_score && player_score <= 21) || (enemy_score > 21 && player_score <= 21):
+		await show_player_damage()
+		if player_score == 21:
+			await show_player_crit()
+		if enemy_score > 21:
+			await show_enemy_bust_protection()
+		await show_enemy_final_damage()
+	#ENEMY WINS
+	if (enemy_score > player_score && enemy_score <= 21) || (player_score > 21 && enemy_score <= 21):
+		await show_enemy_damage()
+		if enemy_score == 21:
+			await show_enemy_crit()
+		if player_score > 21:
+			await show_bust_protection()			
+		await show_final_damage()
+		
+	reset_game_round()
 		
 func _on_hit_button_pressed() -> void:
 	#Draw Card
@@ -116,3 +151,113 @@ func _on_card_played_enemy(value):
 	#Check if Enemy is over 21
 	if enemy_score > 21:
 		enemy_out = true
+
+func setup_result_screen():
+	player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
+	enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
+	player_score_text.text = ""
+	enemy_score_text.text = ""
+	final_player_score_text.text = str("Player [" + str(player_score) + "]")
+	final_enemy_score_text.text = str("Enemy [" + str(enemy_score) + "]")
+	#Delete All Playing Cards
+	for hand_child in hand.get_children():
+		hand_child.queue_free()
+	for enemy_hand_child in enemy_hand.get_children():
+		enemy_hand_child.queue_free()
+	await get_tree().create_timer(2).timeout
+		
+func show_self_damage():
+	var calc_self_damage = player_score - 21
+	curr_damage += calc_self_damage
+	combat_messages_text.text = "You receive %d Self Damage!" % calc_self_damage
+	combat_messages2_text.text = "Total Self Damage: %d" % curr_damage
+	await get_tree().create_timer(3).timeout
+	
+func show_enemy_self_damage():
+	var calc_enemy_self_damage = enemy_score - 21
+	curr_enemy_damage += calc_enemy_self_damage
+	combat_messages_text.text = "Enemy receives %d Self Damage!" % calc_enemy_self_damage
+	combat_messages2_text.text = "Total Damage: %d" % curr_enemy_damage
+	await get_tree().create_timer(3).timeout
+	
+func show_enemy_damage():
+	var calc_enemy_damage = 0
+	if player_score > 21:
+		calc_enemy_damage = enemy_score
+	else:
+		calc_enemy_damage = enemy_score - player_score 
+	curr_damage += calc_enemy_damage
+	combat_messages_text.text = "You receive %d Damage from the Enemy!" % calc_enemy_damage
+	combat_messages2_text.text = "Total Self Damage: %d" % curr_damage
+	await get_tree().create_timer(3).timeout
+	
+func show_player_damage():
+	var calc_player_damage = 0
+	if enemy_score > 21:
+		calc_player_damage = player_score
+	else:
+		calc_player_damage = player_score - enemy_score 
+	curr_enemy_damage += calc_player_damage
+	combat_messages_text.text = "Enemy receives %d Damage from the Player!" % calc_player_damage
+	combat_messages2_text.text = "Total Damage: %d" % curr_enemy_damage
+	await get_tree().create_timer(3).timeout
+	
+func show_enemy_crit():
+	curr_damage = curr_damage * 2
+	combat_messages_text.text = "Enemy deals twice the Damage (Crit Bonus)"
+	combat_messages2_text.text = "Total Self Damage: %d" % curr_damage
+	await get_tree().create_timer(3).timeout
+	
+func show_player_crit():
+	curr_enemy_damage = curr_enemy_damage * 2
+	combat_messages_text.text = "Player deals twice the Damage (Crit Bonus)"
+	combat_messages2_text.text = "Total Damage: %d" % curr_enemy_damage
+	await get_tree().create_timer(3).timeout
+	
+func show_bust_protection():
+	curr_damage = curr_damage / 2
+	combat_messages_text.text = "Player receives half the Damage (Bust Protection)"
+	combat_messages2_text.text = "Total Self Damage: %d" % curr_damage
+	await get_tree().create_timer(3).timeout
+	
+func show_enemy_bust_protection():
+	curr_enemy_damage = curr_enemy_damage / 2
+	combat_messages_text.text = "Enemy receives half the Damage (Bust Protection)"
+	combat_messages2_text.text = "Total Damage: %d" % curr_enemy_damage
+	await get_tree().create_timer(3).timeout
+	
+func show_final_damage():
+	combat_messages_text.text = "Total Self Damage: %d" % curr_damage
+	combat_messages2_text.text = ""
+	await get_tree().create_timer(3).timeout
+	
+func show_enemy_final_damage():
+	combat_messages_text.text = "Total Damage: %d" % curr_enemy_damage
+	combat_messages2_text.text = ""
+	await get_tree().create_timer(3).timeout
+
+func reset_game_round():
+	player_health = 100
+	turn_state = -1
+	delay_timer = 2
+	card_index = 0
+	enemy_card_index = 0
+	player_score = 0
+	enemy_score = 0
+	player_out = false
+	enemy_out = false
+	called_combat_resolve = false
+	curr_damage = 0
+	var curr_enemy_damage = 0
+	deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 
+	"5H", "5D", "5C", "5S", "6H", "6D", "6C", "6S", "7H", "7D", "7C", "7S", 
+	"8H", "8D", "8C", "8S", "9H", "9D", "9C", "9S", "10H", "10D", "10C", "10S", 
+	"JH", "JD", "JC", "JS", "QH", "QD", "QC", "QS", "KH", "KD", "KC", "KS", 
+	"AH", "AD", "AC", "AS"]
+	enemy.reset_deck()
+	combat_messages_text.text = ""
+	combat_messages2_text.text = ""
+	final_player_score_text.text = ""
+	final_enemy_score_text.text = ""
+	player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
+	enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
