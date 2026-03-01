@@ -1,400 +1,28 @@
 [gd_scene format=3 uid="uid://co4dvh24whixt"]
 
-[ext_resource type="Texture2D" uid="uid://cssb57bcc1fue" path="res://Textures/playing_card_sheet.png" id="1_ebmjs"]
-[ext_resource type="Script" uid="uid://ch8fj6m0escj1" path="res://Scripts/deck_behaviour.gd" id="1_qxrlw"]
 [ext_resource type="Texture2D" uid="uid://cucmhi8eakaax" path="res://Textures/crazy_goblin_debug.png" id="3_wrm1d"]
 [ext_resource type="Script" uid="uid://byj5koace3ic3" path="res://Scripts/enemy_behaviour.gd" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://cgfxf55meli1d" path="res://Scripts/game_manager.gd" id="5_wowpa"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qxrlw"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1924, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wrm1d"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(0, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3dryh"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(37, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wowpa"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(74, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i6g32"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(111, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1l0tm"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(148, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v158k"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(185, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_h4fw4"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(222, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ldgsr"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(259, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_o5yvi"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(296, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rku1e"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(333, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rfjv2"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(370, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1phco"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(407, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nb51f"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(444, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nnt18"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(481, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ewbju"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(518, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_85qyi"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(555, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_iivbl"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(592, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7nbq1"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(629, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_exi56"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(666, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7t8sx"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(703, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mg4q0"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(740, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vm72l"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(777, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_22asu"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(814, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fkdbe"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(851, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_81klo"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(888, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tgy6u"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(925, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cwurv"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(962, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_mucmn"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(999, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8m3t6"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1036, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ese38"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1073, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oeip8"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1110, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xe308"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1147, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d3cha"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1184, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_i26dy"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1221, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lmoi6"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1258, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6uxt2"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1295, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ym3tv"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1332, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bwj6o"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1369, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_f3c8l"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1406, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bu0y5"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1443, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6a4tp"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1480, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_631el"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1517, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vs120"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1554, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v2cs8"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1591, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_32sfa"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1628, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_titue"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1665, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tt7mg"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1702, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_htg8p"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1739, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jcvim"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1776, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fnkle"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1813, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wr3wg"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1850, 0, 37, 53)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6xvgv"]
-atlas = ExtResource("1_ebmjs")
-region = Rect2(1887, 0, 37, 53)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_8lpvs"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_qxrlw")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wrm1d")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_3dryh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wowpa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i6g32")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1l0tm")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v158k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_h4fw4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ldgsr")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_o5yvi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rku1e")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rfjv2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1phco")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nb51f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nnt18")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ewbju")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_85qyi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_iivbl")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7nbq1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_exi56")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7t8sx")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mg4q0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vm72l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_22asu")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fkdbe")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_81klo")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tgy6u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cwurv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_mucmn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8m3t6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ese38")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oeip8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_xe308")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_d3cha")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_i26dy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lmoi6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6uxt2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ym3tv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bwj6o")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_f3c8l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bu0y5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6a4tp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_631el")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vs120")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v2cs8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_32sfa")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_titue")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tt7mg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_htg8p")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jcvim")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fnkle")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_wr3wg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6xvgv")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wrm1d"]
-size = Vector2(148, 212)
-
 [node name="Node" type="Node" unique_id=1979963607]
+
+[node name="Game_Manager" type="Node" parent="." unique_id=1538228305 node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_wowpa")
+enemy = NodePath("../Crazy_Goblin")
 
 [node name="User Interface" type="Control" parent="." unique_id=870774321]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Hit_Button" type="Button" parent="User Interface" unique_id=1568430695]
+layout_mode = 0
+offset_left = 741.0
+offset_top = 435.0
+offset_right = 874.0
+offset_bottom = 478.0
+text = "HIT"
 
 [node name="Enemy_Score" type="Label" parent="User Interface" unique_id=2012555226]
 layout_mode = 0
@@ -414,20 +42,38 @@ offset_bottom = 395.0
 theme_override_font_sizes/font_size = 60
 horizontal_alignment = 1
 
-[node name="Deck" type="Area2D" parent="." unique_id=401951072 node_paths=PackedStringArray("enemy")]
-position = Vector2(1009, 489)
-script = ExtResource("1_qxrlw")
-enemy = NodePath("../Crazy_Goblin")
+[node name="Player_Healthbar" type="ProgressBar" parent="User Interface" unique_id=1839793479]
+layout_mode = 0
+offset_left = 756.0
+offset_top = 610.0
+offset_right = 989.0
+offset_bottom = 637.0
+value = 100.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Deck" unique_id=389210401]
-texture_filter = 1
-scale = Vector2(4, 4)
-sprite_frames = SubResource("SpriteFrames_8lpvs")
+[node name="Enemy_Healthbar" type="ProgressBar" parent="User Interface" unique_id=1002222913]
+layout_mode = 0
+offset_left = 860.0
+offset_top = 146.0
+offset_right = 1093.0
+offset_bottom = 173.0
+value = 100.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Deck" unique_id=817146426]
-shape = SubResource("RectangleShape2D_wrm1d")
+[node name="Crazy_Goblin_Label" type="Label" parent="User Interface" unique_id=707675170]
+layout_mode = 0
+offset_left = 856.0
+offset_top = 103.0
+offset_right = 1038.0
+offset_bottom = 145.0
+theme_override_font_sizes/font_size = 30
+text = "Crazy Goblin"
 
 [node name="Hand" type="Control" parent="." unique_id=248982143]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Enemy_Hand" type="Control" parent="." unique_id=2008198402]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -440,22 +86,4 @@ scale = Vector2(2.0833333, 2.0833333)
 texture = ExtResource("3_wrm1d")
 script = ExtResource("4_3dryh")
 
-[node name="Crazy_Goblin_Label" type="Label" parent="." unique_id=707675170]
-offset_left = 856.0
-offset_top = 103.0
-offset_right = 912.0
-offset_bottom = 126.0
-theme_override_font_sizes/font_size = 30
-text = "Crazy Goblin"
-
-[node name="Enemy_Hand" type="Control" parent="." unique_id=2008198402]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Game_Manager" type="Node" parent="." unique_id=1538228305]
-script = ExtResource("5_wowpa")
-
-[connection signal="input_event" from="Deck" to="Deck" method="_on_input_event"]
-[connection signal="mouse_exited" from="Deck" to="Deck" method="_on_mouse_exited"]
+[connection signal="pressed" from="User Interface/Hit_Button" to="Game_Manager" method="_on_hit_button_pressed"]
