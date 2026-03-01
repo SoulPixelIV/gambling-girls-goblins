@@ -10,6 +10,13 @@
 script = ExtResource("5_wowpa")
 enemy = NodePath("../Crazy_Goblin")
 
+[node name="Crazy_Goblin" type="Sprite2D" parent="." unique_id=282493080]
+texture_filter = 1
+position = Vector2(838, 118.00001)
+scale = Vector2(2.0833333, 2.0833333)
+texture = ExtResource("3_wrm1d")
+script = ExtResource("4_3dryh")
+
 [node name="User Interface" type="Control" parent="." unique_id=870774321]
 layout_mode = 3
 anchors_preset = 0
@@ -18,17 +25,17 @@ offset_bottom = 40.0
 
 [node name="Hit_Button" type="Button" parent="User Interface" unique_id=1568430695]
 layout_mode = 0
-offset_left = 759.0
+offset_left = 906.0
 offset_top = 511.0
-offset_right = 985.0
+offset_right = 1132.0
 offset_bottom = 554.0
 text = "HIT"
 
 [node name="Stand_Button" type="Button" parent="User Interface" unique_id=1244192539]
 layout_mode = 0
-offset_left = 759.0
+offset_left = 906.0
 offset_top = 562.0
-offset_right = 985.0
+offset_right = 1132.0
 offset_bottom = 604.0
 text = "STAND"
 
@@ -52,28 +59,113 @@ horizontal_alignment = 1
 
 [node name="Player_Healthbar" type="ProgressBar" parent="User Interface" unique_id=1839793479]
 layout_mode = 0
-offset_left = 756.0
+offset_left = 903.0
 offset_top = 610.0
-offset_right = 989.0
+offset_right = 1136.0
 offset_bottom = 637.0
 value = 100.0
 
 [node name="Enemy_Healthbar" type="ProgressBar" parent="User Interface" unique_id=1002222913]
 layout_mode = 0
-offset_left = 860.0
-offset_top = 146.0
-offset_right = 1093.0
-offset_bottom = 173.0
+offset_left = 894.0
+offset_top = 112.0
+offset_right = 1127.0
+offset_bottom = 139.0
 value = 100.0
 
 [node name="Crazy_Goblin_Label" type="Label" parent="User Interface" unique_id=707675170]
 layout_mode = 0
-offset_left = 856.0
-offset_top = 103.0
-offset_right = 1038.0
-offset_bottom = 145.0
+offset_left = 917.0
+offset_top = 69.0
+offset_right = 1099.0
+offset_bottom = 111.0
 theme_override_font_sizes/font_size = 30
 text = "Crazy Goblin"
+
+[node name="Final_Score_Labels" type="Control" parent="User Interface" unique_id=2036002227]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Final_Player_Score" type="Label" parent="User Interface/Final_Score_Labels" unique_id=333004497]
+layout_mode = 0
+offset_left = 207.0
+offset_top = 193.0
+offset_right = 562.0
+offset_bottom = 292.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Player [26]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Final_Enemy_Score" type="Label" parent="User Interface/Final_Score_Labels" unique_id=680879426]
+layout_mode = 0
+offset_left = 587.0
+offset_top = 194.0
+offset_right = 959.0
+offset_bottom = 293.0
+theme_override_colors/font_color = Color(0.9254902, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 70
+text = "Enemy [21]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Damage_Calculations1" type="Label" parent="User Interface/Final_Score_Labels" unique_id=1284832510]
+layout_mode = 0
+offset_left = 402.0
+offset_top = 304.0
+offset_right = 750.0
+offset_bottom = 338.0
+theme_override_colors/font_color = Color(1, 0.007843138, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Player Self Damage [26-21 = 5]"
+
+[node name="Damage_Calculations2" type="Label" parent="User Interface/Final_Score_Labels" unique_id=688126496]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 335.0
+offset_right = 749.0
+offset_bottom = 406.0
+theme_override_colors/font_color = Color(1, 0.007843138, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Damage from Enemy [21]
+"
+
+[node name="Damage_Calculations3" type="Label" parent="User Interface/Final_Score_Labels" unique_id=1974744784]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 365.0
+offset_right = 757.0
+offset_bottom = 436.0
+theme_override_colors/font_color = Color(1, 0.007843138, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Enemy Crit Bonus [*2 Damage]
+"
+
+[node name="Damage_Calculations4" type="Label" parent="User Interface/Final_Score_Labels" unique_id=2108114776]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 397.0
+offset_right = 820.0
+offset_bottom = 468.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "Player Bust Protection [1/2 Damage]
+"
+
+[node name="Damage_Calculations5" type="Label" parent="User Interface/Final_Score_Labels" unique_id=936987106]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 428.0
+offset_right = 879.0
+offset_bottom = 499.0
+theme_override_colors/font_color = Color(1, 0.17128202, 0.71713537, 1)
+theme_override_font_sizes/font_size = 24
+text = "Total Damage Receiving [5+((21*2)/2 = 26]
+"
 
 [node name="Hand" type="Control" parent="." unique_id=248982143]
 layout_mode = 3
@@ -86,13 +178,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="Crazy_Goblin" type="Sprite2D" parent="." unique_id=282493080]
-texture_filter = 1
-position = Vector2(795, 165)
-scale = Vector2(2.0833333, 2.0833333)
-texture = ExtResource("3_wrm1d")
-script = ExtResource("4_3dryh")
 
 [connection signal="pressed" from="User Interface/Hit_Button" to="Game_Manager" method="_on_hit_button_pressed"]
 [connection signal="pressed" from="User Interface/Stand_Button" to="Game_Manager" method="_on_stand_button_pressed"]

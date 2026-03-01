@@ -6,6 +6,7 @@ extends Node
 @onready var game_manager = $"../Game_Manager"
 @onready var player_score_text: Label = $"../User Interface/Player_Score"
 @onready var enemy_score_text: Label = $"../User Interface/Enemy_Score"
+@onready var final_score_text: Label = $"../User Interface/Final_Score"
 
 @export var enemy: Node
 
@@ -52,7 +53,22 @@ func _process(delta: float) -> void:
 	if enemy_out:
 		enemy_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
 		turn_state = 1
-			
+		
+	#Damage Calculating Phase
+	if player_out && enemy_out:
+		delay_timer -= delta
+		if delay_timer < 0:
+			player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
+			enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
+			player_score_text.text = ""
+			enemy_score_text.text = ""
+			#final_score_text.text = str("Player " + str(player_score) + " vs " + str(enemy_score) + " Enemy")
+			#Delete All Playing Cards
+			for hand_child in hand.get_children():
+				hand_child.queue_free()
+			for enemy_hand_child in enemy_hand.get_children():
+				enemy_hand_child.queue_free()
+		
 func _on_hit_button_pressed() -> void:
 	#Draw Card
 	if turn_state == 1 && !player_out:
