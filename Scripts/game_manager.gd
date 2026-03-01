@@ -89,9 +89,11 @@ func resolve_combat():
 	#PLAYER LOSES
 	if player_score > 21:
 		await show_self_damage()
+		await show_final_damage()
 	#ENEMY LOSES
 	if enemy_score > 21:
 		await show_enemy_self_damage()
+		await show_enemy_final_damage()
 	#PLAYER WINS
 	if (player_score > enemy_score && player_score <= 21) || (enemy_score > 21 && player_score <= 21):
 		await show_player_damage()
@@ -239,6 +241,7 @@ func show_final_damage():
 	health -= curr_damage
 	player_healthbar.value = health
 	player_health.text = str(health)
+	curr_damage = 0
 	await get_tree().create_timer(3).timeout
 	
 func show_enemy_final_damage():
@@ -247,6 +250,7 @@ func show_enemy_final_damage():
 	enemy.health -= curr_enemy_damage
 	enemy_healthbar.value = enemy.health
 	enemy_health.text = str(enemy.health)
+	curr_enemy_damage = 0
 	await get_tree().create_timer(3).timeout
 
 func reset_game_round():
