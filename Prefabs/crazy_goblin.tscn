@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://cucmhi8eakaax" path="res://Textures/crazy_goblin_debug.png" id="1_tmchd"]
 [ext_resource type="Script" uid="uid://byj5koace3ic3" path="res://Scripts/crazy_goblin_behaviour.gd" id="2_65g7s"]
 
-[node name="Crazy_Goblin" type="Sprite2D" unique_id=1430381314]
-texture_filter = 1
-scale = Vector2(2.0833333, 2.0833333)
-texture = ExtResource("1_tmchd")
+[node name="Crazy_Goblin" type="Node2D" unique_id=1012948336]
 script = ExtResource("2_65g7s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=534386737]
+texture_filter = 1
+texture = ExtResource("1_tmchd")

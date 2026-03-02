@@ -10,6 +10,7 @@ extends Node
 @onready var enemy_health: Label = $"../User_Interface/Enemy_Health"
 @onready var player_score_text: Label = $"../User_Interface/Player_Score"
 @onready var enemy_score_text: Label = $"../User_Interface/Enemy_Score"
+@onready var enemy_name_tag: Label = $"../User_Interface/Enemy_Name_Label"
 @onready var final_player_score_text: Label = $"../User_Interface/Final_Score_Labels/Final_Player_Score"
 @onready var final_enemy_score_text: Label = $"../User_Interface/Final_Score_Labels/Final_Enemy_Score"
 @onready var combat_messages_text: Label = $"../User_Interface/Final_Score_Labels/Combat_Messages"
@@ -47,18 +48,20 @@ func _ready() -> void:
 	rng.randomize()
 	if rng.randf() < 0.5:
 		rand_enemy = crazy_goblin_enemy
-		print("Spawned Goblin")
+		enemy_name_tag.text = "Crazy Goblin"
 	else:
 		rand_enemy = slime_enemy
-		print("SLime")
+		enemy_name_tag.text = "Slime"
 		
 	enemy = rand_enemy.instantiate()
 	add_child(enemy)
-	enemy.x = 300
-	enemy.y = 50
+	enemy.position = Vector2(800, 160)
+	enemy.scale = Vector2(2, 2)
 	
 	player_healthbar.max_value = health #Set Maximum Healthbar
 	player_health.text = str(health)
+	enemy_healthbar.max_value = enemy.health
+	enemy_health.text = str(enemy.health)
 	
 	#Remove Placeholder Texts
 	combat_messages_text.text = ""
@@ -79,7 +82,7 @@ func _process(delta: float) -> void:
 		if !called_rng_value:
 			var rng = RandomNumberGenerator.new()
 			rng.randomize()
-			if rng.randf() < 0.02:
+			if rng.randf() < enemy.stand_chance:
 				enemy_out = true
 			called_rng_value = true
 			
@@ -89,6 +92,7 @@ func _process(delta: float) -> void:
 			delay_timer -= delta
 			if delay_timer < 0:
 				spawn_enemy_playing_card(260 + 100 * enemy_card_index, 160)
+				called_rng_value = false
 				enemy_card_index += 1
 				turn_state = 1
 				delay_timer = 2

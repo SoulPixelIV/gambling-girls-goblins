@@ -91,7 +91,7 @@ theme_override_font_sizes/font_size = 24
 text = "18"
 horizontal_alignment = 1
 
-[node name="Crazy_Goblin_Label" type="Label" parent="User_Interface" unique_id=707675170]
+[node name="Enemy_Name_Label" type="Label" parent="User_Interface" unique_id=707675170]
 layout_mode = 0
 offset_left = 917.0
 offset_top = 69.0
@@ -99,6 +99,7 @@ offset_right = 1099.0
 offset_bottom = 111.0
 theme_override_font_sizes/font_size = 30
 text = "Crazy Goblin"
+horizontal_alignment = 1
 
 [node name="Final_Score_Labels" type="Control" parent="User_Interface" unique_id=2036002227]
 anchors_preset = 0
