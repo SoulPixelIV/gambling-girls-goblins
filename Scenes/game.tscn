@@ -1,21 +1,11 @@
 [gd_scene format=3 uid="uid://co4dvh24whixt"]
 
-[ext_resource type="Texture2D" uid="uid://cucmhi8eakaax" path="res://Textures/crazy_goblin_debug.png" id="3_wrm1d"]
-[ext_resource type="Script" uid="uid://byj5koace3ic3" path="res://Scripts/enemy_behaviour.gd" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://cgfxf55meli1d" path="res://Scripts/game_manager.gd" id="5_wowpa"]
 
 [node name="Node" type="Node" unique_id=1979963607]
 
-[node name="Game_Manager" type="Node" parent="." unique_id=1538228305 node_paths=PackedStringArray("enemy")]
+[node name="Game_Manager" type="Node" parent="." unique_id=1538228305]
 script = ExtResource("5_wowpa")
-enemy = NodePath("../Crazy_Goblin")
-
-[node name="Crazy_Goblin" type="Sprite2D" parent="." unique_id=282493080]
-texture_filter = 1
-position = Vector2(838, 118.00001)
-scale = Vector2(2.0833333, 2.0833333)
-texture = ExtResource("3_wrm1d")
-script = ExtResource("4_3dryh")
 
 [node name="User_Interface" type="Control" parent="." unique_id=870774321]
 layout_mode = 3

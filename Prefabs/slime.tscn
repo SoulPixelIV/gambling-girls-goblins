@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cxq4c8w7jgx05"]
+
+[ext_resource type="Texture2D" uid="uid://dlxccqadi0oqi" path="res://Textures/slime_debug.png" id="1_kb57a"]
+[ext_resource type="Script" uid="uid://b42a3673dubou" path="res://Scripts/slime_behaviour.gd" id="2_kb57a"]
+
+[node name="Crazy_Goblin" type="Sprite2D" unique_id=1430381314]
+texture_filter = 1
+scale = Vector2(2.0833333, 2.0833333)
+texture = ExtResource("1_kb57a")
+script = ExtResource("2_kb57a")

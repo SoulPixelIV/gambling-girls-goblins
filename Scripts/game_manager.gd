@@ -14,8 +14,11 @@ extends Node
 @onready var final_enemy_score_text: Label = $"../User_Interface/Final_Score_Labels/Final_Enemy_Score"
 @onready var combat_messages_text: Label = $"../User_Interface/Final_Score_Labels/Combat_Messages"
 @onready var combat_messages2_text: Label = $"../User_Interface/Final_Score_Labels/Combat_Messages2"
+@onready var crazy_goblin_enemy = preload("res://Prefabs/crazy_goblin.tscn")
+@onready var slime_enemy = preload("res://Prefabs/slime.tscn")
 
-@export var enemy: Node
+var enemy = null
+var rand_enemy = null
 
 var health = 42
 var turn_state = -1 #Turnstate -1 -> First Enemy Draw | Turnstate 0 -> Normal Enemy Draw | Turnstate 1 -> Player Draw
@@ -27,6 +30,7 @@ var enemy_score = 0
 var player_out = false
 var enemy_out = false
 var called_combat_resolve = false
+var called_rng_value = false
 var curr_damage = 0
 var curr_enemy_damage = 0
 var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 
@@ -37,6 +41,21 @@ var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4
 
 func _ready() -> void:
 	randomize()
+	
+	#Spawn Random Enemy
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+	if rng.randf() < 0.5:
+		rand_enemy = crazy_goblin_enemy
+		print("Spawned Goblin")
+	else:
+		rand_enemy = slime_enemy
+		print("SLime")
+		
+	enemy = rand_enemy.instantiate()
+	add_child(enemy)
+	enemy.x = 300
+	enemy.y = 50
 	
 	player_healthbar.max_value = health #Set Maximum Healthbar
 	player_health.text = str(health)
@@ -56,7 +75,15 @@ func _process(delta: float) -> void:
 	
 	#Enemys Turn
 	if turn_state == 0 && !enemy_out:
-		if enemy_score >= 16:
+		#Random Stand Chance
+		if !called_rng_value:
+			var rng = RandomNumberGenerator.new()
+			rng.randomize()
+			if rng.randf() < 0.02:
+				enemy_out = true
+			called_rng_value = true
+			
+		if enemy_score >= enemy.stand_on:
 			enemy_out = true
 		else:
 			delay_timer -= delta
@@ -140,7 +167,7 @@ func spawn_enemy_playing_card(x, y):
 			var rand_card_index2 = randi_range(0, enemy.deck.size() - 1) #Select Random Card from Deck
 			var enemy_card_instance = playing_card.instantiate()
 			enemy_card_instance.card_played.connect(_on_card_played_enemy) #Receive Card Value from Instantiated Card
-			enemy_card_instance.value = deck[rand_card_index2] #Give Created Card Value
+			enemy_card_instance.value = enemy.deck[rand_card_index2] #Give Created Card Value
 			enemy.deck.remove_at(rand_card_index2) #Remove Card from Deck
 			enemy_hand.add_child(enemy_card_instance)
 			enemy_card_instance.position = Vector2(x, y)
@@ -263,6 +290,7 @@ func reset_game_round():
 	player_out = false
 	enemy_out = false
 	called_combat_resolve = false
+	called_rng_value = false
 	curr_damage = 0
 	var curr_enemy_damage = 0
 	deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 
