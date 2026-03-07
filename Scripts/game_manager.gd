@@ -17,6 +17,7 @@ extends Node
 @onready var combat_messages2_text: Label = $"../User_Interface/Final_Score_Labels/Combat_Messages2"
 @onready var crazy_goblin_enemy = preload("res://Prefabs/crazy_goblin.tscn")
 @onready var slime_enemy = preload("res://Prefabs/slime.tscn")
+@onready var drunkard_enemy = preload("res://Prefabs/drunkard.tscn")
 
 var enemy = null
 var rand_enemy = null
@@ -46,12 +47,15 @@ func _ready() -> void:
 	#Spawn Random Enemy
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
-	if rng.randf() < 0.5:
+	if rng.randf() < 0.33:
 		rand_enemy = crazy_goblin_enemy
 		enemy_name_tag.text = "Crazy Goblin"
-	else:
+	elif rng.randf() > 0.33 and rng.randf() < 0.66:
 		rand_enemy = slime_enemy
 		enemy_name_tag.text = "Slime"
+	else:
+		rand_enemy = drunkard_enemy
+		enemy_name_tag.text = "Drunkard"
 		
 	enemy = rand_enemy.instantiate()
 	add_child(enemy)
@@ -61,6 +65,7 @@ func _ready() -> void:
 	player_healthbar.max_value = health #Set Maximum Healthbar
 	player_health.text = str(health)
 	enemy_healthbar.max_value = enemy.health
+	enemy_healthbar.value = enemy.health
 	enemy_health.text = str(enemy.health)
 	
 	#Remove Placeholder Texts

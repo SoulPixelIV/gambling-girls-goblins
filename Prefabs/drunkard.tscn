@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://tvl447pfyv27"]
+
+[ext_resource type="Script" uid="uid://bdj635cy3ea62" path="res://Scripts/drunkard_behaviour.gd" id="1_7l36v"]
+[ext_resource type="Texture2D" uid="uid://dj6hh13vcg73f" path="res://Textures/drunkard_debug.png" id="2_7l36v"]
+
+[node name="Slime" type="Node2D" unique_id=1012948336]
+script = ExtResource("1_7l36v")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=534386737]
+texture_filter = 1
+texture = ExtResource("2_7l36v")
