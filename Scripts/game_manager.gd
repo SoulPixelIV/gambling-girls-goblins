@@ -222,6 +222,7 @@ func _on_card_played_enemy(value, card_id):
 			enemy_score += 1
 		else:
 			enemy_score += 11
+		enemy_score_text.text = str(enemy_score)
 	else:
 		enemy_score += value
 		enemy_score_text.text = str(enemy_score)
