@@ -4,6 +4,11 @@
 
 [node name="Node" type="Node" unique_id=1979963607]
 
+[node name="Background" type="ColorRect" parent="." unique_id=159603131]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 1)
+
 [node name="Death_Manager" type="Node" parent="." unique_id=1604986676]
 script = ExtResource("1_ojehl")
 
@@ -15,34 +20,34 @@ offset_bottom = 40.0
 
 [node name="Journey_Label" type="Label" parent="User_Interface" unique_id=680879426]
 layout_mode = 0
-offset_left = 186.0
-offset_top = 103.0
-offset_right = 979.0
-offset_bottom = 202.0
+offset_left = -77.0
+offset_top = 41.0
+offset_right = 716.0
+offset_bottom = 140.0
 theme_override_colors/font_color = Color(0.9254902, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 32
 text = "Your Journey ends here"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Sorry_Label" type="Label" parent="User_Interface" unique_id=1281019492]
 layout_mode = 0
-offset_left = 243.0
-offset_top = 203.0
-offset_right = 897.0
-offset_bottom = 237.0
+offset_left = -7.0
+offset_top = 118.0
+offset_right = 647.0
+offset_bottom = 152.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 18
 text = "I am very sorry, darling"
 horizontal_alignment = 1
 
 [node name="Restart_Button" type="Button" parent="User_Interface" unique_id=467423527]
 layout_mode = 0
-offset_left = 502.0
-offset_top = 423.0
-offset_right = 638.0
-offset_bottom = 477.0
+offset_left = 252.0
+offset_top = 217.0
+offset_right = 388.0
+offset_bottom = 271.0
 text = "Restart Game"
 
 [connection signal="pressed" from="User_Interface/Restart_Button" to="Death_Manager" method="_on_restart_button_pressed"]

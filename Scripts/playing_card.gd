@@ -182,19 +182,19 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	if card_anim_index == 0:
-		if scale.x < 1.1:
+		if scale.x < 0.3:
 			scale.x += delta * 2
 			scale.y += delta * 2
 		else:
 			card_anim_index = 1
 			
 	if card_anim_index == 1:
-		if scale.x > 1.02:
+		if scale.x > 0.252:
 			scale.x -= delta * 2.5
 			scale.y -= delta * 2.5
 		else:
 			card_anim_index = 2
 			
 	if card_anim_index == 2:
-		scale.x = 1
-		scale.y = 1
+		scale.x = 0.25
+		scale.y = 0.25

@@ -1,8 +1,58 @@
 [gd_scene format=3 uid="uid://co4dvh24whixt"]
 
+[ext_resource type="Texture2D" uid="uid://cm4bi2hriubg" path="res://Textures/circle_debug.png" id="1_3dryh"]
+[ext_resource type="Texture2D" uid="uid://bpx3j8sscympk" path="res://Textures/ui_frame.png" id="2_qxrlw"]
+[ext_resource type="Shader" uid="uid://clnvet060xyb4" path="res://Shader/blur.gdshader" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://cgfxf55meli1d" path="res://Scripts/game_manager.gd" id="5_wowpa"]
 
+[sub_resource type="Curve" id="Curve_3dryh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.59042555, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wowpa"]
+shader = ExtResource("4_3dryh")
+shader_parameter/blur_amount = 1.5
+
 [node name="Node" type="Node" unique_id=1979963607]
+
+[node name="Background" type="ColorRect" parent="." unique_id=1322775525]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 1)
+
+[node name="Particle_Spawner_Red" type="CPUParticles2D" parent="." unique_id=606576124]
+position = Vector2(371, 121)
+amount = 60
+texture = ExtResource("1_3dryh")
+lifetime = 30.0
+lifetime_randomness = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(240, 100)
+gravity = Vector2(0, 0)
+angle_max = 359.0
+scale_amount_min = 0.1
+scale_amount_curve = SubResource("Curve_3dryh")
+color = Color(0.7058824, 0.011764706, 0, 0.38431373)
+
+[node name="Particle_Spawner_Blue" type="CPUParticles2D" parent="." unique_id=674952254]
+position = Vector2(371, 121)
+amount = 60
+texture = ExtResource("1_3dryh")
+lifetime = 30.0
+lifetime_randomness = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(240, 100)
+gravity = Vector2(0, 0)
+angle_max = 359.0
+scale_amount_min = 0.1
+scale_amount_curve = SubResource("Curve_3dryh")
+color = Color(0.14509805, 0, 0.95686275, 0.45882353)
+
+[node name="Blur_Filter" type="ColorRect" parent="." unique_id=1875600707]
+material = SubResource("ShaderMaterial_wowpa")
+offset_left = 109.0
+offset_right = 640.0
+offset_bottom = 252.0
 
 [node name="Game_Manager" type="Node" parent="." unique_id=1538228305]
 script = ExtResource("5_wowpa")
@@ -13,46 +63,51 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Frame" type="Sprite2D" parent="User_Interface" unique_id=1579732443]
+texture_filter = 1
+position = Vector2(320, 180)
+texture = ExtResource("2_qxrlw")
+
 [node name="Hit_Button" type="Button" parent="User_Interface" unique_id=1568430695]
 layout_mode = 0
-offset_left = 906.0
-offset_top = 511.0
-offset_right = 1132.0
-offset_bottom = 554.0
+offset_left = 408.0
+offset_top = 260.0
+offset_right = 634.0
+offset_bottom = 303.0
 text = "Hit"
 
 [node name="Stand_Button" type="Button" parent="User_Interface" unique_id=1244192539]
 layout_mode = 0
-offset_left = 906.0
-offset_top = 562.0
-offset_right = 1132.0
-offset_bottom = 604.0
+offset_left = 408.0
+offset_top = 311.0
+offset_right = 634.0
+offset_bottom = 353.0
 text = "Stand"
 
 [node name="Enemy_Score" type="Label" parent="User_Interface" unique_id=2012555226]
 layout_mode = 0
-offset_left = 110.0
-offset_top = 92.0
-offset_right = 179.0
-offset_bottom = 175.0
-theme_override_font_sizes/font_size = 60
+offset_left = 277.0
+offset_top = 91.0
+offset_right = 304.0
+offset_bottom = 125.0
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 
 [node name="Player_Score" type="Label" parent="User_Interface" unique_id=1130129243]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 312.0
-offset_right = 75.0
-offset_bottom = 395.0
-theme_override_font_sizes/font_size = 60
+offset_left = 116.0
+offset_top = 193.0
+offset_right = 143.0
+offset_bottom = 227.0
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 
 [node name="Player_Healthbar" type="ProgressBar" parent="User_Interface" unique_id=1839793479]
 layout_mode = 0
-offset_left = 903.0
-offset_top = 610.0
-offset_right = 1136.0
-offset_bottom = 637.0
+offset_left = 114.0
+offset_top = 228.0
+offset_right = 288.0
+offset_bottom = 248.0
 max_value = 42.0
 step = 1.0
 value = 42.0
@@ -60,43 +115,43 @@ show_percentage = false
 
 [node name="Player_Health" type="Label" parent="User_Interface" unique_id=1758212477]
 layout_mode = 0
-offset_left = 1003.0
-offset_top = 606.0
-offset_right = 1038.0
-offset_bottom = 640.0
+offset_left = 185.0
+offset_top = 224.0
+offset_right = 216.0
+offset_bottom = 258.0
 theme_override_colors/font_color = Color(0, 1, 0.5176471, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 18
 text = "42"
 horizontal_alignment = 1
 
 [node name="Enemy_Healthbar" type="ProgressBar" parent="User_Interface" unique_id=1002222913]
 layout_mode = 0
-offset_left = 894.0
-offset_top = 112.0
-offset_right = 1127.0
-offset_bottom = 139.0
+offset_left = 468.0
+offset_top = 31.0
+offset_right = 623.0
+offset_bottom = 49.0
 step = 1.0
 value = 18.0
 show_percentage = false
 
 [node name="Enemy_Health" type="Label" parent="User_Interface" unique_id=772199178]
 layout_mode = 0
-offset_left = 989.0
-offset_top = 108.0
-offset_right = 1024.0
-offset_bottom = 142.0
+offset_left = 530.0
+offset_top = 27.0
+offset_right = 563.0
+offset_bottom = 61.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 18
 text = "18"
 horizontal_alignment = 1
 
 [node name="Enemy_Name_Label" type="Label" parent="User_Interface" unique_id=707675170]
 layout_mode = 0
-offset_left = 917.0
-offset_top = 69.0
-offset_right = 1099.0
-offset_bottom = 111.0
-theme_override_font_sizes/font_size = 30
+offset_left = 452.0
+offset_top = 3.0
+offset_right = 634.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 22
 text = "Crazy Goblin"
 horizontal_alignment = 1
 
@@ -107,49 +162,49 @@ offset_bottom = 40.0
 
 [node name="Final_Player_Score" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=333004497]
 layout_mode = 0
-offset_left = 207.0
-offset_top = 193.0
-offset_right = 562.0
-offset_bottom = 292.0
+offset_left = 111.0
+offset_top = 48.0
+offset_right = 466.0
+offset_bottom = 147.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 30
 text = "Player [17]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Final_Enemy_Score" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=680879426]
 layout_mode = 0
-offset_left = 587.0
-offset_top = 195.0
-offset_right = 959.0
-offset_bottom = 294.0
+offset_left = 266.0
+offset_top = 49.0
+offset_right = 638.0
+offset_bottom = 148.0
 theme_override_colors/font_color = Color(0.9254902, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 30
 text = "Enemy [21]"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Combat_Messages" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=1281019492]
 layout_mode = 0
-offset_left = 255.0
-offset_top = 293.0
-offset_right = 909.0
-offset_bottom = 327.0
+offset_left = 44.0
+offset_top = 119.0
+offset_right = 698.0
+offset_bottom = 153.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 text = "You receive %d Self Damage!"
 horizontal_alignment = 1
 
 [node name="Combat_Messages2" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=485587634]
 layout_mode = 0
-offset_left = 247.0
-offset_top = 327.0
-offset_right = 901.0
-offset_bottom = 361.0
+offset_left = 40.0
+offset_top = 141.0
+offset_right = 694.0
+offset_bottom = 175.0
 theme_override_colors/font_color = Color(1, 0.007843138, 0, 1)
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 text = "Total Damage = 7"
 horizontal_alignment = 1
 

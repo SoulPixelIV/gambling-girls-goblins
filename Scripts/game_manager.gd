@@ -61,7 +61,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	#Enemys First Draw
 	if turn_state == -1:
-		spawn_enemy_playing_card(260 + 100 * enemy_card_index, 160)
+		spawn_enemy_playing_card(330 + 25 * enemy_card_index, 90)
 		enemy_card_index += 1
 		turn_state = 1
 	
@@ -80,7 +80,7 @@ func _process(delta: float) -> void:
 		else:
 			delay_timer -= delta
 			if delay_timer < 0:
-				spawn_enemy_playing_card(260 + 100 * enemy_card_index, 160)
+				spawn_enemy_playing_card(330 + 25 * enemy_card_index, 90)
 				called_rng_value = false
 				enemy_card_index += 1
 				turn_state = 1
@@ -145,7 +145,7 @@ func _on_hit_button_pressed() -> void:
 	if button_mode == 0:
 		#Draw Card
 		if turn_state == 1 && !player_out:
-			spawn_playing_card(110 + 100 * card_index, 500)
+			spawn_playing_card(168 + 25 * card_index, 192)
 			card_index += 1
 			turn_state = 0
 	elif button_mode == 1:
@@ -368,7 +368,7 @@ func spawn_new_enemy():
 
 	enemy = rand_enemy.instantiate()
 	add_child(enemy)
-	enemy.position = Vector2(800, 160)
+	enemy.position = Vector2(530, 130)
 	enemy.scale = Vector2(2, 2)
 
 	#Update UI
