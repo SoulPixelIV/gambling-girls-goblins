@@ -15,6 +15,8 @@ extends Node
 @onready var final_enemy_score_text: Label = $"../User_Interface/Final_Score_Labels/Final_Enemy_Score"
 @onready var combat_messages_text: Label = $"../User_Interface/Final_Score_Labels/Combat_Messages"
 @onready var combat_messages2_text: Label = $"../User_Interface/Final_Score_Labels/Combat_Messages2"
+@onready var hit_button = $"../User_Interface/Hit_Button"
+@onready var stand_button = $"../User_Interface/Stand_Button"
 @onready var crazy_goblin_enemy = preload("res://Prefabs/crazy_goblin.tscn")
 @onready var slime_enemy = preload("res://Prefabs/slime.tscn")
 @onready var drunkard_enemy = preload("res://Prefabs/drunkard.tscn")
@@ -35,6 +37,7 @@ var called_combat_resolve = false
 var called_rng_value = false
 var curr_damage = 0
 var curr_enemy_damage = 0
+var button_mode = 0
 var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 
 "5H", "5D", "5C", "5S", "6H", "6D", "6C", "6S", "7H", "7D", "7C", "7S", 
 "8H", "8D", "8C", "8S", "9H", "9D", "9C", "9S", "10H", "10D", "10C", "10S", 
@@ -82,7 +85,7 @@ func _process(delta: float) -> void:
 		turn_state = 1
 	
 	#Enemys Turn
-	if turn_state == 0 && !enemy_out:
+	if turn_state == 0 && !enemy_out && button_mode == 0:
 		#Random Stand Chance
 		if !called_rng_value:
 			var rng = RandomNumberGenerator.new()
@@ -150,15 +153,37 @@ func resolve_combat():
 	reset_game_round()
 		
 func _on_hit_button_pressed() -> void:
-	#Draw Card
-	if turn_state == 1 && !player_out:
-		spawn_playing_card(110 + 100 * card_index, 500)
-		card_index += 1
-		turn_state = 0
+	if button_mode == 0:
+		#Draw Card
+		if turn_state == 1 && !player_out:
+			spawn_playing_card(110 + 100 * card_index, 500)
+			card_index += 1
+			turn_state = 0
+	elif button_mode == 1:
+		choose_ace_value(1)
 		
 func _on_stand_button_pressed() -> void:
-	if card_index > 0:
+	if button_mode == 0:
+		if card_index > 0:
+			player_out = true
+	elif button_mode == 1:
+		choose_ace_value(11)
+	
+func choose_ace_value(value):
+	player_score += value
+	player_score_text.text = str(player_score)
+
+	# Ass-Modus verlassen
+	button_mode = 0
+	hit_button.text = "Hit"
+	stand_button.text = "Stand"
+
+	# Bust check
+	if player_score > 21:
 		player_out = true
+
+	# Enemy Turn starten
+	turn_state = 0
 		
 func spawn_playing_card(x, y):
 	if deck.size() > 0:
@@ -166,6 +191,7 @@ func spawn_playing_card(x, y):
 		var card_instance = playing_card.instantiate()
 		card_instance.card_played.connect(_on_card_played) #Receive Card Value from Instantiated Card
 		card_instance.value = deck[rand_card_index] #Give Created Card Value
+		card_instance.game_manager = self
 		deck.remove_at(rand_card_index) #Remove Card from Deck
 		hand.add_child(card_instance)
 		card_instance.position = Vector2(x, y)
@@ -177,21 +203,39 @@ func spawn_enemy_playing_card(x, y):
 			var enemy_card_instance = playing_card.instantiate()
 			enemy_card_instance.card_played.connect(_on_card_played_enemy) #Receive Card Value from Instantiated Card
 			enemy_card_instance.value = enemy.deck[rand_card_index2] #Give Created Card Value
+			enemy_card_instance.game_manager = self
 			enemy.deck.remove_at(rand_card_index2) #Remove Card from Deck
 			enemy_hand.add_child(enemy_card_instance)
 			enemy_card_instance.position = Vector2(x, y)
 			
-func _on_card_played(value):
-	player_score += value
-	player_score_text.text = str(player_score)
+func _on_card_played(value, card_id):
+	if card_id.begins_with("A"):
+		button_mode = 1
+	else:
+		player_score += value
+		player_score_text.text = str(player_score)
+
+		#Check if Player is over 21
+		if player_score > 21:
+			player_out = true
+		
+	#Change Button Texts
+	if button_mode == 0:
+		hit_button.text = "Hit"
+		stand_button.text = "Stand"
+	if button_mode == 1:
+		hit_button.text = "Count as 1"
+		stand_button.text = "Count as 11"	
 	
-	#Check if Player is over 21
-	if player_score > 21:
-		player_out = true
-	
-func _on_card_played_enemy(value):
-	enemy_score += value
-	enemy_score_text.text = str(enemy_score)
+func _on_card_played_enemy(value, card_id):
+	if card_id.begins_with("A"):
+		if enemy_score + 11 > 21:
+			enemy_score += 1
+		else:
+			enemy_score += 11
+	else:
+		enemy_score += value
+		enemy_score_text.text = str(enemy_score)
 	
 	#Check if Enemy is over 21
 	if enemy_score > 21:

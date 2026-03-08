@@ -4,6 +4,7 @@ extends Control
 
 signal card_played(value)
 
+var game_manager = null
 var value = 0
 var score = 0
 var frame_index = 0
@@ -163,21 +164,21 @@ func _ready() -> void:
 			score = 10
 		"AH":
 			frame_index = 49
-			score = 11
+			score = 0
 		"AD":
 			frame_index = 50
-			score = 11
+			score = 0
 		"AC":
 			frame_index = 51
-			score = 11
+			score = 0
 		"AS":
 			frame_index = 52
-			score = 11
+			score = 0
 	sprite.frame = frame_index
 	if player_card:
-		emit_signal("card_played", score) #Send card value out
+		emit_signal("card_played", score, value) #Send card value out
 	else:
-		emit_signal("card_played_enemy", score) #Send card value out
+		emit_signal("card_played_enemy", score, value) #Send card value out
 	
 func _process(delta: float) -> void:
 	if card_anim_index == 0:
