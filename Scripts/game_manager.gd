@@ -150,6 +150,10 @@ func resolve_combat():
 			await show_bust_protection()			
 		await show_final_damage()
 		
+	#Check if Player died
+	if health <= 0:
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+	
 	reset_game_round()
 		
 func _on_hit_button_pressed() -> void:
@@ -260,14 +264,14 @@ func show_self_damage():
 	curr_damage += calc_self_damage
 	combat_messages_text.text = "You receive %d Self Damage!" % calc_self_damage
 	combat_messages2_text.text = "Total Self Damage: %d" % curr_damage
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	
 func show_enemy_self_damage():
 	var calc_enemy_self_damage = enemy_score - 21
 	curr_enemy_damage += calc_enemy_self_damage
 	combat_messages_text.text = "Enemy receives %d Self Damage!" % calc_enemy_self_damage
 	combat_messages2_text.text = "Total Damage: %d" % curr_enemy_damage
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	
 func show_enemy_damage():
 	var calc_enemy_damage = 0
@@ -278,7 +282,7 @@ func show_enemy_damage():
 	curr_damage += calc_enemy_damage
 	combat_messages_text.text = "You receive %d Damage from the Enemy!" % calc_enemy_damage
 	combat_messages2_text.text = "Total Self Damage: %d" % curr_damage
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	
 func show_player_damage():
 	var calc_player_damage = 0
@@ -289,31 +293,31 @@ func show_player_damage():
 	curr_enemy_damage += calc_player_damage
 	combat_messages_text.text = "Enemy receives %d Damage from the Player!" % calc_player_damage
 	combat_messages2_text.text = "Total Damage: %d" % curr_enemy_damage
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	
 func show_enemy_crit():
 	curr_damage = curr_damage * 2
 	combat_messages_text.text = "Enemy deals twice the Damage (Crit Bonus)"
 	combat_messages2_text.text = "Total Self Damage: %d" % curr_damage
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	
 func show_player_crit():
 	curr_enemy_damage = curr_enemy_damage * 2
 	combat_messages_text.text = "Player deals twice the Damage (Crit Bonus)"
 	combat_messages2_text.text = "Total Damage: %d" % curr_enemy_damage
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	
 func show_bust_protection():
 	curr_damage = curr_damage / 2
 	combat_messages_text.text = "Player receives half the Damage (Bust Protection)"
 	combat_messages2_text.text = "Total Self Damage: %d" % curr_damage
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	
 func show_enemy_bust_protection():
 	curr_enemy_damage = curr_enemy_damage / 2
 	combat_messages_text.text = "Enemy receives half the Damage (Bust Protection)"
 	combat_messages2_text.text = "Total Damage: %d" % curr_enemy_damage
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	
 func show_final_damage():
 	combat_messages_text.text = "Total Self Damage: %d" % curr_damage
@@ -322,7 +326,7 @@ func show_final_damage():
 	player_healthbar.value = health
 	player_health.text = str(health)
 	curr_damage = 0
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	
 func show_enemy_final_damage():
 	combat_messages_text.text = "Total Damage: %d" % curr_enemy_damage
@@ -331,7 +335,7 @@ func show_enemy_final_damage():
 	enemy_healthbar.value = enemy.health
 	enemy_health.text = str(enemy.health)
 	curr_enemy_damage = 0
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 
 func reset_game_round():
 	turn_state = -1
