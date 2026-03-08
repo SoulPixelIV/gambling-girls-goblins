@@ -47,29 +47,10 @@ var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4
 func _ready() -> void:
 	randomize()
 	
-	#Spawn Random Enemy
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
-	if rng.randf() < 0.33:
-		rand_enemy = crazy_goblin_enemy
-		enemy_name_tag.text = "Crazy Goblin"
-	elif rng.randf() > 0.33 and rng.randf() < 0.66:
-		rand_enemy = slime_enemy
-		enemy_name_tag.text = "Slime"
-	else:
-		rand_enemy = drunkard_enemy
-		enemy_name_tag.text = "Drunkard"
-		
-	enemy = rand_enemy.instantiate()
-	add_child(enemy)
-	enemy.position = Vector2(800, 160)
-	enemy.scale = Vector2(2, 2)
+	spawn_new_enemy()
 	
 	player_healthbar.max_value = health #Set Maximum Healthbar
 	player_health.text = str(health)
-	enemy_healthbar.max_value = enemy.health
-	enemy_healthbar.value = enemy.health
-	enemy_health.text = str(enemy.health)
 	
 	#Remove Placeholder Texts
 	combat_messages_text.text = ""
@@ -153,6 +134,10 @@ func resolve_combat():
 	#Check if Player died
 	if health <= 0:
 		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+		
+	#Check if Enemy died
+	if enemy.health <= 0:
+		spawn_new_enemy()
 	
 	reset_game_round()
 		
@@ -257,7 +242,7 @@ func setup_result_screen():
 		hand_child.queue_free()
 	for enemy_hand_child in enemy_hand.get_children():
 		enemy_hand_child.queue_free()
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1).timeout
 		
 func show_self_damage():
 	var calc_self_damage = player_score - 21
@@ -362,3 +347,31 @@ func reset_game_round():
 	final_enemy_score_text.text = ""
 	player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
 	enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
+
+func spawn_new_enemy():
+	if enemy != null:
+		enemy.queue_free()
+
+	#Spawn Random Enemy
+	var rng = RandomNumberGenerator.new()
+	rng.randomize()
+
+	if rng.randf() < 0.33:
+		rand_enemy = crazy_goblin_enemy
+		enemy_name_tag.text = "Crazy Goblin"
+	elif rng.randf() < 0.66:
+		rand_enemy = slime_enemy
+		enemy_name_tag.text = "Slime"
+	else:
+		rand_enemy = drunkard_enemy
+		enemy_name_tag.text = "Drunkard"
+
+	enemy = rand_enemy.instantiate()
+	add_child(enemy)
+	enemy.position = Vector2(800, 160)
+	enemy.scale = Vector2(2, 2)
+
+	#Update UI
+	enemy_healthbar.max_value = enemy.health
+	enemy_healthbar.value = enemy.health
+	enemy_health.text = str(enemy.health)
