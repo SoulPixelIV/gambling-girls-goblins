@@ -3,6 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cm4bi2hriubg" path="res://Textures/circle_debug.png" id="1_3dryh"]
 [ext_resource type="Texture2D" uid="uid://bpx3j8sscympk" path="res://Textures/ui_frame.png" id="2_qxrlw"]
 [ext_resource type="Shader" uid="uid://clnvet060xyb4" path="res://Shader/blur.gdshader" id="4_3dryh"]
+[ext_resource type="Script" uid="uid://c68wrohjmdhoe" path="res://Scripts/dialog_manager.gd" id="4_i6g32"]
+[ext_resource type="Texture2D" uid="uid://co3a2satm1ph0" path="res://Textures/dealer_debug.png" id="5_i6g32"]
 [ext_resource type="Script" uid="uid://cgfxf55meli1d" path="res://Scripts/game_manager.gd" id="5_wowpa"]
 
 [sub_resource type="Curve" id="Curve_3dryh"]
@@ -57,6 +59,9 @@ offset_bottom = 252.0
 [node name="Game_Manager" type="Node" parent="." unique_id=1538228305]
 script = ExtResource("5_wowpa")
 
+[node name="Dialog_Manager" type="Node" parent="." unique_id=762334416]
+script = ExtResource("4_i6g32")
+
 [node name="User_Interface" type="Control" parent="." unique_id=870774321]
 layout_mode = 3
 anchors_preset = 0
@@ -67,6 +72,11 @@ offset_bottom = 40.0
 texture_filter = 1
 position = Vector2(320, 180)
 texture = ExtResource("2_qxrlw")
+
+[node name="Dealer_Icon" type="Sprite2D" parent="User_Interface" unique_id=663302625]
+position = Vector2(53, 307.5)
+scale = Vector2(0.828125, 0.8203125)
+texture = ExtResource("5_i6g32")
 
 [node name="Hit_Button" type="Button" parent="User_Interface" unique_id=1568430695]
 layout_mode = 0
@@ -207,6 +217,19 @@ theme_override_colors/font_color = Color(1, 0.007843138, 0, 1)
 theme_override_font_sizes/font_size = 16
 text = "Total Damage = 7"
 horizontal_alignment = 1
+
+[node name="Dialog_Label" type="Label" parent="User_Interface" unique_id=541541849]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 257.0
+offset_right = 411.0
+offset_bottom = 358.0
+theme_override_font_sizes/font_size = 8
+text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam 
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor 
+sit amet. "
 
 [node name="Hand" type="Control" parent="." unique_id=248982143]
 layout_mode = 3
