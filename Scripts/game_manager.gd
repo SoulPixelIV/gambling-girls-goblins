@@ -376,3 +376,7 @@ func spawn_new_enemy():
 	enemy_healthbar.max_value = enemy.health
 	enemy_healthbar.value = enemy.health
 	enemy_health.text = str(enemy.health)
+
+
+func _on_answer_4_button_pressed() -> void:
+	pass # Replace with function body.
