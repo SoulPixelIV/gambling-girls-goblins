@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://fljc31onpnss" path="res://Textures/Icons/icon_arrow_down.png" id="10_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://bkb5fcp3ahfgc" path="res://Textures/Icons/icon_affection_up.png" id="11_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://gni2ecgjaq7b" path="res://Textures/Icons/icon_affection_down.png" id="12_rku1e"]
+[ext_resource type="Script" uid="uid://b8801c74kbnsj" path="res://Scripts/dealer_manager.gd" id="13_rfjv2"]
 
 [sub_resource type="Curve" id="Curve_3dryh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.18617022, 0.9550562), 0.0, 0.0, 0, 0, Vector2(0.6808511, 0.55056185), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -442,6 +443,9 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="Dealer" type="Node" parent="." unique_id=839210681]
+script = ExtResource("13_rfjv2")
 
 [connection signal="pressed" from="User_Interface/Hit_Button" to="Game_Manager" method="_on_hit_button_pressed"]
 [connection signal="pressed" from="User_Interface/Answer1_Button_Parent/Answer1_Button" to="Dialog_Manager" method="_on_answer_1_button_pressed"]
