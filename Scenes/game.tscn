@@ -14,8 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://gni2ecgjaq7b" path="res://Textures/Icons/icon_affection_down.png" id="12_rku1e"]
 
 [sub_resource type="Curve" id="Curve_3dryh"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.59042555, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.18617022, 0.9550562), 0.0, 0.0, 0, 0, Vector2(0.6808511, 0.55056185), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wowpa"]
 shader = ExtResource("4_3dryh")
@@ -28,33 +28,41 @@ offset_right = 640.0
 offset_bottom = 360.0
 color = Color(0, 0, 0, 1)
 
-[node name="Particle_Spawner_Red" type="CPUParticles2D" parent="." unique_id=606576124]
-position = Vector2(371, 121)
-amount = 60
-texture = ExtResource("1_3dryh")
-lifetime = 30.0
-lifetime_randomness = 0.1
-emission_shape = 3
-emission_rect_extents = Vector2(240, 100)
-gravity = Vector2(0, 0)
-angle_max = 359.0
-scale_amount_min = 0.1
-scale_amount_curve = SubResource("Curve_3dryh")
-color = Color(0.7058824, 0.011764706, 0, 0.38431373)
+[node name="Particle_System" type="Node" parent="." unique_id=400499942]
 
-[node name="Particle_Spawner_Blue" type="CPUParticles2D" parent="." unique_id=674952254]
-position = Vector2(371, 121)
-amount = 60
+[node name="Particle_Spawner_Gold" type="CPUParticles2D" parent="Particle_System" unique_id=606576124]
+position = Vector2(370, 236)
+amount = 1000
 texture = ExtResource("1_3dryh")
 lifetime = 30.0
+randomness = 0.26
 lifetime_randomness = 0.1
 emission_shape = 3
-emission_rect_extents = Vector2(240, 100)
-gravity = Vector2(0, 0)
+emission_rect_extents = Vector2(260, 15)
+direction = Vector2(0, 0)
+gravity = Vector2(0, -2)
 angle_max = 359.0
-scale_amount_min = 0.1
+scale_amount_min = 0.01
+scale_amount_max = 0.06
 scale_amount_curve = SubResource("Curve_3dryh")
-color = Color(0.14509805, 0, 0.95686275, 0.45882353)
+color = Color(1, 0, 1, 1)
+
+[node name="Particle_Spawner_Blue" type="CPUParticles2D" parent="Particle_System" unique_id=1020013295]
+position = Vector2(370, 236)
+amount = 1000
+texture = ExtResource("1_3dryh")
+lifetime = 30.0
+randomness = 0.26
+lifetime_randomness = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(260, 15)
+direction = Vector2(0, 0)
+gravity = Vector2(0, -2)
+angle_max = 359.0
+scale_amount_min = 0.01
+scale_amount_max = 0.06
+scale_amount_curve = SubResource("Curve_3dryh")
+color = Color(0.17254902, 0.3882353, 0.8862745, 1)
 
 [node name="Blur_Filter" type="ColorRect" parent="." unique_id=1875600707]
 material = SubResource("ShaderMaterial_wowpa")
