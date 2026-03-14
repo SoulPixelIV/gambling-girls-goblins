@@ -1,5 +1,7 @@
 extends Node
 
+@onready var game_manager: Node = $"../Game_Manager"
+@onready var status_screen: Node = $"../User_Interface/Status_Screen"
 @onready var dialog: Label = $"../User_Interface/Dialog_Label"
 @onready var answer1_parent = $"../User_Interface/Answer1_Button_Parent"
 @onready var answer2_parent = $"../User_Interface/Answer2_Button_Parent"
@@ -45,19 +47,27 @@ func _check_dialog_mode() -> void:
 		answer4_parent.hide()
 		hit_button.show()
 		stand_button.show()
+		game_manager.begin_fight = true
+		status_screen._update_betting_status()
 
 func _on_answer_1_button_pressed() -> void:
 	dialog_mode = 1
+	game_manager.pot_mood = 12
 	_check_dialog_mode()
 
 func _on_answer_2_button_pressed() -> void:
 	dialog_mode = 1
+	game_manager.pot_mood = 24
 	_check_dialog_mode()
 
 func _on_answer_3_button_pressed() -> void:
 	dialog_mode = 1
+	game_manager.pot_mood = 8
+	game_manager.pot_affection = 19
 	_check_dialog_mode()
 
 func _on_answer_4_button_pressed() -> void:
 	dialog_mode = 1
+	game_manager.pot_mood = 34
+	game_manager.pot_affection = 8
 	_check_dialog_mode()

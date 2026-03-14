@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bpx3j8sscympk" path="res://Textures/ui_frame.png" id="2_qxrlw"]
 [ext_resource type="Shader" uid="uid://clnvet060xyb4" path="res://Shader/blur.gdshader" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://c68wrohjmdhoe" path="res://Scripts/dialog_manager.gd" id="4_i6g32"]
-[ext_resource type="Texture2D" uid="uid://co3a2satm1ph0" path="res://Textures/dealer_debug.png" id="5_i6g32"]
+[ext_resource type="Texture2D" uid="uid://cu4u6w43300n1" path="res://Textures/dealer_debug.png" id="5_i6g32"]
 [ext_resource type="Script" uid="uid://cgfxf55meli1d" path="res://Scripts/game_manager.gd" id="5_wowpa"]
 [ext_resource type="Texture2D" uid="uid://bmttochduuoh3" path="res://Textures/Icons/icon_mood_up.png" id="7_1l0tm"]
+[ext_resource type="Script" uid="uid://ghsi0dbfghps" path="res://Scripts/status_screen.gd" id="8_1phco"]
 [ext_resource type="Texture2D" uid="uid://d7crms1aycdq" path="res://Textures/Icons/icon_arrow_up.png" id="8_v158k"]
 [ext_resource type="Texture2D" uid="uid://bvffca130ex0i" path="res://Textures/Icons/icon_mood_down.png" id="9_ldgsr"]
 [ext_resource type="Texture2D" uid="uid://fljc31onpnss" path="res://Textures/Icons/icon_arrow_down.png" id="10_o5yvi"]
@@ -83,15 +84,99 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Dealer_Interface" type="Control" parent="User_Interface" unique_id=1443971362]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dealer_Icon" type="Sprite2D" parent="User_Interface/Dealer_Interface" unique_id=663302625]
+position = Vector2(53, 307.5)
+scale = Vector2(0.828125, 0.8203125)
+texture = ExtResource("5_i6g32")
+
+[node name="Affection_Dealer_Icon" type="Sprite2D" parent="User_Interface/Dealer_Interface" unique_id=1684336219]
+position = Vector2(96, 265)
+texture = ExtResource("11_o5yvi")
+
+[node name="Mood_Dealer_Icon" type="Sprite2D" parent="User_Interface/Dealer_Interface" unique_id=742184869]
+position = Vector2(10, 265)
+texture = ExtResource("7_1l0tm")
+
+[node name="Affection_Label" type="Label" parent="User_Interface/Dealer_Interface" unique_id=1187970413]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 252.0
+offset_right = 87.0
+offset_bottom = 275.0
+text = "50"
+horizontal_alignment = 1
+
+[node name="Mood_Label" type="Label" parent="User_Interface/Dealer_Interface" unique_id=1177850968]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 252.0
+offset_right = 38.0
+offset_bottom = 275.0
+text = "50"
+horizontal_alignment = 1
+
+[node name="Status_Screen" type="Control" parent="User_Interface" unique_id=842203704]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_1phco")
+
+[node name="Status_Pot" type="Label" parent="User_Interface/Status_Screen" unique_id=195444737]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 176.0
+offset_right = 95.0
+offset_bottom = 199.0
+text = "Status Pot:"
+horizontal_alignment = 1
+
+[node name="AffectionDown_Icon" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=1003397324]
+position = Vector2(33, 226)
+texture = ExtResource("12_rku1e")
+
+[node name="AffectionUp_Icon" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=438268445]
+position = Vector2(53, 226)
+texture = ExtResource("11_o5yvi")
+
+[node name="MoodDown_Icon4" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=1355063131]
+position = Vector2(33, 208)
+texture = ExtResource("9_ldgsr")
+
+[node name="MoodUp_Icon3" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=378091172]
+position = Vector2(53, 208)
+texture = ExtResource("7_1l0tm")
+
+[node name="Mood_Stat_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=511938665]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 200.0
+offset_right = 82.0
+offset_bottom = 216.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "12"
+horizontal_alignment = 1
+
+[node name="Affection_Stat_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1316105170]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 216.0
+offset_right = 82.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "8"
+horizontal_alignment = 1
+
 [node name="Frame" type="Sprite2D" parent="User_Interface" unique_id=1579732443]
 texture_filter = 1
 position = Vector2(320, 180)
 texture = ExtResource("2_qxrlw")
-
-[node name="Dealer_Icon" type="Sprite2D" parent="User_Interface" unique_id=663302625]
-position = Vector2(53, 307.5)
-scale = Vector2(0.828125, 0.8203125)
-texture = ExtResource("5_i6g32")
 
 [node name="Hit_Button" type="Button" parent="User_Interface" unique_id=1568430695]
 visible = false

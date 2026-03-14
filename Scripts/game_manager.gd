@@ -25,7 +25,10 @@ var enemy = null
 var rand_enemy = null
 
 var health = 42
+var pot_mood = -1 #Betted Mood Points
+var pot_affection = -1 #Betted Affection Points
 var turn_state = -1 #Turnstate -1 -> First Enemy Draw | Turnstate 0 -> Normal Enemy Draw | Turnstate 1 -> Player Draw
+var begin_fight = false #Wait for Dealer Betting Phase
 var delay_timer = 2
 var card_index = 0
 var enemy_card_index = 0
@@ -59,50 +62,51 @@ func _ready() -> void:
 	final_enemy_score_text.text = ""
 	
 func _process(delta: float) -> void:
-	#Enemys First Draw
-	if turn_state == -1:
-		spawn_enemy_playing_card(330 + 25 * enemy_card_index, 90)
-		enemy_card_index += 1
-		turn_state = 1
-	
-	#Enemys Turn
-	if turn_state == 0 && !enemy_out && button_mode == 0:
-		#Random Stand Chance
-		if !called_rng_value:
-			var rng = RandomNumberGenerator.new()
-			rng.randomize()
-			if rng.randf() < enemy.stand_chance:
+	if begin_fight:
+		#Enemys First Draw
+		if turn_state == -1:
+			spawn_enemy_playing_card(330 + 25 * enemy_card_index, 90)
+			enemy_card_index += 1
+			turn_state = 1
+		
+		#Enemys Turn
+		if turn_state == 0 && !enemy_out && button_mode == 0:
+			#Random Stand Chance
+			if !called_rng_value:
+				var rng = RandomNumberGenerator.new()
+				rng.randomize()
+				if rng.randf() < enemy.stand_chance:
+					enemy_out = true
+				called_rng_value = true
+				
+			if enemy_score >= enemy.stand_on:
 				enemy_out = true
-			called_rng_value = true
+			else:
+				delay_timer -= delta
+				if delay_timer < 0:
+					spawn_enemy_playing_card(330 + 25 * enemy_card_index, 90)
+					called_rng_value = false
+					enemy_card_index += 1
+					turn_state = 1
+					delay_timer = 2
+				
+		#Enemy keeps going when Player is out
+		if player_out:
+			player_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
+			turn_state = 0
 			
-		if enemy_score >= enemy.stand_on:
-			enemy_out = true
-		else:
+		#Player keeps going when Enemy is out
+		if enemy_out:
+			enemy_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
+			turn_state = 1
+			
+		#Damage Calculating Phase
+		if player_out && enemy_out:
 			delay_timer -= delta
 			if delay_timer < 0:
-				spawn_enemy_playing_card(330 + 25 * enemy_card_index, 90)
-				called_rng_value = false
-				enemy_card_index += 1
-				turn_state = 1
-				delay_timer = 2
-			
-	#Enemy keeps going when Player is out
-	if player_out:
-		player_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
-		turn_state = 0
-		
-	#Player keeps going when Enemy is out
-	if enemy_out:
-		enemy_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
-		turn_state = 1
-		
-	#Damage Calculating Phase
-	if player_out && enemy_out:
-		delay_timer -= delta
-		if delay_timer < 0:
-			if !called_combat_resolve:
-				resolve_combat()
-				called_combat_resolve = true
+				if !called_combat_resolve:
+					resolve_combat()
+					called_combat_resolve = true
 				
 func resolve_combat():
 	await setup_result_screen()
