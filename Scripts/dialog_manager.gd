@@ -22,23 +22,30 @@ func _ready() -> void:
 	
 func _check_dialog_mode() -> void:
 	if dialog_mode == 0:
+		answer1_parent.show()
+		answer2_parent.show()
+		answer3_parent.show()
+		answer4_parent.show()
+		hit_button.hide()
+		stand_button.hide()
+		
 		dialog.text = "Well, shall we begin..?"
 		
 		answer1_button.modulate = Color.GREEN_YELLOW
 		answer1_button.text = "Hit me."
-		answer1_button.tooltip_text = "[LOSE] -1 Mood | [WIN] +1 Mood"
+		answer1_button.tooltip_text = "[LOSE] -8 Mood | [WIN] +8 Mood"
 		
 		answer2_button.modulate = Color.YELLOW
 		answer2_button.text = "Confident"
-		answer2_button.tooltip_text = "[LOSE] -2 Mood | [WIN] +2 Mood"
+		answer2_button.tooltip_text = "[LOSE] -14 Mood | [WIN] +14 Mood"
 		
 		answer3_button.modulate = Color.BLUE_VIOLET
 		answer3_button.text = "Flirty"
-		answer3_button.tooltip_text = "[LOSE] -3 Affection -1 Mood | [Win] +4 Affection"
+		answer3_button.tooltip_text = "[LOSE] -3 Affection | [Win] +3 Affection"
 
 		answer4_button.modulate = Color.ORANGE_RED
 		answer4_button.text = "Cocky"
-		answer4_button.tooltip_text = "[LOSE] -1 Affection -3 Mood | [WIN] +2 Affection +1 Mood"
+		answer4_button.tooltip_text = "[LOSE] -6 Affection -3 Mood | [WIN] +6 Affection +3 Mood"
 
 	if dialog_mode == 1:
 		answer1_parent.hide()
@@ -52,22 +59,24 @@ func _check_dialog_mode() -> void:
 
 func _on_answer_1_button_pressed() -> void:
 	dialog_mode = 1
-	game_manager.pot_mood = 12
+	game_manager.pot_mood = 8
+	game_manager.pot_affection = -1
 	_check_dialog_mode()
 
 func _on_answer_2_button_pressed() -> void:
 	dialog_mode = 1
-	game_manager.pot_mood = 24
+	game_manager.pot_mood = 14
+	game_manager.pot_affection = -1
 	_check_dialog_mode()
 
 func _on_answer_3_button_pressed() -> void:
 	dialog_mode = 1
-	game_manager.pot_mood = 8
-	game_manager.pot_affection = 19
+	game_manager.pot_mood = -1
+	game_manager.pot_affection = 3
 	_check_dialog_mode()
 
 func _on_answer_4_button_pressed() -> void:
 	dialog_mode = 1
-	game_manager.pot_mood = 34
-	game_manager.pot_affection = 8
+	game_manager.pot_mood = 3
+	game_manager.pot_affection = 6
 	_check_dialog_mode()

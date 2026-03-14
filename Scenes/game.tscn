@@ -8,9 +8,7 @@
 [ext_resource type="Script" uid="uid://cgfxf55meli1d" path="res://Scripts/game_manager.gd" id="5_wowpa"]
 [ext_resource type="Texture2D" uid="uid://bmttochduuoh3" path="res://Textures/Icons/icon_mood_up.png" id="7_1l0tm"]
 [ext_resource type="Script" uid="uid://ghsi0dbfghps" path="res://Scripts/status_screen.gd" id="8_1phco"]
-[ext_resource type="Texture2D" uid="uid://d7crms1aycdq" path="res://Textures/Icons/icon_arrow_up.png" id="8_v158k"]
 [ext_resource type="Texture2D" uid="uid://bvffca130ex0i" path="res://Textures/Icons/icon_mood_down.png" id="9_ldgsr"]
-[ext_resource type="Texture2D" uid="uid://fljc31onpnss" path="res://Textures/Icons/icon_arrow_down.png" id="10_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://bkb5fcp3ahfgc" path="res://Textures/Icons/icon_affection_up.png" id="11_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://gni2ecgjaq7b" path="res://Textures/Icons/icon_affection_down.png" id="12_rku1e"]
 [ext_resource type="Script" uid="uid://b8801c74kbnsj" path="res://Scripts/dealer_manager.gd" id="13_rfjv2"]
@@ -205,17 +203,31 @@ text = "Answer1"
 position = Vector2(553, 271)
 texture = ExtResource("7_1l0tm")
 
-[node name="ArrowUp_Icon" type="Sprite2D" parent="User_Interface/Answer1_Button_Parent" unique_id=28062820]
-position = Vector2(569, 270)
-texture = ExtResource("8_v158k")
-
 [node name="MoodDown_Icon" type="Sprite2D" parent="User_Interface/Answer1_Button_Parent" unique_id=948731950]
 position = Vector2(488, 271)
 texture = ExtResource("9_ldgsr")
 
-[node name="ArrowDown_Icon" type="Sprite2D" parent="User_Interface/Answer1_Button_Parent" unique_id=277470184]
-position = Vector2(472, 271)
-texture = ExtResource("10_o5yvi")
+[node name="Answer1_Mood_Bet" type="Label" parent="User_Interface/Answer1_Button_Parent" unique_id=1561802116]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 263.0
+offset_right = 579.0
+offset_bottom = 279.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "+8"
+horizontal_alignment = 1
+
+[node name="Answer1_Mood_Bet2" type="Label" parent="User_Interface/Answer1_Button_Parent" unique_id=1775457918]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 263.0
+offset_right = 482.0
+offset_bottom = 279.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "-8"
+horizontal_alignment = 1
 
 [node name="Answer2_Button_Parent" type="Control" parent="User_Interface" unique_id=1974827400]
 anchors_preset = 0
@@ -235,25 +247,31 @@ text = "Answer2"
 position = Vector2(559, 295)
 texture = ExtResource("7_1l0tm")
 
-[node name="ArrowUp_Icon2" type="Sprite2D" parent="User_Interface/Answer2_Button_Parent" unique_id=2033124965]
-position = Vector2(575, 294)
-texture = ExtResource("8_v158k")
-
-[node name="ArrowUp_Icon3" type="Sprite2D" parent="User_Interface/Answer2_Button_Parent" unique_id=39278366]
-position = Vector2(587, 294)
-texture = ExtResource("8_v158k")
-
 [node name="MoodDown_Icon2" type="Sprite2D" parent="User_Interface/Answer2_Button_Parent" unique_id=1477609265]
 position = Vector2(483, 295)
 texture = ExtResource("9_ldgsr")
 
-[node name="ArrowDown_Icon2" type="Sprite2D" parent="User_Interface/Answer2_Button_Parent" unique_id=1735217824]
-position = Vector2(467, 295)
-texture = ExtResource("10_o5yvi")
+[node name="Answer2_Mood_Bet" type="Label" parent="User_Interface/Answer2_Button_Parent" unique_id=674882928]
+layout_mode = 0
+offset_left = 569.0
+offset_top = 287.0
+offset_right = 588.0
+offset_bottom = 303.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "+14"
+horizontal_alignment = 1
 
-[node name="ArrowDown_Icon3" type="Sprite2D" parent="User_Interface/Answer2_Button_Parent" unique_id=906269458]
-position = Vector2(455, 295)
-texture = ExtResource("10_o5yvi")
+[node name="Answer2_Mood_Bet2" type="Label" parent="User_Interface/Answer2_Button_Parent" unique_id=1646170740]
+layout_mode = 0
+offset_left = 454.0
+offset_top = 288.0
+offset_right = 473.0
+offset_bottom = 304.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "-14"
+horizontal_alignment = 1
 
 [node name="Answer3_Button_Parent" type="Control" parent="User_Interface" unique_id=933247654]
 anchors_preset = 0
@@ -269,21 +287,27 @@ offset_bottom = 330.0
 theme_override_font_sizes/font_size = 10
 text = "Answer3"
 
-[node name="ArrowUp_Icon4" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=272676815]
-position = Vector2(599, 318)
-texture = ExtResource("8_v158k")
+[node name="Answer3_Affection_Bet" type="Label" parent="User_Interface/Answer3_Button_Parent" unique_id=1636698833]
+layout_mode = 0
+offset_left = 555.0
+offset_top = 310.0
+offset_right = 574.0
+offset_bottom = 326.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "+3"
+horizontal_alignment = 1
 
-[node name="ArrowUp_Icon5" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=1737337222]
-position = Vector2(587, 318)
-texture = ExtResource("8_v158k")
-
-[node name="ArrowUp_Icon6" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=1583407768]
-position = Vector2(575, 318)
-texture = ExtResource("8_v158k")
-
-[node name="ArrowUp_Icon7" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=1435818451]
-position = Vector2(563, 318)
-texture = ExtResource("8_v158k")
+[node name="Answer3_Affection_Bet2" type="Label" parent="User_Interface/Answer3_Button_Parent" unique_id=633067938]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 310.0
+offset_right = 486.0
+offset_bottom = 326.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "-3"
+horizontal_alignment = 1
 
 [node name="AffectionDown_Icon" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=1508252784]
 position = Vector2(493, 319)
@@ -292,26 +316,6 @@ texture = ExtResource("12_rku1e")
 [node name="AffectionUp_Icon" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=2076672011]
 position = Vector2(547, 319)
 texture = ExtResource("11_o5yvi")
-
-[node name="ArrowDown_Icon4" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=1211091928]
-position = Vector2(477, 319)
-texture = ExtResource("10_o5yvi")
-
-[node name="ArrowDown_Icon5" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=404530410]
-position = Vector2(465, 319)
-texture = ExtResource("10_o5yvi")
-
-[node name="ArrowDown_Icon6" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=1758793044]
-position = Vector2(453, 319)
-texture = ExtResource("10_o5yvi")
-
-[node name="MoodDown_Icon3" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=926888330]
-position = Vector2(437, 319)
-texture = ExtResource("9_ldgsr")
-
-[node name="ArrowDown_Icon7" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=1584624907]
-position = Vector2(421, 319)
-texture = ExtResource("10_o5yvi")
 
 [node name="Answer4_Button_Parent" type="Control" parent="User_Interface" unique_id=55893658]
 anchors_preset = 0
@@ -327,49 +331,65 @@ offset_bottom = 354.0
 theme_override_font_sizes/font_size = 10
 text = "Answer4"
 
+[node name="Answer4_Affection_Bet" type="Label" parent="User_Interface/Answer4_Button_Parent" unique_id=1365854991]
+layout_mode = 0
+offset_left = 556.0
+offset_top = 334.0
+offset_right = 575.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "+6"
+horizontal_alignment = 1
+
+[node name="Answer4_Mood_Bet" type="Label" parent="User_Interface/Answer4_Button_Parent" unique_id=1092668285]
+layout_mode = 0
+offset_left = 591.0
+offset_top = 334.0
+offset_right = 610.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "+3"
+horizontal_alignment = 1
+
+[node name="Answer4_Affection_Bet2" type="Label" parent="User_Interface/Answer4_Button_Parent" unique_id=755361202]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 335.0
+offset_right = 486.0
+offset_bottom = 351.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "-6"
+horizontal_alignment = 1
+
+[node name="Answer4_Mood_Bet2" type="Label" parent="User_Interface/Answer4_Button_Parent" unique_id=596865887]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 335.0
+offset_right = 454.0
+offset_bottom = 351.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "-3"
+horizontal_alignment = 1
+
 [node name="AffectionDown_Icon2" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=285801508]
 position = Vector2(492, 343)
 texture = ExtResource("12_rku1e")
 
-[node name="ArrowDown_Icon8" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=204480038]
-position = Vector2(476, 343)
-texture = ExtResource("10_o5yvi")
-
-[node name="ArrowDown_Icon10" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=899379142]
-position = Vector2(443, 342)
-texture = ExtResource("10_o5yvi")
-
-[node name="ArrowDown_Icon11" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=1820794936]
-position = Vector2(431, 342)
-texture = ExtResource("10_o5yvi")
-
-[node name="ArrowDown_Icon12" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=468055663]
-position = Vector2(419, 342)
-texture = ExtResource("10_o5yvi")
-
 [node name="MoodDown_Icon4" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=1752193170]
-position = Vector2(459, 342)
+position = Vector2(460, 343)
 texture = ExtResource("9_ldgsr")
-
-[node name="ArrowUp_Icon8" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=2118825684]
-position = Vector2(577, 342)
-texture = ExtResource("8_v158k")
-
-[node name="ArrowUp_Icon9" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=930091820]
-position = Vector2(565, 342)
-texture = ExtResource("8_v158k")
 
 [node name="AffectionUp_Icon2" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=55145900]
 position = Vector2(549, 343)
 texture = ExtResource("11_o5yvi")
 
 [node name="MoodUp_Icon3" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=238645348]
-position = Vector2(593, 342)
+position = Vector2(583, 342)
 texture = ExtResource("7_1l0tm")
-
-[node name="ArrowUp_Icon10" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=1841446844]
-position = Vector2(609, 341)
-texture = ExtResource("8_v158k")
 
 [node name="Stand_Button" type="Button" parent="User_Interface" unique_id=1244192539]
 visible = false

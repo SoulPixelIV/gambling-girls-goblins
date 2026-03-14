@@ -3,7 +3,9 @@ extends Node
 @onready var playing_card = preload("res://Prefabs/playing_card.tscn")
 @onready var hand = $"../Hand"
 @onready var enemy_hand = $"../Enemy_Hand"
-@onready var game_manager = $"../Game_Manager"
+@onready var dealer_manager = $"../Dealer"
+@onready var dialog_manager = $"../Dialog_Manager"
+@onready var status_screen: Node = $"../User_Interface/Status_Screen"
 @onready var player_healthbar: ProgressBar = $"../User_Interface/Player_Healthbar"
 @onready var enemy_healthbar: ProgressBar = $"../User_Interface/Enemy_Healthbar"
 @onready var player_health: Label = $"../User_Interface/Player_Health"
@@ -114,10 +116,12 @@ func resolve_combat():
 	if player_score > 21:
 		await show_self_damage()
 		await show_final_damage()
+		await payout_bet("enemy")
 	#ENEMY LOSES
 	if enemy_score > 21:
 		await show_enemy_self_damage()
 		await show_enemy_final_damage()
+		await payout_bet("player")
 	#PLAYER WINS
 	if (player_score > enemy_score && player_score <= 21) || (enemy_score > 21 && player_score <= 21):
 		await show_player_damage()
@@ -126,6 +130,7 @@ func resolve_combat():
 		if enemy_score > 21:
 			await show_enemy_bust_protection()
 		await show_enemy_final_damage()
+		await payout_bet("player")
 	#ENEMY WINS
 	if (enemy_score > player_score && enemy_score <= 21) || (player_score > 21 && enemy_score <= 21):
 		await show_enemy_damage()
@@ -134,6 +139,7 @@ func resolve_combat():
 		if player_score > 21:
 			await show_bust_protection()			
 		await show_final_damage()
+		await payout_bet("enemy")
 		
 	#Check if Player died
 	if health <= 0:
@@ -318,6 +324,32 @@ func show_final_damage():
 	curr_damage = 0
 	await get_tree().create_timer(2).timeout
 	
+func payout_bet(state):
+	if state == "player":
+		if pot_mood != -1:
+			dealer_manager.mood += pot_mood
+			combat_messages_text.text = "Dealer's Mood went up by " + str(pot_mood)
+			pot_mood = -1
+			await get_tree().create_timer(2).timeout
+		if pot_affection != -1:
+			dealer_manager.affection += pot_affection
+			combat_messages_text.text = "Dealer's Affection went up by " + str(pot_affection)
+			pot_affection = -1
+			await get_tree().create_timer(2).timeout
+	elif state == "enemy":
+		if pot_mood != -1:
+			dealer_manager.mood -= pot_mood
+			combat_messages_text.text = "Dealer's Mood went down by " + str(pot_mood)
+			pot_mood = -1
+			await get_tree().create_timer(2).timeout
+		if pot_affection != -1:
+			dealer_manager.affection -= pot_affection
+			combat_messages_text.text = "Dealer's Affection went down by " + str(pot_affection)
+			pot_affection = -1
+			await get_tree().create_timer(2).timeout
+	status_screen._update_betting_status()
+	dealer_manager._update_dealer_stats()
+	
 func show_enemy_final_damage():
 	combat_messages_text.text = "Total Damage: %d" % curr_enemy_damage
 	combat_messages2_text.text = ""
@@ -352,6 +384,9 @@ func reset_game_round():
 	final_enemy_score_text.text = ""
 	player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
 	enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
+	dialog_manager.dialog_mode = 0
+	dialog_manager._check_dialog_mode()
+	begin_fight = false
 
 func spawn_new_enemy():
 	if enemy != null:
@@ -380,7 +415,3 @@ func spawn_new_enemy():
 	enemy_healthbar.max_value = enemy.health
 	enemy_healthbar.value = enemy.health
 	enemy_health.text = str(enemy.health)
-
-
-func _on_answer_4_button_pressed() -> void:
-	pass # Replace with function body.
