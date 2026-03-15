@@ -156,9 +156,9 @@ horizontal_alignment = 1
 [node name="Status1_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1920017106]
 layout_mode = 0
 offset_left = -1.0
-offset_top = 19.0
+offset_top = 20.0
 offset_right = 109.0
-offset_bottom = 42.0
+offset_bottom = 43.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 8
 text = "Status1"
@@ -178,9 +178,9 @@ horizontal_alignment = 1
 [node name="Status3_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1496063872]
 layout_mode = 0
 offset_left = -1.0
-offset_top = 41.0
+offset_top = 42.0
 offset_right = 109.0
-offset_bottom = 64.0
+offset_bottom = 65.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 9
 text = "Status3"
@@ -188,12 +188,12 @@ horizontal_alignment = 1
 
 [node name="Status4_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1838096030]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 52.0
-offset_right = 109.0
-offset_bottom = 75.0
+offset_left = -2.0
+offset_top = 54.0
+offset_right = 108.0
+offset_bottom = 77.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 7
 text = "Status4"
 horizontal_alignment = 1
 
@@ -260,7 +260,32 @@ offset_right = 634.0
 offset_bottom = 303.0
 text = "Hit"
 
+[node name="Tripple_Button1" type="Button" parent="User_Interface" unique_id=399427961]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 260.0
+offset_right = 634.0
+offset_bottom = 291.0
+text = "Option1"
+
+[node name="Tripple_Button2" type="Button" parent="User_Interface" unique_id=1119730474]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 293.0
+offset_right = 634.0
+offset_bottom = 324.0
+text = "Option2"
+
+[node name="Tripple_Button3" type="Button" parent="User_Interface" unique_id=1517697001]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 326.0
+offset_right = 634.0
+offset_bottom = 357.0
+text = "Option3"
+
 [node name="Answer1_Button_Parent" type="Control" parent="User_Interface" unique_id=1209680033]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -305,6 +330,7 @@ text = "-8"
 horizontal_alignment = 1
 
 [node name="Answer2_Button_Parent" type="Control" parent="User_Interface" unique_id=1974827400]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -349,6 +375,7 @@ text = "-14"
 horizontal_alignment = 1
 
 [node name="Answer3_Button_Parent" type="Control" parent="User_Interface" unique_id=933247654]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -393,6 +420,7 @@ position = Vector2(547, 319)
 texture = ExtResource("11_o5yvi")
 
 [node name="Answer4_Button_Parent" type="Control" parent="User_Interface" unique_id=55893658]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -628,6 +656,9 @@ offset_bottom = 40.0
 script = ExtResource("13_rfjv2")
 
 [connection signal="pressed" from="User_Interface/Hit_Button" to="Game_Manager" method="_on_hit_button_pressed"]
+[connection signal="pressed" from="User_Interface/Tripple_Button1" to="Game_Manager" method="_on_tripple_button_1_pressed"]
+[connection signal="pressed" from="User_Interface/Tripple_Button2" to="Game_Manager" method="_on_tripple_button_2_pressed"]
+[connection signal="pressed" from="User_Interface/Tripple_Button3" to="Game_Manager" method="_on_tripple_button_3_pressed"]
 [connection signal="pressed" from="User_Interface/Answer1_Button_Parent/Answer1_Button" to="Dialog_Manager" method="_on_answer_1_button_pressed"]
 [connection signal="pressed" from="User_Interface/Answer2_Button_Parent/Answer2_Button" to="Dialog_Manager" method="_on_answer_2_button_pressed"]
 [connection signal="pressed" from="User_Interface/Answer3_Button_Parent/Answer3_Button" to="Dialog_Manager" method="_on_answer_3_button_pressed"]

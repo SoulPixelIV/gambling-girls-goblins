@@ -58,5 +58,5 @@ func _update_betting_status():
 		status1_text.text = "7 can be changed to 6 or 8"
 		status2_text.text = "Queen counts as Ace"
 		status3_text.text = "Player wins on Draw"
-		status4_text.text = "Occasionally redraw last Card on Bust"
+		status4_text.text = "Occasionally redraw on Bust"
 		debuff1_text.text = ""

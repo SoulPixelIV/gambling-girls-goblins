@@ -19,6 +19,9 @@ extends Node
 @onready var combat_messages2_text: Label = $"../User_Interface/Final_Score_Labels/Combat_Messages2"
 @onready var hit_button = $"../User_Interface/Hit_Button"
 @onready var stand_button = $"../User_Interface/Stand_Button"
+@onready var tripple_button1 = $"../User_Interface/Tripple_Button1"
+@onready var tripple_button2 = $"../User_Interface/Tripple_Button2"
+@onready var tripple_button3 = $"../User_Interface/Tripple_Button3"
 @onready var crazy_goblin_enemy = preload("res://Prefabs/crazy_goblin.tscn")
 @onready var slime_enemy = preload("res://Prefabs/slime.tscn")
 @onready var drunkard_enemy = preload("res://Prefabs/drunkard.tscn")
@@ -192,6 +195,20 @@ func choose_ace_value(value):
 
 	# Enemy Turn starten
 	turn_state = 0
+	
+func choose_seven_value(value):
+	player_score += value
+	player_score_text.text = str(player_score)
+
+	button_mode = 0
+	dialog_manager.dialog_mode = 1
+	dialog_manager._check_dialog_mode()
+
+	if player_score > 21:
+		player_out = true
+
+	#Enemy Turn starten
+	turn_state = 0
 		
 func spawn_playing_card(x, y):
 	if deck.size() > 0:
@@ -219,6 +236,8 @@ func spawn_enemy_playing_card(x, y):
 func _on_card_played(value, card_id):
 	if card_id.begins_with("A"):
 		button_mode = 1
+	elif value == 7 and mood_level >= 2:
+		button_mode = 2
 	else:
 		player_score += value
 		player_score_text.text = str(player_score)
@@ -233,7 +252,13 @@ func _on_card_played(value, card_id):
 		stand_button.text = "Stand"
 	if button_mode == 1:
 		hit_button.text = "Count as 1"
-		stand_button.text = "Count as 11"	
+		stand_button.text = "Count as 11"
+	if button_mode == 2:
+		dialog_manager.dialog_mode = 2
+		dialog_manager._check_dialog_mode()
+		tripple_button1.text = "Count as 6"
+		tripple_button2.text = "Count as 7"	
+		tripple_button3.text = "Count as 8"	
 	
 func _on_card_played_enemy(value, card_id):
 	if card_id.begins_with("A"):
@@ -424,3 +449,15 @@ func spawn_new_enemy():
 	enemy_healthbar.max_value = enemy.health
 	enemy_healthbar.value = enemy.health
 	enemy_health.text = str(enemy.health)
+
+func _on_tripple_button_1_pressed() -> void:
+	if button_mode == 2:
+		choose_seven_value(6)
+
+func _on_tripple_button_2_pressed() -> void:
+	if button_mode == 2:
+		choose_seven_value(7)
+
+func _on_tripple_button_3_pressed() -> void:
+	if button_mode == 2:
+		choose_seven_value(8)

@@ -13,6 +13,9 @@ extends Node
 @onready var answer4_button = $"../User_Interface/Answer4_Button_Parent/Answer4_Button"
 @onready var hit_button = $"../User_Interface/Hit_Button"
 @onready var stand_button = $"../User_Interface/Stand_Button"
+@onready var tripple_button1 = $"../User_Interface/Tripple_Button1"
+@onready var tripple_button2 = $"../User_Interface/Tripple_Button2"
+@onready var tripple_button3 = $"../User_Interface/Tripple_Button3"
 
 var dialog_mode = 0
 
@@ -28,6 +31,9 @@ func _check_dialog_mode() -> void:
 		answer4_parent.show()
 		hit_button.hide()
 		stand_button.hide()
+		tripple_button1.hide()
+		tripple_button2.hide()
+		tripple_button3.hide()
 		
 		dialog.text = "Well, shall we begin..?"
 		
@@ -52,8 +58,24 @@ func _check_dialog_mode() -> void:
 		answer2_parent.hide()
 		answer3_parent.hide()
 		answer4_parent.hide()
+		tripple_button1.hide()
+		tripple_button2.hide()
+		tripple_button3.hide()
 		hit_button.show()
 		stand_button.show()
+		game_manager.begin_fight = true
+		status_screen._update_betting_status()
+		
+	if dialog_mode == 2:
+		answer1_parent.hide()
+		answer2_parent.hide()
+		answer3_parent.hide()
+		answer4_parent.hide()
+		hit_button.hide()
+		stand_button.hide()
+		tripple_button1.show()
+		tripple_button2.show()
+		tripple_button3.show()
 		game_manager.begin_fight = true
 		status_screen._update_betting_status()
 
