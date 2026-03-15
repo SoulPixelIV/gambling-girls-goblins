@@ -51,12 +51,12 @@ func _update_betting_status():
 	if game_manager.mood_level == 4:
 		status1_text.text = "7 can be changed to 6 or 8"
 		status2_text.text = "Queen counts as Ace"
-		status3_text.text = "Player wins on Draw"
+		status3_text.text = "Player deals 5 Damage on Draw"
 		status4_text.text = ""
 		debuff1_text.text = ""
 	if game_manager.mood_level == 5:
 		status1_text.text = "7 can be changed to 6 or 8"
 		status2_text.text = "Queen counts as Ace"
-		status3_text.text = "Player wins on Draw"
+		status3_text.text = "Player deals 5 Damage on Draw"
 		status4_text.text = "Occasionally redraw on Bust"
 		debuff1_text.text = ""

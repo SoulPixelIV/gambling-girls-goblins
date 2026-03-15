@@ -123,6 +123,17 @@ func resolve_combat():
 		combat_messages_text.text = "Bad Mood! 19 counts as 22!"
 		await get_tree().create_timer(2).timeout
 		player_score = 22
+		
+	#Mood Level 4 Bonus: Tie deals 5 damage to Enemy
+	if mood_level >= 4 and player_score == enemy_score:
+		combat_messages_text.text = "Good Mood! Tie deals 5 Damage to enemy!"
+		combat_messages2_text.text = ""
+		await get_tree().create_timer(2).timeout
+		
+		curr_enemy_damage += 5
+		await show_enemy_final_damage()
+		await payout_bet("player")
+		return
 	
 	#PLAYER LOSES
 	if player_score > 21:
