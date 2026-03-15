@@ -48,6 +48,8 @@ var called_rng_value = false
 var curr_damage = 0
 var curr_enemy_damage = 0
 var button_mode = 0
+var last_player_card = null
+var redraw_used = false
 var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 
 "5H", "5D", "5C", "5S", "6H", "6D", "6C", "6S", "7H", "7D", "7C", "7S", 
 "8H", "8D", "8C", "8S", "9H", "9D", "9C", "9S", "10H", "10D", "10C", "10S", 
@@ -231,6 +233,7 @@ func spawn_playing_card(x, y):
 		deck.remove_at(rand_card_index) #Remove Card from Deck
 		hand.add_child(card_instance)
 		card_instance.position = Vector2(x, y)
+		last_player_card = card_instance
 		
 func spawn_enemy_playing_card(x, y):
 	if enemy != null:
@@ -255,6 +258,27 @@ func _on_card_played(value, card_id):
 
 		#Check if Player is over 21
 		if player_score > 21:
+			#Mood Level 5 Bonus: Occasionally redraw last Card on Bust
+			if mood_level >= 5 and !redraw_used:
+				var rng = RandomNumberGenerator.new()
+				rng.randomize()
+
+				if rng.randf() < 0.8:
+					combat_messages_text.text = "Good Mood! You redraw the last card!"
+					await get_tree().create_timer(2.5).timeout
+					combat_messages_text.text = ""
+
+					redraw_used = true
+
+					if last_player_card != null:
+						last_player_card.queue_free()
+
+					player_score -= value
+					player_score_text.text = str(player_score)
+
+					spawn_playing_card(168 + 25 * (card_index - 1), 192)
+					return
+
 			player_out = true
 		
 	#Change Button Texts
@@ -432,6 +456,8 @@ func reset_game_round():
 	dialog_manager.dialog_mode = 0
 	dialog_manager._check_dialog_mode()
 	begin_fight = false
+	redraw_used = false
+	last_player_card = null
 
 func spawn_new_enemy():
 	if enemy != null:

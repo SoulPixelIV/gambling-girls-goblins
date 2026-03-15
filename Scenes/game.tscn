@@ -178,20 +178,20 @@ horizontal_alignment = 1
 [node name="Status3_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1496063872]
 layout_mode = 0
 offset_left = -1.0
-offset_top = 42.0
+offset_top = 43.0
 offset_right = 109.0
-offset_bottom = 65.0
+offset_bottom = 66.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 6
 text = "Status3"
 horizontal_alignment = 1
 
 [node name="Status4_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1838096030]
 layout_mode = 0
 offset_left = -2.0
-offset_top = 54.0
+offset_top = 53.0
 offset_right = 108.0
-offset_bottom = 77.0
+offset_bottom = 76.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 7
 text = "Status4"
