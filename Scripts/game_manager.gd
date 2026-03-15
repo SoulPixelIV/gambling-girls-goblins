@@ -29,6 +29,8 @@ var rand_enemy = null
 var health = 42
 var pot_mood = -1 #Betted Mood Points
 var pot_affection = -1 #Betted Affection Points
+var mood_level = 1
+var affection_level = 1
 var turn_state = -1 #Turnstate -1 -> First Enemy Draw | Turnstate 0 -> Normal Enemy Draw | Turnstate 1 -> Player Draw
 var begin_fight = false #Wait for Dealer Betting Phase
 var delay_timer = 2
@@ -112,6 +114,13 @@ func _process(delta: float) -> void:
 				
 func resolve_combat():
 	await setup_result_screen()
+	
+	#Mood Level 0 Debuff: 19 is Bust
+	if mood_level == 0 and player_score == 19:
+		combat_messages_text.text = "Bad Mood! 19 counts as 22!"
+		await get_tree().create_timer(2).timeout
+		player_score = 22
+	
 	#PLAYER LOSES
 	if player_score > 21:
 		await show_self_damage()
@@ -347,8 +356,8 @@ func payout_bet(state):
 			combat_messages_text.text = "Dealer's Affection went down by " + str(pot_affection)
 			pot_affection = -1
 			await get_tree().create_timer(2).timeout
-	status_screen._update_betting_status()
 	dealer_manager._update_dealer_stats()
+	status_screen._update_betting_status()
 	
 func show_enemy_final_damage():
 	combat_messages_text.text = "Total Damage: %d" % curr_enemy_damage
