@@ -234,7 +234,7 @@ func spawn_enemy_playing_card(x, y):
 			enemy_card_instance.position = Vector2(x, y)
 			
 func _on_card_played(value, card_id):
-	if card_id.begins_with("A"):
+	if card_id.begins_with("A") or (card_id.begins_with("Q") and mood_level >= 3):
 		button_mode = 1
 	elif value == 7 and mood_level >= 2:
 		button_mode = 2
