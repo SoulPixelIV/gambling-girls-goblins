@@ -4,7 +4,7 @@ extends Node
 @onready var mood_text: Label = $"../User_Interface/Dealer_Interface/Mood_Label"
 @onready var affection_text: Label = $"../User_Interface/Dealer_Interface/Affection_Label"
 
-var mood = 100.0:
+var mood = 30.0:
 	set(value):
 		mood = clamp(value, 0, 100)
 var affection = 30.0:
@@ -39,3 +39,16 @@ func _update_dealer_stats():
 		game_manager.mood_level = 4
 	if mood >= 90:
 		game_manager.mood_level = 5
+		
+	if affection < 20:
+		game_manager.affection_level = 0
+	if affection >= 20 and affection < 50:
+		game_manager.affection_level = 1
+	if affection >= 50 and affection < 65:
+		game_manager.affection_level = 2
+	if affection >= 65 and affection < 80:
+		game_manager.mood_level = 3
+	if affection >= 80 and affection < 90:
+		game_manager.affection_level = 4
+	if affection >= 90:
+		game_manager.affection_level = 5

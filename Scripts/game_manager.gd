@@ -120,15 +120,15 @@ func _process(delta: float) -> void:
 func resolve_combat():
 	await setup_result_screen()
 	
-	#Mood Level 0 Debuff: 19 is Bust
-	if mood_level == 0 and player_score == 19:
-		combat_messages_text.text = "Bad Mood! 19 counts as 22!"
+	#Affection Level 0 Debuff: 19 is Bust
+	if affection_level == 0 and player_score == 19:
+		combat_messages_text.text = "Bad Affection! 19 counts as 22!"
 		await get_tree().create_timer(2).timeout
 		player_score = 22
 		
-	#Mood Level 4 Bonus: Tie deals 5 damage to Enemy
-	if mood_level >= 4 and player_score == enemy_score:
-		combat_messages_text.text = "Good Mood! Tie deals 5 Damage to enemy!"
+	#Affection Level 4 Bonus: Tie deals 5 damage to Enemy
+	if affection_level >= 4 and player_score == enemy_score:
+		combat_messages_text.text = "Good Affection! Tie deals 5 Damage to enemy!"
 		combat_messages2_text.text = ""
 		await get_tree().create_timer(2).timeout
 		
@@ -159,7 +159,8 @@ func resolve_combat():
 	#ENEMY WINS
 	if (enemy_score > player_score && enemy_score <= 21) || (player_score > 21 && enemy_score <= 21):
 		await show_enemy_damage()
-		if enemy_score == 21:
+		#Mood Level 0 Debuff: Enemy always Crits
+		if mood_level == 0 or enemy_score == 21:
 			await show_enemy_crit()
 		if player_score > 21:
 			await show_bust_protection()			
@@ -248,9 +249,9 @@ func spawn_enemy_playing_card(x, y):
 			enemy_card_instance.position = Vector2(x, y)
 			
 func _on_card_played(value, card_id):
-	if card_id.begins_with("A") or (card_id.begins_with("Q") and mood_level >= 3):
+	if card_id.begins_with("A") or (card_id.begins_with("Q") and affection_level >= 3):
 		button_mode = 1
-	elif value == 7 and mood_level >= 2:
+	elif value == 7 and affection_level >= 2:
 		button_mode = 2
 	else:
 		player_score += value
@@ -258,13 +259,13 @@ func _on_card_played(value, card_id):
 
 		#Check if Player is over 21
 		if player_score > 21:
-			#Mood Level 5 Bonus: Occasionally redraw last Card on Bust
-			if mood_level >= 5 and !redraw_used:
+			#Affection Level 5 Bonus: Occasionally redraw last Card on Bust
+			if affection_level >= 5 and !redraw_used:
 				var rng = RandomNumberGenerator.new()
 				rng.randomize()
 
-				if rng.randf() < 0.8:
-					combat_messages_text.text = "Good Mood! You redraw the last card!"
+				if rng.randf() < 0.25:
+					combat_messages_text.text = "Good Affection! You redraw the last card!"
 					await get_tree().create_timer(2.5).timeout
 					combat_messages_text.text = ""
 
@@ -325,6 +326,14 @@ func setup_result_screen():
 	await get_tree().create_timer(1).timeout
 		
 func show_self_damage():
+	#Mood Level 4 Bonus: No Self Damage on Bust
+	if mood_level >= 4:
+		combat_messages_text.text = "Good Mood! No Self Damage from Bust!"
+		combat_messages2_text.text = ""
+		await get_tree().create_timer(2).timeout
+		combat_messages_text.text = ""
+		return
+	
 	var calc_self_damage = player_score - 21
 	curr_damage += calc_self_damage
 	combat_messages_text.text = "You receive %d Self Damage!" % calc_self_damage
@@ -340,10 +349,27 @@ func show_enemy_self_damage():
 	
 func show_enemy_damage():
 	var calc_enemy_damage = 0
+	
+	#Mood Level 5 Bonus: Occasionally shields from Enemy Attack
+	if mood_level >= 5:
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+		if rng.randf() < 0.3:
+			combat_messages_text.text = "Good Mood! Enemy Attack was completly shielded!"
+			combat_messages2_text.text = ""
+			await get_tree().create_timer(2).timeout
+			combat_messages_text.text = ""
+			return
+	
 	if player_score > 21:
 		calc_enemy_damage = enemy_score
 	else:
 		calc_enemy_damage = enemy_score - player_score 
+		
+	#Mood Level 3 Bonus: Player receives half Damage
+	if mood_level >= 3:
+		calc_enemy_damage = int(calc_enemy_damage / 2)
+	
 	curr_damage += calc_enemy_damage
 	combat_messages_text.text = "You receive %d Damage from the Enemy!" % calc_enemy_damage
 	combat_messages2_text.text = "Total Self Damage: %d" % curr_damage
@@ -355,6 +381,10 @@ func show_player_damage():
 		calc_player_damage = player_score
 	else:
 		calc_player_damage = player_score - enemy_score 
+	#Mood level 2 Bonus: 1.5x Damager
+	if mood_level >= 2:
+		calc_player_damage = int(calc_player_damage * 1.5)
+		
 	curr_enemy_damage += calc_player_damage
 	combat_messages_text.text = "Enemy receives %d Damage from the Player!" % calc_player_damage
 	combat_messages2_text.text = "Total Damage: %d" % curr_enemy_damage

@@ -124,13 +124,26 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("8_1phco")
 
-[node name="Status_Pot" type="Label" parent="User_Interface/Status_Screen" unique_id=195444737]
+[node name="Pot_Text" type="Label" parent="User_Interface/Status_Screen" unique_id=195444737]
 layout_mode = 0
-offset_left = 11.0
-offset_top = 189.0
-offset_right = 95.0
-offset_bottom = 212.0
-text = "Status Pot:"
+offset_left = 40.0
+offset_top = 211.0
+offset_right = 67.0
+offset_bottom = 231.0
+theme_override_colors/font_color = Color(0.5647059, 1, 0.30980393, 1)
+theme_override_font_sizes/font_size = 14
+text = "Pot:"
+horizontal_alignment = 1
+
+[node name="Pot_Text2" type="Label" parent="User_Interface/Status_Screen" unique_id=1218266108]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 228.0
+offset_right = 67.0
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.5647059, 1, 0.30980393, 1)
+theme_override_font_sizes/font_size = 14
+text = "Pot:"
 horizontal_alignment = 1
 
 [node name="Stat_Bonus" type="Label" parent="User_Interface/Status_Screen" unique_id=148756231]
@@ -167,11 +180,11 @@ horizontal_alignment = 1
 [node name="Status2_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=984340366]
 layout_mode = 0
 offset_left = -1.0
-offset_top = 30.0
+offset_top = 31.0
 offset_right = 109.0
-offset_bottom = 53.0
+offset_bottom = 54.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 9
+theme_override_font_sizes/font_size = 8
 text = "Status2"
 horizontal_alignment = 1
 
@@ -197,6 +210,50 @@ theme_override_font_sizes/font_size = 7
 text = "Status4"
 horizontal_alignment = 1
 
+[node name="Status5_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=713151428]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 62.0
+offset_right = 108.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Status5"
+horizontal_alignment = 1
+
+[node name="Status6_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=765567227]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 72.0
+offset_right = 108.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 9
+text = "Status6"
+horizontal_alignment = 1
+
+[node name="Status7_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=777920835]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 85.0
+offset_right = 108.0
+offset_bottom = 108.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 6
+text = "Status7"
+horizontal_alignment = 1
+
+[node name="Status8_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=809836722]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 95.0
+offset_right = 107.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "Status8"
+horizontal_alignment = 1
+
 [node name="Status1_Debuff_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1517278706]
 layout_mode = 0
 offset_left = -2.0
@@ -208,28 +265,31 @@ theme_override_font_sizes/font_size = 9
 text = "Debuff1"
 horizontal_alignment = 1
 
-[node name="AffectionDown_Icon" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=1003397324]
-position = Vector2(34, 239)
-texture = ExtResource("12_rku1e")
+[node name="Status2_Debuff_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=2000739764]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 172.0
+offset_right = 108.0
+offset_bottom = 195.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 9
+text = "Debuff2"
+horizontal_alignment = 1
 
 [node name="AffectionUp_Icon" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=438268445]
-position = Vector2(54, 239)
+position = Vector2(30, 239)
 texture = ExtResource("11_o5yvi")
 
-[node name="MoodDown_Icon4" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=1355063131]
-position = Vector2(34, 221)
-texture = ExtResource("9_ldgsr")
-
 [node name="MoodUp_Icon3" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=378091172]
-position = Vector2(54, 221)
+position = Vector2(30, 221)
 texture = ExtResource("7_1l0tm")
 
 [node name="Mood_Stat_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=511938665]
 layout_mode = 0
 offset_left = 64.0
-offset_top = 213.0
+offset_top = 214.0
 offset_right = 83.0
-offset_bottom = 229.0
+offset_bottom = 230.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 11
 text = "12"
@@ -238,9 +298,9 @@ horizontal_alignment = 1
 [node name="Affection_Stat_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1316105170]
 layout_mode = 0
 offset_left = 64.0
-offset_top = 229.0
+offset_top = 231.0
 offset_right = 83.0
-offset_bottom = 245.0
+offset_bottom = 247.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 11
 text = "8"
