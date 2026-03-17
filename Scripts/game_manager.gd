@@ -50,6 +50,8 @@ var curr_enemy_damage = 0
 var button_mode = 0
 var last_player_card = null
 var redraw_used = false
+var double_down_active = false
+var safe_used = false
 var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 
 "5H", "5D", "5C", "5S", "6H", "6D", "6C", "6S", "7H", "7D", "7C", "7S", 
 "8H", "8D", "8C", "8S", "9H", "9D", "9C", "9S", "10H", "10D", "10C", "10S", 
@@ -134,7 +136,12 @@ func resolve_combat():
 		
 		curr_enemy_damage += 5
 		await show_enemy_final_damage()
+		pot_mood = -1
+		pot_affection = -1
+		status_screen._update_betting_status()
 		await payout_bet("player")
+		
+		reset_game_round()
 		return
 		
 	if player_score == enemy_score and affection_level < 4:
@@ -145,6 +152,7 @@ func resolve_combat():
 		
 		pot_mood = -1
 		pot_affection = -1
+		status_screen._update_betting_status()
 		await payout_bet("none")
 		
 		reset_game_round()
@@ -196,6 +204,11 @@ func _on_hit_button_pressed() -> void:
 		if turn_state == 1 && !player_out:
 			spawn_playing_card(168 + 25 * card_index, 192)
 			card_index += 1
+			
+			#Double Down Check
+			if double_down_active:
+				player_out = true
+			
 			turn_state = 0
 	elif button_mode == 1:
 		choose_ace_value(1)
@@ -510,6 +523,8 @@ func reset_game_round():
 	begin_fight = false
 	redraw_used = false
 	last_player_card = null
+	double_down_active = false
+	safe_used = false
 
 func spawn_new_enemy():
 	if enemy != null:
@@ -550,3 +565,34 @@ func _on_tripple_button_2_pressed() -> void:
 func _on_tripple_button_3_pressed() -> void:
 	if button_mode == 2:
 		choose_seven_value(8)
+
+func _on_double_button_pressed() -> void:
+	if turn_state == 1 and !player_out and !double_down_active and !safe_used:
+		if card_index > 0:
+			double_down_active = true
+			
+			# Einsatz verdoppeln
+			if pot_mood != -1:
+				pot_mood *= 2
+			if pot_affection != -1:
+				pot_affection *= 2
+				
+			status_screen._update_betting_status()
+			combat_messages_text.text = "Double Down! Bet doubled, you draw only one more card!"
+			await get_tree().create_timer(2).timeout
+			combat_messages_text.text = ""
+
+func _on_safe_button_pressed() -> void:
+	if !safe_used and !player_out and !double_down_active:
+		if card_index > 0:
+			safe_used = true	
+			#Reduce Bet
+			if pot_mood > 0:
+				pot_mood = int(pot_mood / 2)
+			if pot_affection > 0:
+				pot_affection = int(pot_affection / 2)
+				
+			status_screen._update_betting_status()
+			combat_messages_text.text = "Safe! Bet halfed."
+			await get_tree().create_timer(2).timeout
+			combat_messages_text.text = ""

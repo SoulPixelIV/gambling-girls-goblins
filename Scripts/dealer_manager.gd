@@ -4,10 +4,10 @@ extends Node
 @onready var mood_text: Label = $"../User_Interface/Dealer_Interface/Mood_Label"
 @onready var affection_text: Label = $"../User_Interface/Dealer_Interface/Affection_Label"
 
-var mood = 30.0:
+var mood = 35.0:
 	set(value):
 		mood = clamp(value, 0, 100)
-var affection = 30.0:
+var affection = 35.0:
 	set(value):
 		affection = clamp(value, 0, 100)
 
