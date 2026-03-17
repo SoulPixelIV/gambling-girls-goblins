@@ -93,7 +93,7 @@ scale = Vector2(0.828125, 0.8203125)
 texture = ExtResource("5_i6g32")
 
 [node name="Affection_Dealer_Icon" type="Sprite2D" parent="User_Interface/Dealer_Interface" unique_id=1684336219]
-position = Vector2(96, 265)
+position = Vector2(96, 264)
 texture = ExtResource("11_o5yvi")
 
 [node name="Mood_Dealer_Icon" type="Sprite2D" parent="User_Interface/Dealer_Interface" unique_id=742184869]
@@ -148,9 +148,9 @@ horizontal_alignment = 1
 
 [node name="Stat_Bonus" type="Label" parent="User_Interface/Status_Screen" unique_id=148756231]
 layout_mode = 0
-offset_left = -2.0
+offset_left = -3.0
 offset_top = 4.0
-offset_right = 108.0
+offset_right = 107.0
 offset_bottom = 27.0
 theme_override_font_sizes/font_size = 12
 text = "Stat Bonus:"
@@ -158,9 +158,9 @@ horizontal_alignment = 1
 
 [node name="Stat_Debuff" type="Label" parent="User_Interface/Status_Screen" unique_id=274222294]
 layout_mode = 0
-offset_left = -2.0
+offset_left = -3.0
 offset_top = 147.0
-offset_right = 108.0
+offset_right = 107.0
 offset_bottom = 170.0
 theme_override_font_sizes/font_size = 12
 text = "Stat Debuff:"
@@ -375,7 +375,7 @@ offset_right = 579.0
 offset_bottom = 279.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 11
-text = "+8"
+text = "+5"
 horizontal_alignment = 1
 
 [node name="Answer1_Mood_Bet2" type="Label" parent="User_Interface/Answer1_Button_Parent" unique_id=1775457918]
@@ -386,7 +386,7 @@ offset_right = 482.0
 offset_bottom = 279.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 11
-text = "-8"
+text = "-5"
 horizontal_alignment = 1
 
 [node name="Answer2_Button_Parent" type="Control" parent="User_Interface" unique_id=1974827400]
@@ -420,7 +420,7 @@ offset_right = 588.0
 offset_bottom = 303.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 11
-text = "+14"
+text = "+11"
 horizontal_alignment = 1
 
 [node name="Answer2_Mood_Bet2" type="Label" parent="User_Interface/Answer2_Button_Parent" unique_id=1646170740]
@@ -431,7 +431,7 @@ offset_right = 473.0
 offset_bottom = 304.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 11
-text = "-14"
+text = "-11"
 horizontal_alignment = 1
 
 [node name="Answer3_Button_Parent" type="Control" parent="User_Interface" unique_id=933247654]
@@ -457,7 +457,7 @@ offset_right = 574.0
 offset_bottom = 326.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 11
-text = "+3"
+text = "+6"
 horizontal_alignment = 1
 
 [node name="Answer3_Affection_Bet2" type="Label" parent="User_Interface/Answer3_Button_Parent" unique_id=633067938]
@@ -468,7 +468,7 @@ offset_right = 486.0
 offset_bottom = 326.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 11
-text = "-3"
+text = "-6"
 horizontal_alignment = 1
 
 [node name="AffectionDown_Icon" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=1508252784]
@@ -502,7 +502,7 @@ offset_right = 575.0
 offset_bottom = 350.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 11
-text = "+6"
+text = "+9"
 horizontal_alignment = 1
 
 [node name="Answer4_Mood_Bet" type="Label" parent="User_Interface/Answer4_Button_Parent" unique_id=1092668285]
@@ -513,7 +513,7 @@ offset_right = 610.0
 offset_bottom = 350.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 11
-text = "+3"
+text = "+4"
 horizontal_alignment = 1
 
 [node name="Answer4_Affection_Bet2" type="Label" parent="User_Interface/Answer4_Button_Parent" unique_id=755361202]
@@ -524,7 +524,7 @@ offset_right = 486.0
 offset_bottom = 351.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 11
-text = "-6"
+text = "-9"
 horizontal_alignment = 1
 
 [node name="Answer4_Mood_Bet2" type="Label" parent="User_Interface/Answer4_Button_Parent" unique_id=596865887]
@@ -535,7 +535,7 @@ offset_right = 454.0
 offset_bottom = 351.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 11
-text = "-3"
+text = "-4"
 horizontal_alignment = 1
 
 [node name="AffectionDown_Icon2" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=285801508]
@@ -615,9 +615,9 @@ show_percentage = false
 
 [node name="Enemy_Health" type="Label" parent="User_Interface" unique_id=772199178]
 layout_mode = 0
-offset_left = 530.0
+offset_left = 524.0
 offset_top = 27.0
-offset_right = 563.0
+offset_right = 557.0
 offset_bottom = 61.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 18

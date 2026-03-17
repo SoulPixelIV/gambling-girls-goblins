@@ -38,20 +38,20 @@ func _check_dialog_mode() -> void:
 		dialog.text = "Well, shall we begin..?"
 		
 		answer1_button.modulate = Color.GREEN_YELLOW
-		answer1_button.text = "Hit me."
-		answer1_button.tooltip_text = "[LOSE] -8 Mood | [WIN] +8 Mood"
+		answer1_button.text = "Neutral"
+		answer1_button.tooltip_text = "[LOSE] -5 Mood | [WIN] +5 Mood"
 		
 		answer2_button.modulate = Color.YELLOW
 		answer2_button.text = "Confident"
-		answer2_button.tooltip_text = "[LOSE] -14 Mood | [WIN] +14 Mood"
+		answer2_button.tooltip_text = "[LOSE] -11 Mood | [WIN] +11 Mood"
 		
 		answer3_button.modulate = Color.BLUE_VIOLET
 		answer3_button.text = "Flirty"
-		answer3_button.tooltip_text = "[LOSE] -3 Affection | [Win] +3 Affection"
+		answer3_button.tooltip_text = "[LOSE] -6 Affection | [Win] +6 Affection"
 
 		answer4_button.modulate = Color.ORANGE_RED
 		answer4_button.text = "Cocky"
-		answer4_button.tooltip_text = "[LOSE] -6 Affection -3 Mood | [WIN] +6 Affection +3 Mood"
+		answer4_button.tooltip_text = "[LOSE] -9 Affection -4 Mood | [WIN] +9 Affection +4 Mood"
 
 	if dialog_mode == 1:
 		answer1_parent.hide()
@@ -81,24 +81,24 @@ func _check_dialog_mode() -> void:
 
 func _on_answer_1_button_pressed() -> void:
 	dialog_mode = 1
-	game_manager.pot_mood = 8
+	game_manager.pot_mood = 5
 	game_manager.pot_affection = -1
 	_check_dialog_mode()
 
 func _on_answer_2_button_pressed() -> void:
 	dialog_mode = 1
-	game_manager.pot_mood = 14
+	game_manager.pot_mood = 11
 	game_manager.pot_affection = -1
 	_check_dialog_mode()
 
 func _on_answer_3_button_pressed() -> void:
 	dialog_mode = 1
 	game_manager.pot_mood = -1
-	game_manager.pot_affection = 3
+	game_manager.pot_affection = 6
 	_check_dialog_mode()
 
 func _on_answer_4_button_pressed() -> void:
 	dialog_mode = 1
-	game_manager.pot_mood = 3
-	game_manager.pot_affection = 6
+	game_manager.pot_mood = 4
+	game_manager.pot_affection = 9
 	_check_dialog_mode()

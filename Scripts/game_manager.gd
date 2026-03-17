@@ -136,6 +136,19 @@ func resolve_combat():
 		await show_enemy_final_damage()
 		await payout_bet("player")
 		return
+		
+	if player_score == enemy_score and affection_level < 4:
+		combat_messages_text.text = "It's a tie!"
+		combat_messages2_text.text = ""
+		await get_tree().create_timer(2).timeout
+		combat_messages_text.text = ""
+		
+		pot_mood = -1
+		pot_affection = -1
+		await payout_bet("none")
+		
+		reset_game_round()
+		return
 	
 	#PLAYER LOSES
 	if player_score > 21:
@@ -392,7 +405,10 @@ func show_player_damage():
 	
 func show_enemy_crit():
 	curr_damage = curr_damage * 2
-	combat_messages_text.text = "Enemy deals twice the Damage (Crit Bonus)"
+	if mood_level == 0:
+		combat_messages_text.text = "Bad Mood! Enemy deals twice the Damage"
+	else:
+		combat_messages_text.text = "Enemy deals twice the Damage (Crit Bonus)"
 	combat_messages2_text.text = "Total Self Damage: %d" % curr_damage
 	await get_tree().create_timer(2).timeout
 	
@@ -446,6 +462,12 @@ func payout_bet(state):
 			combat_messages_text.text = "Dealer's Affection went down by " + str(pot_affection)
 			pot_affection = -1
 			await get_tree().create_timer(2).timeout
+	elif state == "none":
+		combat_messages_text.text = "No one wins the bet!"
+		await get_tree().create_timer(2).timeout
+		combat_messages_text.text = ""
+		return
+		
 	dealer_manager._update_dealer_stats()
 	status_screen._update_betting_status()
 	
@@ -470,7 +492,7 @@ func reset_game_round():
 	called_combat_resolve = false
 	called_rng_value = false
 	curr_damage = 0
-	var curr_enemy_damage = 0
+	curr_enemy_damage = 0
 	deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 
 	"5H", "5D", "5C", "5S", "6H", "6D", "6C", "6S", "7H", "7D", "7C", "7S", 
 	"8H", "8D", "8C", "8S", "9H", "9D", "9C", "9S", "10H", "10D", "10C", "10S", 

@@ -47,7 +47,7 @@ func _update_dealer_stats():
 	if affection >= 50 and affection < 65:
 		game_manager.affection_level = 2
 	if affection >= 65 and affection < 80:
-		game_manager.mood_level = 3
+		game_manager.affection_level = 3
 	if affection >= 80 and affection < 90:
 		game_manager.affection_level = 4
 	if affection >= 90:
