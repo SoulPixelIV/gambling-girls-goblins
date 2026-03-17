@@ -567,7 +567,7 @@ func _on_tripple_button_3_pressed() -> void:
 		choose_seven_value(8)
 
 func _on_double_button_pressed() -> void:
-	if turn_state == 1 and !player_out and !double_down_active and !safe_used:
+	if turn_state == 1 and !player_out and !enemy_out and !double_down_active and !safe_used:
 		if card_index > 0:
 			double_down_active = true
 			

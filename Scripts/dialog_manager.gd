@@ -72,6 +72,11 @@ func _check_dialog_mode() -> void:
 		game_manager.begin_fight = true
 		status_screen._update_betting_status()
 		
+		hit_button.tooltip_text = "Draw a Card"
+		stand_button.tooltip_text = "Stand on your current Cards (You need atleast 1 Card)"
+		double_button.tooltip_text = "Double your Bet (You only draw 1 more Card)"
+		safe_button.tooltip_text = "Half your Bet (You cannot double your Bet after that)"
+		
 	if dialog_mode == 2:
 		answer1_parent.hide()
 		answer2_parent.hide()
