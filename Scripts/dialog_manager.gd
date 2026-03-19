@@ -132,6 +132,12 @@ func _random_cocky_user_line() -> String:
 	]
 	return lines[randi() % lines.size()]
 	
+func _random_doubledown_user_line() -> String:
+	var lines = [
+		"I'm going all in."
+	]
+	return lines[randi() % lines.size()]
+	
 func _on_answer_1_button_pressed() -> void:
 	dialog_mode = 1
 	game_manager.pot_mood = 5

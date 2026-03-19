@@ -577,6 +577,8 @@ func _on_double_button_pressed() -> void:
 			if pot_affection != -1:
 				pot_affection *= 2
 				
+			#Update Dialog
+			dialog_manager.dialog_user.text = dialog_manager._random_doubledown_user_line()
 			status_screen._update_betting_status()
 			combat_messages_text.text = "Double Down! Bet doubled, you draw only one more card!"
 			await get_tree().create_timer(2).timeout
