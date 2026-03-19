@@ -3,6 +3,7 @@ extends Node
 @onready var game_manager: Node = $"../Game_Manager"
 @onready var status_screen: Node = $"../User_Interface/Status_Screen"
 @onready var dialog: Label = $"../User_Interface/Dialog_Label"
+@onready var dialog_user: Label = $"../User_Interface/Dialog_Label2"
 @onready var answer1_parent = $"../User_Interface/Answer1_Button_Parent"
 @onready var answer2_parent = $"../User_Interface/Answer2_Button_Parent"
 @onready var answer3_parent = $"../User_Interface/Answer3_Button_Parent"
@@ -23,7 +24,6 @@ var dialog_mode = 0
 
 func _ready() -> void:
 	_check_dialog_mode()
-	#Dialog -> "I've got this. Let's Play." "With your smile..I feel unstoppable." "You won't keep up."
 	
 func _check_dialog_mode() -> void:
 	if dialog_mode == 0:
@@ -39,7 +39,7 @@ func _check_dialog_mode() -> void:
 		tripple_button2.hide()
 		tripple_button3.hide()
 		
-		dialog.text = "Well, shall we begin..?"
+		dialog.text = _random_intro_line()
 		
 		answer1_button.modulate = Color.GREEN_YELLOW
 		answer1_button.text = "Neutral"
@@ -56,6 +56,8 @@ func _check_dialog_mode() -> void:
 		answer4_button.modulate = Color.ORANGE_RED
 		answer4_button.text = "Cocky"
 		answer4_button.tooltip_text = "[LOSE] -9 Affection -4 Mood | [WIN] +9 Affection +4 Mood"
+		
+		dialog_user.text = ""
 
 	if dialog_mode == 1:
 		answer1_parent.hide()
@@ -92,26 +94,68 @@ func _check_dialog_mode() -> void:
 		game_manager.begin_fight = true
 		status_screen._update_betting_status()
 
+func _random_intro_line() -> String:
+	var lines = [
+		"Well, shall we begin..?",
+		"Let's see what luck has in store.",
+		"Time to play..",
+		"The table is open.",
+		"Feeling lucky tonight?",
+		"I hope you know what you're doing..",
+		"Try not to lose too quickly.",
+		"Don't worry..I'll be gentle.",
+		"Come on, surprise me."
+	]
+	return lines[randi() % lines.size()]
+	
+func _random_neutral_user_line() -> String:
+	var lines = [
+		"I've got this. Let's Play."
+	]
+	return lines[randi() % lines.size()]
+	
+func _random_confident_user_line() -> String:
+	var lines = [
+		"Trust me. I'm winning this."
+	]
+	return lines[randi() % lines.size()]
+	
+func _random_flirty_user_line() -> String:
+	var lines = [
+		"With your smile..I feel unstoppable."
+	]
+	return lines[randi() % lines.size()]
+	
+func _random_cocky_user_line() -> String:
+	var lines = [
+		"You won't keep up."
+	]
+	return lines[randi() % lines.size()]
+	
 func _on_answer_1_button_pressed() -> void:
 	dialog_mode = 1
 	game_manager.pot_mood = 5
 	game_manager.pot_affection = -1
 	_check_dialog_mode()
+	dialog_user.text = _random_neutral_user_line()
 
 func _on_answer_2_button_pressed() -> void:
 	dialog_mode = 1
 	game_manager.pot_mood = 11
 	game_manager.pot_affection = -1
 	_check_dialog_mode()
+	dialog_user.text = _random_confident_user_line()
 
 func _on_answer_3_button_pressed() -> void:
 	dialog_mode = 1
 	game_manager.pot_mood = -1
 	game_manager.pot_affection = 6
 	_check_dialog_mode()
+	dialog_user.text = _random_flirty_user_line()
 
 func _on_answer_4_button_pressed() -> void:
 	dialog_mode = 1
 	game_manager.pot_mood = 4
 	game_manager.pot_affection = 9
 	_check_dialog_mode()
+	dialog_user.text = _random_cocky_user_line()
