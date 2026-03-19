@@ -122,6 +122,11 @@ func _process(delta: float) -> void:
 func resolve_combat():
 	await setup_result_screen()
 	
+	#DIALOG: Dealer checks if Player was playing too safe
+	if enemy_score <= 10 and player_score <= 12:
+		if randf() < 0.75:
+			dialog_manager.dialog.text = dialog_manager._random_disappointed_line()
+	
 	#Affection Level 0 Debuff: 19 is Bust
 	if affection_level == 0 and player_score == 19:
 		combat_messages_text.text = "Bad Affection! 19 counts as 22!"
@@ -175,6 +180,7 @@ func resolve_combat():
 			await show_player_crit()
 		if enemy_score > 21:
 			await show_enemy_bust_protection()
+		
 		await show_enemy_final_damage()
 		await payout_bet("player")
 	#ENEMY WINS
