@@ -579,6 +579,9 @@ func _on_double_button_pressed() -> void:
 				
 			#Update Dialog
 			dialog_manager.dialog_user.text = dialog_manager._random_doubledown_user_line()
+			if randf() < 0.50:
+				dialog_manager.dialog.text = dialog_manager._random_nervous_line()
+			
 			status_screen._update_betting_status()
 			combat_messages_text.text = "Double Down! Bet doubled, you draw only one more card!"
 			await get_tree().create_timer(2).timeout
@@ -593,6 +596,10 @@ func _on_safe_button_pressed() -> void:
 				pot_mood = int(pot_mood / 2)
 			if pot_affection > 0:
 				pot_affection = int(pot_affection / 2)
+				
+			#Update Dialog
+			if randf() < 0.33:
+				dialog_manager.dialog.text = dialog_manager._random_disappointed_line()
 				
 			status_screen._update_betting_status()
 			combat_messages_text.text = "Safe! Bet halfed."

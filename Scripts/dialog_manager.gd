@@ -94,6 +94,7 @@ func _check_dialog_mode() -> void:
 		game_manager.begin_fight = true
 		status_screen._update_betting_status()
 
+#################### DEALER DIALOG ########################
 func _random_intro_line() -> String:
 	var lines = [
 		"Well, shall we begin..?",
@@ -108,6 +109,22 @@ func _random_intro_line() -> String:
 	]
 	return lines[randi() % lines.size()]
 	
+func _random_nervous_line() -> String:
+	var lines = [
+		"I-I don't know about this one.."
+	]
+	return lines[randi() % lines.size()]
+	
+func _random_disappointed_line() -> String:
+	var lines = [
+		"Really..?",
+		"Wow.",
+		"Hmm"
+	]
+	return lines[randi() % lines.size()]
+	
+
+################# USER DIALOG #######################
 func _random_neutral_user_line() -> String:
 	var lines = [
 		"I've got this. Let's Play."
@@ -137,6 +154,8 @@ func _random_doubledown_user_line() -> String:
 		"I'm going all in."
 	]
 	return lines[randi() % lines.size()]
+	
+
 	
 func _on_answer_1_button_pressed() -> void:
 	dialog_mode = 1
