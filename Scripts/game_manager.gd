@@ -29,6 +29,7 @@ extends Node
 var enemy = null
 var rand_enemy = null
 
+var game_mode = 1
 var health = 42
 var pot_mood = -1 #Betted Mood Points
 var pot_affection = -1 #Betted Affection Points
@@ -60,8 +61,12 @@ var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4
 
 func _ready() -> void:
 	randomize()
-	
-	spawn_new_enemy()
+
+	#Switch to Overworld View
+	if game_mode == 1:
+		call_deferred("_init_ui")
+	else:
+		spawn_new_enemy()
 	
 	player_healthbar.max_value = health #Set Maximum Healthbar
 	player_health.text = str(health)
@@ -611,3 +616,17 @@ func _on_safe_button_pressed() -> void:
 			combat_messages_text.text = "Safe! Bet halfed."
 			await get_tree().create_timer(2).timeout
 			combat_messages_text.text = ""
+
+func _init_ui():
+	_switch_game_mode(1)
+
+func _switch_game_mode(mode) -> void:
+	if mode == 1:
+		player_healthbar.hide()
+		enemy_healthbar.hide()
+		player_health.hide()
+		enemy_health.hide()
+		enemy_name_tag.hide()
+	
+		dialog_manager.dialog_mode = 3
+		dialog_manager._check_dialog_mode()

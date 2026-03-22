@@ -93,6 +93,21 @@ func _check_dialog_mode() -> void:
 		tripple_button3.show()
 		game_manager.begin_fight = true
 		status_screen._update_betting_status()
+		
+	#Overworld Mode
+	if dialog_mode == 3:
+		answer1_parent.hide()
+		answer2_parent.hide()
+		answer3_parent.hide()
+		answer4_parent.hide()
+		hit_button.hide()
+		stand_button.hide()
+		double_button.hide()
+		safe_button.hide()
+		tripple_button1.hide()
+		tripple_button2.hide()
+		tripple_button3.hide()
+		status_screen._update_betting_status()
 
 #################### DEALER DIALOG ########################
 func _random_intro_line() -> String:

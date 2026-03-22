@@ -14,6 +14,8 @@ extends Node
 @onready var status8_text: Label = $"Status8_Label"
 @onready var debuff1_text: Label = $"Status1_Debuff_Label"
 @onready var debuff2_text: Label = $"Status2_Debuff_Label"
+@onready var player_healthbar: Label = $"Pot_Text"
+@onready var enemy_healthbar: Label = $"Pot_Text2"
 
 func _ready() -> void:
 	_update_betting_status()
@@ -104,3 +106,4 @@ func _update_betting_status():
 		status7_text.text = "Player deals 5 Damage on Draw"
 		status8_text.text = "Occasionally redraw on Bust"
 		debuff2_text.text = ""
+	

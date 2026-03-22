@@ -1,0 +1,783 @@
+[gd_scene format=3 uid="uid://co4dvh24whixt"]
+
+[ext_resource type="Texture2D" uid="uid://cm4bi2hriubg" path="res://Textures/circle_debug.png" id="1_3dryh"]
+[ext_resource type="Texture2D" uid="uid://bpx3j8sscympk" path="res://Textures/ui_frame.png" id="2_qxrlw"]
+[ext_resource type="Shader" uid="uid://clnvet060xyb4" path="res://Shader/blur.gdshader" id="4_3dryh"]
+[ext_resource type="Script" uid="uid://c68wrohjmdhoe" path="res://Scripts/dialog_manager.gd" id="4_i6g32"]
+[ext_resource type="Texture2D" uid="uid://cu4u6w43300n1" path="res://Textures/dealer_debug.png" id="5_i6g32"]
+[ext_resource type="Script" uid="uid://cgfxf55meli1d" path="res://Scripts/game_manager.gd" id="5_wowpa"]
+[ext_resource type="Texture2D" uid="uid://bmttochduuoh3" path="res://Textures/Icons/icon_mood_up.png" id="7_1l0tm"]
+[ext_resource type="Script" uid="uid://ghsi0dbfghps" path="res://Scripts/status_screen.gd" id="8_1phco"]
+[ext_resource type="Texture2D" uid="uid://bvffca130ex0i" path="res://Textures/Icons/icon_mood_down.png" id="9_ldgsr"]
+[ext_resource type="Texture2D" uid="uid://bkb5fcp3ahfgc" path="res://Textures/Icons/icon_affection_up.png" id="11_o5yvi"]
+[ext_resource type="Texture2D" uid="uid://gni2ecgjaq7b" path="res://Textures/Icons/icon_affection_down.png" id="12_rku1e"]
+[ext_resource type="Script" uid="uid://b8801c74kbnsj" path="res://Scripts/dealer_manager.gd" id="13_rfjv2"]
+
+[sub_resource type="Curve" id="Curve_3dryh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.18617022, 0.9550562), 0.0, 0.0, 0, 0, Vector2(0.6808511, 0.55056185), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wowpa"]
+shader = ExtResource("4_3dryh")
+shader_parameter/blur_amount = 1.5
+
+[node name="Node" type="Node" unique_id=1979963607]
+
+[node name="Background" type="ColorRect" parent="." unique_id=1322775525]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0, 0, 0, 1)
+
+[node name="Particle_System" type="Node" parent="." unique_id=400499942]
+
+[node name="Particle_Spawner_Gold" type="CPUParticles2D" parent="Particle_System" unique_id=606576124]
+position = Vector2(370, 236)
+amount = 1000
+texture = ExtResource("1_3dryh")
+lifetime = 30.0
+randomness = 0.26
+lifetime_randomness = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(260, 15)
+direction = Vector2(0, 0)
+gravity = Vector2(0, -2)
+angle_max = 359.0
+scale_amount_min = 0.01
+scale_amount_max = 0.06
+scale_amount_curve = SubResource("Curve_3dryh")
+color = Color(1, 0, 1, 1)
+
+[node name="Particle_Spawner_Blue" type="CPUParticles2D" parent="Particle_System" unique_id=1020013295]
+position = Vector2(370, 236)
+amount = 1000
+texture = ExtResource("1_3dryh")
+lifetime = 30.0
+randomness = 0.26
+lifetime_randomness = 0.1
+emission_shape = 3
+emission_rect_extents = Vector2(260, 15)
+direction = Vector2(0, 0)
+gravity = Vector2(0, -2)
+angle_max = 359.0
+scale_amount_min = 0.01
+scale_amount_max = 0.06
+scale_amount_curve = SubResource("Curve_3dryh")
+color = Color(0.17254902, 0.3882353, 0.8862745, 1)
+
+[node name="Blur_Filter" type="ColorRect" parent="." unique_id=1875600707]
+material = SubResource("ShaderMaterial_wowpa")
+offset_left = 109.0
+offset_right = 640.0
+offset_bottom = 252.0
+
+[node name="Game_Manager" type="Node" parent="." unique_id=1538228305]
+script = ExtResource("5_wowpa")
+
+[node name="Dialog_Manager" type="Node" parent="." unique_id=762334416]
+script = ExtResource("4_i6g32")
+
+[node name="User_Interface" type="Control" parent="." unique_id=870774321]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dealer_Interface" type="Control" parent="User_Interface" unique_id=1443971362]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dealer_Icon" type="Sprite2D" parent="User_Interface/Dealer_Interface" unique_id=663302625]
+position = Vector2(53, 307.5)
+scale = Vector2(0.828125, 0.8203125)
+texture = ExtResource("5_i6g32")
+
+[node name="Affection_Dealer_Icon" type="Sprite2D" parent="User_Interface/Dealer_Interface" unique_id=1684336219]
+position = Vector2(96, 264)
+texture = ExtResource("11_o5yvi")
+
+[node name="Mood_Dealer_Icon" type="Sprite2D" parent="User_Interface/Dealer_Interface" unique_id=742184869]
+position = Vector2(10, 265)
+texture = ExtResource("7_1l0tm")
+
+[node name="Affection_Label" type="Label" parent="User_Interface/Dealer_Interface" unique_id=1187970413]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 252.0
+offset_right = 87.0
+offset_bottom = 275.0
+text = "50"
+horizontal_alignment = 1
+
+[node name="Mood_Label" type="Label" parent="User_Interface/Dealer_Interface" unique_id=1177850968]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 252.0
+offset_right = 38.0
+offset_bottom = 275.0
+text = "50"
+horizontal_alignment = 1
+
+[node name="Status_Screen" type="Control" parent="User_Interface" unique_id=842203704]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_1phco")
+
+[node name="Pot_Text" type="Label" parent="User_Interface/Status_Screen" unique_id=195444737]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 211.0
+offset_right = 67.0
+offset_bottom = 231.0
+theme_override_colors/font_color = Color(0.5647059, 1, 0.30980393, 1)
+theme_override_font_sizes/font_size = 14
+text = "Pot:"
+horizontal_alignment = 1
+
+[node name="Pot_Text2" type="Label" parent="User_Interface/Status_Screen" unique_id=1218266108]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 228.0
+offset_right = 67.0
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.5647059, 1, 0.30980393, 1)
+theme_override_font_sizes/font_size = 14
+text = "Pot:"
+horizontal_alignment = 1
+
+[node name="Stat_Bonus" type="Label" parent="User_Interface/Status_Screen" unique_id=148756231]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 4.0
+offset_right = 107.0
+offset_bottom = 27.0
+theme_override_font_sizes/font_size = 12
+text = "Stat Bonus:"
+horizontal_alignment = 1
+
+[node name="Stat_Debuff" type="Label" parent="User_Interface/Status_Screen" unique_id=274222294]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 147.0
+offset_right = 107.0
+offset_bottom = 170.0
+theme_override_font_sizes/font_size = 12
+text = "Stat Debuff:"
+horizontal_alignment = 1
+
+[node name="Status1_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1920017106]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 20.0
+offset_right = 109.0
+offset_bottom = 43.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Status1"
+horizontal_alignment = 1
+
+[node name="Status2_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=984340366]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 31.0
+offset_right = 109.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Status2"
+horizontal_alignment = 1
+
+[node name="Status3_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1496063872]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 43.0
+offset_right = 109.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 6
+text = "Status3"
+horizontal_alignment = 1
+
+[node name="Status4_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1838096030]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 53.0
+offset_right = 108.0
+offset_bottom = 76.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "Status4"
+horizontal_alignment = 1
+
+[node name="Status5_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=713151428]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 62.0
+offset_right = 108.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 8
+text = "Status5"
+horizontal_alignment = 1
+
+[node name="Status6_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=765567227]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 72.0
+offset_right = 108.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 9
+text = "Status6"
+horizontal_alignment = 1
+
+[node name="Status7_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=777920835]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 85.0
+offset_right = 108.0
+offset_bottom = 108.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 6
+text = "Status7"
+horizontal_alignment = 1
+
+[node name="Status8_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=809836722]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 95.0
+offset_right = 107.0
+offset_bottom = 118.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 7
+text = "Status8"
+horizontal_alignment = 1
+
+[node name="Status1_Debuff_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1517278706]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 162.0
+offset_right = 108.0
+offset_bottom = 185.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 9
+text = "Debuff1"
+horizontal_alignment = 1
+
+[node name="Status2_Debuff_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=2000739764]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 172.0
+offset_right = 108.0
+offset_bottom = 195.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 9
+text = "Debuff2"
+horizontal_alignment = 1
+
+[node name="AffectionUp_Icon" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=438268445]
+position = Vector2(30, 239)
+texture = ExtResource("11_o5yvi")
+
+[node name="MoodUp_Icon3" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=378091172]
+position = Vector2(30, 221)
+texture = ExtResource("7_1l0tm")
+
+[node name="Mood_Stat_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=511938665]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 214.0
+offset_right = 83.0
+offset_bottom = 230.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "12"
+horizontal_alignment = 1
+
+[node name="Affection_Stat_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1316105170]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 231.0
+offset_right = 83.0
+offset_bottom = 247.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "8"
+horizontal_alignment = 1
+
+[node name="Frame" type="Sprite2D" parent="User_Interface" unique_id=1579732443]
+texture_filter = 1
+position = Vector2(320, 180)
+texture = ExtResource("2_qxrlw")
+
+[node name="Tripple_Button1" type="Button" parent="User_Interface" unique_id=399427961]
+visible = false
+layout_mode = 0
+offset_left = 408.0
+offset_top = 260.0
+offset_right = 634.0
+offset_bottom = 291.0
+text = "Option1"
+
+[node name="Tripple_Button2" type="Button" parent="User_Interface" unique_id=1119730474]
+visible = false
+layout_mode = 0
+offset_left = 408.0
+offset_top = 293.0
+offset_right = 634.0
+offset_bottom = 324.0
+text = "Option2"
+
+[node name="Tripple_Button3" type="Button" parent="User_Interface" unique_id=1517697001]
+visible = false
+layout_mode = 0
+offset_left = 408.0
+offset_top = 326.0
+offset_right = 634.0
+offset_bottom = 357.0
+text = "Option3"
+
+[node name="Answer1_Button_Parent" type="Control" parent="User_Interface" unique_id=1209680033]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Answer1_Button" type="Button" parent="User_Interface/Answer1_Button_Parent" unique_id=2110933993]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 260.0
+offset_right = 634.0
+offset_bottom = 282.0
+theme_override_font_sizes/font_size = 10
+text = "Answer1"
+
+[node name="MoodUp_Icon" type="Sprite2D" parent="User_Interface/Answer1_Button_Parent" unique_id=1326430795]
+position = Vector2(553, 271)
+texture = ExtResource("7_1l0tm")
+
+[node name="MoodDown_Icon" type="Sprite2D" parent="User_Interface/Answer1_Button_Parent" unique_id=948731950]
+position = Vector2(488, 271)
+texture = ExtResource("9_ldgsr")
+
+[node name="Answer1_Mood_Bet" type="Label" parent="User_Interface/Answer1_Button_Parent" unique_id=1561802116]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 263.0
+offset_right = 579.0
+offset_bottom = 279.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "+5"
+horizontal_alignment = 1
+
+[node name="Answer1_Mood_Bet2" type="Label" parent="User_Interface/Answer1_Button_Parent" unique_id=1775457918]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 263.0
+offset_right = 482.0
+offset_bottom = 279.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "-5"
+horizontal_alignment = 1
+
+[node name="Answer2_Button_Parent" type="Control" parent="User_Interface" unique_id=1974827400]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Answer2_Button" type="Button" parent="User_Interface/Answer2_Button_Parent" unique_id=808126945]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 284.0
+offset_right = 634.0
+offset_bottom = 306.0
+theme_override_font_sizes/font_size = 10
+text = "Answer2"
+
+[node name="MoodUp_Icon2" type="Sprite2D" parent="User_Interface/Answer2_Button_Parent" unique_id=1295162269]
+position = Vector2(559, 295)
+texture = ExtResource("7_1l0tm")
+
+[node name="MoodDown_Icon2" type="Sprite2D" parent="User_Interface/Answer2_Button_Parent" unique_id=1477609265]
+position = Vector2(483, 295)
+texture = ExtResource("9_ldgsr")
+
+[node name="Answer2_Mood_Bet" type="Label" parent="User_Interface/Answer2_Button_Parent" unique_id=674882928]
+layout_mode = 0
+offset_left = 569.0
+offset_top = 287.0
+offset_right = 588.0
+offset_bottom = 303.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "+11"
+horizontal_alignment = 1
+
+[node name="Answer2_Mood_Bet2" type="Label" parent="User_Interface/Answer2_Button_Parent" unique_id=1646170740]
+layout_mode = 0
+offset_left = 454.0
+offset_top = 288.0
+offset_right = 473.0
+offset_bottom = 304.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "-11"
+horizontal_alignment = 1
+
+[node name="Answer3_Button_Parent" type="Control" parent="User_Interface" unique_id=933247654]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Answer3_Button" type="Button" parent="User_Interface/Answer3_Button_Parent" unique_id=1578916317]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 308.0
+offset_right = 634.0
+offset_bottom = 330.0
+theme_override_font_sizes/font_size = 10
+text = "Answer3"
+
+[node name="Answer3_Affection_Bet" type="Label" parent="User_Interface/Answer3_Button_Parent" unique_id=1636698833]
+layout_mode = 0
+offset_left = 555.0
+offset_top = 310.0
+offset_right = 574.0
+offset_bottom = 326.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "+6"
+horizontal_alignment = 1
+
+[node name="Answer3_Affection_Bet2" type="Label" parent="User_Interface/Answer3_Button_Parent" unique_id=633067938]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 310.0
+offset_right = 486.0
+offset_bottom = 326.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "-6"
+horizontal_alignment = 1
+
+[node name="AffectionDown_Icon" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=1508252784]
+position = Vector2(493, 319)
+texture = ExtResource("12_rku1e")
+
+[node name="AffectionUp_Icon" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=2076672011]
+position = Vector2(547, 319)
+texture = ExtResource("11_o5yvi")
+
+[node name="Answer4_Button_Parent" type="Control" parent="User_Interface" unique_id=55893658]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Answer4_Button" type="Button" parent="User_Interface/Answer4_Button_Parent" unique_id=1097131551]
+layout_mode = 0
+offset_left = 408.0
+offset_top = 332.0
+offset_right = 634.0
+offset_bottom = 354.0
+theme_override_font_sizes/font_size = 10
+text = "Answer4"
+
+[node name="Answer4_Affection_Bet" type="Label" parent="User_Interface/Answer4_Button_Parent" unique_id=1365854991]
+layout_mode = 0
+offset_left = 556.0
+offset_top = 334.0
+offset_right = 575.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "+9"
+horizontal_alignment = 1
+
+[node name="Answer4_Mood_Bet" type="Label" parent="User_Interface/Answer4_Button_Parent" unique_id=1092668285]
+layout_mode = 0
+offset_left = 591.0
+offset_top = 334.0
+offset_right = 610.0
+offset_bottom = 350.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "+4"
+horizontal_alignment = 1
+
+[node name="Answer4_Affection_Bet2" type="Label" parent="User_Interface/Answer4_Button_Parent" unique_id=755361202]
+layout_mode = 0
+offset_left = 467.0
+offset_top = 335.0
+offset_right = 486.0
+offset_bottom = 351.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "-9"
+horizontal_alignment = 1
+
+[node name="Answer4_Mood_Bet2" type="Label" parent="User_Interface/Answer4_Button_Parent" unique_id=596865887]
+layout_mode = 0
+offset_left = 435.0
+offset_top = 335.0
+offset_right = 454.0
+offset_bottom = 351.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 11
+text = "-4"
+horizontal_alignment = 1
+
+[node name="AffectionDown_Icon2" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=285801508]
+position = Vector2(492, 343)
+texture = ExtResource("12_rku1e")
+
+[node name="MoodDown_Icon4" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=1752193170]
+position = Vector2(460, 343)
+texture = ExtResource("9_ldgsr")
+
+[node name="AffectionUp_Icon2" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=55145900]
+position = Vector2(549, 343)
+texture = ExtResource("11_o5yvi")
+
+[node name="MoodUp_Icon3" type="Sprite2D" parent="User_Interface/Answer4_Button_Parent" unique_id=238645348]
+position = Vector2(583, 342)
+texture = ExtResource("7_1l0tm")
+
+[node name="Hit_Button" type="Button" parent="User_Interface" unique_id=1568430695]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 261.0
+offset_right = 634.0
+offset_bottom = 304.0
+theme_override_colors/font_color = Color(0.55194056, 1, 0.48858428, 1)
+text = "Hit"
+
+[node name="Stand_Button" type="Button" parent="User_Interface" unique_id=1244192539]
+layout_mode = 0
+offset_left = 465.0
+offset_top = 310.0
+offset_right = 634.0
+offset_bottom = 353.0
+theme_override_colors/font_color = Color(0.9961687, 0.87814367, 0, 1)
+text = "Stand"
+
+[node name="Double_Button" type="Button" parent="User_Interface" unique_id=1007064650]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 261.0
+offset_right = 463.0
+offset_bottom = 304.0
+theme_override_colors/font_color = Color(0.99607843, 0.16862746, 0, 1)
+text = "Double"
+
+[node name="Safe_Button" type="Button" parent="User_Interface" unique_id=437776728]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 310.0
+offset_right = 463.0
+offset_bottom = 353.0
+theme_override_colors/font_color = Color(0.12493303, 0.54886496, 0.9765181, 1)
+text = "Safe"
+
+[node name="Enemy_Score" type="Label" parent="User_Interface" unique_id=2012555226]
+layout_mode = 0
+offset_left = 277.0
+offset_top = 91.0
+offset_right = 304.0
+offset_bottom = 125.0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="Player_Score" type="Label" parent="User_Interface" unique_id=1130129243]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 193.0
+offset_right = 143.0
+offset_bottom = 227.0
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="Player_Healthbar" type="ProgressBar" parent="User_Interface" unique_id=1839793479]
+layout_mode = 0
+offset_left = 114.0
+offset_top = 228.0
+offset_right = 288.0
+offset_bottom = 248.0
+max_value = 42.0
+step = 1.0
+value = 42.0
+show_percentage = false
+
+[node name="Player_Health" type="Label" parent="User_Interface" unique_id=1758212477]
+layout_mode = 0
+offset_left = 185.0
+offset_top = 224.0
+offset_right = 216.0
+offset_bottom = 258.0
+theme_override_colors/font_color = Color(0, 1, 0.5176471, 1)
+theme_override_font_sizes/font_size = 18
+text = "42"
+horizontal_alignment = 1
+
+[node name="Enemy_Healthbar" type="ProgressBar" parent="User_Interface" unique_id=1002222913]
+layout_mode = 0
+offset_left = 468.0
+offset_top = 31.0
+offset_right = 623.0
+offset_bottom = 49.0
+step = 1.0
+value = 18.0
+show_percentage = false
+
+[node name="Enemy_Health" type="Label" parent="User_Interface" unique_id=772199178]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 27.0
+offset_right = 557.0
+offset_bottom = 61.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "18"
+horizontal_alignment = 1
+
+[node name="Enemy_Name_Label" type="Label" parent="User_Interface" unique_id=707675170]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 3.0
+offset_right = 634.0
+offset_bottom = 45.0
+theme_override_font_sizes/font_size = 22
+text = "Crazy Goblin"
+horizontal_alignment = 1
+
+[node name="Final_Score_Labels" type="Control" parent="User_Interface" unique_id=2036002227]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Final_Player_Score" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=333004497]
+layout_mode = 0
+offset_left = 111.0
+offset_top = 48.0
+offset_right = 466.0
+offset_bottom = 147.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Player [17]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Final_Enemy_Score" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=680879426]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 49.0
+offset_right = 638.0
+offset_bottom = 148.0
+theme_override_colors/font_color = Color(0.9254902, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Enemy [21]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Combat_Messages" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=1281019492]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 119.0
+offset_right = 698.0
+offset_bottom = 153.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "You receive %d Self Damage!"
+horizontal_alignment = 1
+
+[node name="Combat_Messages2" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=485587634]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 141.0
+offset_right = 694.0
+offset_bottom = 175.0
+theme_override_colors/font_color = Color(1, 0.007843138, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Total Damage = 7"
+horizontal_alignment = 1
+
+[node name="Dealer_Name_Label" type="Label" parent="User_Interface" unique_id=1884585899]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 258.0
+offset_right = 140.0
+offset_bottom = 270.0
+theme_override_colors/font_color = Color(0.24313726, 1, 0.13333334, 1)
+theme_override_font_sizes/font_size = 8
+text = "Dealer:"
+clip_text = true
+
+[node name="User_Name_Label" type="Label" parent="User_Interface" unique_id=2086410800]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 316.0
+offset_right = 268.0
+offset_bottom = 328.0
+theme_override_colors/font_color = Color(0.6745098, 0.49019608, 1, 1)
+theme_override_font_sizes/font_size = 8
+text = "Player:"
+clip_text = true
+
+[node name="Dialog_Label" type="Label" parent="User_Interface" unique_id=541541849]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 268.0
+offset_right = 394.0
+offset_bottom = 325.0
+theme_override_font_sizes/font_size = 8
+text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam 
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
+sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
+"
+clip_text = true
+
+[node name="Dialog_Label2" type="Label" parent="User_Interface" unique_id=1332007644]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 326.0
+offset_right = 393.0
+offset_bottom = 375.0
+theme_override_font_sizes/font_size = 8
+text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam 
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+"
+clip_text = true
+
+[node name="Hand" type="Control" parent="." unique_id=248982143]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Enemy_Hand" type="Control" parent="." unique_id=2008198402]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Dealer" type="Node" parent="." unique_id=839210681]
+script = ExtResource("13_rfjv2")
+
+[connection signal="pressed" from="User_Interface/Tripple_Button1" to="Game_Manager" method="_on_tripple_button_1_pressed"]
+[connection signal="pressed" from="User_Interface/Tripple_Button2" to="Game_Manager" method="_on_tripple_button_2_pressed"]
+[connection signal="pressed" from="User_Interface/Tripple_Button3" to="Game_Manager" method="_on_tripple_button_3_pressed"]
+[connection signal="pressed" from="User_Interface/Answer1_Button_Parent/Answer1_Button" to="Dialog_Manager" method="_on_answer_1_button_pressed"]
+[connection signal="pressed" from="User_Interface/Answer2_Button_Parent/Answer2_Button" to="Dialog_Manager" method="_on_answer_2_button_pressed"]
+[connection signal="pressed" from="User_Interface/Answer3_Button_Parent/Answer3_Button" to="Dialog_Manager" method="_on_answer_3_button_pressed"]
+[connection signal="pressed" from="User_Interface/Answer4_Button_Parent/Answer4_Button" to="Dialog_Manager" method="_on_answer_4_button_pressed"]
+[connection signal="pressed" from="User_Interface/Hit_Button" to="Game_Manager" method="_on_hit_button_pressed"]
+[connection signal="pressed" from="User_Interface/Stand_Button" to="Game_Manager" method="_on_stand_button_pressed"]
+[connection signal="pressed" from="User_Interface/Double_Button" to="Game_Manager" method="_on_double_button_pressed"]
+[connection signal="pressed" from="User_Interface/Safe_Button" to="Game_Manager" method="_on_safe_button_pressed"]
