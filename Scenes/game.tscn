@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://clnvet060xyb4" path="res://Shader/blur.gdshader" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://c68wrohjmdhoe" path="res://Scripts/dialog_manager.gd" id="4_i6g32"]
 [ext_resource type="Texture2D" uid="uid://cu4u6w43300n1" path="res://Textures/dealer_debug.png" id="5_i6g32"]
+[ext_resource type="Script" uid="uid://dtm1mmgfat4he" path="res://Scripts/overworld_manager.gd" id="5_rfjv2"]
 [ext_resource type="Script" uid="uid://cgfxf55meli1d" path="res://Scripts/game_manager.gd" id="5_wowpa"]
 [ext_resource type="Texture2D" uid="uid://bmttochduuoh3" path="res://Textures/Icons/icon_mood_up.png" id="7_1l0tm"]
 [ext_resource type="Script" uid="uid://ghsi0dbfghps" path="res://Scripts/status_screen.gd" id="8_1phco"]
@@ -75,6 +76,9 @@ script = ExtResource("5_wowpa")
 
 [node name="Dialog_Manager" type="Node" parent="." unique_id=762334416]
 script = ExtResource("4_i6g32")
+
+[node name="Overworld_Manager" type="Node" parent="." unique_id=466517844]
+script = ExtResource("5_rfjv2")
 
 [node name="User_Interface" type="Control" parent="." unique_id=870774321]
 layout_mode = 3
@@ -754,6 +758,12 @@ text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
 nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
 "
 clip_text = true
+
+[node name="Overworld_Interface" type="Control" parent="." unique_id=1156646195]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Hand" type="Control" parent="." unique_id=248982143]
 layout_mode = 3

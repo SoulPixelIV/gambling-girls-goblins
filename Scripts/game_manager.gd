@@ -5,6 +5,7 @@ extends Node
 @onready var enemy_hand = $"../Enemy_Hand"
 @onready var dealer_manager = $"../Dealer"
 @onready var dialog_manager = $"../Dialog_Manager"
+@onready var overworld_manager = $"../Overworld_Manager"
 @onready var status_screen: Node = $"../User_Interface/Status_Screen"
 @onready var player_healthbar: ProgressBar = $"../User_Interface/Player_Healthbar"
 @onready var enemy_healthbar: ProgressBar = $"../User_Interface/Enemy_Healthbar"
@@ -630,3 +631,5 @@ func _switch_game_mode(mode) -> void:
 	
 		dialog_manager.dialog_mode = 3
 		dialog_manager._check_dialog_mode()
+		
+		overworld_manager._generate_dungeon()
