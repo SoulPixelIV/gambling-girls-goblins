@@ -4,6 +4,8 @@ extends Node
 @onready var start_node = preload("res://Prefabs/start_node.tscn")
 @onready var finish_node = preload("res://Prefabs/finish_node.tscn")
 
+@onready var line_container: Node = $"../Overworld_Interface/Line_Container"
+
 var grid_width = 8
 var grid_height = 4
 var cell_size = 60
@@ -56,27 +58,25 @@ func _generate_dungeon():
 		_connect_nodes(nodes)
 		
 func _connect_nodes(nodes):
-	var connections = {}
-	for node in nodes:
-		connections[node] = []
-
-	for node in nodes:
-		#List of all other Nodes
-		var others = nodes.duplicate()
-		others.erase(node)
-
-		for target in others:
-			if len(connections[node]) >= 1:
-				break
-			if len(connections[target]) >= 1:
-				continue
-			if target in connections[node]:
-				continue
-
-			connections[node].append(target)
-			connections[target].append(node)
+	var connected = [nodes[0]]
+	var unconnected = nodes.duplicate()
+	unconnected.erase(nodes[0])
+	
+	while unconnected.size() > 0:
+		var last_node = connected[connected.size() - 1]
+		var nearest_node = null
+		var min_dist = INF
+		
+		for node in unconnected:			
+			var dist_to_target = last_node.position.distance_to(node.position)
+			if dist_to_target < min_dist:
+				min_dist = dist_to_target
+				nearest_node = node
 			
-			_draw_connection(node.position, target.position)
+		_draw_connection(last_node.position, nearest_node.position)
+		
+		connected.append(nearest_node)
+		unconnected.erase(nearest_node)
 
 func _draw_connection(pos1, pos2):
 	var line = Line2D.new()
@@ -84,3 +84,4 @@ func _draw_connection(pos1, pos2):
 	line.width = 2
 	line.default_color = Color.AQUAMARINE
 	line.points = [pos1, pos2]
+	line_container.add_child(line)

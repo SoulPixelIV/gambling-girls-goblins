@@ -765,6 +765,8 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="Line_Container" type="Node" parent="Overworld_Interface" unique_id=904524100]
+
 [node name="Hand" type="Control" parent="." unique_id=248982143]
 layout_mode = 3
 anchors_preset = 0
