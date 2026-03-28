@@ -77,6 +77,14 @@ script = ExtResource("5_wowpa")
 [node name="Dialog_Manager" type="Node" parent="." unique_id=762334416]
 script = ExtResource("4_i6g32")
 
+[node name="Overworld_Interface" type="Control" parent="." unique_id=1156646195]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Line_Container" type="Node" parent="Overworld_Interface" unique_id=904524100]
+
 [node name="Overworld_Manager" type="Node" parent="." unique_id=466517844]
 script = ExtResource("5_rfjv2")
 
@@ -758,14 +766,6 @@ text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
 nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
 "
 clip_text = true
-
-[node name="Overworld_Interface" type="Control" parent="." unique_id=1156646195]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Line_Container" type="Node" parent="Overworld_Interface" unique_id=904524100]
 
 [node name="Hand" type="Control" parent="." unique_id=248982143]
 layout_mode = 3

@@ -30,17 +30,15 @@ func get_random_positions(amount):
 func _generate_dungeon():
 	var positions = get_random_positions(8)
 	
-	#Select Start Node
-	var start_index = randi() % positions.size()
-	
-	#Select Finish Node
-	var finish_index = randi() % positions.size()
-	
+	#Set Start & Finish Nodes
+	var start_index = randi() % positions.size() #Select Start Node
+	var finish_index = randi() % positions.size() #Select Finish Node
 	while finish_index == start_index:
 		finish_index = randi() % positions.size()
 	
 	var nodes = []
 	
+	#Spawn Nodes
 	for i in range(positions.size()):
 		var node
 		
@@ -55,11 +53,11 @@ func _generate_dungeon():
 		node.position = positions[i]
 		nodes.append(node)
 		
-		_connect_nodes(nodes)
+	_connect_nodes(nodes)
 		
 func _connect_nodes(nodes):
-	var connected = [nodes[0]]
-	var unconnected = nodes.duplicate()
+	var connected = [nodes[0]] #[0]
+	var unconnected = nodes.duplicate() #[1,2,3,4,5,6,7]
 	unconnected.erase(nodes[0])
 	
 	while unconnected.size() > 0:
@@ -67,7 +65,7 @@ func _connect_nodes(nodes):
 		var nearest_node = null
 		var min_dist = INF
 		
-		for node in unconnected:			
+		for node in unconnected:		
 			var dist_to_target = last_node.position.distance_to(node.position)
 			if dist_to_target < min_dist:
 				min_dist = dist_to_target
@@ -80,7 +78,6 @@ func _connect_nodes(nodes):
 
 func _draw_connection(pos1, pos2):
 	var line = Line2D.new()
-	add_child(line)
 	line.width = 2
 	line.default_color = Color.AQUAMARINE
 	line.points = [pos1, pos2]
