@@ -723,9 +723,9 @@ horizontal_alignment = 1
 [node name="Dealer_Name_Label" type="Label" parent="User_Interface" unique_id=1884585899]
 layout_mode = 0
 offset_left = 113.0
-offset_top = 258.0
+offset_top = 257.0
 offset_right = 140.0
-offset_bottom = 270.0
+offset_bottom = 269.0
 theme_override_colors/font_color = Color(0.24313726, 1, 0.13333334, 1)
 theme_override_font_sizes/font_size = 8
 text = "Dealer:"

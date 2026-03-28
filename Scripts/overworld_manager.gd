@@ -3,6 +3,7 @@ extends Node
 @onready var event_node = preload("res://Prefabs/event_node.tscn")
 @onready var start_node = preload("res://Prefabs/start_node.tscn")
 @onready var finish_node = preload("res://Prefabs/finish_node.tscn")
+@onready var player_node = preload("res://Prefabs/player_node.tscn")
 
 @onready var line_container: Node = $"../Overworld_Interface/Line_Container"
 
@@ -41,9 +42,12 @@ func _generate_dungeon():
 	#Spawn Nodes
 	for i in range(positions.size()):
 		var node
+		var player_node_instance
 		
 		if i == start_index:
 			node = start_node.instantiate()
+			player_node_instance = player_node.instantiate()
+			add_child(player_node_instance)
 		elif i == finish_index:
 			node = finish_node.instantiate()
 		else:
@@ -51,6 +55,9 @@ func _generate_dungeon():
 			
 		add_child(node)
 		node.position = positions[i]
+		#Set Player to Start Node
+		if i == start_index:
+			player_node_instance.position = node.position
 		nodes.append(node)
 		
 	_connect_nodes(nodes)

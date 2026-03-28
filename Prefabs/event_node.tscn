@@ -1,8 +1,22 @@
 [gd_scene format=3 uid="uid://o8mkqw33ctyr"]
 
+[ext_resource type="Script" uid="uid://b3rxnmbn5ejdg" path="res://Scripts/event_node.gd" id="1_r333q"]
 [ext_resource type="Texture2D" uid="uid://dksb2lsir7v3h" path="res://Textures/event_node.png" id="1_xtxmj"]
 
-[node name="Event_Node" type="Node2D" unique_id=108158536]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r333q"]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=710182248]
+[node name="Event_Node" type="Control" unique_id=618004731]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_r333q")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1890587042]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=710182248]
 texture = ExtResource("1_xtxmj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2059898358]
+shape = SubResource("RectangleShape2D_r333q")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
