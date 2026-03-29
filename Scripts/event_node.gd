@@ -1,9 +1,7 @@
-extends Area2D
-
-@onready var sprite = $Sprite2D
+extends Control
 
 func _on_mouse_entered():
-	sprite.scale = Vector2(1.2, 1.2) # größer
+	scale = Vector2(1.4, 1.4)
 
 func _on_mouse_exited():
-	sprite.scale = Vector2(1, 1) # normal
+	scale = Vector2(1, 1)
