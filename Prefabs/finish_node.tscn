@@ -1,8 +1,22 @@
 [gd_scene format=3 uid="uid://b4i0an2hanuc"]
 
 [ext_resource type="Texture2D" uid="uid://d21myirlxbmr" path="res://Textures/finish_node.png" id="1_8tpb1"]
+[ext_resource type="Script" uid="uid://b3rxnmbn5ejdg" path="res://Scripts/event_node.gd" id="1_vfou1"]
 
-[node name="Event_Node" type="Node2D" unique_id=108158536]
+[node name="Event_Node" type="Control" unique_id=537063947]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_vfou1")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=710182248]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=635821105]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
 texture = ExtResource("1_8tpb1")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

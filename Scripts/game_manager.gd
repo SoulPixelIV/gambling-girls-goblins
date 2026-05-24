@@ -30,7 +30,7 @@ extends Node
 var enemy = null
 var rand_enemy = null
 
-var game_mode = 1
+var game_mode = 1 #0 = Combat | 1 = Overworld
 var health = 42
 var pot_mood = -1 #Betted Mood Points
 var pot_affection = -1 #Betted Affection Points

@@ -4,13 +4,14 @@ extends Node
 @onready var start_node = preload("res://Prefabs/start_node.tscn")
 @onready var finish_node = preload("res://Prefabs/finish_node.tscn")
 @onready var player_node = preload("res://Prefabs/player_node.tscn")
-
 @onready var line_container: Node = $"../Overworld_Interface/Line_Container"
 
 var grid_width = 8
 var grid_height = 4
 var cell_size = 60
 var start_pos = Vector2(165, 30)
+
+var player_node_instance
 	
 func get_all_grid_positions():
 	var positions = []
@@ -42,7 +43,6 @@ func _generate_dungeon():
 	#Spawn Nodes
 	for i in range(positions.size()):
 		var node
-		var player_node_instance
 		
 		if i == start_index:
 			node = start_node.instantiate()
