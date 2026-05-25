@@ -13,6 +13,8 @@ var start_pos = Vector2(165, 30)
 
 var player_node_instance
 var is_moving = false
+var all_nodes = []
+var current_node
 	
 func get_all_grid_positions():
 	var positions = []
@@ -47,6 +49,7 @@ func _generate_dungeon():
 		
 		if i == start_index:
 			node = start_node.instantiate()
+			current_node = node
 			player_node_instance = player_node.instantiate()
 			add_child(player_node_instance)
 		elif i == finish_index:
@@ -64,6 +67,8 @@ func _generate_dungeon():
 		nodes.append(node)
 		
 	_connect_nodes(nodes)
+	all_nodes = nodes
+	update_available_nodes(all_nodes)
 		
 func _connect_nodes(nodes):
 	var connected = [nodes[0]] #[0]
@@ -82,6 +87,8 @@ func _connect_nodes(nodes):
 				nearest_node = node
 			
 		_draw_connection(last_node.position, nearest_node.position)
+		last_node.connected_nodes.append(nearest_node)
+		nearest_node.connected_nodes.append(last_node)
 		
 		connected.append(nearest_node)
 		unconnected.erase(nearest_node)
@@ -97,6 +104,8 @@ func _draw_connection(pos1, pos2):
 func _on_node_clicked(target_node):
 	if is_moving:
 		return
+	if target_node not in current_node.connected_nodes:
+		return
 
 	is_moving = true
 
@@ -110,5 +119,15 @@ func _on_node_clicked(target_node):
 	)
 
 	await tween.finished
-
+	update_available_nodes(all_nodes)
 	is_moving = false
+
+#Show which Nodes are reachable
+func update_available_nodes(nodes):
+	for node in nodes:
+		if node == current_node:
+			node.set_available(true)
+		elif node in current_node.connected_nodes:
+			node.set_available(true)
+		else:
+			node.set_available(false)
