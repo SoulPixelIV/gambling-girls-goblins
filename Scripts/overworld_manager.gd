@@ -1,10 +1,12 @@
-extends Node
+extends Node2D
 
 @onready var event_node = preload("res://Prefabs/event_node.tscn")
+@onready var combat_node = preload("res://Prefabs/combat_node.tscn")
 @onready var start_node = preload("res://Prefabs/start_node.tscn")
 @onready var finish_node = preload("res://Prefabs/finish_node.tscn")
 @onready var player_node = preload("res://Prefabs/player_node.tscn")
 @onready var line_container: Node = $"../Overworld_Interface/Line_Container"
+@onready var game_manager = get_parent().get_node("Game_Manager")
 
 var grid_width = 8
 var grid_height = 4
@@ -55,7 +57,11 @@ func _generate_dungeon():
 		elif i == finish_index:
 			node = finish_node.instantiate()
 		else:
-			node = event_node.instantiate()
+			#Chance to Spawn Combat Node
+			if randf() < 0.5:
+				node = combat_node.instantiate()
+			else:
+				node = event_node.instantiate()
 			
 		add_child(node)
 		node.position = positions[i]
@@ -72,8 +78,8 @@ func _generate_dungeon():
 		
 func _connect_nodes(nodes):
 	var connected = [nodes[0]] #[0]
-	var unconnected = nodes.duplicate() #[1,2,3,4,5,6,7]
-	unconnected.erase(nodes[0])
+	var unconnected = nodes.duplicate() #[0,1,2,3,4,5,6,7]
+	unconnected.erase(nodes[0]) #[1,2,3,4,5,6,7]
 	
 	while unconnected.size() > 0:
 		var last_node = connected[connected.size() - 1]
@@ -121,13 +127,20 @@ func _on_node_clicked(target_node):
 	await tween.finished
 	current_node = target_node
 	update_available_nodes(all_nodes)
+	
+	#Check if landed Node is Combat
+	if target_node.is_combat:
+		game_manager._switch_game_mode(0)
+	
 	is_moving = false
 
 #Show which Nodes are reachable
 func update_available_nodes(nodes):
 	for node in nodes:
+		#Set Selected Node
 		if node == current_node:
 			node.set_available(true)
+		#Set Connected Nodes
 		elif node in current_node.connected_nodes:
 			node.set_available(true)
 		else:

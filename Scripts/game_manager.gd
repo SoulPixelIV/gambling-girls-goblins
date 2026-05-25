@@ -6,6 +6,7 @@ extends Node
 @onready var dealer_manager = $"../Dealer"
 @onready var dialog_manager = $"../Dialog_Manager"
 @onready var overworld_manager = $"../Overworld_Manager"
+@onready var overworld_interface = $"../Overworld_Interface"
 @onready var status_screen: Node = $"../User_Interface/Status_Screen"
 @onready var player_healthbar: ProgressBar = $"../User_Interface/Player_Healthbar"
 @onready var enemy_healthbar: ProgressBar = $"../User_Interface/Enemy_Healthbar"
@@ -622,6 +623,23 @@ func _init_ui():
 	_switch_game_mode(1)
 
 func _switch_game_mode(mode) -> void:
+	if mode == 0:
+		player_healthbar.show()
+		enemy_healthbar.show()
+		player_health.show()
+		enemy_health.show()
+		enemy_name_tag.show()
+	
+		dialog_manager.dialog_mode = 0
+		dialog_manager._check_dialog_mode()
+		
+		#Hide Overworld
+		overworld_manager.process_mode = Node.PROCESS_MODE_DISABLED
+		overworld_manager.hide()
+		overworld_interface.hide()
+		
+		game_mode = 0
+		
 	if mode == 1:
 		player_healthbar.hide()
 		enemy_healthbar.hide()
@@ -632,4 +650,10 @@ func _switch_game_mode(mode) -> void:
 		dialog_manager.dialog_mode = 3
 		dialog_manager._check_dialog_mode()
 		
+		#Show Overworld
+		overworld_manager.process_mode = Node.PROCESS_MODE_INHERIT
+		overworld_manager.show()
+		overworld_interface.show()
+		
 		overworld_manager._generate_dungeon()
+		game_mode = 1

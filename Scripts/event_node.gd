@@ -3,6 +3,7 @@ extends Control
 signal node_clicked(node)
 
 @export var hover_enabled = true
+@export var is_combat = false
 
 var connected_nodes = []
 

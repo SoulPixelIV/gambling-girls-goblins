@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cstgvc4tl00oc"]
+
+[ext_resource type="Script" uid="uid://b3rxnmbn5ejdg" path="res://Scripts/event_node.gd" id="1_7503r"]
+[ext_resource type="Texture2D" uid="uid://b56nr0eyegyrc" path="res://Textures/combat_node.png" id="2_7503r"]
+
+[node name="Event_Node" type="Control" unique_id=537063947]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_7503r")
+is_combat = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=635821105]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("2_7503r")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

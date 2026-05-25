@@ -83,9 +83,9 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Line_Container" type="Node" parent="Overworld_Interface" unique_id=904524100]
+[node name="Line_Container" type="Node2D" parent="Overworld_Interface" unique_id=149820013]
 
-[node name="Overworld_Manager" type="Node" parent="." unique_id=466517844]
+[node name="Overworld_Manager" type="Node2D" parent="." unique_id=1862740814]
 script = ExtResource("5_rfjv2")
 
 [node name="User_Interface" type="Control" parent="." unique_id=870774321]
