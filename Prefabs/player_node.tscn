@@ -1,8 +1,18 @@
 [gd_scene format=3 uid="uid://bnjokbrjvbfpr"]
 
 [ext_resource type="Texture2D" uid="uid://p6ujuaxugqyn" path="res://Textures/player_node.png" id="1_00rsa"]
+[ext_resource type="Script" uid="uid://b3rxnmbn5ejdg" path="res://Scripts/event_node.gd" id="1_4nd8a"]
 
-[node name="Player_Node" type="Node2D" unique_id=108158536]
+[node name="Player_Node" type="Control" unique_id=1572794824]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4nd8a")
+hover_enabled = false
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=710182248]
+[node name="Sprite2D" type="TextureRect" parent="." unique_id=2060719826]
+layout_mode = 0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 texture = ExtResource("1_00rsa")

@@ -12,6 +12,7 @@ var cell_size = 60
 var start_pos = Vector2(165, 30)
 
 var player_node_instance
+var is_moving = false
 	
 func get_all_grid_positions():
 	var positions = []
@@ -55,6 +56,8 @@ func _generate_dungeon():
 			
 		add_child(node)
 		node.position = positions[i]
+		node.node_clicked.connect(_on_node_clicked)
+		
 		#Set Player to Start Node
 		if i == start_index:
 			player_node_instance.position = node.position
@@ -89,3 +92,23 @@ func _draw_connection(pos1, pos2):
 	line.default_color = Color.AQUAMARINE
 	line.points = [pos1, pos2]
 	line_container.add_child(line)
+
+#Event happens if Node is clicked
+func _on_node_clicked(target_node):
+	if is_moving:
+		return
+
+	is_moving = true
+
+	var tween = create_tween()
+
+	tween.tween_property(
+		player_node_instance,
+		"position",
+		target_node.position,
+		0.5
+	)
+
+	await tween.finished
+
+	is_moving = false
