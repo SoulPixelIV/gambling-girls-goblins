@@ -638,6 +638,19 @@ func _switch_game_mode(mode) -> void:
 		overworld_manager.hide()
 		overworld_interface.hide()
 		
+		########## MOVE TO OWN FUNCTION #########################
+		spawn_new_enemy()
+		
+		player_healthbar.max_value = health #Set Maximum Healthbar
+		player_health.text = str(health)
+		
+		#Remove Placeholder Texts
+		combat_messages_text.text = ""
+		combat_messages2_text.text = ""
+		final_player_score_text.text = ""
+		final_enemy_score_text.text = ""
+		#########################################################
+		
 		game_mode = 0
 		
 	if mode == 1:
