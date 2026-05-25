@@ -119,6 +119,7 @@ func _on_node_clicked(target_node):
 	)
 
 	await tween.finished
+	current_node = target_node
 	update_available_nodes(all_nodes)
 	is_moving = false
 
