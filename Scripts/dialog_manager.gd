@@ -39,7 +39,7 @@ func _check_dialog_mode() -> void:
 		tripple_button2.hide()
 		tripple_button3.hide()
 		
-		dialog.text = _random_intro_line()
+		await type_text(_random_intro_line())
 		
 		answer1_button.modulate = Color.GREEN_YELLOW
 		answer1_button.text = "Neutral"
@@ -169,33 +169,45 @@ func _random_doubledown_user_line() -> String:
 		"I'm going all in."
 	]
 	return lines[randi() % lines.size()]
-	
 
-	
 func _on_answer_1_button_pressed() -> void:
 	dialog_mode = 1
 	game_manager.pot_mood = 5
 	game_manager.pot_affection = -1
 	_check_dialog_mode()
-	dialog_user.text = _random_neutral_user_line()
+	await type_text_user(_random_neutral_user_line())
 
 func _on_answer_2_button_pressed() -> void:
 	dialog_mode = 1
 	game_manager.pot_mood = 11
 	game_manager.pot_affection = -1
 	_check_dialog_mode()
-	dialog_user.text = _random_confident_user_line()
+	await type_text_user(_random_confident_user_line())
 
 func _on_answer_3_button_pressed() -> void:
 	dialog_mode = 1
 	game_manager.pot_mood = -1
 	game_manager.pot_affection = 6
 	_check_dialog_mode()
-	dialog_user.text = _random_flirty_user_line()
+	await type_text_user(_random_flirty_user_line())
 
 func _on_answer_4_button_pressed() -> void:
 	dialog_mode = 1
 	game_manager.pot_mood = 4
 	game_manager.pot_affection = 9
 	_check_dialog_mode()
-	dialog_user.text = _random_cocky_user_line()
+	await type_text_user(_random_cocky_user_line())
+
+func type_text(full_text):
+	dialog.text = ""
+
+	for letter in full_text:
+		dialog.text += letter
+		await get_tree().create_timer(0.03).timeout
+
+func type_text_user(full_text):
+	dialog_user.text = ""
+
+	for letter in full_text:
+		dialog_user.text += letter
+		await get_tree().create_timer(0.03).timeout
