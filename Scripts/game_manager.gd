@@ -30,6 +30,7 @@ extends Node
 
 var enemy = null
 var rand_enemy = null
+var hit_input_locked = false #Block Hit Button if True
 
 var game_mode = 1 #0 = Combat | 1 = Overworld
 var health = 42
@@ -83,6 +84,9 @@ func _ready() -> void:
 	final_enemy_score_text.text = ""
 	
 func _process(delta: float) -> void:
+	if hit_input_locked:
+		return
+		
 	if begin_fight:
 		#Enemys First Draw
 		if turn_state == -1:
@@ -173,16 +177,6 @@ func resolve_combat():
 		reset_game_round()
 		return
 	
-	#PLAYER LOSES
-	if player_score > 21:
-		await show_self_damage()
-		await show_final_damage()
-		await payout_bet("enemy")
-	#ENEMY LOSES
-	if enemy_score > 21:
-		await show_enemy_self_damage()
-		await show_enemy_final_damage()
-		await payout_bet("player")
 	#PLAYER WINS
 	if (player_score > enemy_score && player_score <= 21) || (enemy_score > 21 && player_score <= 21):
 		await show_player_damage()
@@ -216,6 +210,9 @@ func resolve_combat():
 	reset_game_round()
 		
 func _on_hit_button_pressed() -> void:
+	if hit_input_locked:
+		return
+		
 	if button_mode == 0:
 		#Draw Card
 		if turn_state == 1 && !player_out:
@@ -231,6 +228,9 @@ func _on_hit_button_pressed() -> void:
 		choose_ace_value(1)
 		
 func _on_stand_button_pressed() -> void:
+	if hit_input_locked:
+		return
+		
 	if button_mode == 0:
 		if card_index > 0:
 			player_out = true
@@ -248,6 +248,7 @@ func choose_ace_value(value):
 
 	# Bust check
 	if player_score > 21:
+		await apply_player_burn_damage()
 		player_out = true
 
 	# Enemy Turn starten
@@ -262,6 +263,7 @@ func choose_seven_value(value):
 	dialog_manager._check_dialog_mode()
 
 	if player_score > 21:
+		await apply_player_burn_damage()
 		player_out = true
 
 	#Enemy Turn starten
@@ -323,6 +325,7 @@ func _on_card_played(value, card_id):
 					spawn_playing_card(168 + 25 * (card_index - 1), 192)
 					return
 
+			await apply_player_burn_damage()
 			player_out = true
 		
 	#Change Button Texts
@@ -352,6 +355,7 @@ func _on_card_played_enemy(value, card_id):
 	
 	#Check if Enemy is over 21
 	if enemy_score > 21:
+		await apply_enemy_burn_damage()
 		enemy_out = true
 
 func setup_result_screen():
@@ -459,6 +463,54 @@ func show_enemy_bust_protection():
 	combat_messages_text.text = "Enemy receives half the Damage (Bust Protection)"
 	combat_messages2_text.text = "Total Damage: %d" % curr_enemy_damage
 	await get_tree().create_timer(2).timeout
+	
+func apply_player_burn_damage():
+	hit_input_locked = true
+	
+	player_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
+	
+	# Mood Level 4 Bonus
+	if mood_level >= 4:
+		combat_messages_text.text = "Good Mood! No Self Damage from Bust!"
+		await get_tree().create_timer(2).timeout
+		combat_messages_text.text = ""
+		return
+
+	var burn_damage = player_score - 21
+
+	health -= burn_damage
+
+	player_healthbar.value = health
+	player_health.text = str(health)
+
+	combat_messages_text.text = "Burn! You take %d damage!" % burn_damage
+	combat_messages2_text.text = ""
+
+	await get_tree().create_timer(2).timeout
+	combat_messages_text.text = ""
+	combat_messages2_text.text = ""
+
+	if health <= 0:
+		get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
+		
+	hit_input_locked = false
+	
+func apply_enemy_burn_damage():
+	enemy_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
+	
+	var burn_damage = enemy_score - 21
+
+	enemy.health -= burn_damage
+
+	enemy_healthbar.value = enemy.health
+	enemy_health.text = str(enemy.health)
+
+	combat_messages_text.text = "Burn! Enemy takes %d damage!" % burn_damage
+	combat_messages2_text.text = ""
+
+	await get_tree().create_timer(2).timeout
+	combat_messages_text.text = ""
+	combat_messages2_text.text = ""
 	
 func show_final_damage():
 	combat_messages_text.text = "Total Self Damage: %d" % curr_damage
@@ -606,18 +658,30 @@ func spawn_new_enemy():
 	enemy_health.text = str(enemy.health)
 
 func _on_tripple_button_1_pressed() -> void:
+	if hit_input_locked:
+		return
+		
 	if button_mode == 2:
 		choose_seven_value(6)
 
 func _on_tripple_button_2_pressed() -> void:
+	if hit_input_locked:
+		return
+		
 	if button_mode == 2:
 		choose_seven_value(7)
 
 func _on_tripple_button_3_pressed() -> void:
+	if hit_input_locked:
+		return
+		
 	if button_mode == 2:
 		choose_seven_value(8)
 
 func _on_double_button_pressed() -> void:
+	if hit_input_locked:
+		return
+		
 	if turn_state == 1 and !player_out and !enemy_out and !double_down_active and !safe_used:
 		if card_index > 0:
 			double_down_active = true
@@ -639,6 +703,9 @@ func _on_double_button_pressed() -> void:
 			combat_messages_text.text = ""
 
 func _on_safe_button_pressed() -> void:
+	if hit_input_locked:
+		return
+		
 	if !safe_used and !player_out and !double_down_active:
 		if card_index > 0:
 			safe_used = true	
