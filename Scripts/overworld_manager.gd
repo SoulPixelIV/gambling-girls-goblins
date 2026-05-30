@@ -129,8 +129,9 @@ func _on_node_clicked(target_node):
 	update_available_nodes(all_nodes)
 	
 	#Check if landed Node is Combat
-	if target_node.is_combat:
+	if target_node.is_combat and !target_node.combated_finished:
 		game_manager._switch_game_mode(0)
+		target_node.combated_finished = true
 	
 	is_moving = false
 

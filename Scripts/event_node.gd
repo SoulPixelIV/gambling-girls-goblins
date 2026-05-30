@@ -2,8 +2,11 @@ extends Control
 
 signal node_clicked(node)
 
+@onready var texture_rect: TextureRect = $TextureRect
+
 @export var hover_enabled = true
 @export var is_combat = false
+@export var combated_finished = false
 
 var connected_nodes = []
 
@@ -11,6 +14,10 @@ func _ready():
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 	gui_input.connect(_on_gui_input)
+
+func _process(delta: float) -> void:
+	if combated_finished:
+		texture_rect.texture = preload("res://Textures/event_node.png")
 
 func _on_mouse_entered():
 	if hover_enabled:

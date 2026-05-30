@@ -203,7 +203,15 @@ func type_text(full_text):
 	dialog.text = ""
 
 	for letter in full_text:
+		if !is_inside_tree():
+			return
+			
 		dialog.text += letter
+		
+		var tree = get_tree()
+		if tree == null:
+			return
+			
 		await get_tree().create_timer(0.03).timeout
 
 func type_text_user(full_text):
