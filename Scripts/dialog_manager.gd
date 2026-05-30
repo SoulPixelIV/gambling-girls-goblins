@@ -21,12 +21,18 @@ extends Node
 @onready var tripple_button3 = $"../User_Interface/Tripple_Button3"
 
 var dialog_mode = 0
+var ui_abort = false
 
 func _ready() -> void:
 	dialog_user.text = ""
 	_check_dialog_mode()
 	
 func _check_dialog_mode() -> void:
+	reset_ui()
+	
+	if ui_abort:
+		return
+	
 	if dialog_mode == 0:
 		answer1_parent.show()
 		answer2_parent.show()
@@ -203,6 +209,9 @@ func type_text(full_text):
 	dialog.text = ""
 
 	for letter in full_text:
+		if ui_abort:
+			return
+			
 		if !is_inside_tree():
 			return
 			
@@ -218,5 +227,21 @@ func type_text_user(full_text):
 	dialog_user.text = ""
 
 	for letter in full_text:
+		if ui_abort:
+			return
+			
 		dialog_user.text += letter
 		await get_tree().create_timer(0.03).timeout
+
+func reset_ui():
+	answer1_parent.hide()
+	answer2_parent.hide()
+	answer3_parent.hide()
+	answer4_parent.hide()
+	hit_button.hide()
+	stand_button.hide()
+	double_button.hide()
+	safe_button.hide()
+	tripple_button1.hide()
+	tripple_button2.hide()
+	tripple_button3.hide()

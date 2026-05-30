@@ -729,6 +729,7 @@ func _init_ui():
 
 func _switch_game_mode(mode) -> void:
 	if mode == 0:
+		dialog_manager.ui_abort = false
 		player_healthbar.show()
 		enemy_healthbar.show()
 		player_health.show()
@@ -759,6 +760,10 @@ func _switch_game_mode(mode) -> void:
 		game_mode = 0
 		
 	if mode == 1:
+		dialog_manager.ui_abort = true
+		
+		dialog_manager.reset_ui()
+		
 		player_healthbar.hide()
 		enemy_healthbar.hide()
 		player_health.hide()
