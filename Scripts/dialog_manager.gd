@@ -23,6 +23,7 @@ extends Node
 var dialog_mode = 0
 
 func _ready() -> void:
+	dialog_user.text = ""
 	_check_dialog_mode()
 	
 func _check_dialog_mode() -> void:

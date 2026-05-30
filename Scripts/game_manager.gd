@@ -61,6 +61,8 @@ var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4
 "JH", "JD", "JC", "JS", "QH", "QD", "QC", "QS", "KH", "KD", "KC", "KS", 
 "AH", "AD", "AC", "AS"]
 
+var dungeon_generated = false
+
 func _ready() -> void:
 	randomize()
 
@@ -207,7 +209,8 @@ func resolve_combat():
 		
 	#Check if Enemy died
 	if enemy.health <= 0:
-		spawn_new_enemy()
+		#spawn_new_enemy()
+		return_to_overworld()
 	
 	reset_game_round()
 		
@@ -539,6 +542,40 @@ func reset_game_round():
 	double_down_active = false
 	safe_used = false
 
+func return_to_overworld():
+	turn_state = -1
+	delay_timer = 2
+	card_index = 0
+	enemy_card_index = 0
+	player_score = 0
+	enemy_score = 0
+	player_out = false
+	enemy_out = false
+	called_combat_resolve = false
+	called_rng_value = false
+	curr_damage = 0
+	curr_enemy_damage = 0
+	deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 
+	"5H", "5D", "5C", "5S", "6H", "6D", "6C", "6S", "7H", "7D", "7C", "7S", 
+	"8H", "8D", "8C", "8S", "9H", "9D", "9C", "9S", "10H", "10D", "10C", "10S", 
+	"JH", "JD", "JC", "JS", "QH", "QD", "QC", "QS", "KH", "KD", "KC", "KS", 
+	"AH", "AD", "AC", "AS"]
+	enemy.reset_deck()
+	combat_messages_text.text = ""
+	combat_messages2_text.text = ""
+	final_player_score_text.text = ""
+	final_enemy_score_text.text = ""
+	player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
+	enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
+	begin_fight = false
+	redraw_used = false
+	last_player_card = null
+	double_down_active = false
+	safe_used = false
+	
+	game_mode = 1
+	_switch_game_mode(1)
+
 func spawn_new_enemy():
 	if enemy != null:
 		enemy.queue_free()
@@ -668,5 +705,12 @@ func _switch_game_mode(mode) -> void:
 		overworld_manager.show()
 		overworld_interface.show()
 		
-		overworld_manager._generate_dungeon()
+		if !dungeon_generated:
+			overworld_manager._generate_dungeon()
+			dungeon_generated = true
 		game_mode = 1
+		
+		if enemy != null:
+			enemy.queue_free()
+			
+		dialog_manager.dialog_mode = 3
