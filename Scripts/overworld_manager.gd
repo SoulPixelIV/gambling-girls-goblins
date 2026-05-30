@@ -2,6 +2,7 @@ extends Node2D
 
 @onready var event_node = preload("res://Prefabs/event_node.tscn")
 @onready var combat_node = preload("res://Prefabs/combat_node.tscn")
+@onready var heal_node = preload("res://Prefabs/heal_node.tscn")
 @onready var start_node = preload("res://Prefabs/start_node.tscn")
 @onready var finish_node = preload("res://Prefabs/finish_node.tscn")
 @onready var player_node = preload("res://Prefabs/player_node.tscn")
@@ -61,7 +62,10 @@ func _generate_dungeon():
 			if randf() < 0.5:
 				node = combat_node.instantiate()
 			else:
-				node = event_node.instantiate()
+				if randf() < 0.5:
+					node = heal_node.instantiate()
+				else:
+					node = event_node.instantiate()
 			
 		add_child(node)
 		node.position = positions[i]
@@ -132,6 +136,10 @@ func _on_node_clicked(target_node):
 	if target_node.is_combat and !target_node.combated_finished:
 		game_manager._switch_game_mode(0)
 		target_node.combated_finished = true
+		
+	#Check if landed Node is Heal
+	if target_node.is_heal:
+		game_manager._switch_game_mode(2)
 	
 	is_moving = false
 

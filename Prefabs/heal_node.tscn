@@ -1,14 +1,15 @@
-[gd_scene format=3 uid="uid://o8mkqw33ctyr"]
+[gd_scene format=3 uid="uid://21it4aoxbb65"]
 
-[ext_resource type="Script" uid="uid://b3rxnmbn5ejdg" path="res://Scripts/event_node.gd" id="1_r333q"]
-[ext_resource type="Texture2D" uid="uid://dksb2lsir7v3h" path="res://Textures/Nodes/event_node.png" id="1_xtxmj"]
+[ext_resource type="Script" uid="uid://b3rxnmbn5ejdg" path="res://Scripts/event_node.gd" id="1_g0rxa"]
+[ext_resource type="Texture2D" uid="uid://bffe1qis0c3jk" path="res://Textures/Nodes/heal_node.png" id="2_aagnk"]
 
-[node name="Event_Node" type="Control" unique_id=537063947]
+[node name="Heal_Node" type="Control" unique_id=537063947]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 16.0
 offset_bottom = 16.0
-script = ExtResource("1_r333q")
+script = ExtResource("1_g0rxa")
+is_heal = true
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=635821105]
 layout_mode = 0
@@ -16,7 +17,7 @@ offset_left = -8.0
 offset_top = -8.0
 offset_right = 8.0
 offset_bottom = 8.0
-texture = ExtResource("1_xtxmj")
+texture = ExtResource("2_aagnk")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

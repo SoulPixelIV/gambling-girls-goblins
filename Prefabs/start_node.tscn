@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dfdgcrqp1awi1"]
 
-[ext_resource type="Texture2D" uid="uid://dw5ruohmgi65j" path="res://Textures/start_node.png" id="1_64wnl"]
+[ext_resource type="Texture2D" uid="uid://dw5ruohmgi65j" path="res://Textures/Nodes/start_node.png" id="1_64wnl"]
 [ext_resource type="Script" uid="uid://b3rxnmbn5ejdg" path="res://Scripts/event_node.gd" id="1_85583"]
 
 [node name="Event_Node" type="Control" unique_id=136762811]

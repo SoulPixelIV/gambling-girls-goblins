@@ -728,6 +728,7 @@ func _init_ui():
 	_switch_game_mode(1)
 
 func _switch_game_mode(mode) -> void:
+	###COMBAT###
 	if mode == 0:
 		dialog_manager.ui_abort = false
 		player_healthbar.show()
@@ -759,6 +760,7 @@ func _switch_game_mode(mode) -> void:
 		
 		game_mode = 0
 		
+	###OVERWORLD###
 	if mode == 1:
 		dialog_manager.ui_abort = true
 		
@@ -787,3 +789,29 @@ func _switch_game_mode(mode) -> void:
 			enemy.queue_free()
 			
 		dialog_manager.dialog_mode = 3
+		
+	###HEAL ROOM###
+	if mode == 2:
+		dialog_manager.ui_abort = false
+		player_healthbar.show()
+		player_health.show()
+		
+		dialog_manager.dialog_mode = 0
+		dialog_manager._check_dialog_mode()
+		
+		#Hide Overworld
+		overworld_manager.process_mode = Node.PROCESS_MODE_DISABLED
+		overworld_manager.hide()
+		overworld_interface.hide()
+		
+		player_healthbar.max_value = max_health #Set Maximum Healthbar
+		player_health.text = str(health)
+		
+		#Remove Placeholder Texts
+		combat_messages_text.text = ""
+		combat_messages2_text.text = ""
+		final_player_score_text.text = ""
+		final_enemy_score_text.text = ""
+		#########################################################
+		
+		game_mode = 2

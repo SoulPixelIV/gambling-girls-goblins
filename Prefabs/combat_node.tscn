@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cstgvc4tl00oc"]
 
 [ext_resource type="Script" uid="uid://b3rxnmbn5ejdg" path="res://Scripts/event_node.gd" id="1_7503r"]
-[ext_resource type="Texture2D" uid="uid://b56nr0eyegyrc" path="res://Textures/combat_node.png" id="2_7503r"]
+[ext_resource type="Texture2D" uid="uid://b56nr0eyegyrc" path="res://Textures/Nodes/combat_node.png" id="2_7503r"]
 
 [node name="Event_Node" type="Control" unique_id=537063947]
 layout_mode = 3

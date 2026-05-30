@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b56nr0eyegyrc"
-path="res://.godot/imported/combat_node.png-8172070eee83d0e81f1903e3c39b2a94.ctex"
+uid="uid://bffe1qis0c3jk"
+path="res://.godot/imported/heal_node.png-3931af17670648ba8a5d02ea1125e29f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/combat_node.png"
-dest_files=["res://.godot/imported/combat_node.png-8172070eee83d0e81f1903e3c39b2a94.ctex"]
+source_file="res://Textures/Nodes/heal_node.png"
+dest_files=["res://.godot/imported/heal_node.png-3931af17670648ba8a5d02ea1125e29f.ctex"]
 
 [params]
 
