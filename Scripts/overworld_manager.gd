@@ -137,11 +137,8 @@ func _on_node_clicked(target_node):
 		game_manager._switch_game_mode(0)
 		target_node.event_finished = true
 	if target_node.is_heal and !target_node.event_finished:
-		target_node.event_finished = true
-		
-	#Check if landed Node is Heal
-	if target_node.is_heal:
 		game_manager._switch_game_mode(2)
+		target_node.event_finished = true
 	
 	is_moving = false
 
