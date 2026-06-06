@@ -21,6 +21,7 @@ extends Node
 @onready var tripple_button3 = $"../User_Interface/Tripple_Button3"
 
 var dialog_mode = 0
+var typing_token = 0
 var ui_abort = false
 
 func _ready() -> void:
@@ -275,9 +276,15 @@ func _on_answer_4_button_pressed() -> void:
 	await type_text_user(_random_cocky_user_line())
 
 func type_text(full_text):
+	typing_token += 1
+	var my_token = typing_token
+	
 	dialog.text = ""
 
 	for letter in full_text:
+		if my_token != typing_token:
+			return
+			
 		if ui_abort:
 			return
 			
@@ -293,9 +300,15 @@ func type_text(full_text):
 		await get_tree().create_timer(0.03).timeout
 
 func type_text_user(full_text):
+	typing_token += 1
+	var my_token = typing_token
+			
 	dialog_user.text = ""
 
 	for letter in full_text:
+		if my_token != typing_token:
+			return
+			
 		if ui_abort:
 			return
 			
