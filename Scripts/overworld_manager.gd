@@ -132,10 +132,12 @@ func _on_node_clicked(target_node):
 	current_node = target_node
 	update_available_nodes(all_nodes)
 	
-	#Check if landed Node is Combat
-	if target_node.is_combat and !target_node.combated_finished:
+	#Switch Nodes to Used after Entering
+	if target_node.is_combat and !target_node.event_finished:
 		game_manager._switch_game_mode(0)
-		target_node.combated_finished = true
+		target_node.event_finished = true
+	if target_node.is_heal and !target_node.event_finished:
+		target_node.event_finished = true
 		
 	#Check if landed Node is Heal
 	if target_node.is_heal:

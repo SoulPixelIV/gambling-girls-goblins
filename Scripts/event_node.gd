@@ -7,7 +7,7 @@ signal node_clicked(node)
 @export var hover_enabled = true
 @export var is_combat = false
 @export var is_heal = false
-@export var combated_finished = false
+@export var event_finished = false
 
 var connected_nodes = []
 
@@ -17,7 +17,7 @@ func _ready():
 	gui_input.connect(_on_gui_input)
 
 func _process(delta: float) -> void:
-	if combated_finished:
+	if event_finished:
 		texture_rect.texture = preload("res://Textures/Nodes/event_node.png")
 
 func _on_mouse_entered():
