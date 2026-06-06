@@ -24,6 +24,7 @@ var dialog_mode = 0
 var ui_abort = false
 
 func _ready() -> void:
+	dialog.text = ""
 	dialog_user.text = ""
 	_check_dialog_mode()
 	
@@ -313,3 +314,6 @@ func reset_ui():
 	tripple_button1.hide()
 	tripple_button2.hide()
 	tripple_button3.hide()
+	
+	dialog.text = ""
+	dialog_user.text = ""
