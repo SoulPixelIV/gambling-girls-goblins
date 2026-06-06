@@ -231,11 +231,17 @@ func _on_stand_button_pressed() -> void:
 	if hit_input_locked:
 		return
 		
-	if button_mode == 0:
-		if card_index > 0:
-			player_out = true
-	elif button_mode == 1:
-		choose_ace_value(11)
+	if game_mode == 2:
+		if health <= max_health - 20:
+			health += 20
+		else:
+			health = max_health
+	else:
+		if button_mode == 0:
+			if card_index > 0:
+				player_out = true
+		elif button_mode == 1:
+			choose_ace_value(11)
 	
 func choose_ace_value(value):
 	player_score += value
@@ -260,7 +266,7 @@ func choose_seven_value(value):
 
 	button_mode = 0
 	dialog_manager.dialog_mode = 1
-	dialog_manager._check_dialog_mode()
+	dialog_manager._check_dialog_mode() #Update Dialog Mode
 
 	if player_score > 21:
 		await apply_player_burn_damage()
@@ -337,7 +343,7 @@ func _on_card_played(value, card_id):
 		stand_button.text = "Count as 11"
 	if button_mode == 2:
 		dialog_manager.dialog_mode = 2
-		dialog_manager._check_dialog_mode()
+		dialog_manager._check_dialog_mode() #Update Dialog Mode
 		tripple_button1.text = "Count as 6"
 		tripple_button2.text = "Count as 7"	
 		tripple_button3.text = "Count as 8"	
@@ -588,7 +594,7 @@ func reset_game_round():
 	player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
 	enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
 	dialog_manager.dialog_mode = 0
-	dialog_manager._check_dialog_mode()
+	dialog_manager._check_dialog_mode() #Update Dialog Mode
 	begin_fight = false
 	redraw_used = false
 	last_player_card = null
@@ -613,7 +619,8 @@ func return_to_overworld():
 	"8H", "8D", "8C", "8S", "9H", "9D", "9C", "9S", "10H", "10D", "10C", "10S", 
 	"JH", "JD", "JC", "JS", "QH", "QD", "QC", "QS", "KH", "KD", "KC", "KS", 
 	"AH", "AD", "AC", "AS"]
-	enemy.reset_deck()
+	if enemy != null:
+		enemy.reset_deck()
 	combat_messages_text.text = ""
 	combat_messages2_text.text = ""
 	final_player_score_text.text = ""
@@ -661,22 +668,43 @@ func _on_tripple_button_1_pressed() -> void:
 	if hit_input_locked:
 		return
 		
-	if button_mode == 2:
-		choose_seven_value(6)
+	if game_mode == 2:
+		if health <= max_health - 20:
+			health += 20
+		else:
+			health = max_health
+		
+		player_healthbar.value = health
+		player_health.text = str(health)
+		
+		_switch_game_mode(3)
+	else:	
+		if button_mode == 2:
+			choose_seven_value(6)
 
 func _on_tripple_button_2_pressed() -> void:
 	if hit_input_locked:
 		return
 		
-	if button_mode == 2:
-		choose_seven_value(7)
+	if game_mode == 2:
+		pass
+		#SWITCH TO CARD SELECT GAME MODE
+	elif game_mode == 3:
+		return_to_overworld()
+	else:
+		if button_mode == 2:
+			choose_seven_value(7)
 
 func _on_tripple_button_3_pressed() -> void:
 	if hit_input_locked:
 		return
 		
-	if button_mode == 2:
-		choose_seven_value(8)
+	if game_mode == 2:
+		pass
+		#SWITCH TO GAMBLE
+	else:
+		if button_mode == 2:
+			choose_seven_value(8)
 
 func _on_double_button_pressed() -> void:
 	if hit_input_locked:
@@ -738,7 +766,7 @@ func _switch_game_mode(mode) -> void:
 		enemy_name_tag.show()
 	
 		dialog_manager.dialog_mode = 0
-		dialog_manager._check_dialog_mode()
+		dialog_manager._check_dialog_mode() #Update Dialog Mode
 		
 		#Hide Overworld
 		overworld_manager.process_mode = Node.PROCESS_MODE_DISABLED
@@ -773,7 +801,7 @@ func _switch_game_mode(mode) -> void:
 		enemy_name_tag.hide()
 	
 		dialog_manager.dialog_mode = 3
-		dialog_manager._check_dialog_mode()
+		dialog_manager._check_dialog_mode() #Update Dialog Mode
 		
 		#Show Overworld
 		overworld_manager.process_mode = Node.PROCESS_MODE_INHERIT
@@ -796,8 +824,8 @@ func _switch_game_mode(mode) -> void:
 		player_healthbar.show()
 		player_health.show()
 		
-		dialog_manager.dialog_mode = 0
-		dialog_manager._check_dialog_mode()
+		dialog_manager.dialog_mode = 4
+		dialog_manager._check_dialog_mode() #Update Dialog Mode
 		
 		#Hide Overworld
 		overworld_manager.process_mode = Node.PROCESS_MODE_DISABLED
@@ -815,3 +843,29 @@ func _switch_game_mode(mode) -> void:
 		#########################################################
 		
 		game_mode = 2
+		
+	###!EXIT! HEAL ROOM###
+	if mode == 3:
+		dialog_manager.ui_abort = false
+		player_healthbar.show()
+		player_health.show()
+		
+		dialog_manager.dialog_mode = 5
+		dialog_manager._check_dialog_mode() #Update Dialog Mode
+		
+		#Hide Overworld
+		overworld_manager.process_mode = Node.PROCESS_MODE_DISABLED
+		overworld_manager.hide()
+		overworld_interface.hide()
+		
+		player_healthbar.max_value = max_health #Set Maximum Healthbar
+		player_health.text = str(health)
+		
+		#Remove Placeholder Texts
+		combat_messages_text.text = ""
+		combat_messages2_text.text = ""
+		final_player_score_text.text = ""
+		final_enemy_score_text.text = ""
+		#########################################################
+		
+		game_mode = 3

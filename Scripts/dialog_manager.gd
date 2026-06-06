@@ -115,6 +115,58 @@ func _check_dialog_mode() -> void:
 		tripple_button2.hide()
 		tripple_button3.hide()
 		status_screen._update_betting_status()
+		
+	#Health Room
+	if dialog_mode == 4:
+		answer1_parent.hide()
+		answer2_parent.hide()
+		answer3_parent.hide()
+		answer4_parent.hide()
+		hit_button.hide()
+		stand_button.hide()
+		double_button.hide()
+		safe_button.hide()
+		tripple_button1.show()
+		tripple_button2.show()
+		tripple_button3.show()
+		
+		tripple_button1.text = "Heal 20 Health"
+		tripple_button2.text = "Receive Random Card"
+		tripple_button3.text = "All or Nothing"
+		
+		tripple_button1.modulate = Color.GREEN_YELLOW
+		tripple_button2.modulate = Color.ROYAL_BLUE
+		tripple_button3.modulate = Color.RED
+		
+		tripple_button1.tooltip_text = "Instantly heal 20 Health."
+		tripple_button2.tooltip_text = "Choose from 3 random cards."
+		tripple_button3.tooltip_text = "Heal 20 Health & Receive a Card or get nothing!"
+		
+		dialog_user.text = ""
+		
+		await type_text(_random_heal_room_line())
+		
+	#!EXIT! Health Room
+	if dialog_mode == 5:
+		answer1_parent.hide()
+		answer2_parent.hide()
+		answer3_parent.hide()
+		answer4_parent.hide()
+		hit_button.hide()
+		stand_button.hide()
+		double_button.hide()
+		safe_button.hide()
+		tripple_button1.hide()
+		tripple_button2.show()
+		tripple_button3.hide()
+		
+		tripple_button2.text = "Back to Overworld"
+		
+		tripple_button2.modulate = Color.ROYAL_BLUE
+		
+		dialog_user.text = ""
+		
+		await type_text(_random_health_line())
 
 #################### DEALER DIALOG ########################
 func _random_intro_line() -> String:
@@ -145,7 +197,23 @@ func _random_disappointed_line() -> String:
 	]
 	return lines[randi() % lines.size()]
 	
-
+func _random_heal_room_line() -> String:
+	var lines = [
+		"Welcome. What are you in the mood for today?",
+		"What will it be this time..?",
+		"How can I help you this time?"
+	]
+	return lines[randi() % lines.size()]
+	
+func _random_health_line() -> String:
+	var lines = [
+		"Let me ease your pain...",
+		"Just for you <3",
+		"Let me help you with that..",
+		"Mmh"
+	]
+	return lines[randi() % lines.size()]
+	
 ################# USER DIALOG #######################
 func _random_neutral_user_line() -> String:
 	var lines = [
