@@ -1,12 +1,14 @@
 extends Control
 
 @onready var sprite = $Card/AnimatedSprite2D
+var mat
 
 signal card_played(value)
 
 var game_manager = null
 var value = 0
 var score = 0
+var rarity = 0
 var frame_index = 0
 var player_card = true
 
@@ -15,6 +17,9 @@ var card_anim_index = 0
 var is_booster_card = false
 
 func _ready() -> void:
+	sprite.material = sprite.material.duplicate()
+	mat = sprite.material as ShaderMaterial
+	
 	scale.x = 0
 	scale.y = 0
 	
@@ -182,7 +187,19 @@ func _ready() -> void:
 	else:
 		emit_signal("card_played_enemy", score, value) #Send card value out
 	
-func _process(delta: float) -> void:
+func _process(delta: float) -> void:	
+	print(rarity)
+	if rarity == 0:
+		mat.set_shader_parameter("rarity_strength", 0.0)
+		get_node("Card/CPUParticles2D").emitting = false
+		get_node("Card/CPUParticles2D2").emitting = false
+	elif rarity == 1:
+		mat.set_shader_parameter("rarity_strength", 1.1)
+		get_node("Card/CPUParticles2D").emitting = false
+		get_node("Card/CPUParticles2D2").emitting = false
+	elif rarity == 2:
+		mat.set_shader_parameter("rarity_strength", 2.0)
+		
 	if is_booster_card:
 		if card_anim_index == 0:
 			if scale.x < 0.85:
