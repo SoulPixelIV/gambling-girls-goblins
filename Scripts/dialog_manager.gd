@@ -164,10 +164,37 @@ func _check_dialog_mode() -> void:
 		
 		tripple_button2.text = "Back to Overworld"
 		
+		tripple_button1.tooltip_text = ""
+		tripple_button2.tooltip_text = ""
+		tripple_button3.tooltip_text = ""
+		
 		tripple_button2.modulate = Color.ROYAL_BLUE
 		
 		dialog_user.text = ""
 		
+		await type_text(_random_health_line())
+		
+	#CARD SELECTION
+	if dialog_mode == 6:
+		answer1_parent.hide()
+		answer2_parent.hide()
+		answer3_parent.hide()
+		answer4_parent.hide()
+		hit_button.hide()
+		stand_button.hide()
+		double_button.hide()
+		safe_button.hide()
+		tripple_button1.hide()
+		tripple_button2.hide()
+		tripple_button3.hide()
+		
+		tripple_button1.tooltip_text = ""
+		tripple_button2.tooltip_text = ""
+		tripple_button3.tooltip_text = ""
+		
+		dialog_user.text = ""
+		
+		#CHANGE TO CARD SELECTION LINE ############################
 		await type_text(_random_health_line())
 
 #################### DEALER DIALOG ########################

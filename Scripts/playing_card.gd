@@ -12,6 +12,8 @@ var player_card = true
 
 var card_anim_index = 0
 
+var is_booster_card = false
+
 func _ready() -> void:
 	scale.x = 0
 	scale.y = 0
@@ -181,20 +183,39 @@ func _ready() -> void:
 		emit_signal("card_played_enemy", score, value) #Send card value out
 	
 func _process(delta: float) -> void:
-	if card_anim_index == 0:
-		if scale.x < 0.3:
-			scale.x += delta * 2
-			scale.y += delta * 2
-		else:
-			card_anim_index = 1
-			
-	if card_anim_index == 1:
-		if scale.x > 0.252:
-			scale.x -= delta * 2.5
-			scale.y -= delta * 2.5
-		else:
-			card_anim_index = 2
-			
-	if card_anim_index == 2:
-		scale.x = 0.25
-		scale.y = 0.25
+	if is_booster_card:
+		if card_anim_index == 0:
+			if scale.x < 0.85:
+				scale.x += delta * 2
+				scale.y += delta * 2
+			else:
+				card_anim_index = 1
+				
+		if card_anim_index == 1:
+			if scale.x > 0.75:
+				scale.x -= delta * 2.5
+				scale.y -= delta * 2.5
+			else:
+				card_anim_index = 2
+				
+		if card_anim_index == 2:
+			scale.x = 0.75
+			scale.y = 0.75
+	else:
+		if card_anim_index == 0:
+			if scale.x < 0.3:
+				scale.x += delta * 2
+				scale.y += delta * 2
+			else:
+				card_anim_index = 1
+				
+		if card_anim_index == 1:
+			if scale.x > 0.252:
+				scale.x -= delta * 2.5
+				scale.y -= delta * 2.5
+			else:
+				card_anim_index = 2
+				
+		if card_anim_index == 2:
+			scale.x = 0.25
+			scale.y = 0.25

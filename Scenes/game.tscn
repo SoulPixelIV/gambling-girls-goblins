@@ -782,6 +782,12 @@ offset_bottom = 40.0
 [node name="Dealer" type="Node" parent="." unique_id=839210681]
 script = ExtResource("13_rfjv2")
 
+[node name="Booster" type="Control" parent="." unique_id=829271823]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="User_Interface/Tripple_Button1" to="Game_Manager" method="_on_tripple_button_1_pressed"]
 [connection signal="pressed" from="User_Interface/Tripple_Button2" to="Game_Manager" method="_on_tripple_button_2_pressed"]
 [connection signal="pressed" from="User_Interface/Tripple_Button3" to="Game_Manager" method="_on_tripple_button_3_pressed"]

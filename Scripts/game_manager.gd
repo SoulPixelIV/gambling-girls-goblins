@@ -2,6 +2,7 @@ extends Node
 
 @onready var playing_card = preload("res://Prefabs/playing_card.tscn")
 @onready var hand = $"../Hand"
+@onready var booster = $"../Booster"
 @onready var enemy_hand = $"../Enemy_Hand"
 @onready var dealer_manager = $"../Dealer"
 @onready var dialog_manager = $"../Dialog_Manager"
@@ -298,6 +299,22 @@ func spawn_enemy_playing_card(x, y):
 			enemy.deck.remove_at(rand_card_index2) #Remove Card from Deck
 			enemy_hand.add_child(enemy_card_instance)
 			enemy_card_instance.position = Vector2(x, y)
+			
+func spawn_booster_cards():
+	var card_instances = []
+	
+	for i in range(3):
+		var rand_card_index = randi_range(0, deck.size() - 1) #Select Random Card from Deck
+		
+		var card = playing_card.instantiate()
+		card.value = deck[rand_card_index] #Give Created Card Value
+		card.game_manager = self
+		
+		card_instances.append(card)
+		
+		booster.add_child(card)
+		card.is_booster_card = true
+		card.position = Vector2(245 + i * 128, 130)
 			
 func _on_card_played(value, card_id):
 	if card_id.begins_with("A") or (card_id.begins_with("Q") and affection_level >= 3):
@@ -687,8 +704,7 @@ func _on_tripple_button_2_pressed() -> void:
 		return
 		
 	if game_mode == 2:
-		pass
-		#SWITCH TO CARD SELECT GAME MODE
+		_switch_game_mode(4)
 	elif game_mode == 3:
 		return_to_overworld()
 	else:
@@ -840,7 +856,6 @@ func _switch_game_mode(mode) -> void:
 		combat_messages2_text.text = ""
 		final_player_score_text.text = ""
 		final_enemy_score_text.text = ""
-		#########################################################
 		
 		game_mode = 2
 		
@@ -866,6 +881,29 @@ func _switch_game_mode(mode) -> void:
 		combat_messages2_text.text = ""
 		final_player_score_text.text = ""
 		final_enemy_score_text.text = ""
-		#########################################################
 		
 		game_mode = 3
+		
+	###CARD SELECTION###
+	if mode == 4:
+		dialog_manager.ui_abort = false
+		player_healthbar.hide()
+		player_health.hide()
+		
+		dialog_manager.dialog_mode = 6
+		dialog_manager._check_dialog_mode() #Update Dialog Mode
+		
+		#Hide Overworld
+		overworld_manager.process_mode = Node.PROCESS_MODE_DISABLED
+		overworld_manager.hide()
+		overworld_interface.hide()
+		
+		#Remove Placeholder Texts
+		combat_messages_text.text = ""
+		combat_messages2_text.text = ""
+		final_player_score_text.text = ""
+		final_enemy_score_text.text = ""
+		
+		spawn_booster_cards()
+		
+		game_mode = 4
