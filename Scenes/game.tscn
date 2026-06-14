@@ -790,6 +790,8 @@ script = ExtResource("13_rfjv2")
 
 [node name="Booster" type="Node" parent="." unique_id=474382570]
 
+[node name="Inventory" type="Node" parent="." unique_id=1994386201]
+
 [connection signal="pressed" from="User_Interface/Tripple_Button1" to="Game_Manager" method="_on_tripple_button_1_pressed"]
 [connection signal="pressed" from="User_Interface/Tripple_Button2" to="Game_Manager" method="_on_tripple_button_2_pressed"]
 [connection signal="pressed" from="User_Interface/Tripple_Button3" to="Game_Manager" method="_on_tripple_button_3_pressed"]

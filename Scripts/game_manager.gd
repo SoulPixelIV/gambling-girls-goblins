@@ -3,6 +3,7 @@ extends Node
 @onready var playing_card = preload("res://Prefabs/playing_card.tscn")
 @onready var hand = $"../Hand"
 @onready var booster = $"../Booster"
+@onready var inventory = $"../Inventory"
 @onready var enemy_hand = $"../Enemy_Hand"
 @onready var dealer_manager = $"../Dealer"
 @onready var dialog_manager = $"../Dialog_Manager"
@@ -63,6 +64,11 @@ var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4
 "8H", "8D", "8C", "8S", "9H", "9D", "9C", "9S", "10H", "10D", "10C", "10S", 
 "JH", "JD", "JC", "JS", "QH", "QD", "QC", "QS", "KH", "KD", "KC", "KS", 
 "AH", "AD", "AC", "AS"]
+var selected_card = {
+	"value": "",
+	"rarity": 0,
+	"mutation": 0
+}
 
 var dungeon_generated = false
 
@@ -318,6 +324,49 @@ func spawn_booster_cards():
 		card.rarity = randi_range(0, 2)
 		card.mutation = randi_range(1, 4)
 		card.position = Vector2(245 + i * 128, 130)
+			
+func spawn_card_inventory():
+	#Spawn Selected Card
+	var selec_card = playing_card.instantiate()
+	
+	selec_card.value = selected_card.value
+	selec_card.rarity = selected_card.rarity
+	selec_card.mutation = selected_card.mutation
+	
+	selec_card.is_selected_card = true
+
+	selec_card.position = Vector2(570, 290) # rechts unten
+	selec_card.scale = Vector2(0.4, 0.4)
+
+	inventory.add_child(selec_card)
+	
+	#Spawn Inventory
+	for child in booster.get_children():
+		if child is CanvasItem:
+			child.hide()
+
+	var cards_per_row = 12
+	var start_x = 152
+	var start_y = 40
+	var spacing_x = 40
+	var spacing_y = 55
+
+	for i in range(deck.size()):
+		var card = playing_card.instantiate()
+
+		card.value = deck[i]
+		card.game_manager = self
+		card.is_booster_card = false
+
+		var row = i / cards_per_row
+		var col = i % cards_per_row
+
+		card.position = Vector2(
+			start_x + col * spacing_x,
+			start_y + row * spacing_y
+		)
+
+		inventory.add_child(card)
 			
 func _on_card_played(value, card_id):
 	if card_id.begins_with("A") or (card_id.begins_with("Q") and affection_level >= 3):
@@ -910,3 +959,27 @@ func _switch_game_mode(mode) -> void:
 		spawn_booster_cards()
 		
 		game_mode = 4
+		
+	###CARD INVENTORY###
+	if mode == 5:
+		dialog_manager.ui_abort = false
+		player_healthbar.hide()
+		player_health.hide()
+		
+		#dialog_manager.dialog_mode = 6
+		#dialog_manager._check_dialog_mode() #Update Dialog Mode
+		
+		#Hide Overworld
+		overworld_manager.process_mode = Node.PROCESS_MODE_DISABLED
+		overworld_manager.hide()
+		overworld_interface.hide()
+		
+		#Remove Placeholder Texts
+		combat_messages_text.text = ""
+		combat_messages2_text.text = ""
+		final_player_score_text.text = ""
+		final_enemy_score_text.text = ""
+		
+		spawn_card_inventory()
+		
+		game_mode = 5

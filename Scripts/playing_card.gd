@@ -20,15 +20,19 @@ var mutation_text = ""
 var card_anim_index = 0
 
 var is_booster_card = false
+var is_selected_card = false
 
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
+	gui_input.connect(_on_gui_input)
 	
 	sprite.material = sprite.material.duplicate()
 	mat = sprite.material as ShaderMaterial
 	
-	scale.x = 0
-	scale.y = 0
+	if !is_selected_card:
+		scale.x = 0
+		scale.y = 0
 	
 	#Set Card Frame
 	match value:
@@ -231,46 +235,47 @@ func _process(delta: float) -> void:
 	#Update Card Text
 	mutation_label.text = rarity_text + " " + mutation_text
 		
-	if is_booster_card:
-		if card_anim_index == 0:
-			if scale.x < 0.85:
-				scale.x += delta * 2
-				scale.y += delta * 2
-			else:
-				card_anim_index = 1
-				
-		if card_anim_index == 1:
-			if scale.x > 0.75:
-				scale.x -= delta * 2.5
-				scale.y -= delta * 2.5
-			else:
-				card_anim_index = 2
-				
-		if card_anim_index == 2:
-			if !hovered:
-				scale.x = 0.75
-				scale.y = 0.75
-			else:
-				scale.x = 0.85
-				scale.y = 0.85
-	else:
-		if card_anim_index == 0:
-			if scale.x < 0.3:
-				scale.x += delta * 2
-				scale.y += delta * 2
-			else:
-				card_anim_index = 1
-				
-		if card_anim_index == 1:
-			if scale.x > 0.252:
-				scale.x -= delta * 2.5
-				scale.y -= delta * 2.5
-			else:
-				card_anim_index = 2
-				
-		if card_anim_index == 2:
-				scale.x = 0.25
-				scale.y = 0.25
+	if !is_selected_card:
+		if is_booster_card:
+			if card_anim_index == 0:
+				if scale.x < 0.85:
+					scale.x += delta * 2
+					scale.y += delta * 2
+				else:
+					card_anim_index = 1
+					
+			if card_anim_index == 1:
+				if scale.x > 0.75:
+					scale.x -= delta * 2.5
+					scale.y -= delta * 2.5
+				else:
+					card_anim_index = 2
+					
+			if card_anim_index == 2:
+				if !hovered:
+					scale.x = 0.75
+					scale.y = 0.75
+				else:
+					scale.x = 0.85
+					scale.y = 0.85
+		else:
+			if card_anim_index == 0:
+				if scale.x < 0.3:
+					scale.x += delta * 2
+					scale.y += delta * 2
+				else:
+					card_anim_index = 1
+					
+			if card_anim_index == 1:
+				if scale.x > 0.252:
+					scale.x -= delta * 2.5
+					scale.y -= delta * 2.5
+				else:
+					card_anim_index = 2
+					
+			if card_anim_index == 2:
+					scale.x = 0.25
+					scale.y = 0.25
 		
 func _on_mouse_entered() -> void:
 	if is_booster_card:
@@ -279,3 +284,13 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	if is_booster_card:
 		hovered = false
+		
+func _on_gui_input(event):
+	if is_booster_card:
+		if event is InputEventMouseButton:
+			if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:		
+				game_manager.selected_card.value = value
+				game_manager.selected_card.rarity = rarity
+				game_manager.selected_card.mutation = mutation
+				
+				game_manager._switch_game_mode(5)
