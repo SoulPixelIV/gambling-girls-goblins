@@ -314,7 +314,7 @@ func spawn_booster_cards():
 		
 		booster.add_child(card)
 		card.is_booster_card = true
-		card.rarity = randi_range(1, 2)
+		card.rarity = randi_range(0, 2)
 		card.mutation = randi_range(1, 4)
 		card.position = Vector2(245 + i * 128, 130)
 			

@@ -194,8 +194,7 @@ func _check_dialog_mode() -> void:
 		
 		dialog_user.text = ""
 		
-		#CHANGE TO CARD SELECTION LINE ############################
-		await type_text(_random_health_line())
+		await type_text(_random_card_select_line())
 
 #################### DEALER DIALOG ########################
 func _random_intro_line() -> String:
@@ -240,6 +239,16 @@ func _random_health_line() -> String:
 		"Just for you <3",
 		"Let me help you with that..",
 		"Mmh"
+	]
+	return lines[randi() % lines.size()]
+	
+func _random_card_select_line() -> String:
+	var lines = [
+		"Hmm. Let's see how lucky you are.",
+		"My oh my..these cards...",
+		"Oh.",
+		"Wow, what a selection.",
+		"heh."
 	]
 	return lines[randi() % lines.size()]
 	
