@@ -1,6 +1,7 @@
 extends Control
 
 @onready var sprite = $Card/AnimatedSprite2D
+@onready var mutation_label = $Card/Label
 var mat
 
 signal card_played(value)
@@ -9,8 +10,12 @@ var game_manager = null
 var value = 0
 var score = 0
 var rarity = 0
+var mutation = 0
 var frame_index = 0
 var player_card = true
+
+var rarity_text = ""
+var mutation_text = ""
 
 var card_anim_index = 0
 
@@ -187,18 +192,42 @@ func _ready() -> void:
 	else:
 		emit_signal("card_played_enemy", score, value) #Send card value out
 	
-func _process(delta: float) -> void:	
-	print(rarity)
+func _process(delta: float) -> void:
+	#Rarity Effects
 	if rarity == 0:
 		mat.set_shader_parameter("rarity_strength", 0.0)
 		get_node("Card/CPUParticles2D").emitting = false
 		get_node("Card/CPUParticles2D2").emitting = false
+		rarity_text = ""
 	elif rarity == 1:
 		mat.set_shader_parameter("rarity_strength", 1.1)
 		get_node("Card/CPUParticles2D").emitting = false
 		get_node("Card/CPUParticles2D2").emitting = false
+		rarity_text = "Rare"
 	elif rarity == 2:
 		mat.set_shader_parameter("rarity_strength", 2.0)
+		rarity_text = "Ultra Rare"
+		
+	#Mutation Effects
+	#Charming
+	if mutation == 1:
+		sprite.modulate = Color.BLUE
+		mutation_text = "Charming"
+	#Playful
+	elif mutation == 2:
+		sprite.modulate = Color.GREEN
+		mutation_text = "Playful"
+	#Rough
+	elif mutation == 3:
+		sprite.modulate = Color.ORANGE
+		mutation_text = "Rough"
+	#Lovely
+	elif mutation == 4:
+		sprite.modulate = Color.DEEP_PINK
+		mutation_text = "Lovely"
+		
+	#Update Card Text
+	mutation_label.text = rarity_text + " " + mutation_text
 		
 	if is_booster_card:
 		if card_anim_index == 0:
