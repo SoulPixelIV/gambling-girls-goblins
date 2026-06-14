@@ -391,9 +391,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_of5s7"]
-size = Vector2(148, 212)
-
 [sub_resource type="Curve" id="Curve_bm1if"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.1468254, 1), 0.0, 0.0, 0, 0, Vector2(0.6230159, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
@@ -402,14 +399,13 @@ point_count = 4
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12698415, 1), 0.0, 0.0, 0, 0, Vector2(0.6587302, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[node name="PlayingCard" type="Control" unique_id=1092862507]
+[node name="Card" type="Control" unique_id=187359131]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_odrdg")
 
-[node name="Card" type="Area2D" parent="." unique_id=759000410]
-
-[node name="Label" type="Label" parent="Card" unique_id=1313565381]
+[node name="Label" type="Label" parent="." unique_id=1313565381]
+layout_mode = 0
 offset_left = -74.0
 offset_top = 115.0
 offset_right = 74.0
@@ -418,16 +414,13 @@ theme_override_fonts/font = ExtResource("4_bm1if")
 theme_override_font_sizes/font_size = 9
 horizontal_alignment = 1
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Card" unique_id=390527588]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=390527588]
 texture_filter = 1
 material = SubResource("ShaderMaterial_72ffb")
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_bm1if")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Card" unique_id=1687587068]
-shape = SubResource("RectangleShape2D_of5s7")
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Card" unique_id=1550924686]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1550924686]
 amount = 100
 lifetime = 2.0
 randomness = 0.2
@@ -440,7 +433,7 @@ scale_amount_min = 0.5
 scale_amount_curve = SubResource("Curve_bm1if")
 color = Color(1, 0.84313726, 0, 1)
 
-[node name="CPUParticles2D2" type="CPUParticles2D" parent="Card" unique_id=1228388544]
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="." unique_id=1228388544]
 amount = 10
 lifetime = 2.0
 randomness = 0.2
@@ -451,3 +444,13 @@ spread = 0.0
 gravity = Vector2(0, 0.5)
 scale_amount_min = 0.5
 scale_amount_curve = SubResource("Curve_72ffb")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=510294137]
+layout_mode = 0
+offset_left = -75.0
+offset_top = -106.0
+offset_right = 75.0
+offset_bottom = 106.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

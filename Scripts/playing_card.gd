@@ -1,7 +1,7 @@
 extends Control
 
-@onready var sprite = $Card/AnimatedSprite2D
-@onready var mutation_label = $Card/Label
+@onready var sprite = $AnimatedSprite2D
+@onready var mutation_label = $Label
 var mat
 
 signal card_played(value)
@@ -13,7 +13,7 @@ var rarity = 0
 var mutation = 0
 var frame_index = 0
 var player_card = true
-
+var hovered = false
 var rarity_text = ""
 var mutation_text = ""
 
@@ -22,6 +22,8 @@ var card_anim_index = 0
 var is_booster_card = false
 
 func _ready() -> void:
+	mouse_entered.connect(_on_mouse_entered)
+	
 	sprite.material = sprite.material.duplicate()
 	mat = sprite.material as ShaderMaterial
 	
@@ -196,13 +198,13 @@ func _process(delta: float) -> void:
 	#Rarity Effects
 	if rarity == 0:
 		mat.set_shader_parameter("rarity_strength", 0.0)
-		get_node("Card/CPUParticles2D").emitting = false
-		get_node("Card/CPUParticles2D2").emitting = false
+		get_node("CPUParticles2D").emitting = false
+		get_node("CPUParticles2D2").emitting = false
 		rarity_text = ""
 	elif rarity == 1:
 		mat.set_shader_parameter("rarity_strength", 1.1)
-		get_node("Card/CPUParticles2D").emitting = false
-		get_node("Card/CPUParticles2D2").emitting = false
+		get_node("CPUParticles2D").emitting = false
+		get_node("CPUParticles2D2").emitting = false
 		rarity_text = "Rare"
 	elif rarity == 2:
 		mat.set_shader_parameter("rarity_strength", 2.0)
@@ -219,7 +221,7 @@ func _process(delta: float) -> void:
 		mutation_text = "Playful"
 	#Rough
 	elif mutation == 3:
-		sprite.modulate = Color.ORANGE
+		sprite.modulate = Color.SANDY_BROWN
 		mutation_text = "Rough"
 	#Lovely
 	elif mutation == 4:
@@ -245,8 +247,12 @@ func _process(delta: float) -> void:
 				card_anim_index = 2
 				
 		if card_anim_index == 2:
-			scale.x = 0.75
-			scale.y = 0.75
+			if !hovered:
+				scale.x = 0.75
+				scale.y = 0.75
+			else:
+				scale.x = 0.85
+				scale.y = 0.85
 	else:
 		if card_anim_index == 0:
 			if scale.x < 0.3:
@@ -263,5 +269,13 @@ func _process(delta: float) -> void:
 				card_anim_index = 2
 				
 		if card_anim_index == 2:
-			scale.x = 0.25
-			scale.y = 0.25
+				scale.x = 0.25
+				scale.y = 0.25
+		
+func _on_mouse_entered() -> void:
+	if is_booster_card:
+		hovered = true
+
+func _on_mouse_exited() -> void:
+	if is_booster_card:
+		hovered = false

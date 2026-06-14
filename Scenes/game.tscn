@@ -82,6 +82,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="Line_Container" type="Node2D" parent="Overworld_Interface" unique_id=149820013]
 
@@ -93,11 +94,13 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="Dealer_Interface" type="Control" parent="User_Interface" unique_id=1443971362]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="Dealer_Icon" type="Sprite2D" parent="User_Interface/Dealer_Interface" unique_id=663302625]
 position = Vector2(53, 307.5)
@@ -134,6 +137,7 @@ horizontal_alignment = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 script = ExtResource("8_1phco")
 
 [node name="Pot_Text" type="Label" parent="User_Interface/Status_Screen" unique_id=195444737]
@@ -772,21 +776,19 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="Enemy_Hand" type="Control" parent="." unique_id=2008198402]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="Dealer" type="Node" parent="." unique_id=839210681]
 script = ExtResource("13_rfjv2")
 
-[node name="Booster" type="Control" parent="." unique_id=829271823]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Booster" type="Node" parent="." unique_id=474382570]
 
 [connection signal="pressed" from="User_Interface/Tripple_Button1" to="Game_Manager" method="_on_tripple_button_1_pressed"]
 [connection signal="pressed" from="User_Interface/Tripple_Button2" to="Game_Manager" method="_on_tripple_button_2_pressed"]
