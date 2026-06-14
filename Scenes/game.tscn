@@ -771,6 +771,14 @@ nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
 "
 clip_text = true
 
+[node name="Card_Select_Label" type="Label" parent="User_Interface" unique_id=3731946]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 287.0
+offset_right = 443.0
+offset_bottom = 310.0
+text = "Replace a Card in your Deck"
+
 [node name="Hand" type="Control" parent="." unique_id=248982143]
 layout_mode = 3
 anchors_preset = 0

@@ -17,6 +17,7 @@ extends Node
 @onready var player_score_text: Label = $"../User_Interface/Player_Score"
 @onready var enemy_score_text: Label = $"../User_Interface/Enemy_Score"
 @onready var enemy_name_tag: Label = $"../User_Interface/Enemy_Name_Label"
+@onready var card_select_label: Label = $"../User_Interface/Card_Select_Label"
 @onready var final_player_score_text: Label = $"../User_Interface/Final_Score_Labels/Final_Player_Score"
 @onready var final_enemy_score_text: Label = $"../User_Interface/Final_Score_Labels/Final_Enemy_Score"
 @onready var combat_messages_text: Label = $"../User_Interface/Final_Score_Labels/Combat_Messages"
@@ -89,6 +90,7 @@ func _ready() -> void:
 	combat_messages2_text.text = ""
 	final_player_score_text.text = ""
 	final_enemy_score_text.text = ""
+	card_select_label.text = ""
 	
 func _process(delta: float) -> void:
 	if hit_input_locked:
@@ -979,6 +981,7 @@ func _switch_game_mode(mode) -> void:
 		combat_messages2_text.text = ""
 		final_player_score_text.text = ""
 		final_enemy_score_text.text = ""
+		card_select_label.text = "Replace a Card in your Deck"
 		
 		spawn_card_inventory()
 		
