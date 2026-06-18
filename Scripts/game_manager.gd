@@ -347,10 +347,10 @@ func spawn_card_inventory():
 		if child is CanvasItem:
 			child.hide()
 
-	var cards_per_row = 12
-	var start_x = 152
+	var cards_per_row = 13
+	var start_x = 148
 	var start_y = 40
-	var spacing_x = 40
+	var spacing_x = 38
 	var spacing_y = 55
 
 	for i in range(deck.size()):
@@ -359,6 +359,7 @@ func spawn_card_inventory():
 		card.value = deck[i]
 		card.game_manager = self
 		card.is_booster_card = false
+		card.is_inventory_card = true
 
 		var row = i / cards_per_row
 		var col = i % cards_per_row

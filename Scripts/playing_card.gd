@@ -21,6 +21,7 @@ var card_anim_index = 0
 
 var is_booster_card = false
 var is_selected_card = false
+var is_inventory_card = false
 
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
@@ -33,6 +34,10 @@ func _ready() -> void:
 	if !is_selected_card:
 		scale.x = 0
 		scale.y = 0
+		
+	if is_inventory_card:
+		scale.x = 0.225
+		scale.y = 0.225
 	
 	#Set Card Frame
 	match value:
@@ -235,7 +240,7 @@ func _process(delta: float) -> void:
 	#Update Card Text
 	mutation_label.text = rarity_text + " " + mutation_text
 		
-	if !is_selected_card:
+	if !is_selected_card and !is_inventory_card:
 		if is_booster_card:
 			if card_anim_index == 0:
 				if scale.x < 0.85:
