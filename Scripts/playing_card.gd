@@ -32,11 +32,6 @@ func _ready() -> void:
 	sprite.material = sprite.material.duplicate()
 	mat = sprite.material as ShaderMaterial
 	
-	#Create Card Border if selectable Card
-	if get_card_rank(str(value)) == get_card_rank(str(Global.holding_card_value)):
-		var card_border = border_playing_card.instantiate()
-		add_child(card_border)
-	
 	if !is_selected_card:
 		scale.x = 0
 		scale.y = 0
@@ -44,6 +39,22 @@ func _ready() -> void:
 	if is_inventory_card:
 		scale.x = 0.225
 		scale.y = 0.225
+		
+	#Create Card Border if selectable Card
+	if is_inventory_card:
+		if get_card_rank(str(value)) == get_card_rank(str(Global.holding_card_value)):
+			var card_border = border_playing_card.instantiate()
+			add_child(card_border)
+			card_border.z_index = 999
+			scale.x = 0.25
+			scale.y = 0.25
+			z_index = 998
+			
+	#Copy Global Variables
+	if is_selected_card:
+		value = Global.holding_card_value
+		rarity = Global.holding_card_rarity
+		mutation = Global.holding_card_mutation
 	
 	#Set Card Frame
 	match value:
@@ -287,13 +298,27 @@ func _process(delta: float) -> void:
 			if card_anim_index == 2:
 					scale.x = 0.25
 					scale.y = 0.25
+					
+	if is_inventory_card:
+		if hovered:
+			scale.x = 0.3
+			scale.y = 0.3
+		else:
+			scale.x = 0.25
+			scale.y = 0.25
 		
 func _on_mouse_entered() -> void:
 	if is_booster_card:
 		hovered = true
+		
+	if is_inventory_card and get_card_rank(str(value)) == get_card_rank(str(Global.holding_card_value)):
+		hovered = true
 
 func _on_mouse_exited() -> void:
 	if is_booster_card:
+		hovered = false
+		
+	if is_inventory_card and get_card_rank(str(value)) == get_card_rank(str(Global.holding_card_value)):
 		hovered = false
 		
 func _on_gui_input(event):

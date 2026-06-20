@@ -13,6 +13,7 @@ shader_parameter/sparkle_strength = 0.0
 [node name="Card Border" type="Control" unique_id=187359131]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=785446142]
 texture_filter = 1
@@ -26,6 +27,7 @@ offset_left = -75.0
 offset_top = -106.0
 offset_right = 75.0
 offset_bottom = 106.0
+mouse_filter = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
