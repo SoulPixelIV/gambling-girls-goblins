@@ -1,5 +1,6 @@
 extends Control
 
+@onready var border_playing_card = preload("res://Prefabs/card_border.tscn")
 @onready var sprite = $AnimatedSprite2D
 @onready var mutation_label = $Label
 var mat
@@ -30,6 +31,11 @@ func _ready() -> void:
 	
 	sprite.material = sprite.material.duplicate()
 	mat = sprite.material as ShaderMaterial
+	
+	#Create Card Border if selectable Card
+	if get_card_rank(str(value)) == get_card_rank(str(Global.holding_card_value)):
+		var card_border = border_playing_card.instantiate()
+		add_child(card_border)
 	
 	if !is_selected_card:
 		scale.x = 0
@@ -294,8 +300,11 @@ func _on_gui_input(event):
 	if is_booster_card:
 		if event is InputEventMouseButton:
 			if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:		
-				game_manager.selected_card.value = value
-				game_manager.selected_card.rarity = rarity
-				game_manager.selected_card.mutation = mutation
+				Global.holding_card_value = value
+				Global.holding_card_rarity = rarity
+				Global.holding_card_mutation = mutation
 				
 				game_manager._switch_game_mode(5)
+
+func get_card_rank(card: String) -> String:
+	return card.left(card.length() - 1)

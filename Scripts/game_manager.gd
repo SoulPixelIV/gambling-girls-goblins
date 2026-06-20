@@ -337,7 +337,7 @@ func spawn_card_inventory():
 	
 	selec_card.is_selected_card = true
 
-	selec_card.position = Vector2(570, 290) # rechts unten
+	selec_card.position = Vector2(570, 303) # rechts unten
 	selec_card.scale = Vector2(0.4, 0.4)
 
 	inventory.add_child(selec_card)
@@ -348,7 +348,7 @@ func spawn_card_inventory():
 			child.hide()
 
 	var cards_per_row = 13
-	var start_x = 148
+	var start_x = 146
 	var start_y = 40
 	var spacing_x = 38
 	var spacing_y = 55

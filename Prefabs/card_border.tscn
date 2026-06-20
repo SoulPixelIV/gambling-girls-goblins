@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bimrk2mnj62ad"]
+
+[ext_resource type="Texture2D" uid="uid://ct25hd6xuur5f" path="res://Textures/card_selected_border.png" id="3_38sqv"]
+[ext_resource type="Shader" uid="uid://cy5dvy1gn461f" path="res://Shader/shine.gdshader" id="3_s8i6l"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_72ffb"]
+shader = ExtResource("3_s8i6l")
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/speed = 0.0810000038475
+shader_parameter/rarity_strength = 1.0000000475
+shader_parameter/sparkle_strength = 0.0
+
+[node name="Card Border" type="Control" unique_id=187359131]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=785446142]
+texture_filter = 1
+material = SubResource("ShaderMaterial_72ffb")
+scale = Vector2(4, 4)
+texture = ExtResource("3_38sqv")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=510294137]
+layout_mode = 0
+offset_left = -75.0
+offset_top = -106.0
+offset_right = 75.0
+offset_bottom = 106.0
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

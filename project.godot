@@ -14,6 +14,10 @@ config/name="Gambling Girls Goblins"
 run/main_scene="uid://co4dvh24whixt"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[autoload]
+
+Global="*uid://ct5hesmua3osg"
+
 [display]
 
 window/size/viewport_width=640
