@@ -740,7 +740,7 @@ func reset_game_round():
 	curr_enemy_damage = 0
 	
 	#Reset Deck
-	combat_deck = deck.duplicate(true)
+	_reset_combat_deck()
 	
 	enemy.reset_deck()
 	combat_messages_text.text = ""
@@ -771,7 +771,7 @@ func return_to_overworld():
 	curr_damage = 0
 	curr_enemy_damage = 0
 	
-	combat_deck = deck.duplicate(true)
+	_reset_combat_deck()
 	
 	if enemy != null:
 		enemy.reset_deck()
@@ -1078,6 +1078,8 @@ func _switch_game_mode(mode) -> void:
 		player_healthbar.hide()
 		player_health.hide()
 		
+		_reset_combat_deck()
+		
 		dialog_manager.dialog_mode = 7
 		dialog_manager._check_dialog_mode() #Update Dialog Mode
 		
@@ -1094,3 +1096,7 @@ func _switch_game_mode(mode) -> void:
 		card_select_label.text = ""
 		
 		game_mode = 6
+
+###### ALWAYS CALL AFTER DECK IS BEING CHANGED ######
+func _reset_combat_deck():
+	combat_deck = deck.duplicate(true)
