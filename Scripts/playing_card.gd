@@ -194,10 +194,25 @@ func _on_gui_input(event):
 			##### REPLACING CARD IN INVENTORY #####
 			if game_manager && (game_manager.game_mode == 4 || game_manager.game_mode == 5):
 				if is_inventory_card and get_card_rank(str(value)) == get_card_rank(str(Global.holding_card_value)):
+					var card_old_value = value
+					
+					#Visual Card Update
 					value = Global.holding_card_value
 					rarity = Global.holding_card_rarity
 					mutation = Global.holding_card_mutation
 					set_card_value()
+					
+					#System Deck Card Update
+					var idx = -1
+					for i in range(game_manager.deck.size()):
+						if game_manager.deck[i]["value"] == card_old_value:
+							idx = i
+							break
+							
+					if idx != -1:
+						game_manager.deck[idx]["value"] = Global.holding_card_value
+						game_manager.deck[idx]["rarity"] = Global.holding_card_rarity
+						game_manager.deck[idx]["mutation"] = Global.holding_card_mutation
 					
 					game_manager._switch_game_mode(6)
 				

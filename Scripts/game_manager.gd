@@ -60,11 +60,73 @@ var last_player_card = null
 var redraw_used = false
 var double_down_active = false
 var safe_used = false
-var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 
-"5H", "5D", "5C", "5S", "6H", "6D", "6C", "6S", "7H", "7D", "7C", "7S", 
-"8H", "8D", "8C", "8S", "9H", "9D", "9C", "9S", "10H", "10D", "10C", "10S", 
-"JH", "JD", "JC", "JS", "QH", "QD", "QC", "QS", "KH", "KD", "KC", "KS", 
-"AH", "AD", "AC", "AS"]
+var deck = [
+	{"value":"2H", "rarity":0, "mutation":0},
+	{"value":"2D", "rarity":0, "mutation":0},
+	{"value":"2C", "rarity":0, "mutation":0},
+	{"value":"2S", "rarity":0, "mutation":0},
+
+	{"value":"3H", "rarity":0, "mutation":0},
+	{"value":"3D", "rarity":0, "mutation":0},
+	{"value":"3C", "rarity":0, "mutation":0},
+	{"value":"3S", "rarity":0, "mutation":0},
+
+	{"value":"4H", "rarity":0, "mutation":0},
+	{"value":"4D", "rarity":0, "mutation":0},
+	{"value":"4C", "rarity":0, "mutation":0},
+	{"value":"4S", "rarity":0, "mutation":0},
+
+	{"value":"5H", "rarity":0, "mutation":0},
+	{"value":"5D", "rarity":0, "mutation":0},
+	{"value":"5C", "rarity":0, "mutation":0},
+	{"value":"5S", "rarity":0, "mutation":0},
+
+	{"value":"6H", "rarity":0, "mutation":0},
+	{"value":"6D", "rarity":0, "mutation":0},
+	{"value":"6C", "rarity":0, "mutation":0},
+	{"value":"6S", "rarity":0, "mutation":0},
+
+	{"value":"7H", "rarity":0, "mutation":0},
+	{"value":"7D", "rarity":0, "mutation":0},
+	{"value":"7C", "rarity":0, "mutation":0},
+	{"value":"7S", "rarity":0, "mutation":0},
+
+	{"value":"8H", "rarity":0, "mutation":0},
+	{"value":"8D", "rarity":0, "mutation":0},
+	{"value":"8C", "rarity":0, "mutation":0},
+	{"value":"8S", "rarity":0, "mutation":0},
+
+	{"value":"9H", "rarity":0, "mutation":0},
+	{"value":"9D", "rarity":0, "mutation":0},
+	{"value":"9C", "rarity":0, "mutation":0},
+	{"value":"9S", "rarity":0, "mutation":0},
+
+	{"value":"10H", "rarity":0, "mutation":0},
+	{"value":"10D", "rarity":0, "mutation":0},
+	{"value":"10C", "rarity":0, "mutation":0},
+	{"value":"10S", "rarity":0, "mutation":0},
+
+	{"value":"JH", "rarity":0, "mutation":0},
+	{"value":"JD", "rarity":0, "mutation":0},
+	{"value":"JC", "rarity":0, "mutation":0},
+	{"value":"JS", "rarity":0, "mutation":0},
+
+	{"value":"QH", "rarity":0, "mutation":0},
+	{"value":"QD", "rarity":0, "mutation":0},
+	{"value":"QC", "rarity":0, "mutation":0},
+	{"value":"QS", "rarity":0, "mutation":0},
+
+	{"value":"KH", "rarity":0, "mutation":0},
+	{"value":"KD", "rarity":0, "mutation":0},
+	{"value":"KC", "rarity":0, "mutation":0},
+	{"value":"KS", "rarity":0, "mutation":0},
+
+	{"value":"AH", "rarity":0, "mutation":0},
+	{"value":"AD", "rarity":0, "mutation":0},
+	{"value":"AC", "rarity":0, "mutation":0},
+	{"value":"AS", "rarity":0, "mutation":0}
+]
+var combat_deck = deck.duplicate(true)
 var selected_card = {
 	"value": "",
 	"rarity": 0,
@@ -285,13 +347,20 @@ func choose_seven_value(value):
 	turn_state = 0
 		
 func spawn_playing_card(x, y):
-	if deck.size() > 0:
-		var rand_card_index = randi_range(0, deck.size() - 1) #Select Random Card from Deck
+	if combat_deck.size() > 0:
+		var rand_card_index = randi_range(0, combat_deck.size() - 1) #Select Random Card from Deck
 		var card_instance = playing_card.instantiate()
 		card_instance.card_played.connect(_on_card_played) #Receive Card Value from Instantiated Card
-		card_instance.value = deck[rand_card_index] #Give Created Card Value
+		
+		#Give Created Card Value
+		var card_data = combat_deck[rand_card_index]
+
+		card_instance.value = card_data.value
+		card_instance.rarity = card_data.rarity
+		card_instance.mutation = card_data.mutation
+		
 		card_instance.game_manager = self
-		deck.remove_at(rand_card_index) #Remove Card from Deck
+		combat_deck.remove_at(rand_card_index) #Remove Card from Deck
 		hand.add_child(card_instance)
 		card_instance.position = Vector2(x, y)
 		last_player_card = card_instance
@@ -302,7 +371,10 @@ func spawn_enemy_playing_card(x, y):
 			var rand_card_index2 = randi_range(0, enemy.deck.size() - 1) #Select Random Card from Deck
 			var enemy_card_instance = playing_card.instantiate()
 			enemy_card_instance.card_played.connect(_on_card_played_enemy) #Receive Card Value from Instantiated Card
-			enemy_card_instance.value = enemy.deck[rand_card_index2] #Give Created Card Value
+			
+			#Give Created Card Value
+			enemy_card_instance.value = enemy.deck[rand_card_index2]
+			
 			enemy_card_instance.game_manager = self
 			enemy.deck.remove_at(rand_card_index2) #Remove Card from Deck
 			enemy_hand.add_child(enemy_card_instance)
@@ -315,7 +387,14 @@ func spawn_booster_cards():
 		var rand_card_index = randi_range(0, deck.size() - 1) #Select Random Card from Deck
 		
 		var card = playing_card.instantiate()
-		card.value = deck[rand_card_index] #Give Created Card Value
+		
+		#Give Created Card Value
+		var card_data = deck[rand_card_index]
+
+		card.value = card_data.value
+		card.rarity = card_data.rarity
+		card.mutation = card_data.mutation
+		
 		card.game_manager = self
 		
 		card_instances.append(card)
@@ -357,7 +436,12 @@ func spawn_card_inventory():
 	for i in range(deck.size()):
 		var card = playing_card.instantiate()
 
-		card.value = deck[i]
+		var card_data = deck[i]
+
+		card.value = card_data.value
+		card.rarity = card_data.rarity
+		card.mutation = card_data.mutation
+
 		card.game_manager = self
 		card.is_booster_card = false
 		card.is_inventory_card = true
@@ -654,11 +738,10 @@ func reset_game_round():
 	called_rng_value = false
 	curr_damage = 0
 	curr_enemy_damage = 0
-	deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 
-	"5H", "5D", "5C", "5S", "6H", "6D", "6C", "6S", "7H", "7D", "7C", "7S", 
-	"8H", "8D", "8C", "8S", "9H", "9D", "9C", "9S", "10H", "10D", "10C", "10S", 
-	"JH", "JD", "JC", "JS", "QH", "QD", "QC", "QS", "KH", "KD", "KC", "KS", 
-	"AH", "AD", "AC", "AS"]
+	
+	#Reset Deck
+	combat_deck = deck.duplicate(true)
+	
 	enemy.reset_deck()
 	combat_messages_text.text = ""
 	combat_messages2_text.text = ""
@@ -687,11 +770,9 @@ func return_to_overworld():
 	called_rng_value = false
 	curr_damage = 0
 	curr_enemy_damage = 0
-	deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 
-	"5H", "5D", "5C", "5S", "6H", "6D", "6C", "6S", "7H", "7D", "7C", "7S", 
-	"8H", "8D", "8C", "8S", "9H", "9D", "9C", "9S", "10H", "10D", "10C", "10S", 
-	"JH", "JD", "JC", "JS", "QH", "QD", "QC", "QS", "KH", "KD", "KC", "KS", 
-	"AH", "AD", "AC", "AS"]
+	
+	combat_deck = deck.duplicate(true)
+	
 	if enemy != null:
 		enemy.reset_deck()
 	combat_messages_text.text = ""
