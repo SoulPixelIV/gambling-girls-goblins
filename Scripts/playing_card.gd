@@ -102,12 +102,17 @@ func _process(delta: float) -> void:
 	#Update Card Text
 	mutation_label.text = rarity_text + " " + mutation_text
 		
-	#Update Card Border if not Needed anymore
+	#Update Card Border if not needed anymore
 	if game_manager && game_manager.game_mode == 6:
 		if card_border:
 			card_border.queue_free()
 			
 		if is_selected_card:
+			queue_free()
+			
+	#Remove Inventory Cards when not needed anymore
+	if game_manager && game_manager.game_mode == 1:
+		if is_inventory_card:
 			queue_free()
 		
 	if !is_selected_card and !is_inventory_card:
