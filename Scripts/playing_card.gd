@@ -1,5 +1,6 @@
 extends Control
 
+@onready var dealer_manager = $"../Dealer"
 @onready var border_playing_card = preload("res://Prefabs/card_border.tscn")
 @onready var sprite = $AnimatedSprite2D
 @onready var mutation_label = $Label
@@ -24,6 +25,7 @@ var card_anim_index = 0
 var is_booster_card = false
 var is_selected_card = false
 var is_inventory_card = false
+var is_player_card = false
 
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
@@ -64,6 +66,19 @@ func _ready() -> void:
 		emit_signal("card_played", score, value) #Send card value out
 	else:
 		emit_signal("card_played_enemy", score, value) #Send card value out
+		
+	#Pay out Reward depending on Mutation & Rarity
+	if is_player_card:
+		if mutation == 1:
+			dealer_manager.affection += 1
+		elif mutation == 2:
+			dealer_manager.mood += 1
+		elif mutation == 3:
+			pass
+			#DAMAGE TO ENEMY AND PLAYER
+		elif mutation == 4:
+			pass
+			#HEAL TO PLAYER
 	
 func _process(delta: float) -> void:
 	#Rarity Effects

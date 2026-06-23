@@ -359,6 +359,7 @@ func spawn_playing_card(x, y):
 		card_instance.rarity = card_data.rarity
 		card_instance.mutation = card_data.mutation
 		
+		card_instance.is_player_card = true
 		card_instance.game_manager = self
 		combat_deck.remove_at(rand_card_index) #Remove Card from Deck
 		hand.add_child(card_instance)
