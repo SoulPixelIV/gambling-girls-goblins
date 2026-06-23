@@ -4,6 +4,7 @@ extends Control
 @onready var sprite = $AnimatedSprite2D
 @onready var mutation_label = $Label
 var mat
+var card_border = null
 
 signal card_played(value)
 
@@ -43,7 +44,7 @@ func _ready() -> void:
 	#Create Card Border if selectable Card
 	if is_inventory_card:
 		if get_card_rank(str(value)) == get_card_rank(str(Global.holding_card_value)):
-			var card_border = border_playing_card.instantiate()
+			card_border = border_playing_card.instantiate()
 			add_child(card_border)
 			card_border.z_index = 999
 			scale.x = 0.25
@@ -57,6 +58,148 @@ func _ready() -> void:
 		mutation = Global.holding_card_mutation
 	
 	#Set Card Frame
+	set_card_value()
+	
+	if player_card:
+		emit_signal("card_played", score, value) #Send card value out
+	else:
+		emit_signal("card_played_enemy", score, value) #Send card value out
+	
+func _process(delta: float) -> void:
+	#Rarity Effects
+	if rarity == 0:
+		mat.set_shader_parameter("rarity_strength", 0.0)
+		get_node("CPUParticles2D").emitting = false
+		get_node("CPUParticles2D2").emitting = false
+		rarity_text = ""
+	elif rarity == 1:
+		mat.set_shader_parameter("rarity_strength", 1.1)
+		get_node("CPUParticles2D").emitting = false
+		get_node("CPUParticles2D2").emitting = false
+		rarity_text = "Rare"
+	elif rarity == 2:
+		mat.set_shader_parameter("rarity_strength", 2.0)
+		rarity_text = "Ultra Rare"
+		
+	#Mutation Effects
+	#Charming
+	if mutation == 1:
+		sprite.modulate = Color.BLUE
+		mutation_text = "Charming"
+	#Playful
+	elif mutation == 2:
+		sprite.modulate = Color.GREEN
+		mutation_text = "Playful"
+	#Rough
+	elif mutation == 3:
+		sprite.modulate = Color.SANDY_BROWN
+		mutation_text = "Rough"
+	#Lovely
+	elif mutation == 4:
+		sprite.modulate = Color.DEEP_PINK
+		mutation_text = "Lovely"
+		
+	#Update Card Text
+	mutation_label.text = rarity_text + " " + mutation_text
+		
+	#Update Card Border if not Needed anymore
+	if game_manager && game_manager.game_mode == 6:
+		if card_border:
+			card_border.queue_free()
+			
+		if is_selected_card:
+			queue_free()
+		
+	if !is_selected_card and !is_inventory_card:
+		if is_booster_card:
+			if card_anim_index == 0:
+				if scale.x < 0.85:
+					scale.x += delta * 2
+					scale.y += delta * 2
+				else:
+					card_anim_index = 1
+					
+			if card_anim_index == 1:
+				if scale.x > 0.75:
+					scale.x -= delta * 2.5
+					scale.y -= delta * 2.5
+				else:
+					card_anim_index = 2
+					
+			if card_anim_index == 2:
+				if !hovered:
+					scale.x = 0.75
+					scale.y = 0.75
+				else:
+					scale.x = 0.85
+					scale.y = 0.85
+		else:
+			if card_anim_index == 0:
+				if scale.x < 0.3:
+					scale.x += delta * 2
+					scale.y += delta * 2
+				else:
+					card_anim_index = 1
+					
+			if card_anim_index == 1:
+				if scale.x > 0.252:
+					scale.x -= delta * 2.5
+					scale.y -= delta * 2.5
+				else:
+					card_anim_index = 2
+					
+			if card_anim_index == 2:
+					scale.x = 0.25
+					scale.y = 0.25
+					
+	if is_inventory_card:
+		if hovered:
+			scale.x = 0.3
+			scale.y = 0.3
+		else:
+			scale.x = 0.25
+			scale.y = 0.25
+		
+func _on_mouse_entered() -> void:
+	if game_manager && (game_manager.game_mode == 4 || game_manager.game_mode == 5):
+		if is_booster_card:
+			hovered = true
+			
+		if is_inventory_card and get_card_rank(str(value)) == get_card_rank(str(Global.holding_card_value)):
+			hovered = true
+
+func _on_mouse_exited() -> void:
+	if is_booster_card:
+		hovered = false
+		
+	if is_inventory_card and get_card_rank(str(value)) == get_card_rank(str(Global.holding_card_value)):
+		hovered = false
+		
+func _on_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+			##### SELECTING 1 OF 3 BOOSTER CARDS #####
+			if is_booster_card:
+				Global.holding_card_value = value
+				Global.holding_card_rarity = rarity
+				Global.holding_card_mutation = mutation
+				
+				game_manager._switch_game_mode(5)
+				
+			##### REPLACING CARD IN INVENTORY #####
+			if game_manager && (game_manager.game_mode == 4 || game_manager.game_mode == 5):
+				if is_inventory_card and get_card_rank(str(value)) == get_card_rank(str(Global.holding_card_value)):
+					value = Global.holding_card_value
+					rarity = Global.holding_card_rarity
+					mutation = Global.holding_card_mutation
+					set_card_value()
+					
+					game_manager._switch_game_mode(6)
+				
+func get_card_rank(card: String) -> String:
+	return card.left(card.length() - 1)
+
+func set_card_value():
 	match value:
 		"2H":
 			frame_index = 1
@@ -215,121 +358,3 @@ func _ready() -> void:
 			frame_index = 52
 			score = 0
 	sprite.frame = frame_index
-	if player_card:
-		emit_signal("card_played", score, value) #Send card value out
-	else:
-		emit_signal("card_played_enemy", score, value) #Send card value out
-	
-func _process(delta: float) -> void:
-	#Rarity Effects
-	if rarity == 0:
-		mat.set_shader_parameter("rarity_strength", 0.0)
-		get_node("CPUParticles2D").emitting = false
-		get_node("CPUParticles2D2").emitting = false
-		rarity_text = ""
-	elif rarity == 1:
-		mat.set_shader_parameter("rarity_strength", 1.1)
-		get_node("CPUParticles2D").emitting = false
-		get_node("CPUParticles2D2").emitting = false
-		rarity_text = "Rare"
-	elif rarity == 2:
-		mat.set_shader_parameter("rarity_strength", 2.0)
-		rarity_text = "Ultra Rare"
-		
-	#Mutation Effects
-	#Charming
-	if mutation == 1:
-		sprite.modulate = Color.BLUE
-		mutation_text = "Charming"
-	#Playful
-	elif mutation == 2:
-		sprite.modulate = Color.GREEN
-		mutation_text = "Playful"
-	#Rough
-	elif mutation == 3:
-		sprite.modulate = Color.SANDY_BROWN
-		mutation_text = "Rough"
-	#Lovely
-	elif mutation == 4:
-		sprite.modulate = Color.DEEP_PINK
-		mutation_text = "Lovely"
-		
-	#Update Card Text
-	mutation_label.text = rarity_text + " " + mutation_text
-		
-	if !is_selected_card and !is_inventory_card:
-		if is_booster_card:
-			if card_anim_index == 0:
-				if scale.x < 0.85:
-					scale.x += delta * 2
-					scale.y += delta * 2
-				else:
-					card_anim_index = 1
-					
-			if card_anim_index == 1:
-				if scale.x > 0.75:
-					scale.x -= delta * 2.5
-					scale.y -= delta * 2.5
-				else:
-					card_anim_index = 2
-					
-			if card_anim_index == 2:
-				if !hovered:
-					scale.x = 0.75
-					scale.y = 0.75
-				else:
-					scale.x = 0.85
-					scale.y = 0.85
-		else:
-			if card_anim_index == 0:
-				if scale.x < 0.3:
-					scale.x += delta * 2
-					scale.y += delta * 2
-				else:
-					card_anim_index = 1
-					
-			if card_anim_index == 1:
-				if scale.x > 0.252:
-					scale.x -= delta * 2.5
-					scale.y -= delta * 2.5
-				else:
-					card_anim_index = 2
-					
-			if card_anim_index == 2:
-					scale.x = 0.25
-					scale.y = 0.25
-					
-	if is_inventory_card:
-		if hovered:
-			scale.x = 0.3
-			scale.y = 0.3
-		else:
-			scale.x = 0.25
-			scale.y = 0.25
-		
-func _on_mouse_entered() -> void:
-	if is_booster_card:
-		hovered = true
-		
-	if is_inventory_card and get_card_rank(str(value)) == get_card_rank(str(Global.holding_card_value)):
-		hovered = true
-
-func _on_mouse_exited() -> void:
-	if is_booster_card:
-		hovered = false
-		
-	if is_inventory_card and get_card_rank(str(value)) == get_card_rank(str(Global.holding_card_value)):
-		hovered = false
-		
-func _on_gui_input(event):
-	if is_booster_card:
-		if event is InputEventMouseButton:
-			if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:		
-				Global.holding_card_value = value
-				Global.holding_card_rarity = rarity
-				Global.holding_card_mutation = mutation
-				
-				game_manager._switch_game_mode(5)
-
-func get_card_rank(card: String) -> String:
-	return card.left(card.length() - 1)

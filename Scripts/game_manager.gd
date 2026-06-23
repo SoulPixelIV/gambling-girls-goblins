@@ -335,6 +335,7 @@ func spawn_card_inventory():
 	selec_card.rarity = selected_card.rarity
 	selec_card.mutation = selected_card.mutation
 	
+	selec_card.game_manager = self
 	selec_card.is_selected_card = true
 
 	selec_card.position = Vector2(570, 303) # rechts unten
@@ -762,6 +763,8 @@ func _on_tripple_button_2_pressed() -> void:
 		_switch_game_mode(4)
 	elif game_mode == 3:
 		return_to_overworld()
+	elif game_mode == 6:
+		return_to_overworld()
 	else:
 		if button_mode == 2:
 			choose_seven_value(7)
@@ -987,3 +990,26 @@ func _switch_game_mode(mode) -> void:
 		spawn_card_inventory()
 		
 		game_mode = 5
+		
+	###LEAVING CARD INVENTORY###
+	if mode == 6:
+		dialog_manager.ui_abort = false
+		player_healthbar.hide()
+		player_health.hide()
+		
+		dialog_manager.dialog_mode = 7
+		dialog_manager._check_dialog_mode() #Update Dialog Mode
+		
+		#Hide Overworld
+		overworld_manager.process_mode = Node.PROCESS_MODE_DISABLED
+		overworld_manager.hide()
+		overworld_interface.hide()
+		
+		#Remove Placeholder Texts
+		combat_messages_text.text = ""
+		combat_messages2_text.text = ""
+		final_player_score_text.text = ""
+		final_enemy_score_text.text = ""
+		card_select_label.text = ""
+		
+		game_mode = 6
