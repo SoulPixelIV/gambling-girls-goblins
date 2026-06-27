@@ -650,6 +650,7 @@ func apply_player_burn_damage():
 	var burn_damage = player_score - 21
 
 	health -= burn_damage
+	health = max(health, 0) #Health doesn't fall below 0
 
 	player_healthbar.value = health
 	player_health.text = str(health)
@@ -688,6 +689,7 @@ func show_final_damage():
 	combat_messages_text.text = "Total Self Damage: %d" % curr_damage
 	combat_messages2_text.text = ""
 	health -= curr_damage
+	health = max(health, 0) #Health doesn't fall below 0
 	player_healthbar.value = health
 	player_health.text = str(health)
 	curr_damage = 0
