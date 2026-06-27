@@ -133,6 +133,10 @@ func _on_node_clicked(target_node):
 	update_available_nodes(all_nodes)
 	
 	#Switch Nodes to Used after Entering
+	if target_node.is_exit and !target_node.event_finished:
+		target_node.event_finished = true
+		reset_dungeon()
+		return
 	if target_node.is_combat and !target_node.event_finished:
 		game_manager._switch_game_mode(0)
 		target_node.event_finished = true
@@ -153,3 +157,24 @@ func update_available_nodes(nodes):
 			node.set_available(true)
 		else:
 			node.set_available(false)
+
+func reset_dungeon():
+	#Delete old Nodes
+	for node in all_nodes:
+		if is_instance_valid(node):
+			node.queue_free()
+	all_nodes.clear()
+
+	#Delete Player
+	if player_node_instance:
+		player_node_instance.queue_free()
+
+	#Delete all Lines
+	for child in line_container.get_children():
+		child.queue_free()
+
+	current_node = null
+	is_moving = false
+
+	#Generate new Dungeon
+	_generate_dungeon()

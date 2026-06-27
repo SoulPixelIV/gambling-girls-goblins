@@ -7,6 +7,7 @@ signal node_clicked(node)
 @export var hover_enabled = true
 @export var is_combat = false
 @export var is_heal = false
+@export var is_exit = false
 @export var event_finished = false
 
 var connected_nodes = []
