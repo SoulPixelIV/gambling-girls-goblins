@@ -672,6 +672,7 @@ func apply_enemy_burn_damage():
 	var burn_damage = enemy_score - 21
 
 	enemy.health -= burn_damage
+	enemy.health = max(enemy.health, 0) #Enemy Health doesn't fall below 0
 
 	enemy_healthbar.value = enemy.health
 	enemy_health.text = str(enemy.health)
@@ -728,6 +729,7 @@ func show_enemy_final_damage():
 	combat_messages_text.text = "Total Damage: %d" % curr_enemy_damage
 	combat_messages2_text.text = ""
 	enemy.health -= curr_enemy_damage
+	enemy.health = max(enemy.health, 0) #Enemy Health doesn't fall below 0
 	enemy_healthbar.value = enemy.health
 	enemy_health.text = str(enemy.health)
 	curr_enemy_damage = 0
