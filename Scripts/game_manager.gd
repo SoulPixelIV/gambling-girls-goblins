@@ -403,7 +403,13 @@ func spawn_booster_cards():
 		booster.add_child(card)
 		card.is_booster_card = true
 
-		card.rarity = randi_range(0, 2)
+		var roll = randf()
+		if roll < 0.02:
+			card.rarity = 2
+		elif roll < 0.20:
+			card.rarity = 1
+		else:
+			card.rarity = 0
 		card.mutation = randi_range(1, 4)
 		card.position = Vector2(245 + i * 128, 130)
 			
@@ -638,6 +644,7 @@ func apply_player_burn_damage():
 		combat_messages_text.text = "Good Mood! No Self Damage from Bust!"
 		await get_tree().create_timer(2).timeout
 		combat_messages_text.text = ""
+		hit_input_locked = false
 		return
 
 	var burn_damage = player_score - 21

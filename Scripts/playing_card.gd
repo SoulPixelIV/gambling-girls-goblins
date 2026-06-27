@@ -247,6 +247,41 @@ func _process(delta: float) -> void:
 		else:
 			scale.x = 0.25
 			scale.y = 0.25
+			
+	#Set Tooltips
+	if is_booster_card:
+		### Charming ###
+		if mutation == 1:
+			if rarity == 0:
+				tooltip_text = "Charming: Gives +1 Affection"
+			if rarity == 1:
+				tooltip_text = "Charming: Gives +3 Affection"
+			if rarity == 2:
+				tooltip_text = "Charming: Gives +6 Affection"
+		### Playful ###
+		elif mutation == 2:
+			if rarity == 0:
+				tooltip_text = "Playful: Gives +1 Mood"
+			if rarity == 1:
+				tooltip_text = "Playful: Gives +3 Mood"
+			if rarity == 2:
+				tooltip_text = "Playful: Gives +6 Mood"
+		### Rough ###
+		elif mutation == 3:
+			if rarity == 0:
+				tooltip_text = "Rough: Deals 2 Damage & 2 Self Damage"
+			if rarity == 1:
+				tooltip_text = "Rough: Deals 4 Damage & 1 Self Damage"
+			if rarity == 2:
+				tooltip_text = "Rough: Deals 6 Damage"
+		### Lovely ###
+		elif mutation == 4:
+			if rarity == 0:
+				tooltip_text = "Lovely: Gives +1 Health"
+			if rarity == 1:
+				tooltip_text = "Lovely: Gives +3 Health"
+			if rarity == 2:
+				tooltip_text = "Lovely: Gives +5 Health"
 		
 func _on_mouse_entered() -> void:
 	if game_manager && (game_manager.game_mode == 4 || game_manager.game_mode == 5):
