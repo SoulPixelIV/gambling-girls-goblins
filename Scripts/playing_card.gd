@@ -1,9 +1,12 @@
 extends Control
 
-@onready var dealer_manager = $"../Dealer"
-@onready var border_playing_card = preload("res://Prefabs/card_border.tscn")
+@onready var dealer_manager = $"../../Dealer"
 @onready var sprite = $AnimatedSprite2D
 @onready var mutation_label = $Label
+
+@onready var border_playing_card = preload("res://Prefabs/card_border.tscn")
+@onready var bonus_text = preload("res://Prefabs/bonus_text.tscn")
+
 var mat
 var card_border = null
 
@@ -69,16 +72,81 @@ func _ready() -> void:
 		
 	#Pay out Reward depending on Mutation & Rarity
 	if is_player_card:
+		### Charming ###
 		if mutation == 1:
-			dealer_manager.affection += 1
+			if rarity == 0:
+				dealer_manager.affection += 1
+			if rarity == 1:
+				dealer_manager.affection += 3
+			if rarity == 2:
+				dealer_manager.affection += 6
+			var bonus_text_popup = bonus_text.instantiate()
+			bonus_text_popup.mutation = mutation
+			bonus_text_popup.rarity = rarity
+			add_child(bonus_text_popup)
+			dealer_manager._update_dealer_stats()
+		### Playful ###
 		elif mutation == 2:
-			dealer_manager.mood += 1
+			if rarity == 0:
+				dealer_manager.mood += 1
+			if rarity == 1:
+				dealer_manager.mood += 3
+			if rarity == 2:
+				dealer_manager.mood += 6
+			var bonus_text_popup = bonus_text.instantiate()
+			bonus_text_popup.mutation = mutation
+			bonus_text_popup.rarity = rarity
+			add_child(bonus_text_popup)
+			
+			dealer_manager._update_dealer_stats()
+		### Rough ###
 		elif mutation == 3:
-			pass
-			#DAMAGE TO ENEMY AND PLAYER
+			if rarity == 0:
+				game_manager.health -= 2
+				if game_manager.enemy:
+					game_manager.enemy.health -= 2
+			if rarity == 1:
+				game_manager.health -= 1
+				if game_manager.enemy:
+					game_manager.enemy.health -= 4
+			if rarity == 2:
+				if game_manager.enemy:
+					game_manager.enemy.health -= 6
+				
+			var bonus_text_popup = bonus_text.instantiate()
+			bonus_text_popup.mutation = mutation
+			bonus_text_popup.rarity = rarity
+			add_child(bonus_text_popup)
+			
+			game_manager.player_healthbar.value = game_manager.health
+			game_manager.player_health.text = str(game_manager.health)
+			game_manager.enemy_healthbar.value = game_manager.enemy.health
+			game_manager.enemy_health.text = str(game_manager.enemy.health)
+		### Lovely ###
 		elif mutation == 4:
-			pass
-			#HEAL TO PLAYER
+			if rarity == 0:
+				if game_manager.health < game_manager.max_health:
+					game_manager.health += 1
+				else:
+					game_manager.health = game_manager.max_health
+			if rarity == 1:
+				if game_manager.health < game_manager.max_health - 2:
+					game_manager.health += 3
+				else:
+					game_manager.health = game_manager.max_health
+			if rarity == 2:
+				if game_manager.health < game_manager.max_health - 4:
+					game_manager.health += 5
+				else:
+					game_manager.health = game_manager.max_health
+				
+			var bonus_text_popup = bonus_text.instantiate()
+			bonus_text_popup.mutation = mutation
+			bonus_text_popup.rarity = rarity
+			add_child(bonus_text_popup)
+			
+			game_manager.player_healthbar.value = game_manager.health
+			game_manager.player_health.text = str(game_manager.health)
 	
 func _process(delta: float) -> void:
 	#Rarity Effects
