@@ -117,21 +117,20 @@ texture = ExtResource("7_1l0tm")
 
 [node name="Affection_Label" type="Label" parent="User_Interface/Dealer_Interface" unique_id=1187970413]
 layout_mode = 0
-offset_left = 68.0
+offset_left = 51.0
 offset_top = 252.0
 offset_right = 87.0
 offset_bottom = 275.0
 text = "50"
-horizontal_alignment = 1
+horizontal_alignment = 2
 
 [node name="Mood_Label" type="Label" parent="User_Interface/Dealer_Interface" unique_id=1177850968]
 layout_mode = 0
-offset_left = 19.0
+offset_left = 20.0
 offset_top = 252.0
-offset_right = 38.0
+offset_right = 58.0
 offset_bottom = 275.0
 text = "50"
-horizontal_alignment = 1
 
 [node name="Status_Screen" type="Control" parent="User_Interface" unique_id=842203704]
 anchors_preset = 0
