@@ -756,6 +756,7 @@ text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
 nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
 sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
 "
+autowrap_mode = 3
 clip_text = true
 
 [node name="Dialog_Label2" type="Label" parent="User_Interface" unique_id=1332007644]

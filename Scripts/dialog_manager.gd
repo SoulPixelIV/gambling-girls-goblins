@@ -217,6 +217,28 @@ func _check_dialog_mode() -> void:
 		dialog_user.text = ""
 		
 		await type_text(_random_card_select_line())
+		
+	#GAMBLE ROOM
+	if dialog_mode == 8:
+		answer1_parent.hide()
+		answer2_parent.hide()
+		answer3_parent.hide()
+		answer4_parent.hide()
+		hit_button.hide()
+		stand_button.hide()
+		double_button.hide()
+		safe_button.hide()
+		tripple_button1.show()
+		tripple_button2.show()
+		tripple_button3.show()
+		
+		tripple_button1.text = "Higher"
+		tripple_button2.text = "Lower"
+		tripple_button3.text = "Equal"
+		
+		dialog_user.text = ""
+		
+		await type_text(_random_fthedealer_line())
 
 #################### DEALER DIALOG ########################
 func _random_intro_line() -> String:
@@ -271,6 +293,12 @@ func _random_card_select_line() -> String:
 		"Oh.",
 		"Wow, what a selection.",
 		"heh."
+	]
+	return lines[randi() % lines.size()]
+	
+func _random_fthedealer_line() -> String:
+	var lines = [
+		"Alright sweetie, let's make this interesting.. Do you think the next card is higher, lower or...equal to this card?"
 	]
 	return lines[randi() % lines.size()]
 	

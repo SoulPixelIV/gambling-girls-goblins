@@ -463,6 +463,33 @@ func spawn_card_inventory():
 
 		inventory.add_child(card)
 			
+func spawn_fthedealer_card():
+	var rand_card_index = randi_range(0, deck.size() - 1) #Select Random Card from Deck
+	
+	var card = playing_card.instantiate()
+	
+	#Give Created Card Value
+	var card_data = deck[rand_card_index]
+
+	card.value = card_data.value
+	card.rarity = card_data.rarity
+	card.mutation = card_data.mutation
+	
+	card.game_manager = self
+	
+	booster.add_child(card)
+	card.is_fthedealer_card = true
+
+	var roll = randf()
+	if roll < 0.02:
+		card.rarity = 2
+	elif roll < 0.20:
+		card.rarity = 1
+	else:
+		card.rarity = 0
+	card.mutation = randi_range(1, 4)
+	card.position = Vector2(265, 120)
+			
 func _on_card_played(value, card_id):
 	if card_id.begins_with("A") or (card_id.begins_with("Q") and affection_level >= 3):
 		button_mode = 1
@@ -867,8 +894,7 @@ func _on_tripple_button_3_pressed() -> void:
 		return
 		
 	if game_mode == 2:
-		pass
-		#SWITCH TO GAMBLE
+		_switch_game_mode(7)
 	else:
 		if button_mode == 2:
 			choose_seven_value(8)
@@ -1108,6 +1134,30 @@ func _switch_game_mode(mode) -> void:
 		card_select_label.text = ""
 		
 		game_mode = 6
+		
+	###GAMBLE ROOM###
+	if mode == 7:
+		dialog_manager.ui_abort = false
+		player_healthbar.hide()
+		player_health.hide()
+		
+		dialog_manager.dialog_mode = 8
+		dialog_manager._check_dialog_mode() #Update Dialog Mode
+		
+		#Hide Overworld
+		overworld_manager.process_mode = Node.PROCESS_MODE_DISABLED
+		overworld_manager.hide()
+		overworld_interface.hide()
+		
+		#Remove Placeholder Texts
+		combat_messages_text.text = ""
+		combat_messages2_text.text = ""
+		final_player_score_text.text = ""
+		final_enemy_score_text.text = ""
+		
+		spawn_fthedealer_card()
+		
+		game_mode = 7
 
 ###### ALWAYS CALL AFTER DECK IS BEING CHANGED ######
 func _reset_combat_deck():
