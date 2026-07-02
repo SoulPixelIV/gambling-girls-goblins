@@ -471,6 +471,7 @@ func spawn_fthedealer_card():
 	#Give Created Card Value
 	var card_data = deck[rand_card_index]
 
+	Global.fthedealer_card = card_data.value
 	card.value = card_data.value
 	card.rarity = card_data.rarity
 	card.mutation = card_data.mutation
@@ -480,16 +481,59 @@ func spawn_fthedealer_card():
 	booster.add_child(card)
 	card.is_fthedealer_card = true
 
-	var roll = randf()
-	if roll < 0.02:
-		card.rarity = 2
-	elif roll < 0.20:
-		card.rarity = 1
-	else:
-		card.rarity = 0
-	card.mutation = randi_range(1, 4)
 	card.position = Vector2(265, 120)
-			
+
+func spawn_fthedealer_card2():
+	var rand_card_index = randi_range(0, deck.size() - 1) #Select Random Card from Deck
+	
+	var card = playing_card.instantiate()
+	
+	#Give Created Card Value
+	var card_data = deck[rand_card_index]
+
+	Global.fthedealer_card2 = card_data.value
+	card.value = card_data.value
+	card.rarity = card_data.rarity
+	card.mutation = card_data.mutation
+	
+	card.game_manager = self
+	
+	booster.add_child(card)
+	card.is_fthedealer_card = true
+
+	card.position = Vector2(435, 120)
+
+func get_card_value(card: String) -> int:
+	var rank = card.substr(0, card.length() - 1) # Entfernt H, D, C oder S
+
+	match rank:
+		"J":
+			return 11
+		"Q":
+			return 12
+		"K":
+			return 13
+		"A":
+			return 14
+		_:
+			return int(rank)
+
+func compare_fthedealer_card() -> bool:
+	var value1 = get_card_value(Global.fthedealer_card)
+	var value2 = get_card_value(Global.fthedealer_card2)
+	
+	#Player chose HIGHER
+	if Global.decision_hi_lo_eq == 0:
+		return value1 < value2
+	#Player chose LOWER
+	elif Global.decision_hi_lo_eq == 1:
+		return value1 > value2
+	#Player chose EQUAL
+	elif Global.decision_hi_lo_eq == 2:
+		return value1 == value2
+
+	return false
+
 func _on_card_played(value, card_id):
 	if card_id.begins_with("A") or (card_id.begins_with("Q") and affection_level >= 3):
 		button_mode = 1
@@ -871,8 +915,12 @@ func _on_tripple_button_1_pressed() -> void:
 		player_health.text = str(health)
 		
 		_switch_game_mode(3)
-	else:	
-		if button_mode == 2:
+	elif game_mode == 7:
+		#HIGHER AND SPAWN CARD
+		Global.decision_hi_lo_eq = 0
+		spawn_fthedealer_card2()
+		_switch_game_mode(8)
+	elif button_mode == 2:
 			choose_seven_value(6)
 
 func _on_tripple_button_2_pressed() -> void:
@@ -885,9 +933,13 @@ func _on_tripple_button_2_pressed() -> void:
 		return_to_overworld()
 	elif game_mode == 6:
 		return_to_overworld()
-	else:
-		if button_mode == 2:
-			choose_seven_value(7)
+	elif game_mode == 7:
+		#LOWER AND SPAWN CARD
+		Global.decision_hi_lo_eq = 1
+		spawn_fthedealer_card2()
+		_switch_game_mode(8)
+	elif button_mode == 2:
+		choose_seven_value(7)
 
 func _on_tripple_button_3_pressed() -> void:
 	if hit_input_locked:
@@ -895,9 +947,13 @@ func _on_tripple_button_3_pressed() -> void:
 		
 	if game_mode == 2:
 		_switch_game_mode(7)
-	else:
-		if button_mode == 2:
-			choose_seven_value(8)
+	elif game_mode == 7:
+		#HIGHER AND SPAWN CARD
+		Global.decision_hi_lo_eq = 2
+		spawn_fthedealer_card2()
+		_switch_game_mode(8)
+	elif button_mode == 2:
+		choose_seven_value(8)
 
 func _on_double_button_pressed() -> void:
 	if hit_input_locked:
@@ -1158,6 +1214,30 @@ func _switch_game_mode(mode) -> void:
 		spawn_fthedealer_card()
 		
 		game_mode = 7
+		
+	###GAMBLE ROOM SECOND CARD###
+	if mode == 8:
+		dialog_manager.ui_abort = false
+		player_healthbar.hide()
+		player_health.hide()
+		
+		dialog_manager.dialog_mode = 9
+		dialog_manager._check_dialog_mode() #Update Dialog Mode
+		
+		#Hide Overworld
+		overworld_manager.process_mode = Node.PROCESS_MODE_DISABLED
+		overworld_manager.hide()
+		overworld_interface.hide()
+		
+		#Remove Placeholder Texts
+		combat_messages_text.text = ""
+		combat_messages2_text.text = ""
+		final_player_score_text.text = ""
+		final_enemy_score_text.text = ""
+		
+		spawn_fthedealer_card2()
+		
+		game_mode = 8
 
 ###### ALWAYS CALL AFTER DECK IS BEING CHANGED ######
 func _reset_combat_deck():

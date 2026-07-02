@@ -235,10 +235,41 @@ func _check_dialog_mode() -> void:
 		tripple_button1.text = "Higher"
 		tripple_button2.text = "Lower"
 		tripple_button3.text = "Equal"
+		tripple_button1.tooltip_text = ""
+		tripple_button2.tooltip_text = ""
+		tripple_button3.tooltip_text = ""
 		
 		dialog_user.text = ""
 		
 		await type_text(_random_fthedealer_line())
+		
+	#GAMBLE ROOM SECOND CARD
+	if dialog_mode == 9:
+		answer1_parent.hide()
+		answer2_parent.hide()
+		answer3_parent.hide()
+		answer4_parent.hide()
+		hit_button.hide()
+		stand_button.hide()
+		double_button.hide()
+		safe_button.hide()
+		tripple_button1.show()
+		tripple_button2.show()
+		tripple_button3.show()
+		
+		tripple_button1.text = ""
+		tripple_button2.text = "Back to Overworld"
+		tripple_button3.text = ""
+		tripple_button1.tooltip_text = ""
+		tripple_button2.tooltip_text = ""
+		tripple_button3.tooltip_text = ""
+		
+		dialog_user.text = ""
+		
+		if game_manager.compare_fthedealer_card():
+			await type_text(_random_fthedealer_line_positive())
+		else:
+			await type_text(_random_fthedealer_line_negative())
 
 #################### DEALER DIALOG ########################
 func _random_intro_line() -> String:
@@ -299,6 +330,18 @@ func _random_card_select_line() -> String:
 func _random_fthedealer_line() -> String:
 	var lines = [
 		"Alright sweetie, let's make this interesting.. Do you think the next card is higher, lower or...equal to this card?"
+	]
+	return lines[randi() % lines.size()]
+	
+func _random_fthedealer_line_positive() -> String:
+	var lines = [
+		"Good job!"
+	]
+	return lines[randi() % lines.size()]
+	
+func _random_fthedealer_line_negative() -> String:
+	var lines = [
+		"I'm very sorry honey.."
 	]
 	return lines[randi() % lines.size()]
 	
