@@ -484,24 +484,32 @@ func spawn_fthedealer_card():
 	card.position = Vector2(265, 120)
 
 func spawn_fthedealer_card2():
-	var rand_card_index = randi_range(0, deck.size() - 1) #Select Random Card from Deck
-	
+	var card_data
+
+	while true:
+		var rand_card_index = randi_range(0, deck.size() - 1)
+		card_data = deck[rand_card_index]
+
+		if card_data.value != Global.fthedealer_card:
+			break
+
 	var card = playing_card.instantiate()
-	
-	#Give Created Card Value
-	var card_data = deck[rand_card_index]
 
 	Global.fthedealer_card2 = card_data.value
 	card.value = card_data.value
 	card.rarity = card_data.rarity
 	card.mutation = card_data.mutation
-	
+
 	card.game_manager = self
-	
+
 	booster.add_child(card)
 	card.is_fthedealer_card = true
-
 	card.position = Vector2(435, 120)
+
+func remove_fthedealer_cards():
+	for child in booster.get_children():
+		if child.is_fthedealer_card:
+			child.queue_free()
 
 func get_card_value(card: String) -> int:
 	var rank = card.substr(0, card.length() - 1) # Entfernt H, D, C oder S
@@ -918,7 +926,6 @@ func _on_tripple_button_1_pressed() -> void:
 	elif game_mode == 7:
 		#HIGHER AND SPAWN CARD
 		Global.decision_hi_lo_eq = 0
-		spawn_fthedealer_card2()
 		_switch_game_mode(8)
 	elif button_mode == 2:
 			choose_seven_value(6)
@@ -936,8 +943,23 @@ func _on_tripple_button_2_pressed() -> void:
 	elif game_mode == 7:
 		#LOWER AND SPAWN CARD
 		Global.decision_hi_lo_eq = 1
-		spawn_fthedealer_card2()
 		_switch_game_mode(8)
+	elif game_mode == 8:
+		#RECEIVE HEALING AND RANDOM CARD
+		if compare_fthedealer_card():
+			if health <= max_health - 20:
+				health += 20
+			else:
+				health = max_health
+			
+			player_healthbar.value = health
+			player_health.text = str(health)
+			
+			remove_fthedealer_cards()
+			_switch_game_mode(4)
+		else:
+			remove_fthedealer_cards()
+			_switch_game_mode(1)
 	elif button_mode == 2:
 		choose_seven_value(7)
 
@@ -950,7 +972,6 @@ func _on_tripple_button_3_pressed() -> void:
 	elif game_mode == 7:
 		#HIGHER AND SPAWN CARD
 		Global.decision_hi_lo_eq = 2
-		spawn_fthedealer_card2()
 		_switch_game_mode(8)
 	elif button_mode == 2:
 		choose_seven_value(8)

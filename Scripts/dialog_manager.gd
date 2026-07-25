@@ -245,30 +245,53 @@ func _check_dialog_mode() -> void:
 		
 	#GAMBLE ROOM SECOND CARD
 	if dialog_mode == 9:
-		answer1_parent.hide()
-		answer2_parent.hide()
-		answer3_parent.hide()
-		answer4_parent.hide()
-		hit_button.hide()
-		stand_button.hide()
-		double_button.hide()
-		safe_button.hide()
-		tripple_button1.show()
-		tripple_button2.show()
-		tripple_button3.show()
-		
-		tripple_button1.text = ""
-		tripple_button2.text = "Back to Overworld"
-		tripple_button3.text = ""
-		tripple_button1.tooltip_text = ""
-		tripple_button2.tooltip_text = ""
-		tripple_button3.tooltip_text = ""
-		
-		dialog_user.text = ""
-		
+		#Positive Outcome on TRUE
 		if game_manager.compare_fthedealer_card():
+			answer1_parent.hide()
+			answer2_parent.hide()
+			answer3_parent.hide()
+			answer4_parent.hide()
+			hit_button.hide()
+			stand_button.hide()
+			double_button.hide()
+			safe_button.hide()
+			tripple_button1.hide()
+			tripple_button2.show()
+			tripple_button3.hide()
+			
+			tripple_button1.text = ""
+			tripple_button2.text = "Receive both Rewards"
+			tripple_button3.text = ""
+			tripple_button1.tooltip_text = ""
+			tripple_button2.tooltip_text = ""
+			tripple_button3.tooltip_text = ""
+			
+			dialog_user.text = ""
+			
 			await type_text(_random_fthedealer_line_positive())
+		#Negative Outcome on FALSE
 		else:
+			answer1_parent.hide()
+			answer2_parent.hide()
+			answer3_parent.hide()
+			answer4_parent.hide()
+			hit_button.hide()
+			stand_button.hide()
+			double_button.hide()
+			safe_button.hide()
+			tripple_button1.hide()
+			tripple_button2.show()
+			tripple_button3.hide()
+			
+			tripple_button1.text = ""
+			tripple_button2.text = "Back to Overworld"
+			tripple_button3.text = ""
+			tripple_button1.tooltip_text = ""
+			tripple_button2.tooltip_text = ""
+			tripple_button3.tooltip_text = ""
+			
+			dialog_user.text = ""
+			
 			await type_text(_random_fthedealer_line_negative())
 
 #################### DEALER DIALOG ########################
