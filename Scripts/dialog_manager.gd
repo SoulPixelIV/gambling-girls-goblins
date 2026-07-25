@@ -317,7 +317,7 @@ func _check_dialog_mode() -> void:
 		
 		dialog_user.text = ""
 		
-		await type_text(_random_fthedealer_line())
+		await type_text(_random_danger_line())
 
 #################### DEALER DIALOG ########################
 func _random_intro_line() -> String:
@@ -390,6 +390,12 @@ func _random_fthedealer_line_positive() -> String:
 func _random_fthedealer_line_negative() -> String:
 	var lines = [
 		"I'm very sorry honey.."
+	]
+	return lines[randi() % lines.size()]
+	
+func _random_danger_line() -> String:
+	var lines = [
+		"You received damage on your adventure."
 	]
 	return lines[randi() % lines.size()]
 	

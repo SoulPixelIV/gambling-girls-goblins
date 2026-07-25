@@ -148,7 +148,7 @@ func _on_node_clicked(target_node):
 		game_manager._switch_game_mode(2)
 		target_node.event_finished = true
 	if target_node.is_danger and !target_node.event_finished:
-		game_manager._switch_game_mode(2)
+		game_manager._switch_game_mode(9)
 		target_node.event_finished = true
 	
 	is_moving = false

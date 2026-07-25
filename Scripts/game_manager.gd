@@ -957,9 +957,16 @@ func _on_tripple_button_2_pressed() -> void:
 			
 			remove_fthedealer_cards()
 			_switch_game_mode(4)
+			
+			combat_messages_text.text = "You recovered 20 HP!"
+			combat_messages_text.z_index = 100
+			await get_tree().create_timer(2).timeout
+			combat_messages_text.text = ""
 		else:
 			remove_fthedealer_cards()
 			_switch_game_mode(1)
+	elif game_mode == 9:
+		return_to_overworld()
 	elif button_mode == 2:
 		choose_seven_value(7)
 
@@ -1141,8 +1148,8 @@ func _switch_game_mode(mode) -> void:
 	###CARD SELECTION###
 	if mode == 4:
 		dialog_manager.ui_abort = false
-		player_healthbar.hide()
-		player_health.hide()
+		player_healthbar.show()
+		player_health.show()
 		
 		dialog_manager.dialog_mode = 6
 		dialog_manager._check_dialog_mode() #Update Dialog Mode
@@ -1279,6 +1286,20 @@ func _switch_game_mode(mode) -> void:
 		combat_messages2_text.text = ""
 		final_player_score_text.text = ""
 		final_enemy_score_text.text = ""
+		
+		#Random Damage
+		var damage = randi_range(0, 8)
+
+		health -= damage
+		health = max(health, 0)
+
+		player_healthbar.value = health
+		player_health.text = str(health)
+
+		combat_messages_text.text = "You received %d damage!" % damage
+
+		if health <= 0:
+			get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 		
 		game_mode = 9
 
