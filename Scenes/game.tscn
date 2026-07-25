@@ -354,7 +354,6 @@ offset_bottom = 357.0
 text = "Option3"
 
 [node name="Answer1_Button_Parent" type="Control" parent="User_Interface" unique_id=1209680033]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -399,7 +398,6 @@ text = "-5"
 horizontal_alignment = 1
 
 [node name="Answer2_Button_Parent" type="Control" parent="User_Interface" unique_id=1974827400]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -444,7 +442,6 @@ text = "-11"
 horizontal_alignment = 1
 
 [node name="Answer3_Button_Parent" type="Control" parent="User_Interface" unique_id=933247654]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -489,7 +486,6 @@ position = Vector2(547, 319)
 texture = ExtResource("11_o5yvi")
 
 [node name="Answer4_Button_Parent" type="Control" parent="User_Interface" unique_id=55893658]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -564,6 +560,7 @@ position = Vector2(583, 342)
 texture = ExtResource("7_1l0tm")
 
 [node name="Hit_Button" type="Button" parent="User_Interface" unique_id=1568430695]
+visible = false
 layout_mode = 0
 offset_left = 465.0
 offset_top = 261.0
@@ -573,6 +570,7 @@ theme_override_colors/font_color = Color(0.55194056, 1, 0.48858428, 1)
 text = "Hit"
 
 [node name="Stand_Button" type="Button" parent="User_Interface" unique_id=1244192539]
+visible = false
 layout_mode = 0
 offset_left = 465.0
 offset_top = 310.0
@@ -582,6 +580,7 @@ theme_override_colors/font_color = Color(0.9961687, 0.87814367, 0, 1)
 text = "Stand"
 
 [node name="Double_Button" type="Button" parent="User_Interface" unique_id=1007064650]
+visible = false
 layout_mode = 0
 offset_left = 399.0
 offset_top = 261.0
@@ -591,6 +590,7 @@ theme_override_colors/font_color = Color(0.99607843, 0.16862746, 0, 1)
 text = "Double"
 
 [node name="Safe_Button" type="Button" parent="User_Interface" unique_id=437776728]
+visible = false
 layout_mode = 0
 offset_left = 399.0
 offset_top = 310.0
