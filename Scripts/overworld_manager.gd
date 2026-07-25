@@ -3,6 +3,7 @@ extends Node2D
 @onready var event_node = preload("res://Prefabs/event_node.tscn")
 @onready var combat_node = preload("res://Prefabs/combat_node.tscn")
 @onready var heal_node = preload("res://Prefabs/heal_node.tscn")
+@onready var danger_node = preload("res://Prefabs/danger_node.tscn")
 @onready var start_node = preload("res://Prefabs/start_node.tscn")
 @onready var finish_node = preload("res://Prefabs/finish_node.tscn")
 @onready var player_node = preload("res://Prefabs/player_node.tscn")
@@ -59,8 +60,11 @@ func _generate_dungeon():
 			node = finish_node.instantiate()
 		else:
 			#Chance to Spawn Combat Node
-			if randf() < 0.5:
+			if randf() < 0.4:
 				node = combat_node.instantiate()
+			#Chance to Spawn Danger Node
+			elif randf() < 0.2:
+				node = danger_node.instantiate()
 			else:
 				if randf() < 0.5:
 					node = heal_node.instantiate()
@@ -141,6 +145,9 @@ func _on_node_clicked(target_node):
 		game_manager._switch_game_mode(0)
 		target_node.event_finished = true
 	if target_node.is_heal and !target_node.event_finished:
+		game_manager._switch_game_mode(2)
+		target_node.event_finished = true
+	if target_node.is_danger and !target_node.event_finished:
 		game_manager._switch_game_mode(2)
 		target_node.event_finished = true
 	

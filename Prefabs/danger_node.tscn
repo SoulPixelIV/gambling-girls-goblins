@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bpdkiwf0pphkt"]
+
+[ext_resource type="Script" uid="uid://b3rxnmbn5ejdg" path="res://Scripts/event_node.gd" id="1_bxtc7"]
+[ext_resource type="Texture2D" uid="uid://dbamumq5u00lk" path="res://Textures/Nodes/danger_node.png" id="2_bxtc7"]
+
+[node name="Danger_Node" type="Control" unique_id=537063947]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_bxtc7")
+is_danger = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=635821105]
+layout_mode = 0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("2_bxtc7")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
