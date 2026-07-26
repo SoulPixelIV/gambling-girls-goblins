@@ -12,6 +12,7 @@ extends Node
 @onready var answer2_button = $"../User_Interface/Answer2_Button_Parent/Answer2_Button"
 @onready var answer3_button = $"../User_Interface/Answer3_Button_Parent/Answer3_Button"
 @onready var answer4_button = $"../User_Interface/Answer4_Button_Parent/Answer4_Button"
+@onready var answer_label = $"../User_Interface/Answer_Label"
 @onready var hit_button = $"../User_Interface/Hit_Button"
 @onready var stand_button = $"../User_Interface/Stand_Button"
 @onready var double_button = $"../User_Interface/Double_Button"
@@ -36,10 +37,11 @@ func _check_dialog_mode() -> void:
 		return
 	
 	if dialog_mode == 0:
-		answer1_parent.show()
+		answer1_parent.hide()
 		answer2_parent.show()
 		answer3_parent.show()
 		answer4_parent.show()
+		answer_label.show()
 		hit_button.hide()
 		stand_button.hide()
 		double_button.hide()
@@ -73,6 +75,7 @@ func _check_dialog_mode() -> void:
 		answer2_parent.hide()
 		answer3_parent.hide()
 		answer4_parent.hide()
+		answer_label.hide()
 		tripple_button1.hide()
 		tripple_button2.hide()
 		tripple_button3.hide()
@@ -93,6 +96,7 @@ func _check_dialog_mode() -> void:
 		answer2_parent.hide()
 		answer3_parent.hide()
 		answer4_parent.hide()
+		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
 		double_button.hide()
@@ -109,6 +113,7 @@ func _check_dialog_mode() -> void:
 		answer2_parent.hide()
 		answer3_parent.hide()
 		answer4_parent.hide()
+		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
 		double_button.hide()
@@ -124,6 +129,7 @@ func _check_dialog_mode() -> void:
 		answer2_parent.hide()
 		answer3_parent.hide()
 		answer4_parent.hide()
+		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
 		double_button.hide()
@@ -154,6 +160,7 @@ func _check_dialog_mode() -> void:
 		answer2_parent.hide()
 		answer3_parent.hide()
 		answer4_parent.hide()
+		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
 		double_button.hide()
@@ -180,6 +187,7 @@ func _check_dialog_mode() -> void:
 		answer2_parent.hide()
 		answer3_parent.hide()
 		answer4_parent.hide()
+		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
 		double_button.hide()
@@ -202,6 +210,7 @@ func _check_dialog_mode() -> void:
 		answer2_parent.hide()
 		answer3_parent.hide()
 		answer4_parent.hide()
+		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
 		double_button.hide()
@@ -224,6 +233,7 @@ func _check_dialog_mode() -> void:
 		answer2_parent.hide()
 		answer3_parent.hide()
 		answer4_parent.hide()
+		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
 		double_button.hide()
@@ -251,6 +261,7 @@ func _check_dialog_mode() -> void:
 			answer2_parent.hide()
 			answer3_parent.hide()
 			answer4_parent.hide()
+			answer_label.hide()
 			hit_button.hide()
 			stand_button.hide()
 			double_button.hide()
@@ -275,6 +286,7 @@ func _check_dialog_mode() -> void:
 			answer2_parent.hide()
 			answer3_parent.hide()
 			answer4_parent.hide()
+			answer_label.hide()
 			hit_button.hide()
 			stand_button.hide()
 			double_button.hide()
@@ -300,6 +312,7 @@ func _check_dialog_mode() -> void:
 		answer2_parent.hide()
 		answer3_parent.hide()
 		answer4_parent.hide()
+		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
 		double_button.hide()
@@ -431,15 +444,17 @@ func _random_doubledown_user_line() -> String:
 	return lines[randi() % lines.size()]
 
 func _on_answer_1_button_pressed() -> void:
-	dialog_mode = 1
-	game_manager.pot_mood = 5
-	game_manager.pot_affection = -1
-	_check_dialog_mode()
-	await type_text_user(_random_neutral_user_line())
+	#UNUSED#
+	#dialog_mode = 1
+	#game_manager.pot_mood = 5
+	#game_manager.pot_affection = -1
+	#_check_dialog_mode()
+	#await type_text_user(_random_neutral_user_line())
+	pass
 
 func _on_answer_2_button_pressed() -> void:
 	dialog_mode = 1
-	game_manager.pot_mood = 11
+	game_manager.pot_mood = 5
 	game_manager.pot_affection = -1
 	_check_dialog_mode()
 	await type_text_user(_random_confident_user_line())
@@ -447,14 +462,14 @@ func _on_answer_2_button_pressed() -> void:
 func _on_answer_3_button_pressed() -> void:
 	dialog_mode = 1
 	game_manager.pot_mood = -1
-	game_manager.pot_affection = 6
+	game_manager.pot_affection = 5
 	_check_dialog_mode()
 	await type_text_user(_random_flirty_user_line())
 
 func _on_answer_4_button_pressed() -> void:
 	dialog_mode = 1
-	game_manager.pot_mood = 4
-	game_manager.pot_affection = 9
+	game_manager.pot_mood = 7
+	game_manager.pot_affection = 7
 	_check_dialog_mode()
 	await type_text_user(_random_cocky_user_line())
 
