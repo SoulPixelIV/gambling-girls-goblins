@@ -9,6 +9,7 @@ signal node_clicked(node)
 @export var is_heal = false
 @export var is_danger = false
 @export var is_exit = false
+@export var is_talk = false
 @export var event_finished = false
 
 var connected_nodes = []

@@ -7,6 +7,7 @@ extends Node2D
 @onready var start_node = preload("res://Prefabs/start_node.tscn")
 @onready var finish_node = preload("res://Prefabs/finish_node.tscn")
 @onready var player_node = preload("res://Prefabs/player_node.tscn")
+@onready var talk_node = preload("res://Prefabs/talk_node.tscn")
 @onready var line_container: Node = $"../Overworld_Interface/Line_Container"
 @onready var game_manager = get_parent().get_node("Game_Manager")
 
@@ -65,6 +66,9 @@ func _generate_dungeon():
 			#Chance to Spawn Danger Node
 			elif randf() < 0.2:
 				node = danger_node.instantiate()
+			#Chance to Spawn Talk Node
+			elif randf() < 0.3:
+				node = talk_node.instantiate()
 			else:
 				if randf() < 0.5:
 					node = heal_node.instantiate()
