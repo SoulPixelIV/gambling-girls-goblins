@@ -1302,6 +1302,28 @@ func _switch_game_mode(mode) -> void:
 			get_tree().change_scene_to_file("res://Scenes/game_over.tscn")
 		
 		game_mode = 9
+		
+	###TALK ROOM###
+	if mode == 10:
+		dialog_manager.ui_abort = false
+		player_healthbar.show()
+		player_health.show()
+		
+		dialog_manager.dialog_mode = 11
+		dialog_manager._check_dialog_mode() #Update Dialog Mode
+		
+		#Hide Overworld
+		overworld_manager.process_mode = Node.PROCESS_MODE_DISABLED
+		overworld_manager.hide()
+		overworld_interface.hide()
+		
+		#Remove Placeholder Texts
+		combat_messages_text.text = ""
+		combat_messages2_text.text = ""
+		final_player_score_text.text = ""
+		final_enemy_score_text.text = ""
+		
+		game_mode = 10
 
 ###### ALWAYS CALL AFTER DECK IS BEING CHANGED ######
 func _reset_combat_deck():
