@@ -1,5 +1,10 @@
 extends Node
 
+var player_boring_stat = 0
+var player_funny_stat = 0
+var player_unlucky_stat = 0
+var player_lucky_stat = 0
+
 var holding_card_value = 0
 var holding_card_rarity = 0
 var holding_card_mutation = 0

@@ -31,6 +31,8 @@ extends Node
 @onready var slime_enemy = preload("res://Prefabs/slime.tscn")
 @onready var drunkard_enemy = preload("res://Prefabs/drunkard.tscn")
 
+@onready var temp_text: Label = $"../User_Interface/Status_Screen/temp_label"
+
 var enemy = null
 var rand_enemy = null
 var hit_input_locked = false #Block Hit Button if True
@@ -155,6 +157,7 @@ func _ready() -> void:
 	card_select_label.text = ""
 	
 func _process(delta: float) -> void:
+	temp_text.text = str(Global.player_boring_stat)
 	if hit_input_locked:
 		return
 		
@@ -310,6 +313,15 @@ func _on_stand_button_pressed() -> void:
 	else:
 		if button_mode == 0:
 			if card_index > 0:
+				
+				#Add Boring Stat
+				if player_score <= 9:
+					Global.player_boring_stat += 5
+				elif player_score <= 12:
+					Global.player_boring_stat += 3
+				elif player_score <= 16:
+					Global.player_boring_stat += 1
+				
 				player_out = true
 		elif button_mode == 1:
 			choose_ace_value(11)
@@ -922,6 +934,9 @@ func _on_tripple_button_1_pressed() -> void:
 		player_healthbar.value = health
 		player_health.text = str(health)
 		
+		#Add Boring Stat
+		Global.player_boring_stat += 3
+		
 		_switch_game_mode(3)
 	elif game_mode == 7:
 		#HIGHER AND SPAWN CARD
@@ -1028,6 +1043,9 @@ func _on_safe_button_pressed() -> void:
 			combat_messages_text.text = "Safe! Bet halfed."
 			await get_tree().create_timer(2).timeout
 			combat_messages_text.text = ""
+			
+			#Add Boring Stat
+			Global.player_boring_stat += 5
 
 func _init_ui():
 	_switch_game_mode(1)
