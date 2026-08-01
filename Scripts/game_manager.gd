@@ -157,7 +157,7 @@ func _ready() -> void:
 	card_select_label.text = ""
 	
 func _process(delta: float) -> void:
-	temp_text.text = str(Global.player_boring_stat)
+	temp_text.text = str(Global.player_funny_stat)
 	if hit_input_locked:
 		return
 		
@@ -313,7 +313,6 @@ func _on_stand_button_pressed() -> void:
 	else:
 		if button_mode == 0:
 			if card_index > 0:
-				
 				#Add Boring Stat
 				if player_score <= 9:
 					Global.player_boring_stat += 5
@@ -560,6 +559,8 @@ func _on_card_played(value, card_id):
 	elif value == 7 and affection_level >= 2:
 		button_mode = 2
 	else:
+		var previous_score = player_score
+		
 		player_score += value
 		player_score_text.text = str(player_score)
 
@@ -588,6 +589,16 @@ func _on_card_played(value, card_id):
 
 			await apply_player_burn_damage()
 			player_out = true
+			
+		#Add Funny Stat
+		if previous_score == 17:
+			Global.player_funny_stat += 1
+		elif previous_score == 18:
+			Global.player_funny_stat += 2
+		elif previous_score == 19:
+			Global.player_funny_stat += 3
+		elif previous_score == 20:
+			Global.player_funny_stat += 6
 		
 	#Change Button Texts
 	if button_mode == 0:
@@ -990,6 +1001,8 @@ func _on_tripple_button_3_pressed() -> void:
 		return
 		
 	if game_mode == 2:
+		#Add Funny Stat
+		Global.player_funny_stat += 3
 		_switch_game_mode(7)
 	elif game_mode == 7:
 		#HIGHER AND SPAWN CARD
@@ -1021,6 +1034,9 @@ func _on_double_button_pressed() -> void:
 			combat_messages_text.text = "Double Down! Bet doubled, you draw only one more card!"
 			await get_tree().create_timer(2).timeout
 			combat_messages_text.text = ""
+			
+			#Add Funny Stat
+			Global.player_funny_stat += 4
 
 func _on_safe_button_pressed() -> void:
 	if hit_input_locked:
