@@ -157,7 +157,7 @@ func _ready() -> void:
 	card_select_label.text = ""
 	
 func _process(delta: float) -> void:
-	temp_text.text = str(Global.player_funny_stat)
+	temp_text.text = str(Global.player_unlucky_stat)
 	if hit_input_locked:
 		return
 		
@@ -263,6 +263,12 @@ func resolve_combat():
 		await payout_bet("player")
 	#ENEMY WINS
 	if (enemy_score > player_score && enemy_score <= 21) || (player_score > 21 && enemy_score <= 21):
+		# Add Unlucky Stat
+		if player_score >= 19 && player_score <= 21:
+			Global.player_unlucky_stat += 4
+		if enemy_score == 21:
+			Global.player_unlucky_stat += 3
+		
 		await show_enemy_damage()
 		#Mood Level 0 Debuff: Enemy always Crits
 		if mood_level == 0 or enemy_score == 21:
@@ -989,6 +995,8 @@ func _on_tripple_button_2_pressed() -> void:
 			await get_tree().create_timer(2).timeout
 			combat_messages_text.text = ""
 		else:
+			#Add Unlucky Stat
+			Global.player_unlucky_stat += 3
 			remove_fthedealer_cards()
 			_switch_game_mode(1)
 	elif game_mode == 9:
@@ -1329,6 +1337,10 @@ func _switch_game_mode(mode) -> void:
 
 		player_healthbar.value = health
 		player_health.text = str(health)
+		
+		#Add Unlucky Stat
+		if damage > 5:
+			Global.player_unlucky_stat += 3
 
 		combat_messages_text.text = "You received %d damage!" % damage
 
