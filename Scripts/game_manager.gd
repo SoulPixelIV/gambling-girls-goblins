@@ -1355,7 +1355,7 @@ func _switch_game_mode(mode) -> void:
 			
 		#Add Lucky Stat
 		if damage <= 2:
-			Global.player_unlucky_stat += 2
+			Global.player_lucky_stat += 2
 
 		combat_messages_text.text = "You received %d damage!" % damage
 
