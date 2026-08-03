@@ -157,7 +157,7 @@ func _ready() -> void:
 	card_select_label.text = ""
 	
 func _process(delta: float) -> void:
-	temp_text.text = str(Global.player_unlucky_stat)
+	temp_text.text = str(Global.player_lucky_stat)
 	if hit_input_locked:
 		return
 		
@@ -253,6 +253,10 @@ func resolve_combat():
 	
 	#PLAYER WINS
 	if (player_score > enemy_score && player_score <= 21) || (enemy_score > 21 && player_score <= 21):
+		#Add Lucky Stat
+		if player_score <= 12:
+			Global.player_lucky_stat += 3
+		
 		await show_player_damage()
 		if player_score == 21:
 			await show_player_crit()
@@ -569,6 +573,10 @@ func _on_card_played(value, card_id):
 		
 		player_score += value
 		player_score_text.text = str(player_score)
+
+		#Add Lucky Stat
+		if player_score == 21:
+			Global.player_lucky_stat += 3
 
 		#Check if Player is over 21
 		if player_score > 21:
@@ -979,6 +987,9 @@ func _on_tripple_button_2_pressed() -> void:
 	elif game_mode == 8:
 		#RECEIVE HEALING AND RANDOM CARD
 		if compare_fthedealer_card():
+			#Add Lucky Stat
+			Global.player_lucky_stat += 3
+			
 			if health <= max_health - 20:
 				health += 20
 			else:
@@ -1341,6 +1352,10 @@ func _switch_game_mode(mode) -> void:
 		#Add Unlucky Stat
 		if damage > 5:
 			Global.player_unlucky_stat += 3
+			
+		#Add Lucky Stat
+		if damage <= 2:
+			Global.player_unlucky_stat += 2
 
 		combat_messages_text.text = "You received %d damage!" % damage
 
