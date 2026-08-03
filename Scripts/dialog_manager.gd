@@ -40,7 +40,7 @@ func _check_dialog_mode() -> void:
 		answer1_parent.hide()
 		answer2_parent.show()
 		answer3_parent.show()
-		answer4_parent.show()
+		answer4_parent.hide()
 		answer_label.show()
 		hit_button.hide()
 		stand_button.hide()

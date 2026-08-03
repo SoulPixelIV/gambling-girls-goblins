@@ -498,6 +498,7 @@ position = Vector2(547, 319)
 texture = ExtResource("11_o5yvi")
 
 [node name="Answer4_Button_Parent" type="Control" parent="User_Interface" unique_id=55893658]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
