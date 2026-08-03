@@ -264,7 +264,7 @@ func resolve_combat():
 	#ENEMY WINS
 	if (enemy_score > player_score && enemy_score <= 21) || (player_score > 21 && enemy_score <= 21):
 		# Add Unlucky Stat
-		if player_score >= 19 && player_score <= 21:
+		if player_score >= 18 && player_score <= 21:
 			Global.player_unlucky_stat += 4
 		if enemy_score == 21:
 			Global.player_unlucky_stat += 3
@@ -921,7 +921,7 @@ func spawn_new_enemy():
 	if rng.randf() < 0.33:
 		rand_enemy = crazy_goblin_enemy
 		enemy_name_tag.text = "Crazy Goblin"
-	elif rng.randf() < 0.66:
+	elif rng.randf() < 0.44:
 		rand_enemy = slime_enemy
 		enemy_name_tag.text = "Slime"
 	else:
