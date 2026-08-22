@@ -356,7 +356,24 @@ func _check_dialog_mode() -> void:
 		
 		dialog_user.text = ""
 		
-		await type_text(_random_danger_line())
+		var highest_stat = max(
+			Global.player_boring_stat,
+			Global.player_funny_stat,
+			Global.player_unlucky_stat,
+			Global.player_lucky_stat
+		)
+		
+		if highest_stat == Global.player_boring_stat:
+			await type_text(_boring_line())
+
+		elif highest_stat == Global.player_funny_stat:
+			await type_text(_funny_line())
+
+		elif highest_stat == Global.player_unlucky_stat:
+			await type_text(_unlucky_line())
+
+		elif highest_stat == Global.player_lucky_stat:
+			await type_text(_lucky_line())
 
 #################### DEALER DIALOG ########################
 func _random_intro_line() -> String:
@@ -435,6 +452,36 @@ func _random_fthedealer_line_negative() -> String:
 func _random_danger_line() -> String:
 	var lines = [
 		"You received damage on your adventure."
+	]
+	return lines[randi() % lines.size()]
+	
+func _boring_line() -> String:
+	var lines = [
+		"UUUGH YOU ARE SO BORING! I can't believe you are actually having fun in life..
+		We will do something interesting now!"
+	]
+	return lines[randi() % lines.size()]
+	
+func _funny_line() -> String:
+	var lines = [
+		"H-how are you even still alive?! I don't know if you're
+		just playing dumb or you're actually stupid..
+		You know what, you're really funny..
+		Let's see how you will deal with this!"
+	]
+	return lines[randi() % lines.size()]
+	
+func _unlucky_line() -> String:
+	var lines = [
+		"Honey..I am so sorry. Luck is not on your site tonight..
+		Let me atleast help you a bit..you poor thing."
+	]
+	return lines[randi() % lines.size()]
+	
+func _lucky_line() -> String:
+	var lines = [
+		"How are you so lucky?? Is this some kind of trick?
+		Here let's see how lucky you really are!"
 	]
 	return lines[randi() % lines.size()]
 	
