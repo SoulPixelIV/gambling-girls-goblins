@@ -62,6 +62,10 @@ var last_player_card = null
 var redraw_used = false
 var double_down_active = false
 var safe_used = false
+var ultra_card_mode = false
+var ultra_cards_remaining = 0
+var current_ultra_card = null
+var funny_talk_active = false
 var deck = [
 	{"value":"2H", "rarity":0, "mutation":0},
 	{"value":"2D", "rarity":0, "mutation":0},
@@ -338,6 +342,9 @@ func _on_stand_button_pressed() -> void:
 func choose_ace_value(value):
 	player_score += value
 	player_score_text.text = str(player_score)
+	
+	if player_score == 21:
+		Global.player_lucky_stat += 3
 
 	# Ass-Modus verlassen
 	button_mode = 0
@@ -355,6 +362,9 @@ func choose_ace_value(value):
 func choose_seven_value(value):
 	player_score += value
 	player_score_text.text = str(player_score)
+	
+	if player_score == 21:
+		Global.player_lucky_stat += 3
 
 	button_mode = 0
 	dialog_manager.dialog_mode = 1
@@ -437,15 +447,21 @@ func spawn_booster_cards():
 func spawn_card_inventory():
 	#Spawn Selected Card
 	var selec_card = playing_card.instantiate()
-	
-	selec_card.value = selected_card.value
-	selec_card.rarity = selected_card.rarity
-	selec_card.mutation = selected_card.mutation
-	
+
+	if ultra_card_mode:
+		#UNFINISHED!!!
+		selec_card.value = current_ultra_card.value
+		selec_card.rarity = current_ultra_card.rarity
+		selec_card.mutation = current_ultra_card.mutation
+	else:
+		selec_card.value = selected_card.value
+		selec_card.rarity = selected_card.rarity
+		selec_card.mutation = selected_card.mutation
+
 	selec_card.game_manager = self
 	selec_card.is_selected_card = true
 
-	selec_card.position = Vector2(570, 303) # rechts unten
+	selec_card.position = Vector2(570, 303)
 	selec_card.scale = Vector2(0.4, 0.4)
 
 	inventory.add_child(selec_card)
@@ -699,6 +715,10 @@ func show_enemy_damage():
 	else:
 		calc_enemy_damage = enemy_score - player_score 
 		
+	#FUNNY TALK ROOM EFFECT
+	if funny_talk_active:
+		calc_enemy_damage = int(calc_enemy_damage * 1.2)
+		
 	#Mood Level 3 Bonus: Player receives half Damage
 	if mood_level >= 3:
 		calc_enemy_damage = int(calc_enemy_damage / 2)
@@ -716,6 +736,10 @@ func show_player_damage():
 		calc_player_damage = player_score - enemy_score 
 	#Mood level 2 Bonus: 1.5x Damager
 	if mood_level >= 2:
+		calc_player_damage = int(calc_player_damage * 1.5)
+		
+	# FUNNY TALK ROOM EFFECT
+	if funny_talk_active and double_down_active:
 		calc_player_damage = int(calc_player_damage * 1.5)
 		
 	curr_enemy_damage += calc_player_damage
@@ -1383,6 +1407,43 @@ func _switch_game_mode(mode) -> void:
 		combat_messages2_text.text = ""
 		final_player_score_text.text = ""
 		final_enemy_score_text.text = ""
+		
+		var highest_stat = max(
+			Global.player_boring_stat,
+			Global.player_funny_stat,
+			Global.player_unlucky_stat,
+			Global.player_lucky_stat
+		)
+		
+		if highest_stat == Global.player_boring_stat:
+			max_health -= 5
+			if health > max_health:
+				health = max_health
+			player_healthbar.max_value = max_health
+			player_healthbar.value = health
+			player_health.text = str(health)
+			combat_messages_text.text = "You lose 5 Max HP but receive 5 Ultra Rare Cards"
+			
+			ultra_card_mode = true
+			ultra_cards_remaining = 5
+
+			_switch_game_mode(5)
+
+		elif highest_stat == Global.player_funny_stat:
+			funny_talk_active = true
+			combat_messages_text.text = "Enemies now deal 20% more damage but Player deals 50% more damage on Double Down"
+
+		elif highest_stat == Global.player_unlucky_stat:
+			health += 7
+			if health > max_health:
+				health = max_health
+			player_healthbar.value = health
+			player_health.text = str(health)
+			combat_messages_text.text = "You heal 7 HP"
+
+		elif highest_stat == Global.player_lucky_stat:
+			#TODO: GAMBLE FIRST THEN TRANSITION TO NODE
+			combat_messages_text.text = "Gamble to get access to either Event Node or Danger Node"
 		
 		game_mode = 10
 

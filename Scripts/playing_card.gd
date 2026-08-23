@@ -15,8 +15,8 @@ signal card_played(value)
 var game_manager = null
 var value = 0
 var score = 0
-var rarity = 0
-var mutation = 0
+var rarity = 0 #0,1,2
+var mutation = 0 #1,2,3,4
 var frame_index = 0
 var player_card = true
 var hovered = false
