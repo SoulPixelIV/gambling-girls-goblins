@@ -58,7 +58,7 @@ func _ready() -> void:
 			z_index = 998
 			
 	#Copy Global Variables
-	if is_selected_card:
+	if is_selected_card and !game_manager.ultra_card_mode:
 		value = Global.holding_card_value
 		rarity = Global.holding_card_rarity
 		mutation = Global.holding_card_mutation

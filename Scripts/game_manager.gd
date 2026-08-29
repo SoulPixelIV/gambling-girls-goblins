@@ -62,9 +62,10 @@ var last_player_card = null
 var redraw_used = false
 var double_down_active = false
 var safe_used = false
+
 var ultra_card_mode = false
-var ultra_cards_remaining = 0
-var current_ultra_card = null
+var ultra_cards_remaining = 5
+
 var funny_talk_active = false
 var deck = [
 	{"value":"2H", "rarity":0, "mutation":0},
@@ -161,6 +162,7 @@ func _ready() -> void:
 	card_select_label.text = ""
 	
 func _process(delta: float) -> void:
+	print(str(ultra_cards_remaining))
 	temp_text.text = str(Global.player_lucky_stat)
 	if hit_input_locked:
 		return
@@ -449,10 +451,18 @@ func spawn_card_inventory():
 	var selec_card = playing_card.instantiate()
 
 	if ultra_card_mode:
-		#UNFINISHED!!!
-		selec_card.value = current_ultra_card.value
-		selec_card.rarity = current_ultra_card.rarity
-		selec_card.mutation = current_ultra_card.mutation
+		var random_index = randi_range(0, deck.size() - 1)
+		var random_card = deck[random_index]
+	
+		selec_card.value = random_card.value
+		selec_card.rarity = 2
+		selec_card.mutation = randi_range(1, 4)
+		
+		Global.holding_card_value = selec_card.value
+		Global.holding_card_rarity = selec_card.rarity
+		Global.holding_card_mutation = selec_card.mutation
+		
+		ultra_cards_remaining -= 1
 	else:
 		selec_card.value = selected_card.value
 		selec_card.rarity = selected_card.rarity
@@ -1036,6 +1046,9 @@ func _on_tripple_button_2_pressed() -> void:
 			_switch_game_mode(1)
 	elif game_mode == 9:
 		return_to_overworld()
+	elif game_mode == 10:
+		#Give 5 Ultra Cards
+		_switch_game_mode(5)
 	elif button_mode == 2:
 		choose_seven_value(7)
 
@@ -1252,8 +1265,8 @@ func _switch_game_mode(mode) -> void:
 		player_healthbar.hide()
 		player_health.hide()
 		
-		#dialog_manager.dialog_mode = 6
-		#dialog_manager._check_dialog_mode() #Update Dialog Mode
+		dialog_manager.dialog_mode = 12
+		dialog_manager._check_dialog_mode() #Update Dialog Mode
 		
 		#Hide Overworld
 		overworld_manager.process_mode = Node.PROCESS_MODE_DISABLED
@@ -1425,9 +1438,6 @@ func _switch_game_mode(mode) -> void:
 			combat_messages_text.text = "You lose 5 Max HP but receive 5 Ultra Rare Cards"
 			
 			ultra_card_mode = true
-			ultra_cards_remaining = 5
-
-			_switch_game_mode(5)
 
 		elif highest_stat == Global.player_funny_stat:
 			funny_talk_active = true

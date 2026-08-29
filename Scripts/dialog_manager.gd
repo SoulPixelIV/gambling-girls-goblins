@@ -348,7 +348,7 @@ func _check_dialog_mode() -> void:
 		tripple_button3.hide()
 		
 		tripple_button1.text = ""
-		tripple_button2.text = "Back to Overworld"
+		tripple_button2.text = "Continue"
 		tripple_button3.text = ""
 		tripple_button1.tooltip_text = ""
 		tripple_button2.tooltip_text = ""
@@ -374,6 +374,29 @@ func _check_dialog_mode() -> void:
 
 		elif highest_stat == Global.player_lucky_stat:
 			await type_text(_lucky_line())
+			
+	#INVENTORY SCREEN
+	if dialog_mode == 12:
+		answer1_parent.hide()
+		answer2_parent.hide()
+		answer3_parent.hide()
+		answer4_parent.hide()
+		answer_label.hide()
+		hit_button.hide()
+		stand_button.hide()
+		double_button.hide()
+		safe_button.hide()
+		tripple_button1.hide()
+		tripple_button2.hide()
+		tripple_button3.hide()
+		
+		tripple_button1.tooltip_text = ""
+		tripple_button2.tooltip_text = ""
+		tripple_button3.tooltip_text = ""
+		
+		dialog_user.text = ""
+		
+		await type_text(_random_card_select_line())
 
 #################### DEALER DIALOG ########################
 func _random_intro_line() -> String:
