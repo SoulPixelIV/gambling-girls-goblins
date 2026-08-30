@@ -66,7 +66,7 @@ var safe_used = false
 var ultra_card_mode = false
 var ultra_cards_remaining = 5
 
-var funny_talk_active = false
+var funny_talk_stacks = 0
 var deck = [
 	{"value":"2H", "rarity":0, "mutation":0},
 	{"value":"2D", "rarity":0, "mutation":0},
@@ -724,8 +724,9 @@ func show_enemy_damage():
 		calc_enemy_damage = enemy_score - player_score 
 		
 	#FUNNY TALK ROOM EFFECT
-	if funny_talk_active:
-		calc_enemy_damage = int(calc_enemy_damage * 1.2)
+	if funny_talk_stacks > 0:
+		for i in range(funny_talk_stacks):
+			calc_enemy_damage = int(calc_enemy_damage * 1.2)
 		
 	#Mood Level 3 Bonus: Player receives half Damage
 	if mood_level >= 3:
@@ -742,13 +743,14 @@ func show_player_damage():
 		calc_player_damage = player_score
 	else:
 		calc_player_damage = player_score - enemy_score 
-	#Mood level 2 Bonus: 1.5x Damager
+	#Mood level 2 Bonus: 1.5x Damage
 	if mood_level >= 2:
 		calc_player_damage = int(calc_player_damage * 1.5)
 		
 	# FUNNY TALK ROOM EFFECT
-	if funny_talk_active and double_down_active:
-		calc_player_damage = int(calc_player_damage * 1.5)
+	if funny_talk_stacks > 0 and double_down_active:
+		for i in range(funny_talk_stacks):
+			calc_player_damage = int(calc_player_damage * 1.5)
 		
 	curr_enemy_damage += calc_player_damage
 	combat_messages_text.text = "Enemy receives %d Damage from the Player!" % calc_player_damage
@@ -1456,8 +1458,7 @@ func _switch_game_mode(mode) -> void:
 			ultra_card_mode = true
 
 		elif highest_stat == Global.player_funny_stat:
-			#WORKS BUT ONLY ONCE -> NEEDS TO STACK
-			funny_talk_active = true
+			funny_talk_stacks += 1
 			combat_messages_text.text = "Enemies now deal 20% more damage but Player deals 50% more damage on Double Down"
 
 		elif highest_stat == Global.player_unlucky_stat:
