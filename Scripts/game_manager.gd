@@ -152,7 +152,7 @@ func _ready() -> void:
 		spawn_new_enemy()
 	
 	player_healthbar.max_value = health #Set Maximum Healthbar
-	player_health.text = str(health)
+	player_health.text = str(health) + " / " + str(max_health)
 	
 	#Remove Placeholder Texts
 	combat_messages_text.text = ""
@@ -803,7 +803,7 @@ func apply_player_burn_damage():
 	health = max(health, 0) #Health doesn't fall below 0
 
 	player_healthbar.value = health
-	player_health.text = str(health)
+	player_health.text = str(health) + " / " + str(max_health)
 
 	combat_messages_text.text = "Burn! You take %d damage!" % burn_damage
 	combat_messages2_text.text = ""
@@ -841,7 +841,7 @@ func show_final_damage():
 	health -= curr_damage
 	health = max(health, 0) #Health doesn't fall below 0
 	player_healthbar.value = health
-	player_health.text = str(health)
+	player_health.text = str(health) + " / " + str(max_health)
 	curr_damage = 0
 	await get_tree().create_timer(2).timeout
 	
@@ -991,7 +991,7 @@ func _on_tripple_button_1_pressed() -> void:
 			health = max_health
 		
 		player_healthbar.value = health
-		player_health.text = str(health)
+		player_health.text = str(health) + " / " + str(max_health)
 		
 		#Add Boring Stat
 		Global.player_boring_stat += 3
@@ -1037,7 +1037,7 @@ func _on_tripple_button_2_pressed() -> void:
 				health = max_health
 			
 			player_healthbar.value = health
-			player_health.text = str(health)
+			player_health.text = str(health) + " / " + str(max_health)
 			
 			remove_fthedealer_cards()
 			_switch_game_mode(4)
@@ -1160,7 +1160,7 @@ func _switch_game_mode(mode) -> void:
 		spawn_new_enemy()
 		
 		player_healthbar.max_value = max_health #Set Maximum Healthbar
-		player_health.text = str(health)
+		player_health.text = str(health) + " / " + str(max_health)
 		
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
@@ -1216,7 +1216,7 @@ func _switch_game_mode(mode) -> void:
 		overworld_interface.hide()
 		
 		player_healthbar.max_value = max_health #Set Maximum Healthbar
-		player_health.text = str(health)
+		player_health.text = str(health) + " / " + str(max_health)
 		
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
@@ -1241,7 +1241,7 @@ func _switch_game_mode(mode) -> void:
 		overworld_interface.hide()
 		
 		player_healthbar.max_value = max_health #Set Maximum Healthbar
-		player_health.text = str(health)
+		player_health.text = str(health) + " / " + str(max_health)
 		
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
@@ -1400,7 +1400,7 @@ func _switch_game_mode(mode) -> void:
 		health = max(health, 0)
 
 		player_healthbar.value = health
-		player_health.text = str(health)
+		player_health.text = str(health) + " / " + str(max_health)
 		
 		#Add Unlucky Stat
 		if damage > 5:
@@ -1452,10 +1452,13 @@ func _switch_game_mode(mode) -> void:
 				health = max_health
 			player_healthbar.max_value = max_health
 			player_healthbar.value = health
-			player_health.text = str(health)
+			player_health.text = str(health) + " / " + str(max_health)
 			combat_messages_text.text = "You lose 5 Max HP but receive 5 Ultra Rare Cards"
 			
 			ultra_card_mode = true
+			
+			await get_tree().create_timer(5).timeout
+			_switch_game_mode(5)
 
 		elif highest_stat == Global.player_funny_stat:
 			funny_talk_stacks += 1
@@ -1466,7 +1469,7 @@ func _switch_game_mode(mode) -> void:
 			if health > max_health:
 				health = max_health
 			player_healthbar.value = health
-			player_health.text = str(health)
+			player_health.text = str(health) + " / " + str(max_health)
 			combat_messages_text.text = "You heal 7 HP"
 
 		elif highest_stat == Global.player_lucky_stat:
