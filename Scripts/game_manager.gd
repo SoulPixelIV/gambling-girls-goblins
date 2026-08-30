@@ -162,7 +162,6 @@ func _ready() -> void:
 	card_select_label.text = ""
 	
 func _process(delta: float) -> void:
-	temp_text.text = str(Global.player_lucky_stat)
 	if hit_input_locked:
 		return
 		

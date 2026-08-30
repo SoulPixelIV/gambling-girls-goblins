@@ -377,8 +377,8 @@ func _check_dialog_mode() -> void:
 		elif highest_stat == Global.player_unlucky_stat:
 			await type_text(_unlucky_line())
 
-		elif highest_stat == Global.player_lucky_stat:
-			await type_text(_lucky_line())
+		elif highest_stat == Global.player_boring_stat:
+			await type_text(_boring_line())
 			
 	#INVENTORY SCREEN
 	if dialog_mode == 12:

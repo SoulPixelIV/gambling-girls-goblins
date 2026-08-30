@@ -321,17 +321,6 @@ theme_override_font_sizes/font_size = 11
 text = "8"
 horizontal_alignment = 1
 
-[node name="temp_label" type="Label" parent="User_Interface/Status_Screen" unique_id=1707263508]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 112.0
-offset_right = 99.0
-offset_bottom = 128.0
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 11
-text = "12"
-horizontal_alignment = 1
-
 [node name="Frame" type="Sprite2D" parent="User_Interface" unique_id=1579732443]
 texture_filter = 1
 position = Vector2(320, 180)
