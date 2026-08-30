@@ -220,7 +220,10 @@ func _check_dialog_mode() -> void:
 		tripple_button3.hide()
 		
 		tripple_button1.tooltip_text = ""
-		tripple_button2.text = "Back to Overworld"
+		if game_manager.ultra_card_mode and game_manager.ultra_cards_remaining > 0:
+			tripple_button2.text = "Next Card"
+		else:
+			tripple_button2.text = "Back to Overworld"
 		tripple_button3.tooltip_text = ""
 		
 		dialog_user.text = ""

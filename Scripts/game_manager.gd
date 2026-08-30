@@ -162,7 +162,6 @@ func _ready() -> void:
 	card_select_label.text = ""
 	
 func _process(delta: float) -> void:
-	print(str(ultra_cards_remaining))
 	temp_text.text = str(Global.player_lucky_stat)
 	if hit_input_locked:
 		return
@@ -1012,8 +1011,15 @@ func _on_tripple_button_2_pressed() -> void:
 		_switch_game_mode(4)
 	elif game_mode == 3:
 		return_to_overworld()
+	#Leaving Inventory Screen
 	elif game_mode == 6:
-		return_to_overworld()
+		if ultra_card_mode: #Repeat until no more Ultra Cards needed
+			if ultra_cards_remaining > 0:
+				_switch_game_mode(5)
+			else:
+				return_to_overworld()
+		else:
+			return_to_overworld()
 	elif game_mode == 7:
 		#LOWER AND SPAWN CARD
 		Global.decision_hi_lo_eq = 1
@@ -1047,7 +1053,7 @@ func _on_tripple_button_2_pressed() -> void:
 	elif game_mode == 9:
 		return_to_overworld()
 	elif game_mode == 10:
-		#Give 5 Ultra Cards
+		#Give Ultra Cards
 		_switch_game_mode(5)
 	elif button_mode == 2:
 		choose_seven_value(7)
