@@ -8,8 +8,12 @@ extends Node2D
 @onready var finish_node = preload("res://Prefabs/finish_node.tscn")
 @onready var player_node = preload("res://Prefabs/player_node.tscn")
 @onready var talk_node = preload("res://Prefabs/talk_node.tscn")
+@onready var affection_label: Label = $"../User_Interface/Dealer_Interface/Affection_Label"
+@onready var mood_label: Label = $"../User_Interface/Dealer_Interface/Mood_Label"
 @onready var line_container: Node = $"../Overworld_Interface/Line_Container"
 @onready var game_manager = get_parent().get_node("Game_Manager")
+@onready var dealer_manager = $"../Dealer"
+@onready var bonus_text = preload("res://Prefabs/bonus_text.tscn")
 
 var grid_width = 8
 var grid_height = 4
@@ -20,6 +24,7 @@ var player_node_instance
 var is_moving = false
 var all_nodes = []
 var current_node
+var nodes_decay_count = 0
 	
 func get_all_grid_positions():
 	var positions = []
@@ -139,6 +144,35 @@ func _on_node_clicked(target_node):
 	await tween.finished
 	current_node = target_node
 	update_available_nodes(all_nodes)
+	
+	# Count visited nodes
+	nodes_decay_count += 1
+
+	# Decay Mood & Affection every 5 nodes
+	if nodes_decay_count >= 5:
+		nodes_decay_count = 0
+		
+		dealer_manager.mood = max(dealer_manager.mood - 1, 0)
+		dealer_manager.affection = max(dealer_manager.affection - 1, 0)
+		
+		var bonus_text_popup = bonus_text.instantiate()
+		var bonus_text_popup2 = bonus_text.instantiate()
+		bonus_text_popup.mutation = 999
+		bonus_text_popup.rarity = 999
+		bonus_text_popup2.mutation = 999
+		bonus_text_popup2.rarity = 999
+		
+		affection_label.add_child(bonus_text_popup)
+		mood_label.add_child(bonus_text_popup2)
+		
+		bonus_text_popup.position = Vector2(36, 110)
+		bonus_text_popup.label.text = "-1"
+		bonus_text_popup.label.add_theme_color_override("font_color", Color.INDIAN_RED)
+		bonus_text_popup2.position = Vector2(3, 110)
+		bonus_text_popup2.label.text = "-1"
+		bonus_text_popup2.label.add_theme_color_override("font_color", Color.INDIAN_RED)
+		
+		dealer_manager._update_dealer_stats()
 	
 	#Switch Nodes to Used after Entering
 	if target_node.is_exit and !target_node.event_finished:

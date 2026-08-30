@@ -29,26 +29,26 @@ func _update_dealer_stats():
 		
 	if mood < 20:
 		game_manager.mood_level = 0
-	if mood >= 20 and mood < 50:
+	if mood >= 20 and mood < 45:
 		game_manager.mood_level = 1
-	if mood >= 50 and mood < 65:
+	if mood >= 45 and mood < 58:
 		game_manager.mood_level = 2
-	if mood >= 65 and mood < 80:
+	if mood >= 58 and mood < 69:
 		game_manager.mood_level = 3
-	if mood >= 80 and mood < 90:
+	if mood >= 69 and mood < 80:
 		game_manager.mood_level = 4
-	if mood >= 90:
+	if mood >= 80:
 		game_manager.mood_level = 5
 		
 	if affection < 20:
 		game_manager.affection_level = 0
-	if affection >= 20 and affection < 50:
+	if affection >= 20 and affection < 45:
 		game_manager.affection_level = 1
-	if affection >= 50 and affection < 65:
+	if affection >= 45 and affection < 58:
 		game_manager.affection_level = 2
-	if affection >= 65 and affection < 80:
+	if affection >= 58 and affection < 69:
 		game_manager.affection_level = 3
-	if affection >= 80 and affection < 90:
+	if affection >= 69 and affection < 80:
 		game_manager.affection_level = 4
-	if affection >= 90:
+	if affection >= 80:
 		game_manager.affection_level = 5
