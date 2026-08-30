@@ -1053,8 +1053,17 @@ func _on_tripple_button_2_pressed() -> void:
 	elif game_mode == 9:
 		return_to_overworld()
 	elif game_mode == 10:
-		#Give Ultra Cards
-		_switch_game_mode(5)
+		var highest_stat = max(
+			Global.player_boring_stat,
+			Global.player_funny_stat,
+			Global.player_unlucky_stat,
+			Global.player_lucky_stat
+		)
+		if highest_stat == Global.player_lucky_stat:
+			return_to_overworld()
+		else:
+			#Give Ultra Cards
+			_switch_game_mode(5)
 	elif button_mode == 2:
 		choose_seven_value(7)
 
@@ -1427,6 +1436,8 @@ func _switch_game_mode(mode) -> void:
 		final_player_score_text.text = ""
 		final_enemy_score_text.text = ""
 		
+		game_mode = 10
+		
 		var highest_stat = max(
 			Global.player_boring_stat,
 			Global.player_funny_stat,
@@ -1446,6 +1457,7 @@ func _switch_game_mode(mode) -> void:
 			ultra_card_mode = true
 
 		elif highest_stat == Global.player_funny_stat:
+			#WORKS BUT ONLY ONCE -> NEEDS TO STACK
 			funny_talk_active = true
 			combat_messages_text.text = "Enemies now deal 20% more damage but Player deals 50% more damage on Double Down"
 
@@ -1458,10 +1470,14 @@ func _switch_game_mode(mode) -> void:
 			combat_messages_text.text = "You heal 7 HP"
 
 		elif highest_stat == Global.player_lucky_stat:
-			#TODO: GAMBLE FIRST THEN TRANSITION TO NODE
 			combat_messages_text.text = "Gamble to get access to either Event Node or Danger Node"
-		
-		game_mode = 10
+			await get_tree().create_timer(6).timeout
+			if randf() < 0.5:
+				# 50% Heal Node
+				_switch_game_mode(2)
+			else:
+				# 50% Danger Node
+				_switch_game_mode(9)
 
 ###### ALWAYS CALL AFTER DECK IS BEING CHANGED ######
 func _reset_combat_deck():

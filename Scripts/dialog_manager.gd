@@ -346,6 +346,14 @@ func _check_dialog_mode() -> void:
 		stand_button.hide()
 		double_button.hide()
 		safe_button.hide()
+		
+		var highest_stat = max(
+			Global.player_boring_stat,
+			Global.player_funny_stat,
+			Global.player_unlucky_stat,
+			Global.player_lucky_stat
+		)
+
 		tripple_button1.hide()
 		tripple_button2.show()
 		tripple_button3.hide()
@@ -359,14 +367,8 @@ func _check_dialog_mode() -> void:
 		
 		dialog_user.text = ""
 		
-		var highest_stat = max(
-			Global.player_boring_stat,
-			Global.player_funny_stat,
-			Global.player_unlucky_stat,
-			Global.player_lucky_stat
-		)
-		
-		if highest_stat == Global.player_boring_stat:
+		if highest_stat == Global.player_lucky_stat:
+			tripple_button2.hide()
 			await type_text(_boring_line())
 
 		elif highest_stat == Global.player_funny_stat:
