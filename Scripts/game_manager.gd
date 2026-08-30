@@ -27,9 +27,12 @@ extends Node
 @onready var tripple_button1 = $"../User_Interface/Tripple_Button1"
 @onready var tripple_button2 = $"../User_Interface/Tripple_Button2"
 @onready var tripple_button3 = $"../User_Interface/Tripple_Button3"
+@onready var affection_label: Label = $"../User_Interface/Dealer_Interface/Affection_Label"
+@onready var mood_label: Label = $"../User_Interface/Dealer_Interface/Mood_Label"
 @onready var crazy_goblin_enemy = preload("res://Prefabs/crazy_goblin.tscn")
 @onready var slime_enemy = preload("res://Prefabs/slime.tscn")
 @onready var drunkard_enemy = preload("res://Prefabs/drunkard.tscn")
+@onready var bonus_text = preload("res://Prefabs/bonus_text.tscn")
 
 @onready var temp_text: Label = $"../User_Interface/Status_Screen/temp_label"
 
@@ -851,22 +854,26 @@ func payout_bet(state):
 			dealer_manager.mood += pot_mood
 			combat_messages_text.text = "Dealer's Mood went up by " + str(pot_mood)
 			pot_mood = -1
+			show_stat_numbers(pot_mood, 0)
 			await get_tree().create_timer(2).timeout
 		if pot_affection != -1:
 			dealer_manager.affection += pot_affection
 			combat_messages_text.text = "Dealer's Affection went up by " + str(pot_affection)
 			pot_affection = -1
+			show_stat_numbers(0, pot_affection)
 			await get_tree().create_timer(2).timeout
 	elif state == "enemy":
 		if pot_mood != -1:
 			dealer_manager.mood -= pot_mood
 			combat_messages_text.text = "Dealer's Mood went down by " + str(pot_mood)
 			pot_mood = -1
+			show_stat_numbers(pot_mood, 0)
 			await get_tree().create_timer(2).timeout
 		if pot_affection != -1:
 			dealer_manager.affection -= pot_affection
 			combat_messages_text.text = "Dealer's Affection went down by " + str(pot_affection)
 			pot_affection = -1
+			show_stat_numbers(0, pot_affection)
 			await get_tree().create_timer(2).timeout
 	elif state == "none":
 		combat_messages_text.text = "No one wins the bet!"
@@ -1134,6 +1141,28 @@ func _on_safe_button_pressed() -> void:
 			
 			#Add Boring Stat
 			Global.player_boring_stat += 5
+
+func show_stat_numbers(moodAmount: int, affectionAmount: int) -> void:
+	if moodAmount > 0:
+		var bonus_text_popup = bonus_text.instantiate()
+		bonus_text_popup.mutation = 999
+		bonus_text_popup.rarity = 999
+		
+		affection_label.add_child(bonus_text_popup)
+		
+		bonus_text_popup.position = Vector2(36, 110)
+		bonus_text_popup.label.text = "+" + str(moodAmount)
+		bonus_text_popup.label.add_theme_color_override("font_color", Color.GREEN)
+	if affectionAmount > 0:
+		var bonus_text_popup = bonus_text.instantiate()
+		bonus_text_popup.mutation = 999
+		bonus_text_popup.rarity = 999
+		
+		affection_label.add_child(bonus_text_popup)
+		
+		bonus_text_popup.position = Vector2(16, 110)
+		bonus_text_popup.label.text = "+" + str(affectionAmount)
+		bonus_text_popup.label.add_theme_color_override("font_color", Color.GREEN)
 
 func _init_ui():
 	_switch_game_mode(1)
