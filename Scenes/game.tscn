@@ -650,6 +650,15 @@ theme_override_font_sizes/font_size = 22
 text = "Crazy Goblin"
 horizontal_alignment = 1
 
+[node name="Damage_Player_Label" type="RichTextLabel" parent="User_Interface" unique_id=1679572844]
+layout_mode = 0
+offset_left = 126.0
+offset_top = 194.0
+offset_right = 154.0
+offset_bottom = 226.0
+theme_override_font_sizes/normal_font_size = 23
+text = "17"
+
 [node name="Final_Score_Labels" type="Control" parent="User_Interface" unique_id=2036002227]
 anchors_preset = 0
 offset_right = 40.0
@@ -773,6 +782,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Enemy_Hand" type="Control" parent="." unique_id=2008198402]
 layout_mode = 3
@@ -780,6 +790,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="Dealer" type="Node" parent="." unique_id=839210681]
 script = ExtResource("13_rfjv2")
