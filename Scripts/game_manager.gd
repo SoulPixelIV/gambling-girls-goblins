@@ -853,27 +853,27 @@ func payout_bet(state):
 		if pot_mood != -1:
 			dealer_manager.mood += pot_mood
 			combat_messages_text.text = "Dealer's Mood went up by " + str(pot_mood)
-			pot_mood = -1
 			show_stat_numbers(pot_mood, 0)
+			pot_mood = -1		
 			await get_tree().create_timer(2).timeout
 		if pot_affection != -1:
 			dealer_manager.affection += pot_affection
 			combat_messages_text.text = "Dealer's Affection went up by " + str(pot_affection)
-			pot_affection = -1
 			show_stat_numbers(0, pot_affection)
+			pot_affection = -1			
 			await get_tree().create_timer(2).timeout
 	elif state == "enemy":
 		if pot_mood != -1:
 			dealer_manager.mood -= pot_mood
 			combat_messages_text.text = "Dealer's Mood went down by " + str(pot_mood)
+			show_stat_numbers(-pot_mood, 0)
 			pot_mood = -1
-			show_stat_numbers(pot_mood, 0)
 			await get_tree().create_timer(2).timeout
 		if pot_affection != -1:
 			dealer_manager.affection -= pot_affection
 			combat_messages_text.text = "Dealer's Affection went down by " + str(pot_affection)
+			show_stat_numbers(0, -pot_affection)
 			pot_affection = -1
-			show_stat_numbers(0, pot_affection)
 			await get_tree().create_timer(2).timeout
 	elif state == "none":
 		combat_messages_text.text = "No one wins the bet!"
@@ -1150,7 +1150,7 @@ func show_stat_numbers(moodAmount: int, affectionAmount: int) -> void:
 		
 		affection_label.add_child(bonus_text_popup)
 		
-		bonus_text_popup.position = Vector2(36, 110)
+		bonus_text_popup.position = Vector2(-30, 110)
 		bonus_text_popup.label.text = "+" + str(moodAmount)
 		bonus_text_popup.label.add_theme_color_override("font_color", Color.GREEN)
 	if affectionAmount > 0:
@@ -1160,9 +1160,29 @@ func show_stat_numbers(moodAmount: int, affectionAmount: int) -> void:
 		
 		affection_label.add_child(bonus_text_popup)
 		
-		bonus_text_popup.position = Vector2(16, 110)
+		bonus_text_popup.position = Vector2(36, 110)
 		bonus_text_popup.label.text = "+" + str(affectionAmount)
 		bonus_text_popup.label.add_theme_color_override("font_color", Color.GREEN)
+	if moodAmount < 0:
+		var bonus_text_popup = bonus_text.instantiate()
+		bonus_text_popup.mutation = 999
+		bonus_text_popup.rarity = 999
+		
+		affection_label.add_child(bonus_text_popup)
+		
+		bonus_text_popup.position = Vector2(-30, 110)
+		bonus_text_popup.label.text = str(moodAmount)
+		bonus_text_popup.label.add_theme_color_override("font_color", Color.RED)
+	if affectionAmount < 0:
+		var bonus_text_popup = bonus_text.instantiate()
+		bonus_text_popup.mutation = 999
+		bonus_text_popup.rarity = 999
+		
+		affection_label.add_child(bonus_text_popup)
+		
+		bonus_text_popup.position = Vector2(36, 110)
+		bonus_text_popup.label.text = str(affectionAmount)
+		bonus_text_popup.label.add_theme_color_override("font_color", Color.RED)
 
 func _init_ui():
 	_switch_game_mode(1)
