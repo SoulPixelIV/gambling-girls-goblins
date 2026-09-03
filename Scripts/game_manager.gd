@@ -163,6 +163,8 @@ func _ready() -> void:
 	final_player_score_text.text = ""
 	final_enemy_score_text.text = ""
 	card_select_label.text = ""
+	player_score_text.text = ""
+	enemy_score_text.text = ""
 	
 func _process(delta: float) -> void:
 	if hit_input_locked:
@@ -171,7 +173,7 @@ func _process(delta: float) -> void:
 	if begin_fight:
 		#Enemys First Draw
 		if turn_state == -1:
-			spawn_enemy_playing_card(330 + 25 * enemy_card_index, 90)
+			spawn_enemy_playing_card(400 + 25 * enemy_card_index, 90)
 			enemy_card_index += 1
 			turn_state = 1
 		
@@ -190,7 +192,7 @@ func _process(delta: float) -> void:
 			else:
 				delay_timer -= delta
 				if delay_timer < 0:
-					spawn_enemy_playing_card(330 + 25 * enemy_card_index, 90)
+					spawn_enemy_playing_card(400 + 25 * enemy_card_index, 90)
 					called_rng_value = false
 					enemy_card_index += 1
 					turn_state = 1
@@ -307,7 +309,7 @@ func _on_hit_button_pressed() -> void:
 	if button_mode == 0:
 		#Draw Card
 		if turn_state == 1 && !player_out:
-			spawn_playing_card(168 + 25 * card_index, 192)
+			spawn_playing_card(218 + 25 * card_index, 142)
 			card_index += 1
 			
 			#Double Down Check
@@ -625,7 +627,7 @@ func _on_card_played(value, card_id):
 					player_score -= value
 					player_score_text.text = str(player_score)
 
-					spawn_playing_card(168 + 25 * (card_index - 1), 192)
+					spawn_playing_card(218 + 25 * (card_index - 1), 142)
 					return
 
 			await apply_player_burn_damage()

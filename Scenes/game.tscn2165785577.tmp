@@ -658,22 +658,12 @@ horizontal_alignment = 1
 [node name="Damage_Player_Label" type="RichTextLabel" parent="User_Interface" unique_id=1679572844]
 layout_mode = 0
 offset_left = 147.0
-offset_top = 195.0
+offset_top = 196.0
 offset_right = 175.0
-offset_bottom = 227.0
+offset_bottom = 228.0
 theme_override_font_sizes/normal_font_size = 23
 bbcode_enabled = true
 text = "17"
-
-[node name="Multiplier_Player_Label" type="RichTextLabel" parent="User_Interface" unique_id=389630600]
-layout_mode = 0
-offset_left = 178.0
-offset_top = 195.0
-offset_right = 240.0
-offset_bottom = 227.0
-theme_override_font_sizes/normal_font_size = 23
-bbcode_enabled = true
-text = "x1.0"
 
 [node name="Damage_Icon" type="Sprite2D" parent="User_Interface" unique_id=700367453]
 position = Vector2(132, 213)
