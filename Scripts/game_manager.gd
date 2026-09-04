@@ -49,7 +49,7 @@ var mood_level = 1
 var affection_level = 1
 var turn_state = -1 #Turnstate -1 -> First Enemy Draw | Turnstate 0 -> Normal Enemy Draw | Turnstate 1 -> Player Draw
 var begin_fight = false #Wait for Dealer Betting Phase
-var delay_timer = 2
+var delay_timer = 0.5
 var card_index = 0
 var enemy_card_index = 0
 var player_score = 0
@@ -197,7 +197,7 @@ func _process(delta: float) -> void:
 					called_rng_value = false
 					enemy_card_index += 1
 					turn_state = 1
-					delay_timer = 2
+					delay_timer = 0.5
 				
 		#Enemy keeps going when Player is out
 		if player_out:
@@ -914,7 +914,7 @@ func show_enemy_final_damage():
 
 func reset_game_round():
 	turn_state = -1
-	delay_timer = 2
+	delay_timer = 0.5
 	card_index = 0
 	enemy_card_index = 0
 	player_score = 0
@@ -946,7 +946,7 @@ func reset_game_round():
 
 func return_to_overworld():
 	turn_state = -1
-	delay_timer = 2
+	delay_timer = 0.5
 	card_index = 0
 	enemy_card_index = 0
 	player_score = 0
