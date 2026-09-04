@@ -60,6 +60,7 @@ var called_combat_resolve = false
 var called_rng_value = false
 var curr_damage = 0
 var curr_enemy_damage = 0
+var curr_damage_multiplier = 1.0
 var button_mode = 0
 var last_player_card = null
 var redraw_used = false
@@ -686,6 +687,20 @@ func setup_result_screen():
 	for enemy_hand_child in enemy_hand.get_children():
 		enemy_hand_child.queue_free()
 	await get_tree().create_timer(1).timeout
+
+func calculate_player_damage_multiplier() -> float:
+	var multiplier = 1.0
+	
+	# Mood Level 2: +50% Player Damage
+	if mood_level >= 2:
+		multiplier *= 1.5
+	
+	# Funny Talk + Double Down: +50% per stack
+	if funny_talk_stacks > 0 and double_down_active:
+		for i in range(funny_talk_stacks):
+			multiplier *= 1.5
+	
+	return multiplier
 		
 func show_self_damage():
 	#Mood Level 4 Bonus: No Self Damage on Bust
@@ -744,22 +759,23 @@ func show_enemy_damage():
 	
 func show_player_damage():
 	var calc_player_damage = 0
+	
 	if enemy_score > 21:
 		calc_player_damage = player_score
 	else:
-		calc_player_damage = player_score - enemy_score 
-	#Mood level 2 Bonus: 1.5x Damage
-	if mood_level >= 2:
-		calc_player_damage = int(calc_player_damage * 1.5)
+		calc_player_damage = player_score - enemy_score
 		
-	# FUNNY TALK ROOM EFFECT
-	if funny_talk_stacks > 0 and double_down_active:
-		for i in range(funny_talk_stacks):
-			calc_player_damage = int(calc_player_damage * 1.5)
-		
+	# Calculate current damage multiplier
+	curr_damage_multiplier = calculate_player_damage_multiplier()
+	
+	# Apply multiplier
+	calc_player_damage = int(calc_player_damage * curr_damage_multiplier)
+	
 	curr_enemy_damage += calc_player_damage
+	
 	combat_messages_text.text = "Enemy receives %d Damage from the Player!" % calc_player_damage
 	combat_messages2_text.text = "Total Damage: %d" % curr_enemy_damage
+	
 	await get_tree().create_timer(2).timeout
 	
 func show_enemy_crit():
