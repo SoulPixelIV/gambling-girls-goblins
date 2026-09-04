@@ -688,8 +688,22 @@ theme_override_font_sizes/normal_font_size = 8
 bbcode_enabled = true
 text = "x1.0"
 
+[node name="TotalDamage_Enemy_Label" type="RichTextLabel" parent="User_Interface" unique_id=667550723]
+layout_mode = 0
+offset_left = 589.0
+offset_top = 47.0
+offset_right = 617.0
+offset_bottom = 79.0
+theme_override_font_sizes/normal_font_size = 23
+bbcode_enabled = true
+text = "24"
+
 [node name="Damage_Icon" type="Sprite2D" parent="User_Interface" unique_id=700367453]
 position = Vector2(132, 213)
+texture = ExtResource("13_1phco")
+
+[node name="Damage_Icon2" type="Sprite2D" parent="User_Interface" unique_id=1594838496]
+position = Vector2(574, 66)
 texture = ExtResource("13_1phco")
 
 [node name="Final_Score_Labels" type="Control" parent="User_Interface" unique_id=2036002227]
