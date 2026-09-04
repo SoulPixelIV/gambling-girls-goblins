@@ -270,8 +270,8 @@ func resolve_combat():
 		await show_player_damage()
 		if player_score == 21:
 			await show_player_crit()
-		if enemy_score > 21:
-			await show_enemy_bust_protection()
+		#if enemy_score > 21:
+			#await show_enemy_bust_protection()
 		
 		await show_enemy_final_damage()
 		await payout_bet("player")
