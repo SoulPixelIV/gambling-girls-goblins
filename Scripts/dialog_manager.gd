@@ -58,11 +58,11 @@ func _check_dialog_mode() -> void:
 		
 		answer2_button.modulate = Color.YELLOW
 		answer2_button.text = "Confident"
-		answer2_button.tooltip_text = "[LOSE] -11 Mood | [WIN] +11 Mood"
+		answer2_button.tooltip_text = "Bet 5 Mood"
 		
 		answer3_button.modulate = Color.BLUE_VIOLET
 		answer3_button.text = "Flirty"
-		answer3_button.tooltip_text = "[LOSE] -6 Affection | [Win] +6 Affection"
+		answer3_button.tooltip_text = "Bet 5 Affection"
 
 		answer4_button.modulate = Color.ORANGE_RED
 		answer4_button.text = "Cocky"

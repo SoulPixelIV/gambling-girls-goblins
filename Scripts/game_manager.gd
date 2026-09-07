@@ -161,8 +161,6 @@ func _ready() -> void:
 	#Remove Placeholder Texts
 	combat_messages_text.text = ""
 	combat_messages2_text.text = ""
-	final_player_score_text.text = ""
-	final_enemy_score_text.text = ""
 	card_select_label.text = ""
 	player_score_text.text = ""
 	enemy_score_text.text = ""
@@ -235,7 +233,7 @@ func resolve_combat():
 	if affection_level >= 4 and player_score == enemy_score:
 		combat_messages_text.text = "Good Affection! Tie deals 5 Damage to enemy!"
 		combat_messages2_text.text = ""
-		await get_tree().create_timer(2).timeout
+		await get_tree().create_timer(1).timeout
 		
 		curr_enemy_damage += 5
 		await show_enemy_final_damage()
@@ -248,10 +246,7 @@ func resolve_combat():
 		return
 		
 	if player_score == enemy_score and affection_level < 4:
-		combat_messages_text.text = "It's a tie!"
-		combat_messages2_text.text = ""
-		await get_tree().create_timer(2).timeout
-		combat_messages_text.text = ""
+		show_calculation_message("It's a tie!", 5.0)
 		
 		pot_mood = -1
 		pot_affection = -1
@@ -675,18 +670,18 @@ func _on_card_played_enemy(value, card_id):
 		enemy_out = true
 
 func setup_result_screen():
-	player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
-	enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
+	#player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
+	#enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
 	player_score_text.text = ""
 	enemy_score_text.text = ""
-	final_player_score_text.text = str("Player [" + str(player_score) + "]")
-	final_enemy_score_text.text = str("Enemy [" + str(enemy_score) + "]")
+	#final_player_score_text.text = str("Player [" + str(player_score) + "]")
+	#final_enemy_score_text.text = str("Enemy [" + str(enemy_score) + "]")
 	#Delete All Playing Cards
 	for hand_child in hand.get_children():
 		hand_child.queue_free()
 	for enemy_hand_child in enemy_hand.get_children():
 		enemy_hand_child.queue_free()
-	await get_tree().create_timer(1).timeout
+	#await get_tree().create_timer(1).timeout
 
 func calculate_player_damage_multiplier() -> float:
 	var multiplier = 1.0
@@ -720,8 +715,12 @@ func show_self_damage():
 func show_enemy_self_damage():
 	var calc_enemy_self_damage = enemy_score - 21
 	curr_enemy_damage += calc_enemy_self_damage
-	combat_messages_text.text = "Enemy receives %d Self Damage!" % calc_enemy_self_damage
-	combat_messages2_text.text = "Total Damage: %d" % curr_enemy_damage
+	var damage_message = "Enemy receives %d Self Damage!" % calc_enemy_self_damage
+	show_calculation_message(damage_message, 5.0)
+	
+	var damage_message2 = "Total Damage: %d" % curr_enemy_damage
+	show_damage_message(damage_message2, 5.0)
+	
 	await get_tree().create_timer(2).timeout
 	
 func show_enemy_damage():
@@ -829,7 +828,7 @@ func apply_player_burn_damage():
 	combat_messages_text.text = "Burn! You take %d damage!" % burn_damage
 	combat_messages2_text.text = ""
 
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1).timeout
 	combat_messages_text.text = ""
 	combat_messages2_text.text = ""
 
@@ -852,65 +851,83 @@ func apply_enemy_burn_damage():
 	combat_messages_text.text = "Burn! Enemy takes %d damage!" % burn_damage
 	combat_messages2_text.text = ""
 
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1).timeout
 	combat_messages_text.text = ""
 	combat_messages2_text.text = ""
 	
 func show_final_damage():
-	combat_messages_text.text = "Total Self Damage: %d" % curr_damage
-	combat_messages2_text.text = ""
+	combat_messages_text.text = ""
+	var damage_message = "You take %d Damage!" % curr_damage
+	show_damage_message(damage_message, 5.0)
+	
 	health -= curr_damage
 	health = max(health, 0) #Health doesn't fall below 0
 	player_healthbar.value = health
 	player_health.text = str(health) + " / " + str(max_health)
 	curr_damage = 0
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1.5).timeout
+	
+func show_damage_message(message: String, duration: float = 2.0) -> void:
+	combat_messages2_text.text = message
+	await get_tree().create_timer(duration).timeout
+	# Nur löschen, wenn noch dieselbe Message angezeigt wird
+	if combat_messages2_text.text == message:
+		combat_messages2_text.text = ""
+		
+func show_calculation_message(message: String, duration: float = 2.0) -> void:
+	combat_messages_text.text = message
+	await get_tree().create_timer(duration).timeout
+	# Nur löschen, wenn noch dieselbe Message angezeigt wird
+	if combat_messages_text.text == message:
+		combat_messages_text.text = ""
 	
 func payout_bet(state):
 	if state == "player":
 		if pot_mood != -1:
 			dealer_manager.mood += pot_mood
-			combat_messages_text.text = "Dealer's Mood went up by " + str(pot_mood)
+			#combat_messages_text.text = "Dealer's Mood went up by " + str(pot_mood)
 			show_stat_numbers(pot_mood, 0)
 			pot_mood = -1		
-			await get_tree().create_timer(2).timeout
+			#await get_tree().create_timer(2).timeout
 		if pot_affection != -1:
 			dealer_manager.affection += pot_affection
-			combat_messages_text.text = "Dealer's Affection went up by " + str(pot_affection)
+			#combat_messages_text.text = "Dealer's Affection went up by " + str(pot_affection)
 			show_stat_numbers(0, pot_affection)
 			pot_affection = -1			
-			await get_tree().create_timer(2).timeout
+			#await get_tree().create_timer(2).timeout
 	elif state == "enemy":
 		if pot_mood != -1:
 			dealer_manager.mood -= pot_mood
-			combat_messages_text.text = "Dealer's Mood went down by " + str(pot_mood)
+			#combat_messages_text.text = "Dealer's Mood went down by " + str(pot_mood)
 			show_stat_numbers(-pot_mood, 0)
 			pot_mood = -1
-			await get_tree().create_timer(2).timeout
+			#await get_tree().create_timer(2).timeout
 		if pot_affection != -1:
 			dealer_manager.affection -= pot_affection
-			combat_messages_text.text = "Dealer's Affection went down by " + str(pot_affection)
+			#combat_messages_text.text = "Dealer's Affection went down by " + str(pot_affection)
 			show_stat_numbers(0, -pot_affection)
 			pot_affection = -1
-			await get_tree().create_timer(2).timeout
+			#await get_tree().create_timer(2).timeout
 	elif state == "none":
-		combat_messages_text.text = "No one wins the bet!"
-		await get_tree().create_timer(2).timeout
-		combat_messages_text.text = ""
+		#combat_messages_text.text = "No one wins the bet!"
+		#await get_tree().create_timer(2).timeout
+		#combat_messages_text.text = ""
 		return
 		
 	dealer_manager._update_dealer_stats()
 	status_screen._update_betting_status()
 	
 func show_enemy_final_damage():
-	combat_messages_text.text = "Total Damage: %d" % curr_enemy_damage
-	combat_messages2_text.text = ""
+	combat_messages_text.text = ""
+	var damage_message = "Total Damage: %d" % curr_enemy_damage
+	show_damage_message(damage_message, 5.0)
+	
 	enemy.health -= curr_enemy_damage
 	enemy.health = max(enemy.health, 0) #Enemy Health doesn't fall below 0
 	enemy_healthbar.value = enemy.health
 	enemy_health.text = str(enemy.health)
 	curr_enemy_damage = 0
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(0.5).timeout
 
 func reset_game_round():
 	turn_state = -1
@@ -930,10 +947,8 @@ func reset_game_round():
 	_reset_combat_deck()
 	
 	enemy.reset_deck()
-	combat_messages_text.text = ""
-	combat_messages2_text.text = ""
-	final_player_score_text.text = ""
-	final_enemy_score_text.text = ""
+	#combat_messages_text.text = ""
+	#combat_messages2_text.text = ""
 	player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
 	enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
 	dialog_manager.dialog_mode = 0
@@ -964,8 +979,6 @@ func return_to_overworld():
 		enemy.reset_deck()
 	combat_messages_text.text = ""
 	combat_messages2_text.text = ""
-	final_player_score_text.text = ""
-	final_enemy_score_text.text = ""
 	player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
 	enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
 	begin_fight = false
@@ -1232,8 +1245,6 @@ func _switch_game_mode(mode) -> void:
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
 		combat_messages2_text.text = ""
-		final_player_score_text.text = ""
-		final_enemy_score_text.text = ""
 		#########################################################
 		
 		game_mode = 0
@@ -1288,8 +1299,6 @@ func _switch_game_mode(mode) -> void:
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
 		combat_messages2_text.text = ""
-		final_player_score_text.text = ""
-		final_enemy_score_text.text = ""
 		
 		game_mode = 2
 		
@@ -1313,8 +1322,6 @@ func _switch_game_mode(mode) -> void:
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
 		combat_messages2_text.text = ""
-		final_player_score_text.text = ""
-		final_enemy_score_text.text = ""
 		
 		game_mode = 3
 		
@@ -1335,8 +1342,6 @@ func _switch_game_mode(mode) -> void:
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
 		combat_messages2_text.text = ""
-		final_player_score_text.text = ""
-		final_enemy_score_text.text = ""
 		
 		spawn_booster_cards()
 		
@@ -1359,8 +1364,6 @@ func _switch_game_mode(mode) -> void:
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
 		combat_messages2_text.text = ""
-		final_player_score_text.text = ""
-		final_enemy_score_text.text = ""
 		card_select_label.text = "Replace a Card in your Deck"
 		
 		spawn_card_inventory()
@@ -1409,8 +1412,6 @@ func _switch_game_mode(mode) -> void:
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
 		combat_messages2_text.text = ""
-		final_player_score_text.text = ""
-		final_enemy_score_text.text = ""
 		
 		spawn_fthedealer_card()
 		
@@ -1457,8 +1458,6 @@ func _switch_game_mode(mode) -> void:
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
 		combat_messages2_text.text = ""
-		final_player_score_text.text = ""
-		final_enemy_score_text.text = ""
 		
 		#Random Damage
 		var damage = randi_range(0, 8)
@@ -1501,8 +1500,6 @@ func _switch_game_mode(mode) -> void:
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
 		combat_messages2_text.text = ""
-		final_player_score_text.text = ""
-		final_enemy_score_text.text = ""
 		
 		game_mode = 10
 		

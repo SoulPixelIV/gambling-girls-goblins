@@ -30,6 +30,7 @@ shader_parameter/blur_amount = 1.5
 offset_right = 640.0
 offset_bottom = 360.0
 color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
 
 [node name="Particle_System" type="Node" parent="." unique_id=400499942]
 
@@ -72,6 +73,7 @@ material = SubResource("ShaderMaterial_wowpa")
 offset_left = 109.0
 offset_right = 640.0
 offset_bottom = 252.0
+metadata/_edit_lock_ = true
 
 [node name="Game_Manager" type="Node" parent="." unique_id=1538228305]
 script = ExtResource("5_wowpa")
@@ -711,57 +713,27 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Final_Player_Score" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=333004497]
-layout_mode = 0
-offset_left = 111.0
-offset_top = 48.0
-offset_right = 466.0
-offset_bottom = 147.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-text = "Player [17]"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
-[node name="Final_Enemy_Score" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=680879426]
-layout_mode = 0
-offset_left = 266.0
-offset_top = 49.0
-offset_right = 638.0
-offset_bottom = 148.0
-theme_override_colors/font_color = Color(0.9254902, 0, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 30
-text = "Enemy [21]"
-horizontal_alignment = 1
-vertical_alignment = 1
-metadata/_edit_lock_ = true
-
 [node name="Combat_Messages" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=1281019492]
 layout_mode = 0
 offset_left = 44.0
-offset_top = 119.0
+offset_top = 188.0
 offset_right = 698.0
-offset_bottom = 153.0
+offset_bottom = 222.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 16
 text = "You receive %d Self Damage!"
 horizontal_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Combat_Messages2" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=485587634]
 layout_mode = 0
 offset_left = 40.0
-offset_top = 141.0
+offset_top = 208.0
 offset_right = 694.0
-offset_bottom = 175.0
+offset_bottom = 242.0
 theme_override_colors/font_color = Color(1, 0.007843138, 0, 1)
 theme_override_font_sizes/font_size = 16
 text = "Total Damage = 7"
 horizontal_alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Dealer_Name_Label" type="Label" parent="User_Interface" unique_id=1884585899]
 layout_mode = 0
