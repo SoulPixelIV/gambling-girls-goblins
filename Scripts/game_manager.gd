@@ -197,23 +197,23 @@ func _process(delta: float) -> void:
 					turn_state = 1
 					delay_timer = 0.5
 				
-		#Enemy keeps going when Player is out
-		if player_out:
+		# Enemy keeps going when Player is out
+		if player_out && !enemy_out:
 			player_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
 			turn_state = 0
-			
-		#Player keeps going when Enemy is out
-		if enemy_out:
+
+		# Player keeps going when Enemy is out
+		elif enemy_out && !player_out:
 			enemy_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
 			turn_state = 1
-			
-		#Damage Calculating Phase
+
+		# Damage Calculating Phase
 		if player_out && enemy_out:
 			delay_timer -= delta
-			if delay_timer < 0:
-				if !called_combat_resolve:
-					resolve_combat()
-					called_combat_resolve = true
+
+			if delay_timer < 0 && !called_combat_resolve:
+				called_combat_resolve = true
+				resolve_combat()
 				
 func resolve_combat():
 	await setup_result_screen()
@@ -1389,8 +1389,6 @@ func _switch_game_mode(mode) -> void:
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
 		combat_messages2_text.text = ""
-		final_player_score_text.text = ""
-		final_enemy_score_text.text = ""
 		card_select_label.text = ""
 		
 		game_mode = 6
@@ -1434,8 +1432,6 @@ func _switch_game_mode(mode) -> void:
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
 		combat_messages2_text.text = ""
-		final_player_score_text.text = ""
-		final_enemy_score_text.text = ""
 		
 		spawn_fthedealer_card2()
 		
