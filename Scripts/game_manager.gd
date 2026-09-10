@@ -690,10 +690,10 @@ func calculate_player_damage_multiplier() -> float:
 	if mood_level >= 2:
 		multiplier *= 1.5
 	
-	# Funny Talk + Double Down: +50% per stack
-	if funny_talk_stacks > 0 and double_down_active:
+	# Funny Talk: Increase Multiplier
+	if funny_talk_stacks > 0:
 		for i in range(funny_talk_stacks):
-			multiplier *= 1.5
+			multiplier += 1.0
 	
 	return multiplier
 		
@@ -1098,7 +1098,7 @@ func _on_tripple_button_2_pressed() -> void:
 			Global.player_unlucky_stat,
 			Global.player_lucky_stat
 		)
-		if highest_stat == Global.player_lucky_stat:
+		if highest_stat == Global.player_lucky_stat or highest_stat == Global.player_funny_stat:
 			return_to_overworld()
 		else:
 			#Give Ultra Cards
@@ -1523,7 +1523,7 @@ func _switch_game_mode(mode) -> void:
 
 		elif highest_stat == Global.player_funny_stat:
 			funny_talk_stacks += 1
-			combat_messages_text.text = "Enemies now deal 20% more damage but Player deals 50% more damage on Double Down"
+			combat_messages_text.text = "Player Damage Multiplicator increases by 1"
 
 		elif highest_stat == Global.player_unlucky_stat:
 			health += 7
