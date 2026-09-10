@@ -494,8 +494,7 @@ func _funny_line() -> String:
 	var lines = [
 		"H-how are you even still alive?! I don't know if you're
 		just playing dumb or you're actually stupid..
-		You know what, you're really funny..
-		Let's see how you will deal with this!"
+		You know what, you're actually kinda funny.."
 	]
 	return lines[randi() % lines.size()]
 	

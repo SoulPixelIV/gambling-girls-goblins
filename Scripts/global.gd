@@ -14,7 +14,7 @@ var fthedealer_card2 = "2H"
 var decision_hi_lo_eq = 0 #0 = High ; 1 = low ; 2 = Equal
 
 func _ready() -> void:
-	player_funny_stat = 999
+	player_unlucky_stat = 999
 
 #Restart Game with "P"
 func _input(event):

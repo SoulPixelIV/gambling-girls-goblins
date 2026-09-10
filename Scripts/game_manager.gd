@@ -1098,7 +1098,7 @@ func _on_tripple_button_2_pressed() -> void:
 			Global.player_unlucky_stat,
 			Global.player_lucky_stat
 		)
-		if highest_stat == Global.player_lucky_stat or highest_stat == Global.player_funny_stat:
+		if highest_stat == Global.player_lucky_stat or highest_stat == Global.player_funny_stat or highest_stat == Global.player_unlucky_stat:
 			return_to_overworld()
 		else:
 			#Give Ultra Cards
