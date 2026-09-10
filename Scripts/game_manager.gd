@@ -1516,6 +1516,7 @@ func _switch_game_mode(mode) -> void:
 			combat_messages_text.text = "You lose 5 Max HP but receive 5 Ultra Rare Cards"
 			
 			ultra_card_mode = true
+			ultra_cards_remaining = 5
 			
 			await get_tree().create_timer(5).timeout
 			_switch_game_mode(5)
