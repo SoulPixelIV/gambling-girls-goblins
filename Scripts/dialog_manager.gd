@@ -27,7 +27,7 @@ var ui_abort = false
 
 func _ready() -> void:
 	dialog.text = ""
-	dialog_user.text = ""
+	#dialog_user.text = ""
 	_check_dialog_mode()
 	
 func _check_dialog_mode() -> void:
@@ -68,7 +68,7 @@ func _check_dialog_mode() -> void:
 		answer4_button.text = "Cocky"
 		answer4_button.tooltip_text = "[LOSE] -9 Affection -4 Mood | [WIN] +9 Affection +4 Mood"
 		
-		dialog_user.text = ""
+		#dialog_user.text = ""
 
 	if dialog_mode == 1:
 		answer1_parent.hide()
@@ -150,7 +150,7 @@ func _check_dialog_mode() -> void:
 		tripple_button2.tooltip_text = "Choose from 3 random cards."
 		tripple_button3.tooltip_text = "Heal 20 Health & Receive a Card or get nothing!"
 		
-		dialog_user.text = ""
+		#dialog_user.text = ""
 		
 		await type_text(_random_heal_room_line())
 		
@@ -200,7 +200,7 @@ func _check_dialog_mode() -> void:
 		tripple_button2.tooltip_text = ""
 		tripple_button3.tooltip_text = ""
 		
-		dialog_user.text = ""
+		#dialog_user.text = ""
 		
 		await type_text(_random_card_select_line())
 		
@@ -226,7 +226,7 @@ func _check_dialog_mode() -> void:
 			tripple_button2.text = "Back to Overworld"
 		tripple_button3.tooltip_text = ""
 		
-		dialog_user.text = ""
+		#dialog_user.text = ""
 		
 		await type_text(_random_card_select_line())
 		
@@ -252,7 +252,7 @@ func _check_dialog_mode() -> void:
 		tripple_button2.tooltip_text = ""
 		tripple_button3.tooltip_text = ""
 		
-		dialog_user.text = ""
+		#dialog_user.text = ""
 		
 		await type_text(_random_fthedealer_line())
 		
@@ -280,7 +280,7 @@ func _check_dialog_mode() -> void:
 			tripple_button2.tooltip_text = ""
 			tripple_button3.tooltip_text = ""
 			
-			dialog_user.text = ""
+			#dialog_user.text = ""
 			
 			await type_text(_random_fthedealer_line_positive())
 		#Negative Outcome on FALSE
@@ -331,7 +331,7 @@ func _check_dialog_mode() -> void:
 		tripple_button2.tooltip_text = ""
 		tripple_button3.tooltip_text = ""
 		
-		dialog_user.text = ""
+		#dialog_user.text = ""
 		
 		await type_text(_random_danger_line())
 		
@@ -365,11 +365,11 @@ func _check_dialog_mode() -> void:
 		tripple_button2.tooltip_text = ""
 		tripple_button3.tooltip_text = ""
 		
-		dialog_user.text = ""
+		#dialog_user.text = ""
 		
 		if highest_stat == Global.player_lucky_stat:
 			tripple_button2.hide()
-			await type_text(_boring_line())
+			await type_text(_lucky_line())
 
 		elif highest_stat == Global.player_funny_stat:
 			await type_text(_funny_line())
@@ -399,7 +399,7 @@ func _check_dialog_mode() -> void:
 		tripple_button2.tooltip_text = ""
 		tripple_button3.tooltip_text = ""
 		
-		dialog_user.text = ""
+		#dialog_user.text = ""
 		
 		await type_text(_random_card_select_line())
 
@@ -601,7 +601,7 @@ func type_text_user(full_text):
 	typing_token += 1
 	var my_token = typing_token
 			
-	dialog_user.text = ""
+	#dialog_user.text = ""
 
 	for letter in full_text:
 		if my_token != typing_token:
@@ -610,7 +610,7 @@ func type_text_user(full_text):
 		if ui_abort:
 			return
 			
-		dialog_user.text += letter
+		#dialog_user.text += letter
 		await get_tree().create_timer(0.03).timeout
 
 func reset_ui():
@@ -627,4 +627,4 @@ func reset_ui():
 	tripple_button3.hide()
 	
 	dialog.text = ""
-	dialog_user.text = ""
+	#dialog_user.text = ""

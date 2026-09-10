@@ -147,7 +147,7 @@ func _ready() -> void:
 			add_child(bonus_text_popup)
 			
 			game_manager.player_healthbar.value = game_manager.health
-			game_manager.player_health.text = str(game_manager.health)
+			game_manager.player_health.text = str(game_manager.health) + " / " + str(game_manager.max_health)
 	
 func _process(delta: float) -> void:
 	#Rarity Effects

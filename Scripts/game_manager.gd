@@ -337,6 +337,7 @@ func _on_stand_button_pressed() -> void:
 					Global.player_boring_stat += 1
 				
 				player_out = true
+				player_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
 		elif button_mode == 1:
 			choose_ace_value(11)
 	
@@ -693,7 +694,7 @@ func calculate_player_damage_multiplier() -> float:
 	# Funny Talk: Increase Multiplier
 	if funny_talk_stacks > 0:
 		for i in range(funny_talk_stacks):
-			multiplier += 1.0
+			multiplier += 0.5
 	
 	return multiplier
 		
@@ -1523,7 +1524,7 @@ func _switch_game_mode(mode) -> void:
 
 		elif highest_stat == Global.player_funny_stat:
 			funny_talk_stacks += 1
-			combat_messages_text.text = "Player Damage Multiplicator increases by 1"
+			combat_messages_text.text = "Player Damage Multiplicator increases by +0.5"
 
 		elif highest_stat == Global.player_unlucky_stat:
 			health += 7
@@ -1534,7 +1535,7 @@ func _switch_game_mode(mode) -> void:
 			combat_messages_text.text = "You heal 7 HP"
 
 		elif highest_stat == Global.player_lucky_stat:
-			combat_messages_text.text = "Gamble to get access to either Event Node or Danger Node"
+			combat_messages_text.text = "Deciding either Event Node or Danger Node"
 			await get_tree().create_timer(6).timeout
 			if randf() < 0.5:
 				# 50% Heal Node
