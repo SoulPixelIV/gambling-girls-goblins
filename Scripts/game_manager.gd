@@ -355,7 +355,7 @@ func choose_ace_value(value):
 
 	# Bust check
 	if player_score > 21:
-		await apply_player_burn_damage()
+		#await apply_player_burn_damage()
 		player_out = true
 
 	# Enemy Turn starten
@@ -373,7 +373,7 @@ func choose_seven_value(value):
 	dialog_manager._check_dialog_mode() #Update Dialog Mode
 
 	if player_score > 21:
-		await apply_player_burn_damage()
+		#await apply_player_burn_damage()
 		player_out = true
 
 	#Enemy Turn starten
@@ -627,7 +627,7 @@ func _on_card_played(value, card_id):
 					spawn_playing_card(218 + 25 * (card_index - 1), 142)
 					return
 
-			await apply_player_burn_damage()
+			#await apply_player_burn_damage()
 			player_out = true
 			
 		#Add Funny Stat
@@ -667,7 +667,7 @@ func _on_card_played_enemy(value, card_id):
 	
 	#Check if Enemy is over 21
 	if enemy_score > 21:
-		await apply_enemy_burn_damage()
+		#await apply_enemy_burn_damage()
 		enemy_out = true
 
 func setup_result_screen():
@@ -1517,7 +1517,7 @@ func _switch_game_mode(mode) -> void:
 			combat_messages_text.text = "You lose 5 Max HP but receive 5 Ultra Rare Cards"
 			
 			ultra_card_mode = true
-			ultra_cards_remaining = 5
+			ultra_cards_remaining = 3
 			
 			await get_tree().create_timer(5).timeout
 			_switch_game_mode(5)
