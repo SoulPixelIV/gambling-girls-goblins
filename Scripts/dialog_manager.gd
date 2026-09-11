@@ -428,7 +428,11 @@ func _random_disappointed_line() -> String:
 	var lines = [
 		"Really..?",
 		"Wow.",
-		"Hmm"
+		"Hmm",
+		"You are so boring!",
+		"Could you PLEASE do something else??",
+		"You can't keep this boring stuff up!",
+		"I guess, I'll have to find a way to make you play less boring.."
 	]
 	return lines[randi() % lines.size()]
 	

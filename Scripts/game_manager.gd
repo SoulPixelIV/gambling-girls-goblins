@@ -220,8 +220,7 @@ func resolve_combat():
 	
 	#DIALOG: Dealer checks if Player was playing too safe
 	if enemy_score <= 10 and player_score <= 12:
-		if randf() < 0.75:
-			dialog_manager.dialog.text = dialog_manager._random_disappointed_line()
+		dialog_manager.dialog.text = dialog_manager._random_disappointed_line()
 	
 	#Affection Level 0 Debuff: 19 is Bust
 	if affection_level == 0 and player_score == 19:
@@ -1163,8 +1162,7 @@ func _on_safe_button_pressed() -> void:
 				pot_affection = int(pot_affection / 2)
 				
 			#Update Dialog
-			if randf() < 0.33:
-				await dialog_manager.type_text(dialog_manager._random_disappointed_line())
+			await dialog_manager.type_text(dialog_manager._random_disappointed_line())
 				
 			status_screen._update_betting_status()
 			combat_messages_text.text = "Safe! Bet halfed."
@@ -1508,13 +1506,13 @@ func _switch_game_mode(mode) -> void:
 		)
 		
 		if highest_stat == Global.player_boring_stat:
-			max_health -= 5
+			max_health -= 6
 			if health > max_health:
 				health = max_health
 			player_healthbar.max_value = max_health
 			player_healthbar.value = health
 			player_health.text = str(health) + " / " + str(max_health)
-			combat_messages_text.text = "You lose 5 Max HP but receive 5 Ultra Rare Cards"
+			combat_messages_text.text = "You lose 6 Max HP but receive 3 Ultra Rare Cards"
 			
 			ultra_card_mode = true
 			ultra_cards_remaining = 3
