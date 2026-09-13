@@ -177,7 +177,7 @@ func _check_dialog_mode() -> void:
 		
 		tripple_button2.modulate = Color.ROYAL_BLUE
 		
-		dialog_user.text = ""
+		#dialog_user.text = ""
 		
 		await type_text(_random_health_line())
 		
@@ -305,7 +305,7 @@ func _check_dialog_mode() -> void:
 			tripple_button2.tooltip_text = ""
 			tripple_button3.tooltip_text = ""
 			
-			dialog_user.text = ""
+			#dialog_user.text = ""
 			
 			await type_text(_random_fthedealer_line_negative())
 			
@@ -368,10 +368,10 @@ func _check_dialog_mode() -> void:
 		#dialog_user.text = ""
 		
 		# No Stat
-		if Global.player_boring_stat == 0 \
-		and Global.player_funny_stat == 0 \
-		and Global.player_unlucky_stat == 0 \
-		and Global.player_lucky_stat == 0:
+		if Global.player_boring_stat <= 3 \
+		and Global.player_funny_stat <= 3 \
+		and Global.player_unlucky_stat <= 3 \
+		and Global.player_lucky_stat <= 3:
 			var option = randi_range(0, 3)		
 			match option:
 				0:

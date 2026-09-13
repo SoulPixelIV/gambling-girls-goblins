@@ -329,11 +329,9 @@ func _on_stand_button_pressed() -> void:
 			if card_index > 0:
 				#Add Boring Stat
 				if player_score <= 9:
-					Global.player_boring_stat += 5
+					Global.player_boring_stat += 4
 				elif player_score <= 12:
-					Global.player_boring_stat += 3
-				elif player_score <= 16:
-					Global.player_boring_stat += 1
+					Global.player_boring_stat += 2
 				
 				player_out = true
 				player_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
@@ -454,7 +452,7 @@ func spawn_card_inventory():
 		var random_card = deck[random_index]
 	
 		selec_card.value = random_card.value
-		selec_card.rarity = 2
+		selec_card.rarity = 1
 		selec_card.mutation = randi_range(1, 4)
 		
 		Global.holding_card_value = selec_card.value
@@ -726,6 +724,10 @@ func show_enemy_self_damage():
 func show_enemy_damage():
 	var calc_enemy_damage = 0
 	
+	# Enemy bust = 0 damage
+	if enemy_score > 21:
+		calc_enemy_damage = 0
+		
 	#Mood Level 5 Bonus: Occasionally shields from Enemy Attack
 	if mood_level >= 5:
 		var rng = RandomNumberGenerator.new()
@@ -1499,10 +1501,10 @@ func _switch_game_mode(mode) -> void:
 		game_mode = 10
 		
 		# No Stat
-		if Global.player_boring_stat == 0 \
-		and Global.player_funny_stat == 0 \
-		and Global.player_unlucky_stat == 0 \
-		and Global.player_lucky_stat == 0:
+		if Global.player_boring_stat <= 3 \
+		and Global.player_funny_stat <= 3 \
+		and Global.player_unlucky_stat <= 3 \
+		and Global.player_lucky_stat <= 3:
 			combat_messages_text.text = ""
 			return
 		
@@ -1520,13 +1522,13 @@ func _switch_game_mode(mode) -> void:
 			player_healthbar.max_value = max_health
 			player_healthbar.value = health
 			player_health.text = str(health) + " / " + str(max_health)
-			combat_messages_text.text = "You lose 6 Max HP but receive 3 Ultra Rare Cards"
+			combat_messages_text.text = "You lose 6 Max HP but receive 3 [Rare] Cards"
 			
 			ultra_card_mode = true
 			ultra_cards_remaining = 3
 			
-			await get_tree().create_timer(5).timeout
-			_switch_game_mode(5)
+			#await get_tree().create_timer(5).timeout
+			#_switch_game_mode(5)
 
 		elif highest_stat == Global.player_funny_stat:
 			funny_talk_stacks += 1
