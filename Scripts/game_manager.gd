@@ -330,8 +330,12 @@ func _on_stand_button_pressed() -> void:
 				#Add Boring Stat
 				if player_score <= 9:
 					Global.player_boring_stat += 4
+					#Update Dialog
+					await dialog_manager.type_text(dialog_manager._random_disappointed_line())
 				elif player_score <= 12:
 					Global.player_boring_stat += 2
+					#Update Dialog
+					await dialog_manager.type_text(dialog_manager._random_disappointed_line())
 				
 				player_out = true
 				player_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
@@ -630,12 +634,20 @@ func _on_card_played(value, card_id):
 		#Add Funny Stat
 		if previous_score == 17:
 			Global.player_funny_stat += 1
+			#Update Dialog
+			await dialog_manager.type_text(dialog_manager._random_funny_line())
 		elif previous_score == 18:
 			Global.player_funny_stat += 2
+			#Update Dialog
+			await dialog_manager.type_text(dialog_manager._random_funny_line())
 		elif previous_score == 19:
 			Global.player_funny_stat += 3
+			#Update Dialog
+			await dialog_manager.type_text(dialog_manager._random_funny_line())
 		elif previous_score == 20:
 			Global.player_funny_stat += 6
+			#Update Dialog
+			await dialog_manager.type_text(dialog_manager._random_funny_line())
 		
 	#Change Button Texts
 	if button_mode == 0:
@@ -727,6 +739,20 @@ func show_enemy_damage():
 	# Enemy bust = 0 damage
 	if enemy_score > 21:
 		calc_enemy_damage = 0
+	else:
+		if player_score > 21:
+			calc_enemy_damage = enemy_score
+		else:
+			calc_enemy_damage = enemy_score - player_score 
+			
+		#FUNNY TALK ROOM EFFECT
+		if funny_talk_stacks > 0:
+			for i in range(funny_talk_stacks):
+				calc_enemy_damage = int(calc_enemy_damage * 1.2)
+			
+		#Mood Level 3 Bonus: Player receives half Damage
+		if mood_level >= 3:
+			calc_enemy_damage = int(calc_enemy_damage / 2)
 		
 	#Mood Level 5 Bonus: Occasionally shields from Enemy Attack
 	if mood_level >= 5:
@@ -738,20 +764,6 @@ func show_enemy_damage():
 			await get_tree().create_timer(2).timeout
 			combat_messages_text.text = ""
 			return
-	
-	if player_score > 21:
-		calc_enemy_damage = enemy_score
-	else:
-		calc_enemy_damage = enemy_score - player_score 
-		
-	#FUNNY TALK ROOM EFFECT
-	if funny_talk_stacks > 0:
-		for i in range(funny_talk_stacks):
-			calc_enemy_damage = int(calc_enemy_damage * 1.2)
-		
-	#Mood Level 3 Bonus: Player receives half Damage
-	if mood_level >= 3:
-		calc_enemy_damage = int(calc_enemy_damage / 2)
 	
 	curr_damage += calc_enemy_damage
 	combat_messages_text.text = "You receive %d Damage from the Enemy!" % calc_enemy_damage
@@ -1035,6 +1047,8 @@ func _on_tripple_button_1_pressed() -> void:
 		
 		#Add Boring Stat
 		Global.player_boring_stat += 3
+		#Update Dialog
+		await dialog_manager.type_text(dialog_manager._random_disappointed_line())
 		
 		_switch_game_mode(3)
 	elif game_mode == 7:
@@ -1115,6 +1129,8 @@ func _on_tripple_button_3_pressed() -> void:
 	if game_mode == 2:
 		#Add Funny Stat
 		Global.player_funny_stat += 3
+		#Update Dialog
+		await dialog_manager.type_text(dialog_manager._random_funny_line())
 		_switch_game_mode(7)
 	elif game_mode == 7:
 		#HIGHER AND SPAWN CARD
@@ -1149,6 +1165,8 @@ func _on_double_button_pressed() -> void:
 			
 			#Add Funny Stat
 			Global.player_funny_stat += 4
+			#Update Dialog
+			await dialog_manager.type_text(dialog_manager._random_funny_line())
 
 func _on_safe_button_pressed() -> void:
 	if hit_input_locked:

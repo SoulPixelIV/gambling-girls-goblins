@@ -453,6 +453,16 @@ func _random_disappointed_line() -> String:
 	]
 	return lines[randi() % lines.size()]
 	
+func _random_funny_line() -> String:
+	var lines = [
+		"Interesting.",
+		"heh.",
+		"What a joker you are!",
+		"W-why?",
+		"Haha"
+	]
+	return lines[randi() % lines.size()]
+	
 func _random_heal_room_line() -> String:
 	var lines = [
 		"Welcome. What are you in the mood for today?",
