@@ -367,6 +367,23 @@ func _check_dialog_mode() -> void:
 		
 		#dialog_user.text = ""
 		
+		# No Stat
+		if Global.player_boring_stat == 0 \
+		and Global.player_funny_stat == 0 \
+		and Global.player_unlucky_stat == 0 \
+		and Global.player_lucky_stat == 0:
+			var option = randi_range(0, 3)		
+			match option:
+				0:
+					type_text("I get bored quite quickly. So entertain me or else I'll try some more drastic measures!")
+				1:
+					type_text("I want to see how lucky you are! Maybe we can play a little game later!")
+				2:
+					type_text("I have a bad feeling about today. I will always be at your side..")
+				3:
+					type_text("Don't be so serious all the time! Maybe I'll help you a bit, if you make me laugh..")
+			return
+		
 		if highest_stat == Global.player_lucky_stat:
 			tripple_button2.hide()
 			await type_text(_lucky_line())

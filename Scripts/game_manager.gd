@@ -1498,6 +1498,14 @@ func _switch_game_mode(mode) -> void:
 		
 		game_mode = 10
 		
+		# No Stat
+		if Global.player_boring_stat == 0 \
+		and Global.player_funny_stat == 0 \
+		and Global.player_unlucky_stat == 0 \
+		and Global.player_lucky_stat == 0:
+			combat_messages_text.text = ""
+			return
+		
 		var highest_stat = max(
 			Global.player_boring_stat,
 			Global.player_funny_stat,
