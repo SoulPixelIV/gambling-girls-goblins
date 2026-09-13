@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://chabha85c43iy"]
 
+[ext_resource type="Script" uid="uid://7he0n752uup8" path="res://Scripts/game_over.gd" id="1_8fo1c"]
 [ext_resource type="Script" uid="uid://b3377wmmkf6cl" path="res://Scripts/death_manager.gd" id="1_ojehl"]
 
 [node name="Node" type="Node" unique_id=1979963607]
+script = ExtResource("1_8fo1c")
 
 [node name="Background" type="ColorRect" parent="." unique_id=159603131]
 offset_right = 640.0
@@ -21,9 +23,9 @@ offset_bottom = 40.0
 [node name="Journey_Label" type="Label" parent="User_Interface" unique_id=680879426]
 layout_mode = 0
 offset_left = -77.0
-offset_top = 41.0
+offset_top = 11.0
 offset_right = 716.0
-offset_bottom = 140.0
+offset_bottom = 110.0
 theme_override_colors/font_color = Color(0.9254902, 0, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 32
@@ -31,23 +33,107 @@ text = "Your Journey ends here"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sorry_Label" type="Label" parent="User_Interface" unique_id=1281019492]
+[node name="Sentence_Label" type="Label" parent="User_Interface" unique_id=1281019492]
 layout_mode = 0
 offset_left = -7.0
-offset_top = 118.0
+offset_top = 82.0
 offset_right = 647.0
-offset_bottom = 152.0
+offset_bottom = 116.0
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 18
-text = "I am very sorry, darling"
+text = "You are an average player"
+horizontal_alignment = 1
+
+[node name="Layer_Name_Label" type="Label" parent="User_Interface" unique_id=629675186]
+layout_mode = 0
+offset_left = -57.0
+offset_top = 127.0
+offset_right = 597.0
+offset_bottom = 161.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Layers discovered:"
+horizontal_alignment = 1
+
+[node name="Layer_Label" type="Label" parent="User_Interface" unique_id=679742327]
+layout_mode = 0
+offset_left = 338.0
+offset_top = 127.0
+offset_right = 992.0
+offset_bottom = 161.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "17"
+
+[node name="Enemies_Label" type="Label" parent="User_Interface" unique_id=1768991983]
+layout_mode = 0
+offset_left = 338.0
+offset_top = 143.0
+offset_right = 992.0
+offset_bottom = 177.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "46"
+
+[node name="Damage_Label" type="Label" parent="User_Interface" unique_id=1761342733]
+layout_mode = 0
+offset_left = 338.0
+offset_top = 159.0
+offset_right = 992.0
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 15
+text = "864"
+
+[node name="Enemies_Name_Label" type="Label" parent="User_Interface" unique_id=1010655830]
+layout_mode = 0
+offset_left = -57.0
+offset_top = 143.0
+offset_right = 597.0
+offset_bottom = 177.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Enemies defeated:"
 horizontal_alignment = 1
 
 [node name="Restart_Button" type="Button" parent="User_Interface" unique_id=467423527]
 layout_mode = 0
 offset_left = 252.0
-offset_top = 217.0
+offset_top = 235.0
 offset_right = 388.0
-offset_bottom = 271.0
+offset_bottom = 289.0
 text = "Restart Game"
+
+[node name="Damage_Name_Label" type="Label" parent="User_Interface" unique_id=365027369]
+layout_mode = 0
+offset_left = -62.0
+offset_top = 159.0
+offset_right = 592.0
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 15
+text = "Total Damage dealt:"
+horizontal_alignment = 1
+
+[node name="Score_Name_Label" type="Label" parent="User_Interface" unique_id=62854355]
+layout_mode = 0
+offset_left = -38.0
+offset_top = 176.0
+offset_right = 616.0
+offset_bottom = 210.0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 17
+text = "Total Score:"
+horizontal_alignment = 1
+
+[node name="Score_Label" type="Label" parent="User_Interface" unique_id=1121353396]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 176.0
+offset_right = 993.0
+offset_bottom = 210.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 17
+text = "4682"
 
 [connection signal="pressed" from="User_Interface/Restart_Button" to="Death_Manager" method="_on_restart_button_pressed"]

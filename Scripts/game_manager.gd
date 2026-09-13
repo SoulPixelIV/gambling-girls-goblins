@@ -936,6 +936,8 @@ func show_enemy_final_damage():
 	var damage_message = "Total Damage: %d" % curr_enemy_damage
 	show_damage_message(damage_message, 5.0)
 	
+	Global.damage_count += curr_enemy_damage
+	
 	enemy.health -= curr_enemy_damage
 	enemy.health = max(enemy.health, 0) #Enemy Health doesn't fall below 0
 	enemy_healthbar.value = enemy.health

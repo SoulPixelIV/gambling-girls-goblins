@@ -178,9 +178,11 @@ func _on_node_clicked(target_node):
 	if target_node.is_exit and !target_node.event_finished:
 		target_node.event_finished = true
 		reset_dungeon()
+		Global.layer_count += 1
 		return
 	if target_node.is_combat and !target_node.event_finished:
 		game_manager._switch_game_mode(0)
+		Global.enemy_count += 1
 		target_node.event_finished = true
 	if target_node.is_heal and !target_node.event_finished:
 		game_manager._switch_game_mode(2)
