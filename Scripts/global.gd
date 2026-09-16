@@ -5,7 +5,7 @@ var player_funny_stat = 0
 var player_unlucky_stat = 0
 var player_lucky_stat = 0
 
-var layer_count = 0
+var layer_count = 1
 var enemy_count = 0
 var damage_count = 0
 var score_count = 0
