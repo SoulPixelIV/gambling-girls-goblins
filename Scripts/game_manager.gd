@@ -203,11 +203,11 @@ func _process(delta: float) -> void:
 			turn_state = 0
 
 		# Player keeps going when Enemy is out
-		elif enemy_out && !player_out:
+		if (turn_state == 1 || enemy_out) && !player_out:
 			enemy_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
 			turn_state = 1
 			
-			#Activate Stand Button again
+			# Activate Stand Button again
 			if card_index > 0 && player_score <= 21:
 				stand_button.disabled = false
 
@@ -1177,7 +1177,7 @@ func _on_tripple_button_3_pressed() -> void:
 		#Add Funny Stat
 		Global.player_funny_stat += 3
 		#Update Dialog
-		await dialog_manager.type_text(dialog_manager._random_funny_line())
+		#await dialog_manager.type_text(dialog_manager._random_funny_line())
 		_switch_game_mode(7)
 	elif game_mode == 7:
 		#HIGHER AND SPAWN CARD
