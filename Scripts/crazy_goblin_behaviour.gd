@@ -1,6 +1,6 @@
 extends Node2D
 
-var health = 18
+var health = 4
 var stand_on = 17
 var stand_chance = 0.1 #Chance to stand disregarding "stand_on"
 var deck = ["2H", "2D", "2C", "2S", "3H", "3D", "3C", "3S", "4H", "4D", "4C", "4S", 

@@ -24,6 +24,7 @@ extends Node
 var dialog_mode = 0
 var typing_token = 0
 var ui_abort = false
+var dialog_finished = false
 
 func _ready() -> void:
 	dialog.text = ""
@@ -125,6 +126,8 @@ func _check_dialog_mode() -> void:
 		
 	#Health Room
 	if dialog_mode == 4:
+		dialog_finished = false
+		
 		answer1_parent.hide()
 		answer2_parent.hide()
 		answer3_parent.hide()
@@ -150,9 +153,15 @@ func _check_dialog_mode() -> void:
 		tripple_button2.tooltip_text = "Choose from 3 random cards."
 		tripple_button3.tooltip_text = "Heal 20 Health & Receive a Card or get nothing!"
 		
-		#dialog_user.text = ""
+		tripple_button1.disabled = true
+		tripple_button2.disabled = true
+		tripple_button3.disabled = true		
+		await type_text(_random_heal_room_line())	
+		tripple_button1.disabled = false
+		tripple_button2.disabled = false
+		tripple_button3.disabled = false
 		
-		await type_text(_random_heal_room_line())
+		dialog_finished = true
 		
 	#!EXIT! Health Room
 	if dialog_mode == 5:
@@ -656,6 +665,9 @@ func reset_ui():
 	tripple_button1.hide()
 	tripple_button2.hide()
 	tripple_button3.hide()
+	tripple_button1.disabled = false
+	tripple_button2.disabled = false
+	tripple_button3.disabled = false
 	
 	dialog.text = ""
 	#dialog_user.text = ""

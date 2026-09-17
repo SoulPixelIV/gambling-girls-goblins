@@ -1038,6 +1038,13 @@ func _on_tripple_button_1_pressed() -> void:
 	if hit_input_locked:
 		return
 		
+	if !dialog_manager.dialog_finished:
+		return
+		
+	tripple_button1.disabled = true
+	tripple_button2.disabled = true
+	tripple_button3.disabled = true
+		
 	if game_mode == 2:
 		if health <= max_health - 20:
 			health += 20
@@ -1050,7 +1057,7 @@ func _on_tripple_button_1_pressed() -> void:
 		#Add Boring Stat
 		Global.player_boring_stat += 3
 		#Update Dialog
-		await dialog_manager.type_text(dialog_manager._random_disappointed_line())
+		#await dialog_manager.type_text(dialog_manager._random_disappointed_line())
 		
 		_switch_game_mode(3)
 	elif game_mode == 7:
@@ -1063,6 +1070,13 @@ func _on_tripple_button_1_pressed() -> void:
 func _on_tripple_button_2_pressed() -> void:
 	if hit_input_locked:
 		return
+		
+	if !dialog_manager.dialog_finished:
+		return
+		
+	tripple_button1.disabled = true
+	tripple_button2.disabled = true
+	tripple_button3.disabled = true
 		
 	if game_mode == 2:
 		_switch_game_mode(4)
@@ -1127,6 +1141,13 @@ func _on_tripple_button_2_pressed() -> void:
 func _on_tripple_button_3_pressed() -> void:
 	if hit_input_locked:
 		return
+		
+	if !dialog_manager.dialog_finished:
+		return
+		
+	tripple_button1.disabled = true
+	tripple_button2.disabled = true
+	tripple_button3.disabled = true
 		
 	if game_mode == 2:
 		#Add Funny Stat
