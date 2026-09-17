@@ -237,9 +237,8 @@ func _check_dialog_mode() -> void:
 			tripple_button2.text = "Back to Overworld"
 		tripple_button3.tooltip_text = ""
 		
-		#dialog_user.text = ""
-		
 		await type_text(_random_card_select_line())
+		dialog_finished = true
 		
 	#GAMBLE ROOM
 	if dialog_mode == 8:
