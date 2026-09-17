@@ -206,6 +206,10 @@ func _process(delta: float) -> void:
 		elif enemy_out && !player_out:
 			enemy_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
 			turn_state = 1
+			
+			#Activate Stand Button again
+			if card_index > 0 && player_score <= 21:
+				stand_button.disabled = false
 
 		# Damage Calculating Phase
 		if player_out && enemy_out:
@@ -1086,7 +1090,7 @@ func _on_tripple_button_2_pressed() -> void:
 	if hit_input_locked:
 		return
 		
-	if !dialog_manager.dialog_finished:
+	if !dialog_manager.dialog_finished && game_mode != 9 && game_mode != 10:
 		return
 		
 	tripple_button1.disabled = true
@@ -1139,13 +1143,7 @@ func _on_tripple_button_2_pressed() -> void:
 	elif game_mode == 9:
 		return_to_overworld()
 	elif game_mode == 10:
-		var highest_stat = max(
-			Global.player_boring_stat,
-			Global.player_funny_stat,
-			Global.player_unlucky_stat,
-			Global.player_lucky_stat
-		)
-		if highest_stat == Global.player_lucky_stat or highest_stat == Global.player_funny_stat or highest_stat == Global.player_unlucky_stat:
+		if Global.player_lucky_stat <= 3 and Global.player_funny_stat <= 3 and Global.player_unlucky_stat <= 3 and Global.player_boring_stat <= 3:
 			return_to_overworld()
 		else:
 			#Give Ultra Cards
