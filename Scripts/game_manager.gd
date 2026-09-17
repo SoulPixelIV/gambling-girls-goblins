@@ -307,6 +307,9 @@ func _on_hit_button_pressed() -> void:
 			spawn_playing_card(218 + 25 * card_index, 142)
 			card_index += 1
 			
+			if player_score <= 21:
+				stand_button.disabled = false
+			
 			#Double Down Check
 			if double_down_active:
 				player_out = true
@@ -326,9 +329,11 @@ func _on_stand_button_pressed() -> void:
 			health = max_health
 	else:
 		if button_mode == 0:
-			if card_index > 0:
+			if card_index > 0 && !player_out && player_score <= 21:
 				# Stand nur einmal pro Runde möglich
 				stand_button.disabled = true
+				hit_button.disabled = true
+				player_out = true
 				
 				#Add Boring Stat
 				if player_score <= 9:
@@ -610,6 +615,9 @@ func _on_card_played(value, card_id):
 
 		#Check if Player is over 21
 		if player_score > 21:
+			stand_button.disabled = true
+			hit_button.disabled = true
+			
 			#Affection Level 5 Bonus: Occasionally redraw last Card on Bust
 			if affection_level >= 5 and !redraw_used:
 				var rng = RandomNumberGenerator.new()
@@ -962,6 +970,7 @@ func reset_game_round():
 	curr_damage = 0
 	curr_enemy_damage = 0
 	stand_button.disabled = false
+	hit_button.disabled = false
 	
 	#Reset Deck
 	_reset_combat_deck()
@@ -993,6 +1002,7 @@ func return_to_overworld():
 	curr_damage = 0
 	curr_enemy_damage = 0
 	stand_button.disabled = false
+	hit_button.disabled = false
 	
 	_reset_combat_deck()
 	

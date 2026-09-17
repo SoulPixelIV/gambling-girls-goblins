@@ -108,7 +108,7 @@ offset_top = 344.0
 offset_right = 638.0
 offset_bottom = 378.0
 theme_override_font_sizes/font_size = 11
-text = "v.1.0"
+text = "v.1.1"
 horizontal_alignment = 1
 
 [node name="Dealer_Interface" type="Control" parent="User_Interface" unique_id=1443971362]

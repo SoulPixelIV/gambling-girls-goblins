@@ -92,6 +92,8 @@ func _check_dialog_mode() -> void:
 		double_button.tooltip_text = "Double your Bet (You only draw 1 more Card)"
 		safe_button.tooltip_text = "Half your Bet (You cannot double your Bet after that)"
 		
+		stand_button.disabled = true
+		
 	if dialog_mode == 2:
 		answer1_parent.hide()
 		answer2_parent.hide()
