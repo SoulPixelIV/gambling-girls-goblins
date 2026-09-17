@@ -327,6 +327,9 @@ func _on_stand_button_pressed() -> void:
 	else:
 		if button_mode == 0:
 			if card_index > 0:
+				# Stand nur einmal pro Runde möglich
+				stand_button.disabled = true
+				
 				#Add Boring Stat
 				if player_score <= 9:
 					Global.player_boring_stat += 4
@@ -958,6 +961,7 @@ func reset_game_round():
 	called_rng_value = false
 	curr_damage = 0
 	curr_enemy_damage = 0
+	stand_button.disabled = false
 	
 	#Reset Deck
 	_reset_combat_deck()
@@ -988,6 +992,7 @@ func return_to_overworld():
 	called_rng_value = false
 	curr_damage = 0
 	curr_enemy_damage = 0
+	stand_button.disabled = false
 	
 	_reset_combat_deck()
 	
