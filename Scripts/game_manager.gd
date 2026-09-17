@@ -1143,11 +1143,22 @@ func _on_tripple_button_2_pressed() -> void:
 	elif game_mode == 9:
 		return_to_overworld()
 	elif game_mode == 10:
-		if Global.player_lucky_stat <= 3 and Global.player_funny_stat <= 3 and Global.player_unlucky_stat <= 3 and Global.player_boring_stat <= 3:
-			return_to_overworld()
-		else:
-			#Give Ultra Cards
+		var highest_stat = max(
+		Global.player_boring_stat,
+		Global.player_funny_stat,
+		Global.player_unlucky_stat,
+		Global.player_lucky_stat
+		)
+
+		if highest_stat == Global.player_boring_stat \
+		and Global.player_boring_stat > Global.player_funny_stat \
+		and Global.player_boring_stat > Global.player_unlucky_stat \
+		and Global.player_boring_stat > Global.player_lucky_stat:
+			# Boring = 3 Rare Cards
 			_switch_game_mode(5)
+		else:
+			# Funny / Unlucky / Lucky = Back to Overworld
+			return_to_overworld()
 	elif button_mode == 2:
 		choose_seven_value(7)
 

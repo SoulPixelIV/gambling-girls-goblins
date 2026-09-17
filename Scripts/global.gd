@@ -1,6 +1,6 @@
 extends Node
 
-var player_boring_stat = 15
+var player_boring_stat = 0
 var player_funny_stat = 0
 var player_unlucky_stat = 0
 var player_lucky_stat = 0
