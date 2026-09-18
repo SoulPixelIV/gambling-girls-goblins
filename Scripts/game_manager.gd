@@ -57,7 +57,6 @@ var enemy_score = 0
 var player_out = false
 var enemy_out = false
 var called_combat_resolve = false
-var called_rng_value = false
 var curr_damage = 0
 var curr_enemy_damage = 0
 var curr_damage_multiplier = 1.0
@@ -178,24 +177,12 @@ func _process(delta: float) -> void:
 		
 		#Enemys Turn
 		if turn_state == 0 && !enemy_out && button_mode == 0:
-			#Random Stand Chance
-			if !called_rng_value:
-				var rng = RandomNumberGenerator.new()
-				rng.randomize()
-				if rng.randf() < enemy.stand_chance:
-					enemy_out = true
-				called_rng_value = true
-				
-			if enemy_score >= enemy.stand_on:
-				enemy_out = true
-			else:
-				delay_timer -= delta
-				if delay_timer < 0:
-					spawn_enemy_playing_card(400 + 25 * enemy_card_index, 90)
-					called_rng_value = false
-					enemy_card_index += 1
-					turn_state = 1
-					delay_timer = 0.5
+			delay_timer -= delta
+			if delay_timer < 0:
+				spawn_enemy_playing_card(400 + 25 * enemy_card_index, 90)
+				enemy_card_index += 1
+				turn_state = 1
+				delay_timer = 0.5
 				
 		# Enemy keeps going when Player is out
 		if player_out && !enemy_out:
@@ -204,7 +191,9 @@ func _process(delta: float) -> void:
 
 		# Player keeps going when Enemy is out
 		if (turn_state == 1 || enemy_out) && !player_out:
-			enemy_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
+			if enemy_out:
+				enemy_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
+				
 			turn_state = 1
 			
 			# Activate Stand Button again
@@ -693,6 +682,21 @@ func _on_card_played_enemy(value, card_id):
 	if enemy_score > 21:
 		#await apply_enemy_burn_damage()
 		enemy_out = true
+		enemy_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
+	else:
+		# Check if Enemy wants to stand
+		var rng = RandomNumberGenerator.new()
+		rng.randomize()
+
+		if enemy_score >= enemy.stand_on:
+			enemy_out = true
+			enemy_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
+		elif rng.randf() < enemy.stand_chance:
+			enemy_out = true
+			enemy_score_text.add_theme_color_override("font_color", Color(1, 0, 0))
+
+	# Enemy card has been fully resolved -> Player's turn
+	turn_state = 1
 
 func setup_result_screen():
 	#player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
@@ -970,7 +974,6 @@ func reset_game_round():
 	player_out = false
 	enemy_out = false
 	called_combat_resolve = false
-	called_rng_value = false
 	curr_damage = 0
 	curr_enemy_damage = 0
 	stand_button.disabled = false
@@ -1002,7 +1005,6 @@ func return_to_overworld():
 	player_out = false
 	enemy_out = false
 	called_combat_resolve = false
-	called_rng_value = false
 	curr_damage = 0
 	curr_enemy_damage = 0
 	stand_button.disabled = false
