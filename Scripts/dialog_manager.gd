@@ -15,7 +15,6 @@ extends Node
 @onready var answer_label = $"../User_Interface/Answer_Label"
 @onready var hit_button = $"../User_Interface/Hit_Button"
 @onready var stand_button = $"../User_Interface/Stand_Button"
-@onready var double_button = $"../User_Interface/Double_Button"
 @onready var safe_button = $"../User_Interface/Safe_Button"
 @onready var tripple_button1 = $"../User_Interface/Tripple_Button1"
 @onready var tripple_button2 = $"../User_Interface/Tripple_Button2"
@@ -45,7 +44,6 @@ func _check_dialog_mode() -> void:
 		answer_label.show()
 		hit_button.hide()
 		stand_button.hide()
-		double_button.hide()
 		safe_button.hide()
 		tripple_button1.hide()
 		tripple_button2.hide()
@@ -82,15 +80,13 @@ func _check_dialog_mode() -> void:
 		tripple_button3.hide()
 		hit_button.show()
 		stand_button.show()
-		double_button.show()
 		safe_button.show()
 		game_manager.begin_fight = true
 		status_screen._update_betting_status()
 		
 		hit_button.tooltip_text = "Draw a Card"
 		stand_button.tooltip_text = "Stand on your current Cards (You need atleast 1 Card)"
-		double_button.tooltip_text = "Double your Bet (You only draw 1 more Card)"
-		safe_button.tooltip_text = "Half your Bet (You cannot double your Bet after that)"
+		safe_button.tooltip_text = "Half your Bet"
 		
 		stand_button.disabled = true
 		
@@ -102,7 +98,6 @@ func _check_dialog_mode() -> void:
 		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
-		double_button.hide()
 		safe_button.hide()
 		tripple_button1.show()
 		tripple_button2.show()
@@ -119,7 +114,6 @@ func _check_dialog_mode() -> void:
 		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
-		double_button.hide()
 		safe_button.hide()
 		tripple_button1.hide()
 		tripple_button2.hide()
@@ -137,7 +131,6 @@ func _check_dialog_mode() -> void:
 		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
-		double_button.hide()
 		safe_button.hide()
 		tripple_button1.show()
 		tripple_button2.show()
@@ -174,7 +167,6 @@ func _check_dialog_mode() -> void:
 		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
-		double_button.hide()
 		safe_button.hide()
 		tripple_button1.hide()
 		tripple_button2.show()
@@ -201,7 +193,6 @@ func _check_dialog_mode() -> void:
 		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
-		double_button.hide()
 		safe_button.hide()
 		tripple_button1.hide()
 		tripple_button2.hide()
@@ -224,7 +215,6 @@ func _check_dialog_mode() -> void:
 		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
-		double_button.hide()
 		safe_button.hide()
 		tripple_button1.hide()
 		tripple_button2.show()
@@ -249,7 +239,6 @@ func _check_dialog_mode() -> void:
 		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
-		double_button.hide()
 		safe_button.hide()
 		tripple_button1.show()
 		tripple_button2.show()
@@ -277,7 +266,6 @@ func _check_dialog_mode() -> void:
 			answer_label.hide()
 			hit_button.hide()
 			stand_button.hide()
-			double_button.hide()
 			safe_button.hide()
 			tripple_button1.hide()
 			tripple_button2.show()
@@ -302,7 +290,6 @@ func _check_dialog_mode() -> void:
 			answer_label.hide()
 			hit_button.hide()
 			stand_button.hide()
-			double_button.hide()
 			safe_button.hide()
 			tripple_button1.hide()
 			tripple_button2.show()
@@ -328,7 +315,6 @@ func _check_dialog_mode() -> void:
 		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
-		double_button.hide()
 		safe_button.hide()
 		tripple_button1.hide()
 		tripple_button2.show()
@@ -354,7 +340,6 @@ func _check_dialog_mode() -> void:
 		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
-		double_button.hide()
 		safe_button.hide()
 		
 		var highest_stat = max(
@@ -416,7 +401,6 @@ func _check_dialog_mode() -> void:
 		answer_label.hide()
 		hit_button.hide()
 		stand_button.hide()
-		double_button.hide()
 		safe_button.hide()
 		tripple_button1.hide()
 		tripple_button2.hide()
@@ -661,7 +645,6 @@ func reset_ui():
 	answer4_parent.hide()
 	hit_button.hide()
 	stand_button.hide()
-	double_button.hide()
 	safe_button.hide()
 	tripple_button1.hide()
 	tripple_button2.hide()
