@@ -888,6 +888,8 @@ script = ExtResource("13_rfjv2")
 [connection signal="pressed" from="User_Interface/Answer2_Button_Parent/Answer2_Button" to="Dialog_Manager" method="_on_answer_2_button_pressed"]
 [connection signal="pressed" from="User_Interface/Answer3_Button_Parent/Answer3_Button" to="Dialog_Manager" method="_on_answer_3_button_pressed"]
 [connection signal="pressed" from="User_Interface/Answer4_Button_Parent/Answer4_Button" to="Dialog_Manager" method="_on_answer_4_button_pressed"]
+[connection signal="pressed" from="User_Interface/Answer5_Button_Parent/Answer5_Button" to="Dialog_Manager" method="_on_answer_5_button_pressed"]
+[connection signal="pressed" from="User_Interface/Answer6_Button_Parent/Answer6_Button" to="Dialog_Manager" method="_on_answer_6_button_pressed"]
 [connection signal="pressed" from="User_Interface/Hit_Button" to="Game_Manager" method="_on_hit_button_pressed"]
 [connection signal="pressed" from="User_Interface/Stand_Button" to="Game_Manager" method="_on_stand_button_pressed"]
 [connection signal="pressed" from="User_Interface/Safe_Button" to="Game_Manager" method="_on_safe_button_pressed"]
