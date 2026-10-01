@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgsr5wr1axjsl"
-path="res://.godot/imported/ui_frame.png-8a2392eedc918d098db1778169d8d962.ctex"
+uid="uid://b87kjkxhdvuof"
+path="res://.godot/imported/icon_affection_up_gold.png-c986ccb0f9c14f67c6fc7bcea286c1b8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/ui_frame.png"
-dest_files=["res://.godot/imported/ui_frame.png-8a2392eedc918d098db1778169d8d962.ctex"]
+source_file="res://Textures/Icons/icon_affection_up_gold.png"
+dest_files=["res://.godot/imported/icon_affection_up_gold.png-c986ccb0f9c14f67c6fc7bcea286c1b8.ctex"]
 
 [params]
 

@@ -21,11 +21,11 @@ func _update_dealer_stats():
 	if mood <= 20:
 		mood_text.add_theme_color_override("font_color", Color.RED)
 	else:
-		mood_text.add_theme_color_override("font_color", Color.GREEN_YELLOW)
+		mood_text.add_theme_color_override("font_color", Color(255.0 / 255.0, 215.0 / 255.0, 0))
 	if affection <= 20:
 		affection_text.add_theme_color_override("font_color", Color.RED)
 	else:
-		affection_text.add_theme_color_override("font_color", Color.GREEN_YELLOW)
+		affection_text.add_theme_color_override("font_color", Color(255.0 / 255.0, 215.0 / 255.0, 0))
 		
 	if mood < 20:
 		game_manager.mood_level = 0

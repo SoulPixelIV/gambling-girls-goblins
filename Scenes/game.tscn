@@ -1,16 +1,19 @@
 [gd_scene format=3 uid="uid://co4dvh24whixt"]
 
 [ext_resource type="Texture2D" uid="uid://cm4bi2hriubg" path="res://Textures/circle_debug.png" id="1_3dryh"]
-[ext_resource type="Texture2D" uid="uid://bpx3j8sscympk" path="res://Textures/ui_frame.png" id="2_qxrlw"]
+[ext_resource type="Texture2D" uid="uid://bgsr5wr1axjsl" path="res://Textures/ui_frame.png" id="2_qxrlw"]
 [ext_resource type="Shader" uid="uid://clnvet060xyb4" path="res://Shader/blur.gdshader" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://c68wrohjmdhoe" path="res://Scripts/dialog_manager.gd" id="4_i6g32"]
-[ext_resource type="Texture2D" uid="uid://cu4u6w43300n1" path="res://Textures/dealer_debug.png" id="5_i6g32"]
+[ext_resource type="Texture2D" uid="uid://cejuxpkjvabav" path="res://Textures/dealer_debug.png" id="5_i6g32"]
 [ext_resource type="Script" uid="uid://dtm1mmgfat4he" path="res://Scripts/overworld_manager.gd" id="5_rfjv2"]
 [ext_resource type="Script" uid="uid://cgfxf55meli1d" path="res://Scripts/game_manager.gd" id="5_wowpa"]
 [ext_resource type="Script" uid="uid://djdh5655mwlcm" path="res://Scripts/user_interface.gd" id="6_nb51f"]
 [ext_resource type="Texture2D" uid="uid://bmttochduuoh3" path="res://Textures/Icons/icon_mood_up.png" id="7_1l0tm"]
+[ext_resource type="Texture2D" uid="uid://2bi71acrtr7t" path="res://Textures/ui_background.png" id="7_85qyi"]
 [ext_resource type="Script" uid="uid://ghsi0dbfghps" path="res://Scripts/status_screen.gd" id="8_1phco"]
+[ext_resource type="Texture2D" uid="uid://b87kjkxhdvuof" path="res://Textures/Icons/icon_affection_up_gold.png" id="9_ewbju"]
 [ext_resource type="Texture2D" uid="uid://bvffca130ex0i" path="res://Textures/Icons/icon_mood_down.png" id="9_ldgsr"]
+[ext_resource type="Texture2D" uid="uid://57yw0y72vivq" path="res://Textures/Icons/icon_mood_up_gold.png" id="10_85qyi"]
 [ext_resource type="Texture2D" uid="uid://bkb5fcp3ahfgc" path="res://Textures/Icons/icon_affection_up.png" id="11_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://gni2ecgjaq7b" path="res://Textures/Icons/icon_affection_down.png" id="12_rku1e"]
 [ext_resource type="Texture2D" uid="uid://dht47danrd8if" path="res://Textures/Icons/damage_icon.png" id="13_1phco"]
@@ -35,14 +38,14 @@ metadata/_edit_lock_ = true
 [node name="Particle_System" type="Node" parent="." unique_id=400499942]
 
 [node name="Particle_Spawner_Gold" type="CPUParticles2D" parent="Particle_System" unique_id=606576124]
-position = Vector2(370, 236)
+position = Vector2(320, 236)
 amount = 1000
 texture = ExtResource("1_3dryh")
 lifetime = 30.0
 randomness = 0.26
 lifetime_randomness = 0.1
 emission_shape = 3
-emission_rect_extents = Vector2(260, 15)
+emission_rect_extents = Vector2(330, 15)
 direction = Vector2(0, 0)
 gravity = Vector2(0, -2)
 angle_max = 359.0
@@ -52,14 +55,14 @@ scale_amount_curve = SubResource("Curve_3dryh")
 color = Color(1, 0, 1, 1)
 
 [node name="Particle_Spawner_Blue" type="CPUParticles2D" parent="Particle_System" unique_id=1020013295]
-position = Vector2(370, 236)
+position = Vector2(320, 236)
 amount = 1000
 texture = ExtResource("1_3dryh")
 lifetime = 30.0
 randomness = 0.26
 lifetime_randomness = 0.1
 emission_shape = 3
-emission_rect_extents = Vector2(260, 15)
+emission_rect_extents = Vector2(330, 15)
 direction = Vector2(0, 0)
 gravity = Vector2(0, -2)
 angle_max = 359.0
@@ -70,10 +73,16 @@ color = Color(0.17254902, 0.3882353, 0.8862745, 1)
 
 [node name="Blur_Filter" type="ColorRect" parent="." unique_id=1875600707]
 material = SubResource("ShaderMaterial_wowpa")
-offset_left = 109.0
-offset_right = 640.0
-offset_bottom = 252.0
+offset_left = -13.0
+offset_top = -14.0
+offset_right = 657.0
+offset_bottom = 364.0
 metadata/_edit_lock_ = true
+
+[node name="UI_Background" type="Sprite2D" parent="Blur_Filter" unique_id=823039124]
+texture_filter = 1
+position = Vector2(333, 194)
+texture = ExtResource("7_85qyi")
 
 [node name="Game_Manager" type="Node" parent="." unique_id=1538228305]
 script = ExtResource("5_wowpa")
@@ -101,6 +110,11 @@ offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("6_nb51f")
 
+[node name="Frame" type="Sprite2D" parent="User_Interface" unique_id=1579732443]
+texture_filter = 1
+position = Vector2(320, 180)
+texture = ExtResource("2_qxrlw")
+
 [node name="Version_Label" type="Label" parent="User_Interface" unique_id=500333850]
 layout_mode = 0
 offset_left = 609.0
@@ -118,33 +132,35 @@ offset_bottom = 40.0
 mouse_filter = 2
 
 [node name="Dealer_Icon" type="Sprite2D" parent="User_Interface/Dealer_Interface" unique_id=663302625]
-position = Vector2(53, 307.5)
+position = Vector2(60, 307.50003)
 scale = Vector2(0.828125, 0.8203125)
 texture = ExtResource("5_i6g32")
 
 [node name="Affection_Dealer_Icon" type="Sprite2D" parent="User_Interface/Dealer_Interface" unique_id=1684336219]
-position = Vector2(96, 264)
-texture = ExtResource("11_o5yvi")
+position = Vector2(99, 265)
+texture = ExtResource("9_ewbju")
 
 [node name="Mood_Dealer_Icon" type="Sprite2D" parent="User_Interface/Dealer_Interface" unique_id=742184869]
-position = Vector2(10, 265)
-texture = ExtResource("7_1l0tm")
+position = Vector2(10, 266)
+texture = ExtResource("10_85qyi")
 
 [node name="Affection_Label" type="Label" parent="User_Interface/Dealer_Interface" unique_id=1187970413]
 layout_mode = 0
-offset_left = 51.0
-offset_top = 252.0
-offset_right = 87.0
-offset_bottom = 275.0
+offset_left = 54.0
+offset_top = 253.0
+offset_right = 90.0
+offset_bottom = 276.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
 text = "50"
 horizontal_alignment = 2
 
 [node name="Mood_Label" type="Label" parent="User_Interface/Dealer_Interface" unique_id=1177850968]
 layout_mode = 0
 offset_left = 20.0
-offset_top = 252.0
+offset_top = 253.0
 offset_right = 58.0
-offset_bottom = 275.0
+offset_bottom = 276.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
 text = "50"
 
 [node name="Status_Screen" type="Control" parent="User_Interface" unique_id=842203704]
@@ -335,11 +351,6 @@ theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 11
 text = "8"
 horizontal_alignment = 1
-
-[node name="Frame" type="Sprite2D" parent="User_Interface" unique_id=1579732443]
-texture_filter = 1
-position = Vector2(320, 180)
-texture = ExtResource("2_qxrlw")
 
 [node name="Tripple_Button1" type="Button" parent="User_Interface" unique_id=399427961]
 visible = false
