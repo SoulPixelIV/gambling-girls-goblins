@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://co4dvh24whixt"]
 
 [ext_resource type="Texture2D" uid="uid://cm4bi2hriubg" path="res://Textures/circle_debug.png" id="1_3dryh"]
-[ext_resource type="Texture2D" uid="uid://bgsr5wr1axjsl" path="res://Textures/ui_frame.png" id="2_qxrlw"]
+[ext_resource type="Texture2D" uid="uid://d4jdkot3en3ts" path="res://Textures/UI/ui_frame.png" id="2_qxrlw"]
 [ext_resource type="Shader" uid="uid://clnvet060xyb4" path="res://Shader/blur.gdshader" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://c68wrohjmdhoe" path="res://Scripts/dialog_manager.gd" id="4_i6g32"]
 [ext_resource type="Texture2D" uid="uid://cejuxpkjvabav" path="res://Textures/dealer_debug.png" id="5_i6g32"]
@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://cgfxf55meli1d" path="res://Scripts/game_manager.gd" id="5_wowpa"]
 [ext_resource type="Script" uid="uid://djdh5655mwlcm" path="res://Scripts/user_interface.gd" id="6_nb51f"]
 [ext_resource type="Texture2D" uid="uid://bmttochduuoh3" path="res://Textures/Icons/icon_mood_up.png" id="7_1l0tm"]
-[ext_resource type="Texture2D" uid="uid://2bi71acrtr7t" path="res://Textures/ui_background.png" id="7_85qyi"]
+[ext_resource type="Texture2D" uid="uid://2bi71acrtr7t" path="res://Textures/UI/ui_background.png" id="7_85qyi"]
 [ext_resource type="Script" uid="uid://ghsi0dbfghps" path="res://Scripts/status_screen.gd" id="8_1phco"]
 [ext_resource type="Texture2D" uid="uid://b87kjkxhdvuof" path="res://Textures/Icons/icon_affection_up_gold.png" id="9_ewbju"]
 [ext_resource type="Texture2D" uid="uid://bvffca130ex0i" path="res://Textures/Icons/icon_mood_down.png" id="9_ldgsr"]
@@ -18,6 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://gni2ecgjaq7b" path="res://Textures/Icons/icon_affection_down.png" id="12_rku1e"]
 [ext_resource type="Texture2D" uid="uid://dht47danrd8if" path="res://Textures/Icons/damage_icon.png" id="13_1phco"]
 [ext_resource type="Script" uid="uid://b8801c74kbnsj" path="res://Scripts/dealer_manager.gd" id="13_rfjv2"]
+[ext_resource type="FontFile" uid="uid://i15inhcw5uq2" path="res://Fonts/gothic_pixel.ttf" id="17_mg4q0"]
+[ext_resource type="Texture2D" uid="uid://dlw0ubklkeqat" path="res://Textures/UI/healthbar_border.png" id="18_7nbq1"]
+[ext_resource type="Texture2D" uid="uid://cy7xrapa60iat" path="res://Textures/UI/healthbar.png" id="19_exi56"]
+[ext_resource type="Script" uid="uid://24wo87iun0dq" path="res://Scripts/player_healthbar.gd" id="20_7t8sx"]
+[ext_resource type="Texture2D" uid="uid://ondoqjms7flk" path="res://Textures/UI/healthbar_line.png" id="21_mg4q0"]
 
 [sub_resource type="Curve" id="Curve_3dryh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.18617022, 0.9550562), 0.0, 0.0, 0, 0, Vector2(0.6808511, 0.55056185), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -190,16 +195,6 @@ offset_bottom = 248.0
 theme_override_colors/font_color = Color(0.5647059, 1, 0.30980393, 1)
 theme_override_font_sizes/font_size = 14
 text = "Pot:"
-horizontal_alignment = 1
-
-[node name="Stat_Bonus" type="Label" parent="User_Interface/Status_Screen" unique_id=148756231]
-layout_mode = 0
-offset_left = -3.0
-offset_top = 4.0
-offset_right = 107.0
-offset_bottom = 27.0
-theme_override_font_sizes/font_size = 12
-text = "Stat Bonus:"
 horizontal_alignment = 1
 
 [node name="Stat_Debuff" type="Label" parent="User_Interface/Status_Screen" unique_id=274222294]
@@ -686,26 +681,16 @@ theme_override_font_sizes/font_size = 24
 text = "21"
 horizontal_alignment = 1
 
-[node name="Player_Healthbar" type="ProgressBar" parent="User_Interface" unique_id=1839793479]
-layout_mode = 0
-offset_left = 114.0
-offset_top = 228.0
-offset_right = 288.0
-offset_bottom = 248.0
-max_value = 42.0
-step = 1.0
-value = 42.0
-show_percentage = false
-
 [node name="Player_Health" type="Label" parent="User_Interface" unique_id=1758212477]
 layout_mode = 0
-offset_left = 185.0
-offset_top = 224.0
-offset_right = 216.0
-offset_bottom = 258.0
-theme_override_colors/font_color = Color(0, 1, 0.5176471, 1)
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 84.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.79607844, 0.08235294, 0.39607844, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
 theme_override_font_sizes/font_size = 18
-text = "42"
+text = "42/42 HP"
 horizontal_alignment = 1
 
 [node name="Enemy_Healthbar" type="ProgressBar" parent="User_Interface" unique_id=1002222913]
@@ -868,6 +853,30 @@ offset_bottom = 378.0
 theme_override_font_sizes/font_size = 11
 text = "Gambling, Girls & Goblins - SoulPixel Studio"
 horizontal_alignment = 1
+
+[node name="Player_Healthbar" type="TextureProgressBar" parent="User_Interface" unique_id=1302812928]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 1.0
+offset_right = 192.0
+offset_bottom = 41.0
+value = 100.0
+texture_over = ExtResource("18_7nbq1")
+texture_progress = ExtResource("19_exi56")
+script = ExtResource("20_7t8sx")
+
+[node name="Player_Healthbar_Marker" type="TextureRect" parent="User_Interface/Player_Healthbar" unique_id=1181611362]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.96700007
+anchor_top = 0.075
+anchor_right = 0.96700007
+anchor_bottom = 0.075
+offset_left = 0.025993347
+offset_right = 40.025993
+offset_bottom = 40.0
+texture = ExtResource("21_mg4q0")
+stretch_mode = 2
 
 [node name="Hand" type="Control" parent="." unique_id=248982143]
 layout_mode = 3

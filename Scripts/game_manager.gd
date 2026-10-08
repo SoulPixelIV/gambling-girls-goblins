@@ -10,7 +10,7 @@ extends Node
 @onready var overworld_manager = $"../Overworld_Manager"
 @onready var overworld_interface = $"../Overworld_Interface"
 @onready var status_screen: Node = $"../User_Interface/Status_Screen"
-@onready var player_healthbar: ProgressBar = $"../User_Interface/Player_Healthbar"
+@onready var player_healthbar: TextureProgressBar = $"../User_Interface/Player_Healthbar"
 @onready var enemy_healthbar: ProgressBar = $"../User_Interface/Enemy_Healthbar"
 @onready var player_health: Label = $"../User_Interface/Player_Health"
 @onready var enemy_health: Label = $"../User_Interface/Enemy_Health"
@@ -155,7 +155,7 @@ func _ready() -> void:
 		spawn_new_enemy()
 	
 	player_healthbar.max_value = health #Set Maximum Healthbar
-	player_health.text = str(health) + " / " + str(max_health)
+	player_health.text = str(health) + "/" + str(max_health) + " HP"
 	
 	#Remove Placeholder Texts
 	combat_messages_text.text = ""
@@ -856,7 +856,7 @@ func apply_player_burn_damage():
 	health = max(health, 0) #Health doesn't fall below 0
 
 	player_healthbar.value = health
-	player_health.text = str(health) + " / " + str(max_health)
+	player_health.text = str(health) + "/" + str(max_health) + " HP"
 
 	combat_messages_text.text = "Burn! You take %d damage!" % burn_damage
 	combat_messages2_text.text = ""
@@ -896,7 +896,7 @@ func show_final_damage():
 	health -= curr_damage
 	health = max(health, 0) #Health doesn't fall below 0
 	player_healthbar.value = health
-	player_health.text = str(health) + " / " + str(max_health)
+	player_health.text = str(health) + "/" + str(max_health) + " HP"
 	curr_damage = 0
 	await get_tree().create_timer(1.5).timeout
 	
@@ -1073,7 +1073,7 @@ func _on_tripple_button_1_pressed() -> void:
 			health = max_health
 		
 		player_healthbar.value = health
-		player_health.text = str(health) + " / " + str(max_health)
+		player_health.text = str(health) + "/" + str(max_health) + " HP"
 		
 		#Add Boring Stat
 		Global.player_boring_stat += 3
@@ -1128,7 +1128,7 @@ func _on_tripple_button_2_pressed() -> void:
 				health = max_health
 			
 			player_healthbar.value = health
-			player_health.text = str(health) + " / " + str(max_health)
+			player_health.text = str(health) + "/" + str(max_health) + " HP"
 			
 			remove_fthedealer_cards()
 			_switch_game_mode(4)
@@ -1308,7 +1308,7 @@ func _switch_game_mode(mode) -> void:
 		spawn_new_enemy()
 		
 		player_healthbar.max_value = max_health #Set Maximum Healthbar
-		player_health.text = str(health) + " / " + str(max_health)
+		player_health.text = str(health) + "/" + str(max_health) + " HP"
 		
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
@@ -1362,7 +1362,7 @@ func _switch_game_mode(mode) -> void:
 		overworld_interface.hide()
 		
 		player_healthbar.max_value = max_health #Set Maximum Healthbar
-		player_health.text = str(health) + " / " + str(max_health)
+		player_health.text = str(health) + "/" + str(max_health) + " HP"
 		
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
@@ -1385,7 +1385,7 @@ func _switch_game_mode(mode) -> void:
 		overworld_interface.hide()
 		
 		player_healthbar.max_value = max_health #Set Maximum Healthbar
-		player_health.text = str(health) + " / " + str(max_health)
+		player_health.text = str(health) + "/" + str(max_health) + " HP"
 		
 		#Remove Placeholder Texts
 		combat_messages_text.text = ""
@@ -1530,7 +1530,7 @@ func _switch_game_mode(mode) -> void:
 		health = max(health, 0)
 
 		player_healthbar.value = health
-		player_health.text = str(health) + " / " + str(max_health)
+		player_health.text = str(health) + "/" + str(max_health) + " HP"
 		
 		#Add Unlucky Stat
 		if damage > 5:
@@ -1588,7 +1588,7 @@ func _switch_game_mode(mode) -> void:
 				health = max_health
 			player_healthbar.max_value = max_health
 			player_healthbar.value = health
-			player_health.text = str(health) + " / " + str(max_health)
+			player_health.text = str(health) + "/" + str(max_health) + " HP"
 			combat_messages_text.text = "You lose 6 Max HP but receive 3 [Rare] Cards"
 			
 			ultra_card_mode = true
@@ -1606,7 +1606,7 @@ func _switch_game_mode(mode) -> void:
 			if health > max_health:
 				health = max_health
 			player_healthbar.value = health
-			player_health.text = str(health) + " / " + str(max_health)
+			player_health.text = str(health) + "/" + str(max_health) + " HP"
 			combat_messages_text.text = "You heal 7 HP"
 
 		elif highest_stat == Global.player_lucky_stat:
