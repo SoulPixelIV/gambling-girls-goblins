@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bmttochduuoh3" path="res://Textures/Icons/icon_mood_up.png" id="7_1l0tm"]
 [ext_resource type="Texture2D" uid="uid://2bi71acrtr7t" path="res://Textures/UI/ui_background.png" id="7_85qyi"]
 [ext_resource type="Script" uid="uid://ghsi0dbfghps" path="res://Scripts/status_screen.gd" id="8_1phco"]
-[ext_resource type="Texture2D" uid="uid://dfiy2cbgqsk2i" path="res://Textures/UI/ui_speechbubble.png" id="9_22asu"]
+[ext_resource type="Texture2D" uid="uid://cr63paleh2xb1" path="res://Textures/UI/ui_speechbubble.png" id="9_22asu"]
 [ext_resource type="Texture2D" uid="uid://b87kjkxhdvuof" path="res://Textures/Icons/icon_affection_up_gold.png" id="9_ewbju"]
 [ext_resource type="Texture2D" uid="uid://bvffca130ex0i" path="res://Textures/Icons/icon_mood_down.png" id="9_ldgsr"]
 [ext_resource type="Texture2D" uid="uid://57yw0y72vivq" path="res://Textures/Icons/icon_mood_up_gold.png" id="10_85qyi"]
@@ -123,9 +123,8 @@ position = Vector2(320, 180)
 texture = ExtResource("2_qxrlw")
 
 [node name="Dealer_Speechbubble" type="Sprite2D" parent="User_Interface" unique_id=211221450]
-position = Vector2(273, 308)
+position = Vector2(260, 308)
 texture = ExtResource("9_22asu")
-metadata/_edit_lock_ = true
 
 [node name="Version_Label" type="Label" parent="User_Interface" unique_id=500333850]
 layout_mode = 0
@@ -813,38 +812,32 @@ horizontal_alignment = 1
 
 [node name="Dealer_Name_Label" type="Label" parent="User_Interface" unique_id=1884585899]
 layout_mode = 0
-offset_left = 129.0
-offset_top = 262.0
-offset_right = 156.0
-offset_bottom = 274.0
+offset_left = 126.0
+offset_top = 263.0
+offset_right = 164.0
+offset_bottom = 280.0
 theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
-theme_override_font_sizes/font_size = 8
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 18
 text = "Dealer"
 clip_text = true
 
 [node name="Dialog_Label" type="Label" parent="User_Interface" unique_id=541541849]
 layout_mode = 0
-offset_left = 155.0
-offset_top = 274.0
-offset_right = 366.0
-offset_bottom = 351.0
+offset_left = 150.0
+offset_top = 280.0
+offset_right = 345.0
+offset_bottom = 346.0
 theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
 theme_override_constants/line_spacing = 0
-theme_override_font_sizes/font_size = 8
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 16
 text = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam 
 nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, 
 sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. 
 "
 autowrap_mode = 3
 clip_text = true
-
-[node name="Answer_Label" type="Label" parent="User_Interface" unique_id=743332528]
-layout_mode = 0
-offset_left = 446.0
-offset_top = 257.0
-offset_right = 597.0
-offset_bottom = 280.0
-text = "Select your Answer"
 
 [node name="Card_Select_Label" type="Label" parent="User_Interface" unique_id=3731946]
 layout_mode = 0
