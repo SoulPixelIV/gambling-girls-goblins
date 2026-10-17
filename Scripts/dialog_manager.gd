@@ -3,6 +3,8 @@ extends Node
 @onready var game_manager: Node = $"../Game_Manager"
 @onready var status_screen: Node = $"../User_Interface/Status_Screen"
 @onready var dialog: Label = $"../User_Interface/Dialog_Label"
+@onready var dialog_speechbubble = $"../User_Interface/Dealer_Speechbubble"
+@onready var dealer_name = $"../User_Interface/Dealer_Name_Label"
 @onready var dialog_user: Label = $"../User_Interface/Dialog_Label2"
 @onready var answer1_parent = $"../User_Interface/Answer1_Button_Parent"
 @onready var answer2_parent = $"../User_Interface/Answer2_Button_Parent"
@@ -31,7 +33,8 @@ var dialog_finished = false
 
 func _ready() -> void:
 	dialog.text = ""
-	#dialog_user.text = ""
+	dialog_speechbubble.hide()
+	dealer_name.hide()
 	_check_dialog_mode()
 	
 func _check_dialog_mode() -> void:
@@ -651,29 +654,36 @@ func _on_answer_6_button_pressed() -> void:
 	#Add Funny Stat
 	Global.player_funny_stat += 4
 
-func type_text(full_text):
+func type_text(full_text: String) -> void:
 	typing_token += 1
 	var my_token = typing_token
-	
+
 	dialog.text = ""
+	dialog_speechbubble.hide()
+	dealer_name.hide()
+
+	# Dialog nur anzeigen, solange er tatsächlich geschrieben wird
+	if ui_abort:
+		return
+
+	dialog_speechbubble.show()
+	dealer_name.show()
 
 	for letter in full_text:
-		if my_token != typing_token:
+		if my_token != typing_token or ui_abort:
 			return
-			
-		if ui_abort:
-			return
-			
+
 		if !is_inside_tree():
 			return
-			
+
 		dialog.text += letter
-		
-		var tree = get_tree()
-		if tree == null:
-			return
-			
 		await get_tree().create_timer(0.03).timeout
+
+	# Falls der Dialog während der Animation abgebrochen wurde
+	if my_token != typing_token or ui_abort:
+		dialog.text = ""
+		dialog_speechbubble.hide()
+		dealer_name.hide()
 
 func type_text_user(full_text):
 	typing_token += 1
@@ -709,4 +719,5 @@ func reset_ui():
 	tripple_button3.disabled = false
 	
 	dialog.text = ""
-	#dialog_user.text = ""
+	dialog_speechbubble.hide()
+	dealer_name.hide()

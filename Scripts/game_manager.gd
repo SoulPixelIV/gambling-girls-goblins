@@ -1016,6 +1016,8 @@ func return_to_overworld():
 		enemy.reset_deck()
 	combat_messages_text.text = ""
 	combat_messages2_text.text = ""
+	dialog_manager.dialog_speechbubble.hide()
+	dialog_manager.dealer_name.hide()
 	player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
 	enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
 	begin_fight = false
