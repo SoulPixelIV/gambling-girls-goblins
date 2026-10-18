@@ -14,11 +14,14 @@ extends Node
 @onready var answer6_parent = $"../User_Interface/Answer6_Button_Parent"
 @onready var answer1_button = $"../User_Interface/Answer1_Button_Parent/Answer1_Button"
 @onready var answer2_button = $"../User_Interface/Answer2_Button_Parent/Answer2_Button"
+@onready var answer2_label = $"../User_Interface/Answer2_Button_Parent/Answer2_Button/Answer2_Text"
 @onready var answer3_button = $"../User_Interface/Answer3_Button_Parent/Answer3_Button"
+@onready var answer3_label = $"../User_Interface/Answer3_Button_Parent/Answer3_Button/Answer3_Text"
 @onready var answer4_button = $"../User_Interface/Answer4_Button_Parent/Answer4_Button"
 @onready var answer5_button = $"../User_Interface/Answer5_Button_Parent/Answer5_Button"
+@onready var answer5_label = $"../User_Interface/Answer5_Button_Parent/Answer5_Button/Answer5_Text"
 @onready var answer6_button = $"../User_Interface/Answer6_Button_Parent/Answer6_Button"
-#@onready var answer_label = $"../User_Interface/Answer_Label"
+@onready var answer6_label = $"../User_Interface/Answer6_Button_Parent/Answer6_Button/Answer6_Text"
 @onready var hit_button = $"../User_Interface/Hit_Button"
 @onready var stand_button = $"../User_Interface/Stand_Button"
 @onready var safe_button = $"../User_Interface/Safe_Button"
@@ -64,12 +67,12 @@ func _check_dialog_mode() -> void:
 		answer1_button.text = "Neutral"
 		answer1_button.tooltip_text = "[LOSE] -5 Mood | [WIN] +5 Mood"
 		
-		answer2_button.modulate = Color.YELLOW
-		answer2_button.text = "Confident"
+		#answer2_button.modulate = Color.YELLOW
+		answer2_label.text = "5 Confident"
 		answer2_button.tooltip_text = "Bet 5 Mood"
 		
-		answer3_button.modulate = Color.BLUE_VIOLET
-		answer3_button.text = "Flirty"
+		#answer3_button.modulate = Color.BLUE_VIOLET
+		answer3_label.text = "5 Flirty"
 		answer3_button.tooltip_text = "Bet 5 Affection"
 
 		answer4_button.modulate = Color.ORANGE_RED

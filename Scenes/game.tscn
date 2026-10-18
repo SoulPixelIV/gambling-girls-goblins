@@ -21,9 +21,13 @@
 [ext_resource type="Script" uid="uid://b8801c74kbnsj" path="res://Scripts/dealer_manager.gd" id="13_rfjv2"]
 [ext_resource type="FontFile" uid="uid://i15inhcw5uq2" path="res://Fonts/gothic_pixel.ttf" id="17_mg4q0"]
 [ext_resource type="Texture2D" uid="uid://du85x5km40bh7" path="res://Textures/UI/healthbar_border.png" id="18_7nbq1"]
+[ext_resource type="Texture2D" uid="uid://q5yusj3lrrcq" path="res://Textures/UI/ui_button1.png" id="18_fkdbe"]
+[ext_resource type="Texture2D" uid="uid://c58a0wwu8bwif" path="res://Textures/UI/ui_button3.png" id="19_cwurv"]
 [ext_resource type="Texture2D" uid="uid://fg43kh08jwi3" path="res://Textures/UI/healthbar.png" id="19_exi56"]
 [ext_resource type="Script" uid="uid://24wo87iun0dq" path="res://Scripts/player_healthbar.gd" id="20_7t8sx"]
 [ext_resource type="Texture2D" uid="uid://ondoqjms7flk" path="res://Textures/UI/healthbar_line.png" id="21_mg4q0"]
+[ext_resource type="Texture2D" uid="uid://bmt3ogt7e4g57" path="res://Textures/UI/ui_button2.png" id="21_mucmn"]
+[ext_resource type="Texture2D" uid="uid://ckgois7wdmv4y" path="res://Textures/UI/ui_button4.png" id="22_8m3t6"]
 [ext_resource type="Texture2D" uid="uid://dd574cl11lixt" path="res://Textures/UI/ui_settings_button.png" id="23_vm72l"]
 
 [sub_resource type="Curve" id="Curve_3dryh"]
@@ -432,22 +436,28 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Answer2_Button" type="Button" parent="User_Interface/Answer2_Button_Parent" unique_id=808126945]
+[node name="Answer2_Button" type="TextureButton" parent="User_Interface/Answer2_Button_Parent" unique_id=316480486]
 layout_mode = 0
-offset_left = 408.0
-offset_top = 284.0
-offset_right = 579.0
+offset_left = 405.0
+offset_top = 261.0
+offset_right = 576.0
 offset_bottom = 306.0
-theme_override_font_sizes/font_size = 10
-text = "Answer2"
+texture_normal = ExtResource("18_fkdbe")
+
+[node name="Answer2_Text" type="Label" parent="User_Interface/Answer2_Button_Parent/Answer2_Button" unique_id=1443777449]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 16.0
+offset_right = 116.0
+offset_bottom = 39.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 20
+text = "5 Confident"
 
 [node name="MoodUp_Icon2" type="Sprite2D" parent="User_Interface/Answer2_Button_Parent" unique_id=1295162269]
-position = Vector2(542, 295)
-texture = ExtResource("7_1l0tm")
-
-[node name="MoodDown_Icon2" type="Sprite2D" parent="User_Interface/Answer2_Button_Parent" unique_id=1477609265]
-position = Vector2(446, 295)
-texture = ExtResource("9_ldgsr")
+position = Vector2(517, 283)
+texture = ExtResource("10_85qyi")
 
 [node name="Answer2_Mood_Bet" type="Label" parent="User_Interface/Answer2_Button_Parent" unique_id=674882928]
 layout_mode = 0
@@ -460,60 +470,33 @@ theme_override_font_sizes/font_size = 11
 text = "+5"
 horizontal_alignment = 1
 
-[node name="Answer2_Mood_Bet2" type="Label" parent="User_Interface/Answer2_Button_Parent" unique_id=1646170740]
-layout_mode = 0
-offset_left = 417.0
-offset_top = 288.0
-offset_right = 436.0
-offset_bottom = 304.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 11
-text = "-5"
-horizontal_alignment = 1
-
 [node name="Answer3_Button_Parent" type="Control" parent="User_Interface" unique_id=933247654]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Answer3_Button" type="Button" parent="User_Interface/Answer3_Button_Parent" unique_id=1578916317]
+[node name="Answer3_Button" type="TextureButton" parent="User_Interface/Answer3_Button_Parent" unique_id=1633601347]
 layout_mode = 0
-offset_left = 408.0
-offset_top = 308.0
-offset_right = 579.0
-offset_bottom = 330.0
-theme_override_font_sizes/font_size = 10
-text = "Answer3"
-
-[node name="Answer3_Affection_Bet" type="Label" parent="User_Interface/Answer3_Button_Parent" unique_id=1636698833]
-layout_mode = 0
-offset_left = 536.0
+offset_left = 423.0
 offset_top = 310.0
-offset_right = 555.0
-offset_bottom = 326.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 11
-text = "+5"
-horizontal_alignment = 1
+offset_right = 594.0
+offset_bottom = 355.0
+texture_normal = ExtResource("19_cwurv")
 
-[node name="Answer3_Affection_Bet2" type="Label" parent="User_Interface/Answer3_Button_Parent" unique_id=633067938]
+[node name="Answer3_Text" type="Label" parent="User_Interface/Answer3_Button_Parent/Answer3_Button" unique_id=401966548]
 layout_mode = 0
-offset_left = 431.0
-offset_top = 310.0
-offset_right = 450.0
-offset_bottom = 326.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 11
-text = "-5"
-horizontal_alignment = 1
-
-[node name="AffectionDown_Icon" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=1508252784]
-position = Vector2(457, 319)
-texture = ExtResource("12_rku1e")
+offset_left = 33.0
+offset_top = 15.0
+offset_right = 128.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 20
+text = "5 Flirty"
 
 [node name="AffectionUp_Icon" type="Sprite2D" parent="User_Interface/Answer3_Button_Parent" unique_id=2076672011]
-position = Vector2(528, 319)
-texture = ExtResource("11_o5yvi")
+position = Vector2(522, 333)
+texture = ExtResource("9_ewbju")
 
 [node name="Answer4_Button_Parent" type="Control" parent="User_Interface" unique_id=55893658]
 visible = false
@@ -570,17 +553,17 @@ texture = ExtResource("7_1l0tm")
 
 [node name="Answer5_Button_Parent" type="Control" parent="User_Interface" unique_id=1638264261]
 anchors_preset = 0
-offset_left = 68.0
-offset_right = 108.0
+offset_left = 67.0
+offset_right = 107.0
 offset_bottom = 40.0
 
-[node name="Answer5_Button" type="Button" parent="User_Interface/Answer5_Button_Parent" unique_id=738123914]
+[node name="Answer5_Button" type="TextureButton" parent="User_Interface/Answer5_Button_Parent" unique_id=1995196846]
 layout_mode = 0
-offset_left = 514.0
-offset_top = 284.0
-offset_right = 560.0
+offset_left = 467.0
+offset_top = 261.0
+offset_right = 553.0
 offset_bottom = 306.0
-theme_override_font_sizes/font_size = 10
+texture_normal = ExtResource("21_mucmn")
 
 [node name="MoodUp_Icon2" type="Sprite2D" parent="User_Interface/Answer5_Button_Parent" unique_id=1346784063]
 visible = false
@@ -594,29 +577,33 @@ texture = ExtResource("9_ldgsr")
 
 [node name="Answer5_Mood_Bet2" type="Label" parent="User_Interface/Answer5_Button_Parent" unique_id=225978167]
 layout_mode = 0
-offset_left = 518.0
-offset_top = 287.0
-offset_right = 557.0
-offset_bottom = 303.0
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 11
-text = "Double"
+offset_left = 482.0
+offset_top = 277.0
+offset_right = 521.0
+offset_bottom = 296.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 20
+text = "10"
 horizontal_alignment = 1
+
+[node name="MoodUp_Icon3" type="Sprite2D" parent="User_Interface/Answer5_Button_Parent" unique_id=533244215]
+position = Vector2(523, 283)
+texture = ExtResource("10_85qyi")
 
 [node name="Answer6_Button_Parent" type="Control" parent="User_Interface" unique_id=1946596487]
 anchors_preset = 0
-offset_left = 68.0
-offset_right = 108.0
+offset_left = 67.0
+offset_right = 107.0
 offset_bottom = 40.0
 
-[node name="Answer6_Button" type="Button" parent="User_Interface/Answer6_Button_Parent" unique_id=1260598322]
+[node name="Answer6_Button" type="TextureButton" parent="User_Interface/Answer6_Button_Parent" unique_id=1172744236]
 layout_mode = 0
-offset_left = 514.0
-offset_top = 308.0
-offset_right = 560.0
-offset_bottom = 330.0
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 10
+offset_left = 486.0
+offset_top = 310.0
+offset_right = 572.0
+offset_bottom = 355.0
+texture_normal = ExtResource("22_8m3t6")
 
 [node name="MoodUp_Icon2" type="Sprite2D" parent="User_Interface/Answer6_Button_Parent" unique_id=1637870433]
 visible = false
@@ -630,14 +617,19 @@ texture = ExtResource("9_ldgsr")
 
 [node name="Answer6_Mood_Bet2" type="Label" parent="User_Interface/Answer6_Button_Parent" unique_id=1430011207]
 layout_mode = 0
-offset_left = 518.0
-offset_top = 311.0
-offset_right = 557.0
-offset_bottom = 327.0
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 11
-text = "Double"
+offset_left = 500.0
+offset_top = 326.0
+offset_right = 539.0
+offset_bottom = 345.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 20
+text = "10"
 horizontal_alignment = 1
+
+[node name="AffectionUp_Icon" type="Sprite2D" parent="User_Interface/Answer6_Button_Parent" unique_id=1313167235]
+position = Vector2(541, 332)
+texture = ExtResource("9_ewbju")
 
 [node name="Hit_Button" type="Button" parent="User_Interface" unique_id=1568430695]
 visible = false
