@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://ondoqjms7flk" path="res://Textures/UI/healthbar_line.png" id="21_mg4q0"]
 [ext_resource type="Texture2D" uid="uid://bmt3ogt7e4g57" path="res://Textures/UI/ui_button2.png" id="21_mucmn"]
 [ext_resource type="Texture2D" uid="uid://ckgois7wdmv4y" path="res://Textures/UI/ui_button4.png" id="22_8m3t6"]
+[ext_resource type="Texture2D" uid="uid://2jdx2sxw7y6m" path="res://Textures/UI/ui_button5.png" id="23_mucmn"]
 [ext_resource type="Texture2D" uid="uid://dd574cl11lixt" path="res://Textures/UI/ui_settings_button.png" id="23_vm72l"]
 
 [sub_resource type="Curve" id="Curve_3dryh"]
@@ -432,6 +433,7 @@ text = "-5"
 horizontal_alignment = 1
 
 [node name="Answer2_Button_Parent" type="Control" parent="User_Interface" unique_id=1974827400]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -459,18 +461,8 @@ text = "5 Confident"
 position = Vector2(517, 283)
 texture = ExtResource("10_85qyi")
 
-[node name="Answer2_Mood_Bet" type="Label" parent="User_Interface/Answer2_Button_Parent" unique_id=674882928]
-layout_mode = 0
-offset_left = 552.0
-offset_top = 287.0
-offset_right = 571.0
-offset_bottom = 303.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 11
-text = "+5"
-horizontal_alignment = 1
-
 [node name="Answer3_Button_Parent" type="Control" parent="User_Interface" unique_id=933247654]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -552,6 +544,7 @@ position = Vector2(569, 342)
 texture = ExtResource("7_1l0tm")
 
 [node name="Answer5_Button_Parent" type="Control" parent="User_Interface" unique_id=1638264261]
+visible = false
 anchors_preset = 0
 offset_left = 67.0
 offset_right = 107.0
@@ -592,6 +585,7 @@ position = Vector2(523, 283)
 texture = ExtResource("10_85qyi")
 
 [node name="Answer6_Button_Parent" type="Control" parent="User_Interface" unique_id=1946596487]
+visible = false
 anchors_preset = 0
 offset_left = 67.0
 offset_right = 107.0
@@ -631,35 +625,80 @@ horizontal_alignment = 1
 position = Vector2(541, 332)
 texture = ExtResource("9_ewbju")
 
-[node name="Hit_Button" type="Button" parent="User_Interface" unique_id=1568430695]
-visible = false
-layout_mode = 0
-offset_left = 465.0
-offset_top = 261.0
-offset_right = 634.0
-offset_bottom = 304.0
-theme_override_colors/font_color = Color(0.55194056, 1, 0.48858428, 1)
-text = "Hit"
+[node name="Hit_Button" type="Control" parent="User_Interface" unique_id=2096501636]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Stand_Button" type="Button" parent="User_Interface" unique_id=1244192539]
-visible = false
+[node name="HIT_Button" type="TextureButton" parent="User_Interface/Hit_Button" unique_id=2095686524]
 layout_mode = 0
-offset_left = 465.0
+offset_left = 479.0
+offset_top = 261.0
+offset_right = 622.0
+offset_bottom = 306.0
+texture_normal = ExtResource("18_fkdbe")
+
+[node name="HIT_Text" type="Label" parent="User_Interface/Hit_Button/HIT_Button" unique_id=922967543]
+layout_mode = 0
+offset_left = 53.0
+offset_top = 15.0
+offset_right = 148.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 20
+text = "HIT"
+
+[node name="Stand_Button" type="Control" parent="User_Interface" unique_id=1027279505]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="STAND_Button" type="TextureButton" parent="User_Interface/Stand_Button" unique_id=2014110112]
+layout_mode = 0
+offset_left = 496.0
 offset_top = 310.0
-offset_right = 634.0
-offset_bottom = 353.0
-theme_override_colors/font_color = Color(0.9961687, 0.87814367, 0, 1)
-text = "Stand"
+offset_right = 640.0
+offset_bottom = 355.0
+texture_normal = ExtResource("19_cwurv")
 
-[node name="Safe_Button" type="Button" parent="User_Interface" unique_id=437776728]
-visible = false
+[node name="STAND_Text" type="Label" parent="User_Interface/Stand_Button/STAND_Button" unique_id=1331067329]
 layout_mode = 0
-offset_left = 421.0
-offset_top = 261.0
-offset_right = 463.0
+offset_left = 41.0
+offset_top = 15.0
+offset_right = 136.0
+offset_bottom = 38.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 20
+text = "STAND"
+
+[node name="Safe_Button" type="Control" parent="User_Interface" unique_id=2070234573]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SAFE_Button" type="TextureButton" parent="User_Interface/Safe_Button" unique_id=1994744630]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 263.0
+offset_right = 503.0
 offset_bottom = 353.0
-theme_override_colors/font_color = Color(0.12493303, 0.54886496, 0.9765181, 1)
-text = "Safe"
+texture_normal = ExtResource("23_mucmn")
+
+[node name="SAFE_Text" type="Label" parent="User_Interface/Safe_Button/SAFE_Button" unique_id=1274770505]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 6.0
+offset_right = 118.0
+offset_bottom = 91.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 20
+text = "S
+  A
+    F
+      E"
 
 [node name="Enemy_Score" type="Label" parent="User_Interface" unique_id=2012555226]
 layout_mode = 0
@@ -902,6 +941,6 @@ script = ExtResource("13_rfjv2")
 [connection signal="pressed" from="User_Interface/Answer4_Button_Parent/Answer4_Button" to="Dialog_Manager" method="_on_answer_4_button_pressed"]
 [connection signal="pressed" from="User_Interface/Answer5_Button_Parent/Answer5_Button" to="Dialog_Manager" method="_on_answer_5_button_pressed"]
 [connection signal="pressed" from="User_Interface/Answer6_Button_Parent/Answer6_Button" to="Dialog_Manager" method="_on_answer_6_button_pressed"]
-[connection signal="pressed" from="User_Interface/Hit_Button" to="Game_Manager" method="_on_hit_button_pressed"]
-[connection signal="pressed" from="User_Interface/Stand_Button" to="Game_Manager" method="_on_stand_button_pressed"]
-[connection signal="pressed" from="User_Interface/Safe_Button" to="Game_Manager" method="_on_safe_button_pressed"]
+[connection signal="pressed" from="User_Interface/Hit_Button/HIT_Button" to="Game_Manager" method="_on_hit_button_pressed"]
+[connection signal="pressed" from="User_Interface/Stand_Button/STAND_Button" to="Game_Manager" method="_on_stand_button_pressed"]
+[connection signal="pressed" from="User_Interface/Safe_Button/SAFE_Button" to="Game_Manager" method="_on_safe_button_pressed"]

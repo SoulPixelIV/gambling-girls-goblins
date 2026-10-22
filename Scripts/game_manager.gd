@@ -22,8 +22,10 @@ extends Node
 @onready var final_enemy_score_text: Label = $"../User_Interface/Final_Score_Labels/Final_Enemy_Score"
 @onready var combat_messages_text: Label = $"../User_Interface/Final_Score_Labels/Combat_Messages"
 @onready var combat_messages2_text: Label = $"../User_Interface/Final_Score_Labels/Combat_Messages2"
-@onready var hit_button = $"../User_Interface/Hit_Button"
-@onready var stand_button = $"../User_Interface/Stand_Button"
+@onready var hit_button = $"../User_Interface/Hit_Button/HIT_Button"
+@onready var stand_button = $"../User_Interface/Stand_Button/STAND_Button"
+@onready var hit_button_label = $"../User_Interface/Hit_Button/HIT_Button/HIT_Text"
+@onready var stand_button_label = $"../User_Interface/Stand_Button/STAND_Button/STAND_Text"
 @onready var tripple_button1 = $"../User_Interface/Tripple_Button1"
 @onready var tripple_button2 = $"../User_Interface/Tripple_Button2"
 @onready var tripple_button3 = $"../User_Interface/Tripple_Button3"
@@ -352,8 +354,8 @@ func choose_ace_value(value):
 
 	# Ass-Modus verlassen
 	button_mode = 0
-	hit_button.text = "Hit"
-	stand_button.text = "Stand"
+	hit_button_label.text = "HIT"
+	stand_button_label.text = "STAND"
 
 	# Bust check
 	if player_score > 21:
@@ -655,11 +657,11 @@ func _on_card_played(value, card_id):
 		
 	#Change Button Texts
 	if button_mode == 0:
-		hit_button.text = "Hit"
-		stand_button.text = "Stand"
+		hit_button_label.text = "HIT"
+		stand_button_label.text = "STAND"
 	if button_mode == 1:
-		hit_button.text = "Count as 1"
-		stand_button.text = "Count as 11"
+		hit_button_label.text = "Count as 1"
+		stand_button_label.text = "Count as 11"
 	if button_mode == 2:
 		dialog_manager.dialog_mode = 2
 		dialog_manager._check_dialog_mode() #Update Dialog Mode
