@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://co4dvh24whixt"]
+[gd_scene format=4 uid="uid://co4dvh24whixt"]
 
 [ext_resource type="Texture2D" uid="uid://cm4bi2hriubg" path="res://Textures/circle_debug.png" id="1_3dryh"]
 [ext_resource type="Texture2D" uid="uid://drmmnt5wdwdlu" path="res://Textures/UI/ui_frame.png" id="2_qxrlw"]
@@ -31,12 +31,14 @@
 [ext_resource type="Texture2D" uid="uid://blkuwisi3taqm" path="res://Textures/UI/Buttons/normal/ui_button4.png" id="22_8m3t6"]
 [ext_resource type="Texture2D" uid="uid://b3ppe0hk4fv3a" path="res://Textures/UI/Buttons/selected/ui_selected_button1.png" id="22_ese38"]
 [ext_resource type="Texture2D" uid="uid://dvj2a6wqkxhp2" path="res://Textures/UI/Buttons/selected/ui_selected_button4.png" id="22_lmoi6"]
-[ext_resource type="Texture2D" uid="uid://cmlv6tbqjp2it" path="res://Textures/UI/Buttons/normal/ui_button5.png" id="23_mucmn"]
+[ext_resource type="Texture2D" uid="uid://dpnwur6jch74x" path="res://Textures/UI/Buttons/normal/ui_button5.png" id="23_mucmn"]
 [ext_resource type="Texture2D" uid="uid://dd574cl11lixt" path="res://Textures/UI/ui_settings_button.png" id="23_vm72l"]
 [ext_resource type="Texture2D" uid="uid://ckr85a3tt2o30" path="res://Textures/UI/Buttons/clicked/ui_clicked_button2.png" id="23_ym3tv"]
 [ext_resource type="Texture2D" uid="uid://o3wcowi8pk2p" path="res://Textures/UI/Buttons/selected/ui_selected_button3.png" id="24_oeip8"]
+[ext_resource type="BitMap" uid="uid://i8djyem6m64q" path="res://Textures/UI/Buttons/bitmaps/ui_bitmap_button2.png" id="26_f3c8l"]
 [ext_resource type="Texture2D" uid="uid://dklqpvvwukqj7" path="res://Textures/UI/Buttons/clicked/ui_clicked_button1.png" id="26_lmoi6"]
-[ext_resource type="Texture2D" uid="uid://dc5q0wnvjrgs3" path="res://Textures/UI/Buttons/selected/ui_selected_button5.png" id="26_xe308"]
+[ext_resource type="Texture2D" uid="uid://duss2e4bvepud" path="res://Textures/UI/Buttons/selected/ui_selected_button5.png" id="26_xe308"]
+[ext_resource type="BitMap" uid="uid://doadji0e1afae" path="res://Textures/UI/Buttons/bitmaps/ui_bitmap_button1.png" id="28_bwj6o"]
 [ext_resource type="Texture2D" uid="uid://cmxnou0t3r16n" path="res://Textures/UI/ui_bonus.png" id="30_8m3t6"]
 [ext_resource type="Texture2D" uid="uid://whv0ng1h3exv" path="res://Textures/UI/Buttons/clicked/ui_clicked_button5.png" id="30_bwj6o"]
 
@@ -51,8 +53,20 @@ shader_parameter/blur_amount = 1.5
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8m3t6"]
 load_path = "res://.godot/imported/ui_button1.png-c0e084166249fcfadc1dc7115049ddb1.ctex"
 
+[sub_resource type="BitMap" id="BitMap_bu0y5"]
+data = {
+"data": PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA////////////////////DwCA////////////////////BwCA////////////////////BwDA////////////////////AwDg////////////////////AQDg////////////////////AQDw////////////////////AAD4//////////////////9/AAD4//////////////////9/AAD8//////////////////8/AAD8//////////////////8/AAD+//////////////////8fAAD///////////////////8PAAD///////////////////8PAID///////////////////8HAMD///////////////////8DAMD///////////////////8DAOD///////////////////8BAOD///////////////////8BAPD///////////////////8AAPj//////////////////38AAPj//////////////////38AAPz//////////////////z8AAP7//////////////////x8AAP7//////////////////x8AAP///////////////////w8AAP///////////////////w8AgP///////////////////wcAwP///////////////////wMAwP///////////////////wMA4P///////////////////wEA8P///////////////////wAA8P///////////////////wAA+P//////////////////fwAA+P//////////////////fwAA/P//////////////////PwAA/v//////////////////HwAA/v//////////////////HwAA////////////////////DwCA////////////////////BwCA////////////////////BwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="),
+"size": Vector2i(143, 45)
+}
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ese38"]
 load_path = "res://.godot/imported/ui_button3.png-b41219bd3ff24b2b2257a9cbe5b21e3f.ctex"
+
+[sub_resource type="BitMap" id="BitMap_6a4tp"]
+data = {
+"data": PackedByteArray("AAAAAAAAAAAAAPz//////wAAAAD4//////8DAAAA4P//////BwAAAMD//////w8AAACA//////8/AAAAAP7/////fwAAAAD8//////8AAAAA+P//////AwAAAOD//////wcAAADA//////8fAAAAAP//////PwAAAAD+/////38AAAAA/P//////AQAAAPD//////wMAAADg//////8HAAAAwP//////HwAAAAD//////z8AAAAA/v//////AAAAAPz//////wEAAADw//////8DAAAA4P//////DwAAAID//////x8AAAAA//////8/AAAAAP7//////wAAAAD4//////8BAAAA8P//////BwAAAOD//////w8AAACA//////8fAAAAAP//////fwAAAAD8//////8AAAAA+P//////AQAAAPD//////wcAAADA//////8PAAAAgP//////PwAAAAD//////38AAAAA/P//////AAAAAPj//////wMAAADg//////8HAAAAwP//////DwAAAID//////z8AAAAA/v////9/AAAAAPz//////wAAAAD4//////8BAAAA4P//////BwAAAMD//////w8AAAAA//////8/AAAAAP7/////fwAAAAD8//////8AAAAA8P//////AwAAAOD//////wcAAADA//////8fAAAAAP//////PwAAAAD+/////38AAAAA/P//////AQAAAPD//////wMAAADg//////8HAAAAwP//////HwAAAAD//////z8AAAAA/v//////AAAAAPj//////wEAAADw//////8DAAAA4P//////DwAAAID//////x8AAAAA//////8/AAAAAP7//////wAAAAD4//////8BAAAA8P//////BwAAAMD//////w8AAACA//////8fAAAAAP//////fwAAAAD8//////8AAAAA+P//////AQAAAPD//////wcAAADA//////8PAAAAgP//////PwAAAAD+/////38AAAAA/P//////AAAAAPj//////wMAAADg//////8HAAAAwP//////DwAAAID//////z8AAAAA/v////9/AAAAAPz//////wEAAADw//////8DAAAA4P//////BwAAAMD//////x8AAAAA//////8/AAAAAP7/////fwAAAAD8//////8BAAAA8P//////AwAAAAAAAAAAAAA="),
+"size": Vector2i(81, 92)
+}
 
 [node name="Node" type="Node" unique_id=1979963607]
 
@@ -462,6 +476,7 @@ offset_bottom = 306.0
 texture_normal = SubResource("CompressedTexture2D_8m3t6")
 texture_pressed = ExtResource("26_lmoi6")
 texture_hover = ExtResource("22_ese38")
+texture_click_mask = SubResource("BitMap_bu0y5")
 
 [node name="Answer2_Text" type="Label" parent="User_Interface/Answer2_Button_Parent/Answer2_Button" unique_id=1443777449]
 layout_mode = 0
@@ -493,6 +508,7 @@ offset_bottom = 355.0
 texture_normal = SubResource("CompressedTexture2D_ese38")
 texture_pressed = ExtResource("26_lmoi6")
 texture_hover = ExtResource("24_oeip8")
+texture_click_mask = ExtResource("28_bwj6o")
 
 [node name="Answer3_Text" type="Label" parent="User_Interface/Answer3_Button_Parent/Answer3_Button" unique_id=401966548]
 layout_mode = 0
@@ -578,6 +594,7 @@ offset_bottom = 306.0
 texture_normal = ExtResource("21_mucmn")
 texture_pressed = ExtResource("23_ym3tv")
 texture_hover = ExtResource("20_i26dy")
+texture_click_mask = ExtResource("26_f3c8l")
 
 [node name="MoodUp_Icon2" type="Sprite2D" parent="User_Interface/Answer5_Button_Parent" unique_id=1346784063]
 visible = false
@@ -621,6 +638,7 @@ offset_bottom = 355.0
 texture_normal = ExtResource("22_8m3t6")
 texture_pressed = ExtResource("23_ym3tv")
 texture_hover = ExtResource("22_lmoi6")
+texture_click_mask = ExtResource("26_f3c8l")
 
 [node name="MoodUp_Icon2" type="Sprite2D" parent="User_Interface/Answer6_Button_Parent" unique_id=1637870433]
 visible = false
@@ -662,12 +680,13 @@ offset_bottom = 306.0
 texture_normal = ExtResource("18_fkdbe")
 texture_pressed = ExtResource("26_lmoi6")
 texture_hover = ExtResource("22_ese38")
+texture_click_mask = ExtResource("28_bwj6o")
 
 [node name="HIT_Text" type="Label" parent="User_Interface/Hit_Button/HIT_Button" unique_id=922967543]
 layout_mode = 0
-offset_left = 53.0
+offset_left = 3.0
 offset_top = 15.0
-offset_right = 87.0
+offset_right = 144.0
 offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
 theme_override_fonts/font = ExtResource("17_mg4q0")
@@ -689,13 +708,21 @@ offset_bottom = 355.0
 texture_normal = ExtResource("19_cwurv")
 texture_pressed = ExtResource("26_lmoi6")
 texture_hover = ExtResource("24_oeip8")
+texture_click_mask = ExtResource("28_bwj6o")
 
 [node name="STAND_Text" type="Label" parent="User_Interface/Stand_Button/STAND_Button" unique_id=1331067329]
-layout_mode = 0
-offset_left = 41.0
-offset_top = 15.0
-offset_right = 101.0
-offset_bottom = 34.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.0
+offset_top = -7.5
+offset_right = 72.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
 theme_override_fonts/font = ExtResource("17_mg4q0")
 theme_override_font_sizes/font_size = 20
@@ -716,20 +743,7 @@ offset_bottom = 353.0
 texture_normal = ExtResource("23_mucmn")
 texture_pressed = ExtResource("30_bwj6o")
 texture_hover = ExtResource("26_xe308")
-
-[node name="SAFE_Text" type="Label" parent="User_Interface/Safe_Button/SAFE_Button" unique_id=1274770505]
-layout_mode = 0
-offset_left = 23.0
-offset_top = 6.0
-offset_right = 118.0
-offset_bottom = 91.0
-theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
-theme_override_fonts/font = ExtResource("17_mg4q0")
-theme_override_font_sizes/font_size = 20
-text = "S
-  A
-    F
-      E"
+texture_click_mask = SubResource("BitMap_6a4tp")
 
 [node name="Enemy_Score" type="Label" parent="User_Interface" unique_id=2012555226]
 layout_mode = 0

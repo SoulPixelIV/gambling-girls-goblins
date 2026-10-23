@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://i8djyem6m64q"
+path="res://.godot/imported/ui_bitmap_button2.png-a35a0891c51ffccb58894f6f7b1779d1.res"
+
+[deps]
+
+source_file="res://Textures/UI/Buttons/bitmaps/ui_bitmap_button2.png"
+dest_files=["res://.godot/imported/ui_bitmap_button2.png-a35a0891c51ffccb58894f6f7b1779d1.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
