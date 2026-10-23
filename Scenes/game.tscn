@@ -1,6 +1,5 @@
 [gd_scene format=4 uid="uid://co4dvh24whixt"]
 
-[ext_resource type="Texture2D" uid="uid://cm4bi2hriubg" path="res://Textures/circle_debug.png" id="1_3dryh"]
 [ext_resource type="Texture2D" uid="uid://drmmnt5wdwdlu" path="res://Textures/UI/ui_frame.png" id="2_qxrlw"]
 [ext_resource type="Shader" uid="uid://clnvet060xyb4" path="res://Shader/blur.gdshader" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://c68wrohjmdhoe" path="res://Scripts/dialog_manager.gd" id="4_i6g32"]
@@ -44,10 +43,21 @@
 [ext_resource type="Texture2D" uid="uid://whv0ng1h3exv" path="res://Textures/UI/Buttons/clicked/ui_clicked_button5.png" id="30_bwj6o"]
 [ext_resource type="Texture2D" uid="uid://drna5nn28aep7" path="res://Textures/UI/Buttons/disabled/ui_disabled_button3.png" id="32_631el"]
 [ext_resource type="Texture2D" uid="uid://d3x2abworssux" path="res://Textures/UI/Buttons/disabled/ui_disabled_button5.png" id="36_vs120"]
+[ext_resource type="Shader" uid="uid://vpnnwhniu2hn" path="res://Shader/smokeTest.gdshader" id="45_vs120"]
 
-[sub_resource type="Curve" id="Curve_3dryh"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.18617022, 0.9550562), 0.0, 0.0, 0, 0, Vector2(0.6808511, 0.55056185), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 4
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_45ngr"]
+shader = ExtResource("45_vs120")
+shader_parameter/background_color = Color(0.008, 0.001, 0.006, 1)
+shader_parameter/smoke_dark = Color(0.3, 0.005, 0.075, 1)
+shader_parameter/smoke_mid = Color(0.85, 0.008, 0.22, 1)
+shader_parameter/smoke_bright = Color(1, 0.035, 0.36, 1)
+shader_parameter/speed = 0.10000000475
+shader_parameter/scale = 3.0
+shader_parameter/distortion = 0.32
+shader_parameter/density = 1.0
+shader_parameter/height = 1.0
+shader_parameter/softness = 0.30000001192093
+shader_parameter/brightness = 2.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wowpa"]
 shader = ExtResource("4_3dryh")
@@ -79,41 +89,12 @@ offset_bottom = 360.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="Particle_System" type="Node" parent="." unique_id=400499942]
-
-[node name="Particle_Spawner_Gold" type="CPUParticles2D" parent="Particle_System" unique_id=606576124]
-position = Vector2(320, 236)
-amount = 1000
-texture = ExtResource("1_3dryh")
-lifetime = 30.0
-randomness = 0.26
-lifetime_randomness = 0.1
-emission_shape = 3
-emission_rect_extents = Vector2(330, 15)
-direction = Vector2(0, 0)
-gravity = Vector2(0, -2)
-angle_max = 359.0
-scale_amount_min = 0.01
-scale_amount_max = 0.06
-scale_amount_curve = SubResource("Curve_3dryh")
-color = Color(1, 0, 1, 1)
-
-[node name="Particle_Spawner_Blue" type="CPUParticles2D" parent="Particle_System" unique_id=1020013295]
-position = Vector2(320, 236)
-amount = 1000
-texture = ExtResource("1_3dryh")
-lifetime = 30.0
-randomness = 0.26
-lifetime_randomness = 0.1
-emission_shape = 3
-emission_rect_extents = Vector2(330, 15)
-direction = Vector2(0, 0)
-gravity = Vector2(0, -2)
-angle_max = 359.0
-scale_amount_min = 0.01
-scale_amount_max = 0.06
-scale_amount_curve = SubResource("Curve_3dryh")
-color = Color(0.17254902, 0.3882353, 0.8862745, 1)
+[node name="ColorRect" type="ColorRect" parent="." unique_id=593615558]
+material = SubResource("ShaderMaterial_45ngr")
+offset_left = 3.0
+offset_top = 21.0
+offset_right = 635.0
+offset_bottom = 252.0
 
 [node name="Blur_Filter" type="ColorRect" parent="." unique_id=1875600707]
 material = SubResource("ShaderMaterial_wowpa")
@@ -124,6 +105,7 @@ offset_bottom = 364.0
 metadata/_edit_lock_ = true
 
 [node name="UI_Background" type="Sprite2D" parent="Blur_Filter" unique_id=823039124]
+visible = false
 texture_filter = 1
 position = Vector2(333, 194)
 texture = ExtResource("7_85qyi")
