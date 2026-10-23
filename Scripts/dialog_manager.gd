@@ -4,6 +4,7 @@ extends Node
 @onready var status_screen: Node = $"../User_Interface/Status_Screen"
 @onready var dialog: Label = $"../User_Interface/Dialog_Label"
 @onready var dialog_speechbubble = $"../User_Interface/Dealer_Speechbubble"
+@onready var bonus_field = $"../User_Interface/Bonus_Field"
 @onready var dealer_name = $"../User_Interface/Dealer_Name_Label"
 @onready var dialog_user: Label = $"../User_Interface/Dialog_Label2"
 @onready var answer1_parent = $"../User_Interface/Answer1_Button_Parent"
@@ -37,6 +38,7 @@ var dialog_finished = false
 func _ready() -> void:
 	dialog.text = ""
 	dialog_speechbubble.hide()
+	bonus_field.hide()
 	dealer_name.hide()
 	_check_dialog_mode()
 	

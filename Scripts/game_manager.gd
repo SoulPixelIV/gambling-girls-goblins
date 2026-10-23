@@ -170,7 +170,7 @@ func _process(delta: float) -> void:
 	if hit_input_locked:
 		return
 		
-	if begin_fight:
+	if begin_fight:	
 		#Enemys First Draw
 		if turn_state == -1:
 			spawn_enemy_playing_card(400 + 25 * enemy_card_index, 90)
@@ -1019,6 +1019,7 @@ func return_to_overworld():
 	combat_messages_text.text = ""
 	combat_messages2_text.text = ""
 	dialog_manager.dialog_speechbubble.hide()
+	dialog_manager.bonus_field.hide()
 	dialog_manager.dealer_name.hide()
 	player_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
 	enemy_score_text.add_theme_color_override("font_color", Color(1, 1, 1))
@@ -1299,6 +1300,7 @@ func _switch_game_mode(mode) -> void:
 		player_health.show()
 		enemy_health.show()
 		enemy_name_tag.show()
+		dialog_manager.bonus_field.show()
 	
 		dialog_manager.dialog_mode = 0
 		dialog_manager._check_dialog_mode() #Update Dialog Mode

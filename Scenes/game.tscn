@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bmttochduuoh3" path="res://Textures/Icons/icon_mood_up.png" id="7_1l0tm"]
 [ext_resource type="Texture2D" uid="uid://2bi71acrtr7t" path="res://Textures/UI/ui_background.png" id="7_85qyi"]
 [ext_resource type="Script" uid="uid://ghsi0dbfghps" path="res://Scripts/status_screen.gd" id="8_1phco"]
-[ext_resource type="Texture2D" uid="uid://cr63paleh2xb1" path="res://Textures/UI/ui_speechbubble.png" id="9_22asu"]
+[ext_resource type="Texture2D" uid="uid://o6gy1cg3nk6f" path="res://Textures/UI/ui_speechbubble.png" id="9_22asu"]
 [ext_resource type="Texture2D" uid="uid://b87kjkxhdvuof" path="res://Textures/Icons/icon_affection_up_gold.png" id="9_ewbju"]
 [ext_resource type="Texture2D" uid="uid://bvffca130ex0i" path="res://Textures/Icons/icon_mood_down.png" id="9_ldgsr"]
 [ext_resource type="Texture2D" uid="uid://57yw0y72vivq" path="res://Textures/Icons/icon_mood_up_gold.png" id="10_85qyi"]
@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://ckgois7wdmv4y" path="res://Textures/UI/ui_button4.png" id="22_8m3t6"]
 [ext_resource type="Texture2D" uid="uid://2jdx2sxw7y6m" path="res://Textures/UI/ui_button5.png" id="23_mucmn"]
 [ext_resource type="Texture2D" uid="uid://dd574cl11lixt" path="res://Textures/UI/ui_settings_button.png" id="23_vm72l"]
+[ext_resource type="Texture2D" uid="uid://cmxnou0t3r16n" path="res://Textures/UI/ui_bonus.png" id="30_8m3t6"]
 
 [sub_resource type="Curve" id="Curve_3dryh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.18617022, 0.9550562), 0.0, 0.0, 0, 0, Vector2(0.6808511, 0.55056185), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -128,7 +129,7 @@ position = Vector2(320, 180)
 texture = ExtResource("2_qxrlw")
 
 [node name="Dealer_Speechbubble" type="Sprite2D" parent="User_Interface" unique_id=211221450]
-position = Vector2(260, 308)
+position = Vector2(226, 308)
 texture = ExtResource("9_22asu")
 
 [node name="Version_Label" type="Label" parent="User_Interface" unique_id=500333850]
@@ -632,9 +633,9 @@ offset_bottom = 40.0
 
 [node name="HIT_Button" type="TextureButton" parent="User_Interface/Hit_Button" unique_id=2095686524]
 layout_mode = 0
-offset_left = 479.0
+offset_left = 471.0
 offset_top = 261.0
-offset_right = 622.0
+offset_right = 614.0
 offset_bottom = 306.0
 texture_normal = ExtResource("18_fkdbe")
 
@@ -642,12 +643,13 @@ texture_normal = ExtResource("18_fkdbe")
 layout_mode = 0
 offset_left = 53.0
 offset_top = 15.0
-offset_right = 148.0
-offset_bottom = 38.0
+offset_right = 87.0
+offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
 theme_override_fonts/font = ExtResource("17_mg4q0")
 theme_override_font_sizes/font_size = 20
 text = "HIT"
+horizontal_alignment = 1
 
 [node name="Stand_Button" type="Control" parent="User_Interface" unique_id=1027279505]
 anchors_preset = 0
@@ -656,9 +658,9 @@ offset_bottom = 40.0
 
 [node name="STAND_Button" type="TextureButton" parent="User_Interface/Stand_Button" unique_id=2014110112]
 layout_mode = 0
-offset_left = 496.0
+offset_left = 488.0
 offset_top = 310.0
-offset_right = 640.0
+offset_right = 632.0
 offset_bottom = 355.0
 texture_normal = ExtResource("19_cwurv")
 
@@ -666,12 +668,13 @@ texture_normal = ExtResource("19_cwurv")
 layout_mode = 0
 offset_left = 41.0
 offset_top = 15.0
-offset_right = 136.0
-offset_bottom = 38.0
+offset_right = 101.0
+offset_bottom = 34.0
 theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
 theme_override_fonts/font = ExtResource("17_mg4q0")
 theme_override_font_sizes/font_size = 20
 text = "STAND"
+horizontal_alignment = 1
 
 [node name="Safe_Button" type="Control" parent="User_Interface" unique_id=2070234573]
 anchors_preset = 0
@@ -680,9 +683,9 @@ offset_bottom = 40.0
 
 [node name="SAFE_Button" type="TextureButton" parent="User_Interface/Safe_Button" unique_id=1994744630]
 layout_mode = 0
-offset_left = 424.0
+offset_left = 416.0
 offset_top = 263.0
-offset_right = 503.0
+offset_right = 495.0
 offset_bottom = 353.0
 texture_normal = ExtResource("23_mucmn")
 
@@ -908,6 +911,10 @@ offset_top = 2.0
 offset_right = 665.0
 offset_bottom = 42.0
 texture_normal = ExtResource("23_vm72l")
+
+[node name="Bonus_Field" type="Sprite2D" parent="User_Interface" unique_id=287852251]
+position = Vector2(389, 308)
+texture = ExtResource("30_8m3t6")
 
 [node name="Hand" type="Control" parent="." unique_id=248982143]
 layout_mode = 3
