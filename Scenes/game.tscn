@@ -40,7 +40,10 @@
 [ext_resource type="Texture2D" uid="uid://duss2e4bvepud" path="res://Textures/UI/Buttons/selected/ui_selected_button5.png" id="26_xe308"]
 [ext_resource type="BitMap" uid="uid://doadji0e1afae" path="res://Textures/UI/Buttons/bitmaps/ui_bitmap_button1.png" id="28_bwj6o"]
 [ext_resource type="Texture2D" uid="uid://cmxnou0t3r16n" path="res://Textures/UI/ui_bonus.png" id="30_8m3t6"]
+[ext_resource type="Texture2D" uid="uid://dihugbdqccnww" path="res://Textures/UI/Buttons/disabled/ui_disabled_button1.png" id="30_bu0y5"]
 [ext_resource type="Texture2D" uid="uid://whv0ng1h3exv" path="res://Textures/UI/Buttons/clicked/ui_clicked_button5.png" id="30_bwj6o"]
+[ext_resource type="Texture2D" uid="uid://drna5nn28aep7" path="res://Textures/UI/Buttons/disabled/ui_disabled_button3.png" id="32_631el"]
+[ext_resource type="Texture2D" uid="uid://d3x2abworssux" path="res://Textures/UI/Buttons/disabled/ui_disabled_button5.png" id="36_vs120"]
 
 [sub_resource type="Curve" id="Curve_3dryh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.18617022, 0.9550562), 0.0, 0.0, 0, 0, Vector2(0.6808511, 0.55056185), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -680,6 +683,7 @@ offset_bottom = 306.0
 texture_normal = ExtResource("18_fkdbe")
 texture_pressed = ExtResource("26_lmoi6")
 texture_hover = ExtResource("22_ese38")
+texture_disabled = ExtResource("30_bu0y5")
 texture_click_mask = ExtResource("28_bwj6o")
 
 [node name="HIT_Text" type="Label" parent="User_Interface/Hit_Button/HIT_Button" unique_id=922967543]
@@ -708,6 +712,7 @@ offset_bottom = 355.0
 texture_normal = ExtResource("19_cwurv")
 texture_pressed = ExtResource("26_lmoi6")
 texture_hover = ExtResource("24_oeip8")
+texture_disabled = ExtResource("32_631el")
 texture_click_mask = ExtResource("28_bwj6o")
 
 [node name="STAND_Text" type="Label" parent="User_Interface/Stand_Button/STAND_Button" unique_id=1331067329]
@@ -743,6 +748,7 @@ offset_bottom = 353.0
 texture_normal = ExtResource("23_mucmn")
 texture_pressed = ExtResource("30_bwj6o")
 texture_hover = ExtResource("26_xe308")
+texture_disabled = ExtResource("36_vs120")
 texture_click_mask = SubResource("BitMap_6a4tp")
 
 [node name="Enemy_Score" type="Label" parent="User_Interface" unique_id=2012555226]
