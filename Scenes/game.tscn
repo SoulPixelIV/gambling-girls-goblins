@@ -33,9 +33,12 @@
 [ext_resource type="Texture2D" uid="uid://dvj2a6wqkxhp2" path="res://Textures/UI/Buttons/selected/ui_selected_button4.png" id="22_lmoi6"]
 [ext_resource type="Texture2D" uid="uid://cmlv6tbqjp2it" path="res://Textures/UI/Buttons/normal/ui_button5.png" id="23_mucmn"]
 [ext_resource type="Texture2D" uid="uid://dd574cl11lixt" path="res://Textures/UI/ui_settings_button.png" id="23_vm72l"]
+[ext_resource type="Texture2D" uid="uid://ckr85a3tt2o30" path="res://Textures/UI/Buttons/clicked/ui_clicked_button2.png" id="23_ym3tv"]
 [ext_resource type="Texture2D" uid="uid://o3wcowi8pk2p" path="res://Textures/UI/Buttons/selected/ui_selected_button3.png" id="24_oeip8"]
+[ext_resource type="Texture2D" uid="uid://dklqpvvwukqj7" path="res://Textures/UI/Buttons/clicked/ui_clicked_button1.png" id="26_lmoi6"]
 [ext_resource type="Texture2D" uid="uid://dc5q0wnvjrgs3" path="res://Textures/UI/Buttons/selected/ui_selected_button5.png" id="26_xe308"]
 [ext_resource type="Texture2D" uid="uid://cmxnou0t3r16n" path="res://Textures/UI/ui_bonus.png" id="30_8m3t6"]
+[ext_resource type="Texture2D" uid="uid://whv0ng1h3exv" path="res://Textures/UI/Buttons/clicked/ui_clicked_button5.png" id="30_bwj6o"]
 
 [sub_resource type="Curve" id="Curve_3dryh"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.18617022, 0.9550562), 0.0, 0.0, 0, 0, Vector2(0.6808511, 0.55056185), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -457,6 +460,7 @@ offset_top = 261.0
 offset_right = 576.0
 offset_bottom = 306.0
 texture_normal = SubResource("CompressedTexture2D_8m3t6")
+texture_pressed = ExtResource("26_lmoi6")
 texture_hover = ExtResource("22_ese38")
 
 [node name="Answer2_Text" type="Label" parent="User_Interface/Answer2_Button_Parent/Answer2_Button" unique_id=1443777449]
@@ -487,6 +491,7 @@ offset_top = 310.0
 offset_right = 594.0
 offset_bottom = 355.0
 texture_normal = SubResource("CompressedTexture2D_ese38")
+texture_pressed = ExtResource("26_lmoi6")
 texture_hover = ExtResource("24_oeip8")
 
 [node name="Answer3_Text" type="Label" parent="User_Interface/Answer3_Button_Parent/Answer3_Button" unique_id=401966548]
@@ -571,6 +576,7 @@ offset_top = 261.0
 offset_right = 553.0
 offset_bottom = 306.0
 texture_normal = ExtResource("21_mucmn")
+texture_pressed = ExtResource("23_ym3tv")
 texture_hover = ExtResource("20_i26dy")
 
 [node name="MoodUp_Icon2" type="Sprite2D" parent="User_Interface/Answer5_Button_Parent" unique_id=1346784063]
@@ -613,6 +619,7 @@ offset_top = 310.0
 offset_right = 572.0
 offset_bottom = 355.0
 texture_normal = ExtResource("22_8m3t6")
+texture_pressed = ExtResource("23_ym3tv")
 texture_hover = ExtResource("22_lmoi6")
 
 [node name="MoodUp_Icon2" type="Sprite2D" parent="User_Interface/Answer6_Button_Parent" unique_id=1637870433]
@@ -653,6 +660,7 @@ offset_top = 261.0
 offset_right = 614.0
 offset_bottom = 306.0
 texture_normal = ExtResource("18_fkdbe")
+texture_pressed = ExtResource("26_lmoi6")
 texture_hover = ExtResource("22_ese38")
 
 [node name="HIT_Text" type="Label" parent="User_Interface/Hit_Button/HIT_Button" unique_id=922967543]
@@ -679,6 +687,7 @@ offset_top = 310.0
 offset_right = 632.0
 offset_bottom = 355.0
 texture_normal = ExtResource("19_cwurv")
+texture_pressed = ExtResource("26_lmoi6")
 texture_hover = ExtResource("24_oeip8")
 
 [node name="STAND_Text" type="Label" parent="User_Interface/Stand_Button/STAND_Button" unique_id=1331067329]
@@ -705,6 +714,7 @@ offset_top = 263.0
 offset_right = 495.0
 offset_bottom = 353.0
 texture_normal = ExtResource("23_mucmn")
+texture_pressed = ExtResource("30_bwj6o")
 texture_hover = ExtResource("26_xe308")
 
 [node name="SAFE_Text" type="Label" parent="User_Interface/Safe_Button/SAFE_Button" unique_id=1274770505]
