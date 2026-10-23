@@ -25,7 +25,7 @@ extends Node
 @onready var answer6_label = $"../User_Interface/Answer6_Button_Parent/Answer6_Button/Answer6_Text"
 @onready var hit_button = $"../User_Interface/Hit_Button/HIT_Button"
 @onready var stand_button = $"../User_Interface/Stand_Button/STAND_Button"
-@onready var safe_button = $"../User_Interface/Safe_Button"
+@onready var safe_button = $"../User_Interface/Safe_Button/SAFE_Button"
 @onready var tripple_button1 = $"../User_Interface/Tripple_Button1"
 @onready var tripple_button2 = $"../User_Interface/Tripple_Button2"
 @onready var tripple_button3 = $"../User_Interface/Tripple_Button3"
