@@ -21,15 +21,20 @@
 [ext_resource type="Script" uid="uid://b8801c74kbnsj" path="res://Scripts/dealer_manager.gd" id="13_rfjv2"]
 [ext_resource type="FontFile" uid="uid://i15inhcw5uq2" path="res://Fonts/gothic_pixel.ttf" id="17_mg4q0"]
 [ext_resource type="Texture2D" uid="uid://du85x5km40bh7" path="res://Textures/UI/healthbar_border.png" id="18_7nbq1"]
-[ext_resource type="Texture2D" uid="uid://q5yusj3lrrcq" path="res://Textures/UI/ui_button1.png" id="18_fkdbe"]
-[ext_resource type="Texture2D" uid="uid://c58a0wwu8bwif" path="res://Textures/UI/ui_button3.png" id="19_cwurv"]
+[ext_resource type="Texture2D" uid="uid://8h6q2rmfqhtv" path="res://Textures/UI/Buttons/normal/ui_button1.png" id="18_fkdbe"]
+[ext_resource type="Texture2D" uid="uid://dmp4lv0a1twkm" path="res://Textures/UI/Buttons/normal/ui_button3.png" id="19_cwurv"]
 [ext_resource type="Texture2D" uid="uid://fg43kh08jwi3" path="res://Textures/UI/healthbar.png" id="19_exi56"]
 [ext_resource type="Script" uid="uid://24wo87iun0dq" path="res://Scripts/player_healthbar.gd" id="20_7t8sx"]
+[ext_resource type="Texture2D" uid="uid://bbf4f1fo7m5c4" path="res://Textures/UI/Buttons/selected/ui_selected_button2.png" id="20_i26dy"]
 [ext_resource type="Texture2D" uid="uid://ondoqjms7flk" path="res://Textures/UI/healthbar_line.png" id="21_mg4q0"]
-[ext_resource type="Texture2D" uid="uid://bmt3ogt7e4g57" path="res://Textures/UI/ui_button2.png" id="21_mucmn"]
-[ext_resource type="Texture2D" uid="uid://ckgois7wdmv4y" path="res://Textures/UI/ui_button4.png" id="22_8m3t6"]
-[ext_resource type="Texture2D" uid="uid://2jdx2sxw7y6m" path="res://Textures/UI/ui_button5.png" id="23_mucmn"]
+[ext_resource type="Texture2D" uid="uid://dn47ebjylda35" path="res://Textures/UI/Buttons/normal/ui_button2.png" id="21_mucmn"]
+[ext_resource type="Texture2D" uid="uid://blkuwisi3taqm" path="res://Textures/UI/Buttons/normal/ui_button4.png" id="22_8m3t6"]
+[ext_resource type="Texture2D" uid="uid://b3ppe0hk4fv3a" path="res://Textures/UI/Buttons/selected/ui_selected_button1.png" id="22_ese38"]
+[ext_resource type="Texture2D" uid="uid://dvj2a6wqkxhp2" path="res://Textures/UI/Buttons/selected/ui_selected_button4.png" id="22_lmoi6"]
+[ext_resource type="Texture2D" uid="uid://cmlv6tbqjp2it" path="res://Textures/UI/Buttons/normal/ui_button5.png" id="23_mucmn"]
 [ext_resource type="Texture2D" uid="uid://dd574cl11lixt" path="res://Textures/UI/ui_settings_button.png" id="23_vm72l"]
+[ext_resource type="Texture2D" uid="uid://o3wcowi8pk2p" path="res://Textures/UI/Buttons/selected/ui_selected_button3.png" id="24_oeip8"]
+[ext_resource type="Texture2D" uid="uid://dc5q0wnvjrgs3" path="res://Textures/UI/Buttons/selected/ui_selected_button5.png" id="26_xe308"]
 [ext_resource type="Texture2D" uid="uid://cmxnou0t3r16n" path="res://Textures/UI/ui_bonus.png" id="30_8m3t6"]
 
 [sub_resource type="Curve" id="Curve_3dryh"]
@@ -39,6 +44,12 @@ point_count = 4
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wowpa"]
 shader = ExtResource("4_3dryh")
 shader_parameter/blur_amount = 1.5
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8m3t6"]
+load_path = "res://.godot/imported/ui_button1.png-c0e084166249fcfadc1dc7115049ddb1.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ese38"]
+load_path = "res://.godot/imported/ui_button3.png-b41219bd3ff24b2b2257a9cbe5b21e3f.ctex"
 
 [node name="Node" type="Node" unique_id=1979963607]
 
@@ -445,7 +456,8 @@ offset_left = 405.0
 offset_top = 261.0
 offset_right = 576.0
 offset_bottom = 306.0
-texture_normal = ExtResource("18_fkdbe")
+texture_normal = SubResource("CompressedTexture2D_8m3t6")
+texture_hover = ExtResource("22_ese38")
 
 [node name="Answer2_Text" type="Label" parent="User_Interface/Answer2_Button_Parent/Answer2_Button" unique_id=1443777449]
 layout_mode = 0
@@ -474,7 +486,8 @@ offset_left = 423.0
 offset_top = 310.0
 offset_right = 594.0
 offset_bottom = 355.0
-texture_normal = ExtResource("19_cwurv")
+texture_normal = SubResource("CompressedTexture2D_ese38")
+texture_hover = ExtResource("24_oeip8")
 
 [node name="Answer3_Text" type="Label" parent="User_Interface/Answer3_Button_Parent/Answer3_Button" unique_id=401966548]
 layout_mode = 0
@@ -558,6 +571,7 @@ offset_top = 261.0
 offset_right = 553.0
 offset_bottom = 306.0
 texture_normal = ExtResource("21_mucmn")
+texture_hover = ExtResource("20_i26dy")
 
 [node name="MoodUp_Icon2" type="Sprite2D" parent="User_Interface/Answer5_Button_Parent" unique_id=1346784063]
 visible = false
@@ -599,6 +613,7 @@ offset_top = 310.0
 offset_right = 572.0
 offset_bottom = 355.0
 texture_normal = ExtResource("22_8m3t6")
+texture_hover = ExtResource("22_lmoi6")
 
 [node name="MoodUp_Icon2" type="Sprite2D" parent="User_Interface/Answer6_Button_Parent" unique_id=1637870433]
 visible = false
@@ -638,6 +653,7 @@ offset_top = 261.0
 offset_right = 614.0
 offset_bottom = 306.0
 texture_normal = ExtResource("18_fkdbe")
+texture_hover = ExtResource("22_ese38")
 
 [node name="HIT_Text" type="Label" parent="User_Interface/Hit_Button/HIT_Button" unique_id=922967543]
 layout_mode = 0
@@ -663,6 +679,7 @@ offset_top = 310.0
 offset_right = 632.0
 offset_bottom = 355.0
 texture_normal = ExtResource("19_cwurv")
+texture_hover = ExtResource("24_oeip8")
 
 [node name="STAND_Text" type="Label" parent="User_Interface/Stand_Button/STAND_Button" unique_id=1331067329]
 layout_mode = 0
@@ -688,6 +705,7 @@ offset_top = 263.0
 offset_right = 495.0
 offset_bottom = 353.0
 texture_normal = ExtResource("23_mucmn")
+texture_hover = ExtResource("26_xe308")
 
 [node name="SAFE_Text" type="Label" parent="User_Interface/Safe_Button/SAFE_Button" unique_id=1274770505]
 layout_mode = 0
