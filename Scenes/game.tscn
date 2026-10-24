@@ -55,7 +55,7 @@ shader_parameter/speed = 0.06000000285
 shader_parameter/scale = 2.30000006175
 shader_parameter/distortion = 0.32
 shader_parameter/density = 1.0
-shader_parameter/height = 1.0
+shader_parameter/height = 0.79400003119523
 shader_parameter/softness = 0.30000001192093
 shader_parameter/brightness = 2.0
 
@@ -89,12 +89,20 @@ offset_bottom = 360.0
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="Smoke_Filter" type="ColorRect" parent="." unique_id=593615558]
+[node name="Smoke_Filter2" type="ColorRect" parent="." unique_id=1564311035]
 material = SubResource("ShaderMaterial_45ngr")
 offset_left = 3.0
-offset_top = 21.0
+offset_top = 127.0
 offset_right = 635.0
 offset_bottom = 252.0
+
+[node name="Smoke_Filter" type="ColorRect" parent="." unique_id=593615558]
+material = SubResource("ShaderMaterial_45ngr")
+offset_left = 636.0
+offset_top = 145.99182
+offset_right = 1268.0
+offset_bottom = 270.98364
+rotation = 3.1415927
 
 [node name="Blur_Filter" type="ColorRect" parent="." unique_id=1875600707]
 visible = false
