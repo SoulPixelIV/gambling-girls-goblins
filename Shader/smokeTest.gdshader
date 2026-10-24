@@ -1,12 +1,11 @@
-
 shader_type canvas_item;
-render_mode unshaded;
+render_mode unshaded; //No Light Influence
 
-// Hintergrundfarbe
+//Background Color
 uniform vec4 background_color : source_color =
     vec4(0.008, 0.001, 0.006, 1.0);
 
-// Rauchfarben
+//Smoke Colors
 uniform vec4 smoke_dark : source_color =
     vec4(0.30, 0.005, 0.075, 1.0);
 
@@ -16,31 +15,31 @@ uniform vec4 smoke_mid : source_color =
 uniform vec4 smoke_bright : source_color =
     vec4(1.0, 0.035, 0.36, 1.0);
 
-// Animation und Rauchform
-uniform float speed : hint_range(0.0, 0.5) = 0.045;
-uniform float scale : hint_range(1.0, 8.0) = 3.0;
+uniform float speed : hint_range(0.0, 0.5) = 0.06; //0.06
+uniform float scale : hint_range(1.0, 8.0) = 2.3; //2.3 fills whole screen perfectly
 uniform float distortion : hint_range(0.0, 1.0) = 0.32;
 uniform float density : hint_range(0.1, 1.0) = 0.55;
 uniform float height : hint_range(0.2, 1.0) = 0.72;
 uniform float softness : hint_range(0.01, 0.3) = 0.12;
 uniform float brightness : hint_range(0.2, 2.0) = 1.0;
 
-
-// Pseudozufallswerte
+//Generate Random Values
 float hash(vec2 p) {
     p = fract(p * vec2(123.34, 456.21));
     p += dot(p, p + 45.32);
-    return fract(p.x * p.y);
+    return fract(p.x / max(abs(p.y), 0.001));
 }
 
-
-// Weiches Value Noise mit quintischer Interpolation
+//Generate Noise
 float noise(vec2 p) {
+	//Position
     vec2 i = floor(p);
     vec2 f = fract(p);
 
+	//Quintische Interpolation
     f = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
 
+	//Calculate Corner Pixels
     float a = hash(i);
     float b = hash(i + vec2(1.0, 0.0));
     float c = hash(i + vec2(0.0, 1.0));
@@ -53,29 +52,34 @@ float noise(vec2 p) {
     );
 }
 
-
-// Mehrere Noise-Ebenen
+//Smoke Noise
 float fbm(vec2 p) {
     float value = 0.0;
     float amplitude = 0.5;
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
         value += noise(p) * amplitude;
         p = p * 2.0 + vec2(17.1, 9.2);
         amplitude *= 0.5;
     }
-
     return value;
 }
 
-
+//Smoke Noise Part 2
 void fragment() {
+    //Pixelate Smoke
+    float pixel_size = 6.0; //12.0 with Blur || 6.0 with NO Blur
+
     vec2 uv = UV;
+    uv = floor(uv / SCREEN_PIXEL_SIZE / pixel_size)
+        * SCREEN_PIXEL_SIZE * pixel_size;
 
-    // Seitenverhältnis der Rauchstruktur
+    //Smoke Scale
     vec2 p = uv;
-    p.x *= 1.6;
+    p.x *= 1.6; //Horizontal Scaling
+	p.y *= 0.7; //Vertical Scaling
 
+	//Animation Speed
     float t = TIME * speed;
 
     // Organische Verzerrung
