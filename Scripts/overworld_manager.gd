@@ -18,7 +18,7 @@ extends Node2D
 var grid_width = 8
 var grid_height = 4
 var cell_size = 60
-var start_pos = Vector2(165, 30)
+var start_pos = Vector2(165, 45)
 
 var player_node_instance
 var is_moving = false
