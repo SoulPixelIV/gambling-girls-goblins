@@ -245,22 +245,12 @@ theme_override_font_sizes/font_size = 14
 text = "Pot:"
 horizontal_alignment = 1
 
-[node name="Stat_Debuff" type="Label" parent="User_Interface/Status_Screen" unique_id=274222294]
-layout_mode = 0
-offset_left = -3.0
-offset_top = 147.0
-offset_right = 107.0
-offset_bottom = 170.0
-theme_override_font_sizes/font_size = 12
-text = "Stat Debuff:"
-horizontal_alignment = 1
-
 [node name="Status1_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1920017106]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 20.0
-offset_right = 109.0
-offset_bottom = 43.0
+offset_left = 37.0
+offset_top = 117.0
+offset_right = 147.0
+offset_bottom = 140.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 8
 text = "Status1"
@@ -268,10 +258,10 @@ horizontal_alignment = 1
 
 [node name="Status2_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=984340366]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 31.0
-offset_right = 109.0
-offset_bottom = 54.0
+offset_left = 37.0
+offset_top = 128.0
+offset_right = 147.0
+offset_bottom = 151.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 8
 text = "Status2"
@@ -279,10 +269,10 @@ horizontal_alignment = 1
 
 [node name="Status3_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1496063872]
 layout_mode = 0
-offset_left = -1.0
-offset_top = 43.0
-offset_right = 109.0
-offset_bottom = 66.0
+offset_left = 37.0
+offset_top = 140.0
+offset_right = 147.0
+offset_bottom = 163.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 6
 text = "Status3"
@@ -290,10 +280,10 @@ horizontal_alignment = 1
 
 [node name="Status4_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1838096030]
 layout_mode = 0
-offset_left = -2.0
-offset_top = 53.0
-offset_right = 108.0
-offset_bottom = 76.0
+offset_left = 36.0
+offset_top = 150.0
+offset_right = 146.0
+offset_bottom = 173.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 7
 text = "Status4"
@@ -301,10 +291,10 @@ horizontal_alignment = 1
 
 [node name="Status5_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=713151428]
 layout_mode = 0
-offset_left = -2.0
-offset_top = 62.0
-offset_right = 108.0
-offset_bottom = 85.0
+offset_left = 36.0
+offset_top = 159.0
+offset_right = 146.0
+offset_bottom = 182.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 8
 text = "Status5"
@@ -312,10 +302,10 @@ horizontal_alignment = 1
 
 [node name="Status6_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=765567227]
 layout_mode = 0
-offset_left = -2.0
-offset_top = 72.0
-offset_right = 108.0
-offset_bottom = 95.0
+offset_left = 36.0
+offset_top = 169.0
+offset_right = 146.0
+offset_bottom = 192.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 9
 text = "Status6"
@@ -323,10 +313,10 @@ horizontal_alignment = 1
 
 [node name="Status7_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=777920835]
 layout_mode = 0
-offset_left = -2.0
-offset_top = 85.0
-offset_right = 108.0
-offset_bottom = 108.0
+offset_left = 36.0
+offset_top = 182.0
+offset_right = 146.0
+offset_bottom = 205.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 6
 text = "Status7"
@@ -334,10 +324,10 @@ horizontal_alignment = 1
 
 [node name="Status8_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=809836722]
 layout_mode = 0
-offset_left = -3.0
-offset_top = 95.0
-offset_right = 107.0
-offset_bottom = 118.0
+offset_left = 35.0
+offset_top = 192.0
+offset_right = 145.0
+offset_bottom = 215.0
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 7
 text = "Status8"
