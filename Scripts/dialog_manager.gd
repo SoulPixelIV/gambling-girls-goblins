@@ -26,9 +26,12 @@ extends Node
 @onready var hit_button = $"../User_Interface/Hit_Button/HIT_Button"
 @onready var stand_button = $"../User_Interface/Stand_Button/STAND_Button"
 @onready var safe_button = $"../User_Interface/Safe_Button/SAFE_Button"
-@onready var tripple_button1 = $"../User_Interface/Tripple_Button1"
-@onready var tripple_button2 = $"../User_Interface/Tripple_Button2"
-@onready var tripple_button3 = $"../User_Interface/Tripple_Button3"
+@onready var tripple_button1 = $"../User_Interface/Tripple1_Button_Parent/Tripple_Button1"
+@onready var tripple_button2 = $"../User_Interface/Tripple2_Button_Parent/Tripple_Button2"
+@onready var tripple_button3 = $"../User_Interface/Tripple3_Button_Parent/Tripple_Button3"
+@onready var tripple_button1_label = $"../User_Interface/Tripple1_Button_Parent/Tripple_Text1"
+@onready var tripple_button2_label = $"../User_Interface/Tripple2_Button_Parent/Tripple_Text2"
+@onready var tripple_button3_label = $"../User_Interface/Tripple3_Button_Parent/Tripple_Text3"
 
 var dialog_mode = 0
 var typing_token = 0
@@ -62,6 +65,9 @@ func _check_dialog_mode() -> void:
 		tripple_button1.hide()
 		tripple_button2.hide()
 		tripple_button3.hide()
+		tripple_button1_label.hide()
+		tripple_button2_label.hide()
+		tripple_button3_label.hide()
 		
 		await type_text(_random_intro_line())
 		
@@ -97,6 +103,9 @@ func _check_dialog_mode() -> void:
 		tripple_button1.hide()
 		tripple_button2.hide()
 		tripple_button3.hide()
+		tripple_button1_label.hide()
+		tripple_button2_label.hide()
+		tripple_button3_label.hide()
 		hit_button.show()
 		stand_button.show()
 		safe_button.show()
@@ -123,6 +132,9 @@ func _check_dialog_mode() -> void:
 		tripple_button1.show()
 		tripple_button2.show()
 		tripple_button3.show()
+		tripple_button1_label.show()
+		tripple_button2_label.show()
+		tripple_button3_label.show()
 		game_manager.begin_fight = true
 		status_screen._update_betting_status()
 		
@@ -141,6 +153,9 @@ func _check_dialog_mode() -> void:
 		tripple_button1.hide()
 		tripple_button2.hide()
 		tripple_button3.hide()
+		tripple_button1_label.hide()
+		tripple_button2_label.hide()
+		tripple_button3_label.hide()
 		status_screen._update_betting_status()
 		
 	#Health Room
@@ -160,14 +175,17 @@ func _check_dialog_mode() -> void:
 		tripple_button1.show()
 		tripple_button2.show()
 		tripple_button3.show()
+		tripple_button1_label.show()
+		tripple_button2_label.show()
+		tripple_button3_label.show()
 		
-		tripple_button1.text = "Heal 20 Health"
-		tripple_button2.text = "Receive Random Card"
-		tripple_button3.text = "All or Nothing"
+		tripple_button1_label.text = "Heal 20 Health"
+		tripple_button2_label.text = "Receive Random Card"
+		tripple_button3_label.text = "All or Nothing"
 		
-		tripple_button1.modulate = Color.GREEN_YELLOW
-		tripple_button2.modulate = Color.ROYAL_BLUE
-		tripple_button3.modulate = Color.RED
+		#tripple_button1.modulate = Color.GREEN_YELLOW
+		#tripple_button2.modulate = Color.ROYAL_BLUE
+		#tripple_button3.modulate = Color.RED
 		
 		tripple_button1.tooltip_text = "Instantly heal 20 Health."
 		tripple_button2.tooltip_text = "Choose from 3 random cards."
@@ -198,6 +216,9 @@ func _check_dialog_mode() -> void:
 		tripple_button1.hide()
 		tripple_button2.show()
 		tripple_button3.hide()
+		tripple_button1_label.hide()
+		tripple_button2_label.show()
+		tripple_button3_label.hide()
 		
 		tripple_button2.text = "Back to Overworld"
 		
@@ -226,6 +247,9 @@ func _check_dialog_mode() -> void:
 		tripple_button1.hide()
 		tripple_button2.hide()
 		tripple_button3.hide()
+		tripple_button1_label.hide()
+		tripple_button2_label.hide()
+		tripple_button3_label.hide()
 		
 		tripple_button1.tooltip_text = ""
 		tripple_button2.tooltip_text = ""
@@ -250,12 +274,15 @@ func _check_dialog_mode() -> void:
 		tripple_button1.hide()
 		tripple_button2.show()
 		tripple_button3.hide()
+		tripple_button1_label.hide()
+		tripple_button2_label.show()
+		tripple_button3_label.hide()
 		
 		tripple_button1.tooltip_text = ""
 		if game_manager.ultra_card_mode and game_manager.ultra_cards_remaining > 0:
-			tripple_button2.text = "Next Card"
+			tripple_button2_label.text = "Next Card"
 		else:
-			tripple_button2.text = "Back to Overworld"
+			tripple_button2_label.text = "Back to Overworld"
 		tripple_button3.tooltip_text = ""
 		
 		await type_text(_random_card_select_line())
@@ -276,10 +303,13 @@ func _check_dialog_mode() -> void:
 		tripple_button1.show()
 		tripple_button2.show()
 		tripple_button3.show()
+		tripple_button1_label.show()
+		tripple_button2_label.show()
+		tripple_button3_label.show()
 		
-		tripple_button1.text = "Higher"
-		tripple_button2.text = "Lower"
-		tripple_button3.text = "Equal"
+		tripple_button1_label.text = "Higher"
+		tripple_button2_label.text = "Lower"
+		tripple_button3_label.text = "Equal"
 		tripple_button1.tooltip_text = ""
 		tripple_button2.tooltip_text = ""
 		tripple_button3.tooltip_text = ""
@@ -305,10 +335,13 @@ func _check_dialog_mode() -> void:
 			tripple_button1.hide()
 			tripple_button2.show()
 			tripple_button3.hide()
+			tripple_button1_label.hide()
+			tripple_button2_label.show()
+			tripple_button3_label.hide()
 			
-			tripple_button1.text = ""
-			tripple_button2.text = "Receive both Rewards"
-			tripple_button3.text = ""
+			tripple_button1_label.text = ""
+			tripple_button2_label.text = "Receive both Rewards"
+			tripple_button3_label.text = ""
 			tripple_button1.tooltip_text = ""
 			tripple_button2.tooltip_text = ""
 			tripple_button3.tooltip_text = ""
@@ -331,10 +364,13 @@ func _check_dialog_mode() -> void:
 			tripple_button1.hide()
 			tripple_button2.show()
 			tripple_button3.hide()
+			tripple_button1_label.hide()
+			tripple_button2_label.show()
+			tripple_button3_label.hide()
 			
-			tripple_button1.text = ""
-			tripple_button2.text = "Back to Overworld"
-			tripple_button3.text = ""
+			tripple_button1_label.text = ""
+			tripple_button2_label.text = "Back to Overworld"
+			tripple_button3_label.text = ""
 			tripple_button1.tooltip_text = ""
 			tripple_button2.tooltip_text = ""
 			tripple_button3.tooltip_text = ""
@@ -358,10 +394,13 @@ func _check_dialog_mode() -> void:
 		tripple_button1.hide()
 		tripple_button2.show()
 		tripple_button3.hide()
+		tripple_button1_label.hide()
+		tripple_button2_label.show()
+		tripple_button3_label.hide()
 		
-		tripple_button1.text = ""
-		tripple_button2.text = "Back to Overworld"
-		tripple_button3.text = ""
+		tripple_button1_label.text = ""
+		tripple_button2_label.text = "Back to Overworld"
+		tripple_button3_label.text = ""
 		tripple_button1.tooltip_text = ""
 		tripple_button2.tooltip_text = ""
 		tripple_button3.tooltip_text = ""
@@ -393,10 +432,13 @@ func _check_dialog_mode() -> void:
 		tripple_button1.hide()
 		tripple_button2.show()
 		tripple_button3.hide()
+		tripple_button1_label.hide()
+		tripple_button2_label.show()
+		tripple_button3_label.hide()
 		
-		tripple_button1.text = ""
-		tripple_button2.text = "Continue"
-		tripple_button3.text = ""
+		tripple_button1_label.text = ""
+		tripple_button2_label.text = "Continue"
+		tripple_button3_label.text = ""
 		tripple_button1.tooltip_text = ""
 		tripple_button2.tooltip_text = ""
 		tripple_button3.tooltip_text = ""
@@ -448,6 +490,9 @@ func _check_dialog_mode() -> void:
 		tripple_button1.hide()
 		tripple_button2.hide()
 		tripple_button3.hide()
+		tripple_button1_label.hide()
+		tripple_button2_label.hide()
+		tripple_button3_label.hide()
 		
 		tripple_button1.tooltip_text = ""
 		tripple_button2.tooltip_text = ""
@@ -719,6 +764,9 @@ func reset_ui():
 	tripple_button1.hide()
 	tripple_button2.hide()
 	tripple_button3.hide()
+	tripple_button1_label.hide()
+	tripple_button2_label.hide()
+	tripple_button3_label.hide()
 	tripple_button1.disabled = false
 	tripple_button2.disabled = false
 	tripple_button3.disabled = false

@@ -26,9 +26,12 @@ extends Node
 @onready var stand_button = $"../User_Interface/Stand_Button/STAND_Button"
 @onready var hit_button_label = $"../User_Interface/Hit_Button/HIT_Button/HIT_Text"
 @onready var stand_button_label = $"../User_Interface/Stand_Button/STAND_Button/STAND_Text"
-@onready var tripple_button1 = $"../User_Interface/Tripple_Button1"
-@onready var tripple_button2 = $"../User_Interface/Tripple_Button2"
-@onready var tripple_button3 = $"../User_Interface/Tripple_Button3"
+@onready var tripple_button1 = $"../User_Interface/Tripple1_Button_Parent/Tripple_Button1"
+@onready var tripple_button2 = $"../User_Interface/Tripple2_Button_Parent/Tripple_Button2"
+@onready var tripple_button3 = $"../User_Interface/Tripple3_Button_Parent/Tripple_Button3"
+@onready var tripple_button1_label = $"../User_Interface/Tripple1_Button_Parent/Tripple_Text1"
+@onready var tripple_button2_label = $"../User_Interface/Tripple2_Button_Parent/Tripple_Text2"
+@onready var tripple_button3_label = $"../User_Interface/Tripple3_Button_Parent/Tripple_Text3"
 @onready var affection_label: Label = $"../User_Interface/Dealer_Interface/Affection_Label"
 @onready var mood_label: Label = $"../User_Interface/Dealer_Interface/Mood_Label"
 @onready var crazy_goblin_enemy = preload("res://Prefabs/crazy_goblin.tscn")
@@ -665,9 +668,9 @@ func _on_card_played(value, card_id):
 	if button_mode == 2:
 		dialog_manager.dialog_mode = 2
 		dialog_manager._check_dialog_mode() #Update Dialog Mode
-		tripple_button1.text = "Count as 6"
-		tripple_button2.text = "Count as 7"	
-		tripple_button3.text = "Count as 8"	
+		tripple_button1_label.text = "Count as 6"
+		tripple_button2_label.text = "Count as 7"	
+		tripple_button3_label.text = "Count as 8"	
 	
 func _on_card_played_enemy(value, card_id):
 	if card_id.begins_with("A"):

@@ -1,0 +1,16 @@
+[remap]
+
+importer="bitmap"
+type="BitMap"
+uid="uid://b0dhd8m68gbgs"
+path="res://.godot/imported/ui_bitmap_tripple_button3.png-5905219d4c6caa5b361d1a035a3e812b.res"
+
+[deps]
+
+source_file="res://Textures/UI/Buttons/bitmaps/ui_bitmap_tripple_button3.png"
+dest_files=["res://.godot/imported/ui_bitmap_tripple_button3.png-5905219d4c6caa5b361d1a035a3e812b.res"]
+
+[params]
+
+create_from=0
+threshold=0.5
