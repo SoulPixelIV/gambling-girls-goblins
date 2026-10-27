@@ -1332,9 +1332,9 @@ func _switch_game_mode(mode) -> void:
 		
 		dialog_manager.reset_ui()
 		
-		player_healthbar.hide()
+		#player_healthbar.hide()
 		enemy_healthbar.hide()
-		player_health.hide()
+		#player_health.hide()
 		enemy_health.hide()
 		enemy_name_tag.hide()
 	
@@ -1427,8 +1427,8 @@ func _switch_game_mode(mode) -> void:
 	###CARD INVENTORY###
 	if mode == 5:
 		dialog_manager.ui_abort = false
-		player_healthbar.hide()
-		player_health.hide()
+		#player_healthbar.hide()
+		#player_health.hide()
 		
 		dialog_manager.dialog_mode = 12
 		dialog_manager._check_dialog_mode() #Update Dialog Mode
@@ -1450,8 +1450,8 @@ func _switch_game_mode(mode) -> void:
 	###LEAVING CARD INVENTORY###
 	if mode == 6:
 		dialog_manager.ui_abort = false
-		player_healthbar.hide()
-		player_health.hide()
+		#player_healthbar.hide()
+		#player_health.hide()
 		
 		_reset_combat_deck()
 		

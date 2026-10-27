@@ -20,20 +20,20 @@
 [ext_resource type="Script" uid="uid://b8801c74kbnsj" path="res://Scripts/dealer_manager.gd" id="13_rfjv2"]
 [ext_resource type="Texture2D" uid="uid://dvq78jcyusomy" path="res://Textures/UI/Buttons/normal/ui_tripple_button1.png" id="17_32sfa"]
 [ext_resource type="FontFile" uid="uid://i15inhcw5uq2" path="res://Fonts/gothic_pixel.ttf" id="17_mg4q0"]
-[ext_resource type="Texture2D" uid="uid://du85x5km40bh7" path="res://Textures/UI/healthbar_border.png" id="18_7nbq1"]
+[ext_resource type="Texture2D" uid="uid://bwra4tx368nlm" path="res://Textures/UI/healthbar_border.png" id="18_7nbq1"]
 [ext_resource type="Texture2D" uid="uid://8h6q2rmfqhtv" path="res://Textures/UI/Buttons/normal/ui_button1.png" id="18_fkdbe"]
 [ext_resource type="Texture2D" uid="uid://cnapn0hlmlxs8" path="res://Textures/UI/Buttons/selected/ui_selected_tripple_button1.png" id="18_htg8p"]
 [ext_resource type="Texture2D" uid="uid://diany0qqw61h8" path="res://Textures/UI/Buttons/normal/ui_tripple_button2.png" id="18_titue"]
 [ext_resource type="Texture2D" uid="uid://cmbhb7xitxgrd" path="res://Textures/UI/Buttons/clicked/ui_clicked_tripple_button1.png" id="18_wr3wg"]
 [ext_resource type="Texture2D" uid="uid://dmp4lv0a1twkm" path="res://Textures/UI/Buttons/normal/ui_button3.png" id="19_cwurv"]
-[ext_resource type="Texture2D" uid="uid://fg43kh08jwi3" path="res://Textures/UI/healthbar.png" id="19_exi56"]
+[ext_resource type="Texture2D" uid="uid://gwkq3bkalxea" path="res://Textures/UI/healthbar.png" id="19_exi56"]
 [ext_resource type="Texture2D" uid="uid://thah6syjtvv7" path="res://Textures/UI/Buttons/normal/ui_tripple_button3.png" id="19_tt7mg"]
 [ext_resource type="Script" uid="uid://24wo87iun0dq" path="res://Scripts/player_healthbar.gd" id="20_7t8sx"]
 [ext_resource type="Texture2D" uid="uid://bbf4f1fo7m5c4" path="res://Textures/UI/Buttons/selected/ui_selected_button2.png" id="20_i26dy"]
 [ext_resource type="Texture2D" uid="uid://bkutm75xpqb83" path="res://Textures/UI/Buttons/selected/ui_selected_tripple_button2.png" id="20_jcvim"]
 [ext_resource type="BitMap" uid="uid://c8siwhnt87kwp" path="res://Textures/UI/Buttons/bitmaps/ui_bitmap_tripple_button1.png" id="20_x6jpx"]
 [ext_resource type="Texture2D" uid="uid://soev2vkdxe13" path="res://Textures/UI/Buttons/clicked/ui_clicked_tripple_button2.png" id="21_6xvgv"]
-[ext_resource type="Texture2D" uid="uid://ondoqjms7flk" path="res://Textures/UI/healthbar_line.png" id="21_mg4q0"]
+[ext_resource type="Texture2D" uid="uid://dacexfs5w5w5e" path="res://Textures/UI/healthbar_line.png" id="21_mg4q0"]
 [ext_resource type="Texture2D" uid="uid://dn47ebjylda35" path="res://Textures/UI/Buttons/normal/ui_button2.png" id="21_mucmn"]
 [ext_resource type="Texture2D" uid="uid://blkuwisi3taqm" path="res://Textures/UI/Buttons/normal/ui_button4.png" id="22_8m3t6"]
 [ext_resource type="Texture2D" uid="uid://b3ppe0hk4fv3a" path="res://Textures/UI/Buttons/selected/ui_selected_button1.png" id="22_ese38"]
@@ -834,7 +834,7 @@ offset_left = -6.0
 offset_top = -7.0
 offset_right = 84.0
 offset_bottom = 27.0
-theme_override_colors/font_color = Color(0.79607844, 0.08235294, 0.39607844, 1)
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
 theme_override_fonts/font = ExtResource("17_mg4q0")
 theme_override_font_sizes/font_size = 18
 text = "42/42 HP"
