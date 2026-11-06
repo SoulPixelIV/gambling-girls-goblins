@@ -18,16 +18,22 @@
 [ext_resource type="Texture2D" uid="uid://gni2ecgjaq7b" path="res://Textures/Icons/icon_affection_down.png" id="12_rku1e"]
 [ext_resource type="Texture2D" uid="uid://dht47danrd8if" path="res://Textures/Icons/damage_icon.png" id="13_1phco"]
 [ext_resource type="Script" uid="uid://b8801c74kbnsj" path="res://Scripts/dealer_manager.gd" id="13_rfjv2"]
+[ext_resource type="Texture2D" uid="uid://bsj5c6s3bb0iw" path="res://Textures/UI/stat_icons/ui_mood1_icon.png" id="15_l4kai"]
+[ext_resource type="Texture2D" uid="uid://c5g7f6xy65ck" path="res://Textures/UI/stat_icons/ui_mood2_icon.png" id="16_kcoun"]
 [ext_resource type="Texture2D" uid="uid://dvq78jcyusomy" path="res://Textures/UI/Buttons/normal/ui_tripple_button1.png" id="17_32sfa"]
+[ext_resource type="Texture2D" uid="uid://dyjpx40mvw3nq" path="res://Textures/UI/stat_icons/ui_mood3_icon.png" id="17_jegl3"]
 [ext_resource type="FontFile" uid="uid://i15inhcw5uq2" path="res://Fonts/gothic_pixel.ttf" id="17_mg4q0"]
 [ext_resource type="Texture2D" uid="uid://bwra4tx368nlm" path="res://Textures/UI/healthbar_border.png" id="18_7nbq1"]
+[ext_resource type="Texture2D" uid="uid://dgai28hlmjoye" path="res://Textures/UI/stat_icons/ui_mood4_icon.png" id="18_csv17"]
 [ext_resource type="Texture2D" uid="uid://8h6q2rmfqhtv" path="res://Textures/UI/Buttons/normal/ui_button1.png" id="18_fkdbe"]
 [ext_resource type="Texture2D" uid="uid://cnapn0hlmlxs8" path="res://Textures/UI/Buttons/selected/ui_selected_tripple_button1.png" id="18_htg8p"]
 [ext_resource type="Texture2D" uid="uid://diany0qqw61h8" path="res://Textures/UI/Buttons/normal/ui_tripple_button2.png" id="18_titue"]
 [ext_resource type="Texture2D" uid="uid://cmbhb7xitxgrd" path="res://Textures/UI/Buttons/clicked/ui_clicked_tripple_button1.png" id="18_wr3wg"]
+[ext_resource type="Texture2D" uid="uid://v5wv1ta462qb" path="res://Textures/UI/stat_icons/ui_affection1_icon.png" id="19_6i05k"]
 [ext_resource type="Texture2D" uid="uid://dmp4lv0a1twkm" path="res://Textures/UI/Buttons/normal/ui_button3.png" id="19_cwurv"]
 [ext_resource type="Texture2D" uid="uid://gwkq3bkalxea" path="res://Textures/UI/healthbar.png" id="19_exi56"]
 [ext_resource type="Texture2D" uid="uid://thah6syjtvv7" path="res://Textures/UI/Buttons/normal/ui_tripple_button3.png" id="19_tt7mg"]
+[ext_resource type="Texture2D" uid="uid://c1k7n0kxpruj6" path="res://Textures/UI/stat_icons/ui_affection2_icon.png" id="20_1kfie"]
 [ext_resource type="Script" uid="uid://24wo87iun0dq" path="res://Scripts/player_healthbar.gd" id="20_7t8sx"]
 [ext_resource type="Texture2D" uid="uid://bbf4f1fo7m5c4" path="res://Textures/UI/Buttons/selected/ui_selected_button2.png" id="20_i26dy"]
 [ext_resource type="Texture2D" uid="uid://bkutm75xpqb83" path="res://Textures/UI/Buttons/selected/ui_selected_tripple_button2.png" id="20_jcvim"]
@@ -35,10 +41,12 @@
 [ext_resource type="Texture2D" uid="uid://soev2vkdxe13" path="res://Textures/UI/Buttons/clicked/ui_clicked_tripple_button2.png" id="21_6xvgv"]
 [ext_resource type="Texture2D" uid="uid://dacexfs5w5w5e" path="res://Textures/UI/healthbar_line.png" id="21_mg4q0"]
 [ext_resource type="Texture2D" uid="uid://dn47ebjylda35" path="res://Textures/UI/Buttons/normal/ui_button2.png" id="21_mucmn"]
+[ext_resource type="Texture2D" uid="uid://c02r1caq0otlf" path="res://Textures/UI/stat_icons/ui_affection3_icon.png" id="21_sfx3s"]
 [ext_resource type="Texture2D" uid="uid://blkuwisi3taqm" path="res://Textures/UI/Buttons/normal/ui_button4.png" id="22_8m3t6"]
 [ext_resource type="Texture2D" uid="uid://b3ppe0hk4fv3a" path="res://Textures/UI/Buttons/selected/ui_selected_button1.png" id="22_ese38"]
 [ext_resource type="Texture2D" uid="uid://dsbhfnjhs3pqp" path="res://Textures/UI/Buttons/selected/ui_selected_tripple_button3.png" id="22_fnkle"]
 [ext_resource type="Texture2D" uid="uid://dvj2a6wqkxhp2" path="res://Textures/UI/Buttons/selected/ui_selected_button4.png" id="22_lmoi6"]
+[ext_resource type="Texture2D" uid="uid://ca26gasm13m8k" path="res://Textures/UI/stat_icons/ui_affection4_icon.png" id="22_p5qon"]
 [ext_resource type="Texture2D" uid="uid://dpnwur6jch74x" path="res://Textures/UI/Buttons/normal/ui_button5.png" id="23_mucmn"]
 [ext_resource type="Texture2D" uid="uid://dd574cl11lixt" path="res://Textures/UI/ui_settings_button.png" id="23_vm72l"]
 [ext_resource type="Texture2D" uid="uid://ckr85a3tt2o30" path="res://Textures/UI/Buttons/clicked/ui_clicked_button2.png" id="23_ym3tv"]
@@ -50,12 +58,12 @@
 [ext_resource type="Texture2D" uid="uid://duss2e4bvepud" path="res://Textures/UI/Buttons/selected/ui_selected_button5.png" id="26_xe308"]
 [ext_resource type="BitMap" uid="uid://doadji0e1afae" path="res://Textures/UI/Buttons/bitmaps/ui_bitmap_button1.png" id="28_bwj6o"]
 [ext_resource type="BitMap" uid="uid://b0dhd8m68gbgs" path="res://Textures/UI/Buttons/bitmaps/ui_bitmap_tripple_button3.png" id="28_k5jl5"]
-[ext_resource type="Texture2D" uid="uid://cmxnou0t3r16n" path="res://Textures/UI/ui_bonus.png" id="30_8m3t6"]
 [ext_resource type="Texture2D" uid="uid://dihugbdqccnww" path="res://Textures/UI/Buttons/disabled/ui_disabled_button1.png" id="30_bu0y5"]
 [ext_resource type="Texture2D" uid="uid://whv0ng1h3exv" path="res://Textures/UI/Buttons/clicked/ui_clicked_button5.png" id="30_bwj6o"]
 [ext_resource type="Texture2D" uid="uid://drna5nn28aep7" path="res://Textures/UI/Buttons/disabled/ui_disabled_button3.png" id="32_631el"]
 [ext_resource type="Texture2D" uid="uid://d3x2abworssux" path="res://Textures/UI/Buttons/disabled/ui_disabled_button5.png" id="36_vs120"]
 [ext_resource type="Shader" uid="uid://vpnnwhniu2hn" path="res://Shader/smokeTest.gdshader" id="45_vs120"]
+[ext_resource type="Texture2D" uid="uid://cmxnou0t3r16n" path="res://Textures/UI/ui_bonus.png" id="55_x6jpx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_45ngr"]
 shader = ExtResource("45_vs120")
@@ -245,93 +253,69 @@ theme_override_font_sizes/font_size = 14
 text = "Pot:"
 horizontal_alignment = 1
 
-[node name="Status1_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1920017106]
+[node name="Status1_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1529433186]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 117.0
-offset_right = 147.0
-offset_bottom = 140.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 8
-text = "Status1"
-horizontal_alignment = 1
+offset_right = 63.0
+offset_bottom = 135.0
+texture = ExtResource("15_l4kai")
 
-[node name="Status2_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=984340366]
+[node name="Status2_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1372104491]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 128.0
-offset_right = 147.0
-offset_bottom = 151.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 8
-text = "Status2"
-horizontal_alignment = 1
+offset_right = 63.0
+offset_bottom = 146.0
+texture = ExtResource("16_kcoun")
 
-[node name="Status3_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1496063872]
+[node name="Status3_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1897406771]
 layout_mode = 0
 offset_left = 37.0
 offset_top = 140.0
-offset_right = 147.0
-offset_bottom = 163.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 6
-text = "Status3"
-horizontal_alignment = 1
+offset_right = 63.0
+offset_bottom = 158.0
+texture = ExtResource("17_jegl3")
 
-[node name="Status4_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1838096030]
+[node name="Status4_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=945079578]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 150.0
-offset_right = 146.0
-offset_bottom = 173.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 7
-text = "Status4"
-horizontal_alignment = 1
+offset_right = 62.0
+offset_bottom = 168.0
+texture = ExtResource("18_csv17")
 
-[node name="Status5_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=713151428]
+[node name="Status5_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=2097901360]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 159.0
-offset_right = 146.0
-offset_bottom = 182.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 8
-text = "Status5"
-horizontal_alignment = 1
+offset_right = 62.0
+offset_bottom = 177.0
+texture = ExtResource("19_6i05k")
 
-[node name="Status6_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=765567227]
+[node name="Status6_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1296095251]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 169.0
-offset_right = 146.0
-offset_bottom = 192.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 9
-text = "Status6"
-horizontal_alignment = 1
+offset_right = 62.0
+offset_bottom = 187.0
+texture = ExtResource("20_1kfie")
 
-[node name="Status7_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=777920835]
+[node name="Status7_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1776912078]
 layout_mode = 0
 offset_left = 36.0
 offset_top = 182.0
-offset_right = 146.0
-offset_bottom = 205.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 6
-text = "Status7"
-horizontal_alignment = 1
+offset_right = 62.0
+offset_bottom = 200.0
+texture = ExtResource("21_sfx3s")
 
-[node name="Status8_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=809836722]
+[node name="Status8_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1414397101]
 layout_mode = 0
 offset_left = 35.0
 offset_top = 192.0
-offset_right = 145.0
-offset_bottom = 215.0
-theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 7
-text = "Status8"
-horizontal_alignment = 1
+offset_right = 61.0
+offset_bottom = 210.0
+texture = ExtResource("22_p5qon")
 
 [node name="Status1_Debuff_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1517278706]
 layout_mode = 0
@@ -1009,7 +993,7 @@ texture_normal = ExtResource("23_vm72l")
 
 [node name="Bonus_Field" type="Sprite2D" parent="User_Interface" unique_id=287852251]
 position = Vector2(389, 308)
-texture = ExtResource("30_8m3t6")
+texture = ExtResource("55_x6jpx")
 
 [node name="Hand" type="Control" parent="." unique_id=248982143]
 layout_mode = 3
