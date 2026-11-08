@@ -63,7 +63,7 @@
 [ext_resource type="Texture2D" uid="uid://drna5nn28aep7" path="res://Textures/UI/Buttons/disabled/ui_disabled_button3.png" id="32_631el"]
 [ext_resource type="Texture2D" uid="uid://d3x2abworssux" path="res://Textures/UI/Buttons/disabled/ui_disabled_button5.png" id="36_vs120"]
 [ext_resource type="Shader" uid="uid://vpnnwhniu2hn" path="res://Shader/smokeTest.gdshader" id="45_vs120"]
-[ext_resource type="Texture2D" uid="uid://cmxnou0t3r16n" path="res://Textures/UI/ui_bonus.png" id="55_x6jpx"]
+[ext_resource type="Texture2D" uid="uid://b7cvktsqwqygy" path="res://Textures/UI/ui_bonus.png" id="55_x6jpx"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_45ngr"]
 shader = ExtResource("45_vs120")
@@ -115,6 +115,7 @@ offset_left = 3.0
 offset_top = 127.0
 offset_right = 635.0
 offset_bottom = 252.0
+metadata/_edit_lock_ = true
 
 [node name="Smoke_Filter" type="ColorRect" parent="." unique_id=593615558]
 material = SubResource("ShaderMaterial_45ngr")
@@ -123,6 +124,7 @@ offset_top = 145.99182
 offset_right = 1268.0
 offset_bottom = 270.98364
 rotation = 3.1415927
+metadata/_edit_lock_ = true
 
 [node name="Blur_Filter" type="ColorRect" parent="." unique_id=1875600707]
 visible = false
@@ -169,6 +171,7 @@ script = ExtResource("6_nb51f")
 texture_filter = 1
 position = Vector2(320, 180)
 texture = ExtResource("2_qxrlw")
+metadata/_edit_lock_ = true
 
 [node name="Dealer_Speechbubble" type="Sprite2D" parent="User_Interface" unique_id=211221450]
 position = Vector2(226, 308)
@@ -207,21 +210,25 @@ texture = ExtResource("10_85qyi")
 
 [node name="Affection_Label" type="Label" parent="User_Interface/Dealer_Interface" unique_id=1187970413]
 layout_mode = 0
-offset_left = 54.0
-offset_top = 253.0
-offset_right = 90.0
-offset_bottom = 276.0
+offset_left = 53.0
+offset_top = 260.0
+offset_right = 89.0
+offset_bottom = 283.0
 theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 18
 text = "50"
 horizontal_alignment = 2
 
 [node name="Mood_Label" type="Label" parent="User_Interface/Dealer_Interface" unique_id=1177850968]
 layout_mode = 0
-offset_left = 20.0
-offset_top = 253.0
-offset_right = 58.0
-offset_bottom = 276.0
+offset_left = 21.0
+offset_top = 260.0
+offset_right = 59.0
+offset_bottom = 283.0
 theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 18
 text = "50"
 
 [node name="Status_Screen" type="Control" parent="User_Interface" unique_id=842203704]
@@ -233,96 +240,98 @@ script = ExtResource("8_1phco")
 
 [node name="Pot_Text" type="Label" parent="User_Interface/Status_Screen" unique_id=195444737]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 211.0
-offset_right = 67.0
-offset_bottom = 231.0
-theme_override_colors/font_color = Color(0.5647059, 1, 0.30980393, 1)
-theme_override_font_sizes/font_size = 14
-text = "Pot:"
+offset_left = 39.0
+offset_top = 215.0
+offset_right = 66.0
+offset_bottom = 232.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 18
+text = "Pot"
 horizontal_alignment = 1
 
 [node name="Pot_Text2" type="Label" parent="User_Interface/Status_Screen" unique_id=1218266108]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 228.0
-offset_right = 67.0
-offset_bottom = 248.0
-theme_override_colors/font_color = Color(0.5647059, 1, 0.30980393, 1)
-theme_override_font_sizes/font_size = 14
-text = "Pot:"
+offset_left = 39.0
+offset_top = 233.0
+offset_right = 66.0
+offset_bottom = 253.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 18
+text = "Pot"
 horizontal_alignment = 1
 
-[node name="Status1_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1529433186]
+[node name="Status1_Icon" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1529433186]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 117.0
-offset_right = 63.0
-offset_bottom = 135.0
+offset_left = 355.0
+offset_top = 275.0
+offset_right = 381.0
+offset_bottom = 293.0
 texture = ExtResource("15_l4kai")
 
-[node name="Status2_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1372104491]
+[node name="Status2_Icon" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1372104491]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 128.0
-offset_right = 63.0
-offset_bottom = 146.0
+offset_left = 378.0
+offset_top = 275.0
+offset_right = 404.0
+offset_bottom = 293.0
 texture = ExtResource("16_kcoun")
 
-[node name="Status3_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1897406771]
+[node name="Status3_Icon" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1897406771]
 layout_mode = 0
-offset_left = 37.0
-offset_top = 140.0
-offset_right = 63.0
-offset_bottom = 158.0
+offset_left = 363.0
+offset_top = 294.0
+offset_right = 389.0
+offset_bottom = 312.0
 texture = ExtResource("17_jegl3")
 
-[node name="Status4_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=945079578]
+[node name="Status4_Icon" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=945079578]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 150.0
-offset_right = 62.0
-offset_bottom = 168.0
+offset_left = 385.0
+offset_top = 294.0
+offset_right = 411.0
+offset_bottom = 312.0
 texture = ExtResource("18_csv17")
 
-[node name="Status5_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=2097901360]
+[node name="Status5_Icon" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=2097901360]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 159.0
-offset_right = 62.0
-offset_bottom = 177.0
+offset_left = 371.0
+offset_top = 317.0
+offset_right = 397.0
+offset_bottom = 335.0
 texture = ExtResource("19_6i05k")
 
-[node name="Status6_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1296095251]
+[node name="Status6_Icon" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1296095251]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 169.0
-offset_right = 62.0
-offset_bottom = 187.0
+offset_left = 394.0
+offset_top = 317.0
+offset_right = 420.0
+offset_bottom = 335.0
 texture = ExtResource("20_1kfie")
 
-[node name="Status7_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1776912078]
+[node name="Status7_Icon" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1776912078]
 layout_mode = 0
-offset_left = 36.0
-offset_top = 182.0
-offset_right = 62.0
-offset_bottom = 200.0
+offset_left = 379.0
+offset_top = 336.0
+offset_right = 405.0
+offset_bottom = 354.0
 texture = ExtResource("21_sfx3s")
 
-[node name="Status8_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1414397101]
+[node name="Status8_Icon" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1414397101]
 layout_mode = 0
-offset_left = 35.0
-offset_top = 192.0
-offset_right = 61.0
-offset_bottom = 210.0
+offset_left = 401.0
+offset_top = 336.0
+offset_right = 427.0
+offset_bottom = 354.0
 texture = ExtResource("22_p5qon")
 
 [node name="Status1_Debuff_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1517278706]
 layout_mode = 0
-offset_left = -2.0
-offset_top = 162.0
-offset_right = 108.0
-offset_bottom = 185.0
+offset_left = 2.0
+offset_top = 123.0
+offset_right = 112.0
+offset_bottom = 146.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 9
 text = "Debuff1"
@@ -330,10 +339,10 @@ horizontal_alignment = 1
 
 [node name="Status2_Debuff_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=2000739764]
 layout_mode = 0
-offset_left = -2.0
-offset_top = 172.0
-offset_right = 108.0
-offset_bottom = 195.0
+offset_left = 5.0
+offset_top = 136.0
+offset_right = 115.0
+offset_bottom = 159.0
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 9
 text = "Debuff2"
@@ -341,31 +350,33 @@ horizontal_alignment = 1
 
 [node name="AffectionUp_Icon" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=438268445]
 position = Vector2(30, 239)
-texture = ExtResource("11_o5yvi")
+texture = ExtResource("9_ewbju")
 
 [node name="MoodUp_Icon3" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=378091172]
 position = Vector2(30, 221)
-texture = ExtResource("7_1l0tm")
+texture = ExtResource("10_85qyi")
 
 [node name="Mood_Stat_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=511938665]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 214.0
-offset_right = 83.0
-offset_bottom = 230.0
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 11
+offset_left = 65.0
+offset_top = 217.0
+offset_right = 84.0
+offset_bottom = 234.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 16
 text = "12"
 horizontal_alignment = 1
 
 [node name="Affection_Stat_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1316105170]
 layout_mode = 0
-offset_left = 64.0
-offset_top = 231.0
-offset_right = 83.0
-offset_bottom = 247.0
-theme_override_colors/font_color = Color(1, 1, 0, 1)
-theme_override_font_sizes/font_size = 11
+offset_left = 65.0
+offset_top = 235.0
+offset_right = 84.0
+offset_bottom = 251.0
+theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
+theme_override_fonts/font = ExtResource("17_mg4q0")
+theme_override_font_sizes/font_size = 16
 text = "8"
 horizontal_alignment = 1
 
@@ -911,6 +922,7 @@ theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_font_sizes/font_size = 16
 text = "You receive %d Self Damage!"
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Combat_Messages2" type="Label" parent="User_Interface/Final_Score_Labels" unique_id=485587634]
 layout_mode = 0
@@ -922,6 +934,7 @@ theme_override_colors/font_color = Color(1, 0.007843138, 0, 1)
 theme_override_font_sizes/font_size = 16
 text = "Total Damage = 7"
 horizontal_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Dealer_Name_Label" type="Label" parent="User_Interface" unique_id=1884585899]
 layout_mode = 0
