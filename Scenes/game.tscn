@@ -47,10 +47,12 @@
 [ext_resource type="Texture2D" uid="uid://dsbhfnjhs3pqp" path="res://Textures/UI/Buttons/selected/ui_selected_tripple_button3.png" id="22_fnkle"]
 [ext_resource type="Texture2D" uid="uid://dvj2a6wqkxhp2" path="res://Textures/UI/Buttons/selected/ui_selected_button4.png" id="22_lmoi6"]
 [ext_resource type="Texture2D" uid="uid://ca26gasm13m8k" path="res://Textures/UI/stat_icons/ui_affection4_icon.png" id="22_p5qon"]
+[ext_resource type="Texture2D" uid="uid://cdnwn6ebr16xu" path="res://Textures/UI/ui_debuff1_icon.png" id="23_jegl3"]
 [ext_resource type="Texture2D" uid="uid://dpnwur6jch74x" path="res://Textures/UI/Buttons/normal/ui_button5.png" id="23_mucmn"]
 [ext_resource type="Texture2D" uid="uid://dd574cl11lixt" path="res://Textures/UI/ui_settings_button.png" id="23_vm72l"]
 [ext_resource type="Texture2D" uid="uid://ckr85a3tt2o30" path="res://Textures/UI/Buttons/clicked/ui_clicked_button2.png" id="23_ym3tv"]
 [ext_resource type="Texture2D" uid="uid://cipre4yvldfns" path="res://Textures/UI/Buttons/clicked/ui_clicked_tripple_button3.png" id="24_8lpvs"]
+[ext_resource type="Texture2D" uid="uid://bs6kqdyll17q7" path="res://Textures/UI/ui_debuff2_icon.png" id="24_csv17"]
 [ext_resource type="Texture2D" uid="uid://o3wcowi8pk2p" path="res://Textures/UI/Buttons/selected/ui_selected_button3.png" id="24_oeip8"]
 [ext_resource type="BitMap" uid="uid://c6tnx2cgiodjh" path="res://Textures/UI/Buttons/bitmaps/ui_bitmap_tripple_button2.png" id="24_sjh24"]
 [ext_resource type="BitMap" uid="uid://i8djyem6m64q" path="res://Textures/UI/Buttons/bitmaps/ui_bitmap_button2.png" id="26_f3c8l"]
@@ -326,27 +328,23 @@ offset_right = 427.0
 offset_bottom = 354.0
 texture = ExtResource("22_p5qon")
 
-[node name="Status1_Debuff_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=1517278706]
+[node name="Status1_Debuff_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1217199547]
 layout_mode = 0
-offset_left = 2.0
-offset_top = 123.0
-offset_right = 112.0
-offset_bottom = 146.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 9
-text = "Debuff1"
-horizontal_alignment = 1
+offset_left = -2.0
+offset_top = 340.0
+offset_right = 24.0
+offset_bottom = 358.0
+texture = ExtResource("23_jegl3")
+stretch_mode = 2
 
-[node name="Status2_Debuff_Label" type="Label" parent="User_Interface/Status_Screen" unique_id=2000739764]
+[node name="Status2_Debuff_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=840360963]
 layout_mode = 0
-offset_left = 5.0
-offset_top = 136.0
-offset_right = 115.0
-offset_bottom = 159.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/font_size = 9
-text = "Debuff2"
-horizontal_alignment = 1
+offset_left = -2.0
+offset_top = 322.0
+offset_right = 24.0
+offset_bottom = 340.0
+texture = ExtResource("24_csv17")
+stretch_mode = 2
 
 [node name="AffectionUp_Icon" type="Sprite2D" parent="User_Interface/Status_Screen" unique_id=438268445]
 position = Vector2(30, 239)
