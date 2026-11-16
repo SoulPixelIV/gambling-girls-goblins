@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs6kqdyll17q7"
-path="res://.godot/imported/ui_debuff2_icon.png-791d2a9b558fe1acbc67a3bd15ee2445.ctex"
+uid="uid://dae62p4keoysa"
+path="res://.godot/imported/ui_debuff1_icon.png-caeb5715b8cd567a8fae973fc860ac5d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/UI/ui_debuff2_icon.png"
-dest_files=["res://.godot/imported/ui_debuff2_icon.png-791d2a9b558fe1acbc67a3bd15ee2445.ctex"]
+source_file="res://Textures/UI/stat_icons/ui_debuff1_icon.png"
+dest_files=["res://.godot/imported/ui_debuff1_icon.png-caeb5715b8cd567a8fae973fc860ac5d.ctex"]
 
 [params]
 

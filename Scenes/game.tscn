@@ -47,12 +47,12 @@
 [ext_resource type="Texture2D" uid="uid://dsbhfnjhs3pqp" path="res://Textures/UI/Buttons/selected/ui_selected_tripple_button3.png" id="22_fnkle"]
 [ext_resource type="Texture2D" uid="uid://dvj2a6wqkxhp2" path="res://Textures/UI/Buttons/selected/ui_selected_button4.png" id="22_lmoi6"]
 [ext_resource type="Texture2D" uid="uid://ca26gasm13m8k" path="res://Textures/UI/stat_icons/ui_affection4_icon.png" id="22_p5qon"]
-[ext_resource type="Texture2D" uid="uid://cdnwn6ebr16xu" path="res://Textures/UI/ui_debuff1_icon.png" id="23_jegl3"]
+[ext_resource type="Texture2D" uid="uid://dae62p4keoysa" path="res://Textures/UI/stat_icons/ui_debuff1_icon.png" id="23_jegl3"]
 [ext_resource type="Texture2D" uid="uid://dpnwur6jch74x" path="res://Textures/UI/Buttons/normal/ui_button5.png" id="23_mucmn"]
 [ext_resource type="Texture2D" uid="uid://dd574cl11lixt" path="res://Textures/UI/ui_settings_button.png" id="23_vm72l"]
 [ext_resource type="Texture2D" uid="uid://ckr85a3tt2o30" path="res://Textures/UI/Buttons/clicked/ui_clicked_button2.png" id="23_ym3tv"]
 [ext_resource type="Texture2D" uid="uid://cipre4yvldfns" path="res://Textures/UI/Buttons/clicked/ui_clicked_tripple_button3.png" id="24_8lpvs"]
-[ext_resource type="Texture2D" uid="uid://bs6kqdyll17q7" path="res://Textures/UI/ui_debuff2_icon.png" id="24_csv17"]
+[ext_resource type="Texture2D" uid="uid://bqtylf0q0igd6" path="res://Textures/UI/stat_icons/ui_debuff2_icon.png" id="24_csv17"]
 [ext_resource type="Texture2D" uid="uid://o3wcowi8pk2p" path="res://Textures/UI/Buttons/selected/ui_selected_button3.png" id="24_oeip8"]
 [ext_resource type="BitMap" uid="uid://c6tnx2cgiodjh" path="res://Textures/UI/Buttons/bitmaps/ui_bitmap_tripple_button2.png" id="24_sjh24"]
 [ext_resource type="BitMap" uid="uid://i8djyem6m64q" path="res://Textures/UI/Buttons/bitmaps/ui_bitmap_button2.png" id="26_f3c8l"]
@@ -328,21 +328,21 @@ offset_right = 427.0
 offset_bottom = 354.0
 texture = ExtResource("22_p5qon")
 
-[node name="Status1_Debuff_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1217199547]
+[node name="Mood_Debuff_Icon" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=1217199547]
 layout_mode = 0
 offset_left = -2.0
-offset_top = 340.0
+offset_top = 341.0
 offset_right = 24.0
-offset_bottom = 358.0
+offset_bottom = 359.0
 texture = ExtResource("23_jegl3")
 stretch_mode = 2
 
-[node name="Status2_Debuff_Label" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=840360963]
+[node name="Affection_Debuff_Icon" type="TextureRect" parent="User_Interface/Status_Screen" unique_id=840360963]
 layout_mode = 0
 offset_left = -2.0
-offset_top = 322.0
+offset_top = 323.0
 offset_right = 24.0
-offset_bottom = 340.0
+offset_bottom = 341.0
 texture = ExtResource("24_csv17")
 stretch_mode = 2
 

@@ -18,8 +18,8 @@ extends Node
 	$"Status8_Icon"
 ]
 
-@onready var debuff1_text: Label = $"Status1_Debuff_Label"
-@onready var debuff2_text: Label = $"Status2_Debuff_Label"
+@onready var debuff_mood_icon: TextureRect = $"Mood_Debuff_Icon"
+@onready var debuff_affection_icon: TextureRect = $"Affection_Debuff_Icon"
 @onready var player_healthbar: Label = $"Pot_Text"
 @onready var enemy_healthbar: Label = $"Pot_Text2"
 
@@ -62,14 +62,16 @@ func _update_betting_status():
 
 	# Debuffs
 	if game_manager.mood_level == 0:
-		debuff1_text.text = "Enemy always Crits"
+		debuff_mood_icon.show()
+		debuff_mood_icon.tooltip_text = "Enemy always Crits"
 	else:
-		debuff1_text.text = ""
+		debuff_mood_icon.hide()
 		
 	if game_manager.affection_level == 0:
-		debuff2_text.text = "Landing on 19 is Bust" 
+		debuff_affection_icon.show()
+		debuff_affection_icon.tooltip_text = "Landing on 19 is Bust" 
 	else:
-		debuff2_text.text = ""
+		debuff_affection_icon.hide()
 
 func _set_active_icons(icons: Array[TextureRect], active_count: int, tooltips: Array):
 	for i in range(icons.size()):
