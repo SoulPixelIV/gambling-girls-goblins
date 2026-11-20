@@ -224,22 +224,22 @@ func _process(delta: float) -> void:
 					scale.y = 0.85
 		else:
 			if card_anim_index == 0:
-				if scale.x < 0.3:
+				if scale.x < 0.6:
 					scale.x += delta * 2
 					scale.y += delta * 2
 				else:
 					card_anim_index = 1
 					
 			if card_anim_index == 1:
-				if scale.x > 0.252:
+				if scale.x > 0.504:
 					scale.x -= delta * 2.5
 					scale.y -= delta * 2.5
 				else:
 					card_anim_index = 2
 					
 			if card_anim_index == 2:
-					scale.x = 0.25
-					scale.y = 0.25
+					scale.x = 0.5
+					scale.y = 0.5
 					
 	if is_inventory_card:
 		if hovered:

@@ -48,6 +48,7 @@ var hit_input_locked = false #Block Hit Button if True
 var game_mode = 1 #0 = Combat | 1 = Overworld
 var health = 42
 var max_health = 42
+var bust_limit = 99
 var pot_mood = -1 #Betted Mood Points
 var pot_affection = -1 #Betted Affection Points
 var mood_level = 1
@@ -70,6 +71,7 @@ var last_player_card = null
 var redraw_used = false
 var double_down_active = false
 var safe_used = false
+var dungeon_generated = false
 
 var ultra_card_mode = false
 var ultra_cards_remaining = 5
@@ -148,7 +150,10 @@ var selected_card = {
 	"mutation": 0
 }
 
-var dungeon_generated = false
+var active_cards = []
+var archived_cards = []
+
+const MAX_HAND_SIZE = 5
 
 func _ready() -> void:
 	randomize()
@@ -202,7 +207,7 @@ func _process(delta: float) -> void:
 			turn_state = 1
 			
 			# Activate Stand Button again
-			if card_index > 0 && player_score <= 21:
+			if card_index > 0 && player_score <= bust_limit:
 				stand_button.disabled = false
 
 		# Damage Calculating Phase
@@ -254,13 +259,13 @@ func resolve_combat():
 		return
 	
 	#PLAYER WINS
-	if (player_score > enemy_score && player_score <= 21) || (enemy_score > 21 && player_score <= 21):
+	if (player_score > enemy_score && player_score <= bust_limit) || (enemy_score > 21 && player_score <= bust_limit):
 		#Add Lucky Stat
 		if player_score <= 12:
 			Global.player_lucky_stat += 3
 		
 		await show_player_damage()
-		if player_score == 21:
+		if player_score == bust_limit:
 			await show_player_crit()
 		#if enemy_score > 21:
 			#await show_enemy_bust_protection()
@@ -268,9 +273,9 @@ func resolve_combat():
 		await show_enemy_final_damage()
 		await payout_bet("player")
 	#ENEMY WINS
-	if (enemy_score > player_score && enemy_score <= 21) || (player_score > 21 && enemy_score <= 21):
+	if (enemy_score > player_score && enemy_score <= 21) || (player_score > bust_limit && enemy_score <= 21):
 		# Add Unlucky Stat
-		if player_score >= 18 && player_score <= 21:
+		if player_score >= 18 && player_score <= bust_limit:
 			Global.player_unlucky_stat += 4
 		if enemy_score == 21:
 			Global.player_unlucky_stat += 3
@@ -279,7 +284,7 @@ func resolve_combat():
 		#Mood Level 0 Debuff: Enemy always Crits
 		if mood_level == 0 or enemy_score == 21:
 			await show_enemy_crit()
-		if player_score > 21:
+		if player_score > bust_limit:
 			await show_bust_protection()			
 		await show_final_damage()
 		await payout_bet("enemy")
@@ -305,7 +310,7 @@ func _on_hit_button_pressed() -> void:
 			spawn_playing_card(218 + 25 * card_index, 142)
 			card_index += 1
 			
-			if player_score <= 21:
+			if player_score <= bust_limit:
 				stand_button.disabled = false
 			
 			#Double Down Check
@@ -327,7 +332,7 @@ func _on_stand_button_pressed() -> void:
 			health = max_health
 	else:
 		if button_mode == 0:
-			if card_index > 0 && !player_out && player_score <= 21:
+			if card_index > 0 && !player_out && player_score <= bust_limit:
 				# Stand nur einmal pro Runde möglich
 				stand_button.disabled = true
 				hit_button.disabled = true
@@ -352,7 +357,7 @@ func choose_ace_value(value):
 	player_score += value
 	player_score_text.text = str(player_score)
 	
-	if player_score == 21:
+	if player_score == bust_limit:
 		Global.player_lucky_stat += 3
 
 	# Ass-Modus verlassen
@@ -361,7 +366,7 @@ func choose_ace_value(value):
 	stand_button_label.text = "STAND"
 
 	# Bust check
-	if player_score > 21:
+	if player_score > bust_limit:
 		#await apply_player_burn_damage()
 		player_out = true
 
@@ -372,14 +377,14 @@ func choose_seven_value(value):
 	player_score += value
 	player_score_text.text = str(player_score)
 	
-	if player_score == 21:
+	if player_score == bust_limit:
 		Global.player_lucky_stat += 3
 
 	button_mode = 0
 	dialog_manager.dialog_mode = 1
 	dialog_manager._check_dialog_mode() #Update Dialog Mode
 
-	if player_score > 21:
+	if player_score > bust_limit:
 		#await apply_player_burn_damage()
 		player_out = true
 
@@ -388,6 +393,17 @@ func choose_seven_value(value):
 		
 func spawn_playing_card(x, y):
 	if combat_deck.size() > 0:
+		#Remove Oldest Card if already at 5 Cards
+		if active_cards.size() >= MAX_HAND_SIZE:
+			var oldest_card = active_cards.pop_front()
+
+			archived_cards.append({
+				"value": oldest_card.value,
+				"rarity": oldest_card.rarity,
+				"mutation": oldest_card.mutation
+			})
+			oldest_card.queue_free()
+	
 		var rand_card_index = randi_range(0, combat_deck.size() - 1) #Select Random Card from Deck
 		var card_instance = playing_card.instantiate()
 		card_instance.card_played.connect(_on_card_played) #Receive Card Value from Instantiated Card
@@ -403,8 +419,27 @@ func spawn_playing_card(x, y):
 		card_instance.game_manager = self
 		combat_deck.remove_at(rand_card_index) #Remove Card from Deck
 		hand.add_child(card_instance)
-		card_instance.position = Vector2(x, y)
+		card_instance.position = Vector2.ZERO
+		
+		#Save newest Card
+		active_cards.append(card_instance)
+		update_hand_positions()
+		
 		last_player_card = card_instance
+		
+func update_hand_positions():
+	var start_x = 218
+	var start_y = 142
+	var spacing_x = 25
+
+	for i in range(active_cards.size()):
+		var card = active_cards[i]
+
+		if is_instance_valid(card):
+			card.position = Vector2(
+				start_x + spacing_x * i,
+				start_y
+			)
 		
 func spawn_enemy_playing_card(x, y):
 	if enemy != null:
@@ -608,11 +643,11 @@ func _on_card_played(value, card_id):
 		player_score_text.text = str(player_score)
 
 		#Add Lucky Stat
-		if player_score == 21:
+		if player_score == bust_limit:
 			Global.player_lucky_stat += 3
 
 		#Check if Player is over 21
-		if player_score > 21:
+		if player_score > bust_limit:
 			stand_button.disabled = true
 			hit_button.disabled = true
 			
@@ -740,7 +775,7 @@ func show_self_damage():
 		combat_messages_text.text = ""
 		return
 	
-	var calc_self_damage = player_score - 21
+	var calc_self_damage = player_score - bust_limit
 	curr_damage += calc_self_damage
 	combat_messages_text.text = "You receive %d Self Damage!" % calc_self_damage
 	combat_messages2_text.text = "Total Self Damage: %d" % curr_damage
@@ -764,7 +799,7 @@ func show_enemy_damage():
 	if enemy_score > 21:
 		calc_enemy_damage = 0
 	else:
-		if player_score > 21:
+		if player_score > bust_limit:
 			calc_enemy_damage = enemy_score
 		else:
 			calc_enemy_damage = enemy_score - player_score 
@@ -855,7 +890,7 @@ func apply_player_burn_damage():
 		hit_input_locked = false
 		return
 
-	var burn_damage = player_score - 21
+	var burn_damage = player_score - bust_limit
 
 	health -= burn_damage
 	health = max(health, 0) #Health doesn't fall below 0
