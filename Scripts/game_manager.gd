@@ -153,7 +153,7 @@ var selected_card = {
 var active_cards = []
 var archived_cards = []
 
-const MAX_HAND_SIZE = 5
+const MAX_HAND_SIZE = 4
 
 func _ready() -> void:
 	randomize()
@@ -428,18 +428,34 @@ func spawn_playing_card(x, y):
 		last_player_card = card_instance
 		
 func update_hand_positions():
-	var start_x = 218
-	var start_y = 142
-	var spacing_x = 25
+	var start_x = 100.0
+	var start_y = 175.0
 
-	for i in range(active_cards.size()):
+	var min_spacing = 20.0
+	var max_spacing = 65.0
+
+	var card_count = active_cards.size()
+	var spacing_reduction = (MAX_HAND_SIZE - card_count) * 11.0
+	var current_min_spacing = min_spacing + spacing_reduction
+
+	for i in range(card_count):
 		var card = active_cards[i]
 
 		if is_instance_valid(card):
-			card.position = Vector2(
-				start_x + spacing_x * i,
-				start_y
-			)
+			var x_position = start_x
+
+			for j in range(i):
+				var progress = float(j) / max(1, card_count - 1)
+
+				var spacing = lerp(
+					current_min_spacing,
+					max_spacing,
+					progress
+				)
+
+				x_position += spacing
+
+			card.position = Vector2(x_position, start_y)
 		
 func spawn_enemy_playing_card(x, y):
 	if enemy != null:
