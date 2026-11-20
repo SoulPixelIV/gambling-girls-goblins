@@ -66,6 +66,7 @@
 [ext_resource type="Texture2D" uid="uid://d3x2abworssux" path="res://Textures/UI/Buttons/disabled/ui_disabled_button5.png" id="36_vs120"]
 [ext_resource type="Shader" uid="uid://vpnnwhniu2hn" path="res://Shader/smokeTest.gdshader" id="45_vs120"]
 [ext_resource type="Texture2D" uid="uid://b7cvktsqwqygy" path="res://Textures/UI/ui_bonus.png" id="55_x6jpx"]
+[ext_resource type="Texture2D" uid="uid://b1clsidl6ysii" path="res://Textures/UI/ui_star.png" id="59_csv17"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_45ngr"]
 shader = ExtResource("45_vs120")
@@ -801,12 +802,20 @@ theme_override_font_sizes/font_size = 24
 text = "18"
 horizontal_alignment = 1
 
+[node name="Value_Star" type="TextureRect" parent="User_Interface" unique_id=1602444580]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 111.0
+offset_right = 97.0
+offset_bottom = 188.0
+texture = ExtResource("59_csv17")
+
 [node name="Player_Score" type="Label" parent="User_Interface" unique_id=1130129243]
 layout_mode = 0
-offset_left = 57.0
-offset_top = 93.0
-offset_right = 84.0
-offset_bottom = 127.0
+offset_left = 41.0
+offset_top = 132.0
+offset_right = 73.0
+offset_bottom = 171.0
 theme_override_colors/font_color = Color(1, 0.84313726, 0, 1)
 theme_override_font_sizes/font_size = 28
 text = "21"
