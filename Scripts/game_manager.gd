@@ -4,6 +4,7 @@ extends Node
 @onready var hand = $"../Hand"
 @onready var booster = $"../Booster"
 @onready var inventory = $"../Inventory"
+@onready var card_archive = $"../Card_Archive"
 @onready var enemy_hand = $"../Enemy_Hand"
 @onready var dealer_manager = $"../Dealer"
 @onready var dialog_manager = $"../Dialog_Manager"
@@ -38,8 +39,6 @@ extends Node
 @onready var slime_enemy = preload("res://Prefabs/slime.tscn")
 @onready var drunkard_enemy = preload("res://Prefabs/drunkard.tscn")
 @onready var bonus_text = preload("res://Prefabs/bonus_text.tscn")
-@onready var card_archive = $"../User_Interface/Card_Archive"
-@onready var archive_grid = $"../User_Interface/Card_Archive/MarginContainer/ScrollContainer/Archived_Cards_Grid"
 
 @onready var temp_text: Label = $"../User_Interface/Status_Screen/temp_label"
 
@@ -1098,27 +1097,42 @@ func _input(event):
 			
 func toggle_card_archive():
 	archive_open = !archive_open
-	card_archive.visible = archive_open
 
 	if archive_open:
 		update_card_archive()
 
+
 func update_card_archive():
-	# Alte Kartenkopien entfernen
-	for child in archive_grid.get_children():
+	#Remove old cards
+	for child in card_archive.get_children():
 		child.queue_free()
 
-	# Alle archivierten Karten neu instanziieren
-	for card_data in archived_cards:
+	var cards_per_row = 8
+	var start_x = 220
+	var start_y = 120
+	var spacing_x = 40
+	var spacing_y = 55
+
+	for i in range(archived_cards.size()):
 		var card_instance = playing_card.instantiate()
+		var card_data = archived_cards[i]
 
 		card_instance.value = card_data["value"]
 		card_instance.rarity = card_data["rarity"]
 		card_instance.mutation = card_data["mutation"]
-		card_instance.is_archive_card = true
-		card_instance.game_manager = self
 
-		archive_grid.add_child(card_instance)
+		card_instance.game_manager = self
+		card_instance.is_inventory_card = true
+
+		var row = int(i / cards_per_row)
+		var col = i % cards_per_row
+
+		card_instance.position = Vector2(
+			start_x + col * spacing_x,
+			start_y + row * spacing_y
+		)
+
+		card_archive.add_child(card_instance)
 
 func spawn_new_enemy():
 	if enemy != null:

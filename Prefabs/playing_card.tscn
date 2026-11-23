@@ -400,7 +400,6 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12698415, 1), 0.0, 0.0, 0, 0, 
 point_count = 4
 
 [node name="Card" type="Control" unique_id=187359131]
-custom_minimum_size = Vector2(80, 110)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 84.0
