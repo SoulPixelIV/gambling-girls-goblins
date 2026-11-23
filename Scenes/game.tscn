@@ -87,7 +87,6 @@ shader = ExtResource("4_3dryh")
 shader_parameter/blur_amount = 1.5
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8m3t6"]
-load_path = "res://.godot/imported/ui_button1.png-c0e084166249fcfadc1dc7115049ddb1.ctex"
 
 [sub_resource type="BitMap" id="BitMap_bu0y5"]
 data = {
@@ -96,7 +95,6 @@ data = {
 }
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ese38"]
-load_path = "res://.godot/imported/ui_button3.png-b41219bd3ff24b2b2257a9cbe5b21e3f.ctex"
 
 [sub_resource type="BitMap" id="BitMap_6a4tp"]
 data = {
@@ -1015,6 +1013,27 @@ texture_normal = ExtResource("23_vm72l")
 [node name="Bonus_Field" type="Sprite2D" parent="User_Interface" unique_id=287852251]
 position = Vector2(389, 308)
 texture = ExtResource("55_x6jpx")
+
+[node name="Card_Archive" type="PanelContainer" parent="User_Interface" unique_id=118003597]
+layout_mode = 0
+offset_left = 167.0
+offset_top = 95.0
+offset_right = 487.0
+offset_bottom = 275.0
+
+[node name="MarginContainer" type="MarginContainer" parent="User_Interface/Card_Archive" unique_id=1325376069]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="User_Interface/Card_Archive/MarginContainer" unique_id=300818898]
+layout_mode = 2
+
+[node name="Archived_Cards_Grid" type="GridContainer" parent="User_Interface/Card_Archive/MarginContainer/ScrollContainer" unique_id=54577366]
+layout_mode = 2
+columns = 8
 
 [node name="Hand" type="Control" parent="." unique_id=248982143]
 layout_mode = 3

@@ -22,7 +22,6 @@ Global="*uid://ct5hesmua3osg"
 
 window/size/viewport_width=640
 window/size/viewport_height=360
-window/size/mode=3
 window/size/borderless=true
 window/stretch/mode="canvas_items"
 
@@ -41,4 +40,4 @@ Restart={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-rendering_device/driver.windows="d3d12"
+renderer/rendering_method="gl_compatibility"

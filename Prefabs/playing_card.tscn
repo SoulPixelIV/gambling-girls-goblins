@@ -386,7 +386,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_6xvgv")
 }],
-"loop": true,
+"loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
@@ -400,8 +400,13 @@ _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.12698415, 1), 0.0, 0.0, 0, 0, 
 point_count = 4
 
 [node name="Card" type="Control" unique_id=187359131]
+custom_minimum_size = Vector2(80, 110)
 layout_mode = 3
 anchors_preset = 0
+offset_left = 84.0
+offset_top = 115.0
+offset_right = 164.0
+offset_bottom = 225.0
 script = ExtResource("1_odrdg")
 
 [node name="Label" type="Label" parent="." unique_id=1313565381]

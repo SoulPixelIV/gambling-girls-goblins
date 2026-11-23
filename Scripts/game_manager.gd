@@ -38,6 +38,8 @@ extends Node
 @onready var slime_enemy = preload("res://Prefabs/slime.tscn")
 @onready var drunkard_enemy = preload("res://Prefabs/drunkard.tscn")
 @onready var bonus_text = preload("res://Prefabs/bonus_text.tscn")
+@onready var card_archive = $"../User_Interface/Card_Archive"
+@onready var archive_grid = $"../User_Interface/Card_Archive/MarginContainer/ScrollContainer/Archived_Cards_Grid"
 
 @onready var temp_text: Label = $"../User_Interface/Status_Screen/temp_label"
 
@@ -72,6 +74,7 @@ var redraw_used = false
 var double_down_active = false
 var safe_used = false
 var dungeon_generated = false
+var archive_open = false
 
 var ultra_card_mode = false
 var ultra_cards_remaining = 5
@@ -1085,6 +1088,37 @@ func return_to_overworld():
 	
 	game_mode = 1
 	_switch_game_mode(1)
+
+#TEST Open Archived Cards Window
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed and !event.echo and event.keycode == KEY_F2:
+			toggle_card_archive()
+			get_viewport().set_input_as_handled()
+			
+func toggle_card_archive():
+	archive_open = !archive_open
+	card_archive.visible = archive_open
+
+	if archive_open:
+		update_card_archive()
+
+func update_card_archive():
+	# Alte Kartenkopien entfernen
+	for child in archive_grid.get_children():
+		child.queue_free()
+
+	# Alle archivierten Karten neu instanziieren
+	for card_data in archived_cards:
+		var card_instance = playing_card.instantiate()
+
+		card_instance.value = card_data["value"]
+		card_instance.rarity = card_data["rarity"]
+		card_instance.mutation = card_data["mutation"]
+		card_instance.is_archive_card = true
+		card_instance.game_manager = self
+
+		archive_grid.add_child(card_instance)
 
 func spawn_new_enemy():
 	if enemy != null:

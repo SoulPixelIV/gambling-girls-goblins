@@ -30,6 +30,7 @@ var is_selected_card = false
 var is_inventory_card = false
 var is_player_card = false
 var is_fthedealer_card = false
+var is_archive_card = false
 
 func _ready() -> void:
 	mouse_entered.connect(_on_mouse_entered)
@@ -44,6 +45,10 @@ func _ready() -> void:
 		scale.y = 0
 		
 	if is_inventory_card:
+		scale.x = 0.225
+		scale.y = 0.225
+		
+	if is_archive_card:
 		scale.x = 0.225
 		scale.y = 0.225
 		
@@ -199,7 +204,7 @@ func _process(delta: float) -> void:
 		if is_inventory_card:
 			queue_free()
 		
-	if !is_selected_card and !is_inventory_card:
+	if !is_selected_card and !is_inventory_card and !is_archive_card:
 		if is_booster_card or is_fthedealer_card:
 			if card_anim_index == 0:
 				if scale.x < 0.85:
@@ -241,7 +246,7 @@ func _process(delta: float) -> void:
 					scale.x = 0.5
 					scale.y = 0.5
 					
-	if is_inventory_card:
+	if is_inventory_card or is_archive_card:
 		if hovered:
 			scale.x = 0.3
 			scale.y = 0.3
